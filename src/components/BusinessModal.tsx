@@ -52,13 +52,13 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
   const getColorClasses = (color: string) => {
     switch (color) {
       case 'amber':
-        return 'bg-amber-50 border-amber-200 text-amber-800';
+        return 'bg-amber-100 border-amber-200 text-amber-800';
       case 'blue':
-        return 'bg-blue-50 border-blue-200 text-blue-800';
+        return 'bg-blue-100 border-blue-200 text-blue-800';
       case 'green':
-        return 'bg-green-50 border-green-200 text-green-800';
+        return 'bg-green-100 border-green-200 text-green-800';
       default:
-        return 'bg-gray-50 border-gray-200 text-gray-800';
+        return 'bg-stone-100 border-stone-200 text-stone-800';
     }
   };
 
@@ -67,9 +67,9 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-stone-50 border-stone-200">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-amber-700">
+          <DialogTitle className="text-2xl font-bold text-center text-amber-800">
             📌 컴유니티 주요 사업 소개
           </DialogTitle>
         </DialogHeader>
@@ -82,13 +82,13 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
                   <div className="text-4xl">{business.emoji}</div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold mb-2">{business.title}</h3>
-                    <p className="text-gray-700 mb-4">{business.description}</p>
+                    <p className="text-stone-700 mb-4">{business.description}</p>
                     
                     <div className="space-y-2">
                       <h4 className="font-semibold">주요 활동:</h4>
                       <ul className="list-disc list-inside space-y-1 text-sm">
                         {business.details.map((detail, idx) => (
-                          <li key={idx} className="text-gray-600">{detail}</li>
+                          <li key={idx} className="text-stone-600">{detail}</li>
                         ))}
                       </ul>
                     </div>
@@ -98,20 +98,20 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
             </Card>
           ))}
           
-          <div className="bg-gradient-to-r from-amber-50 to-blue-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-3 text-center">🚀 2025년 목표</h3>
+          <div className="bg-gradient-to-r from-amber-100 to-blue-100 p-6 rounded-lg border border-stone-200">
+            <h3 className="text-lg font-semibold mb-3 text-center text-stone-800">🚀 2025년 목표</h3>
             <div className="grid md:grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-amber-600">50+</div>
-                <div className="text-sm text-gray-600">난민 가정 지원</div>
+                <div className="text-2xl font-bold text-amber-700">50+</div>
+                <div className="text-sm text-stone-600">난민 가정 지원</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-600">100+</div>
-                <div className="text-sm text-gray-600">취약계층 돌봄</div>
+                <div className="text-2xl font-bold text-blue-700">100+</div>
+                <div className="text-sm text-stone-600">취약계층 돌봄</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-green-600">200+</div>
-                <div className="text-sm text-gray-600">교육 프로그램 참여자</div>
+                <div className="text-2xl font-bold text-green-700">200+</div>
+                <div className="text-sm text-stone-600">교육 프로그램 참여자</div>
               </div>
             </div>
           </div>

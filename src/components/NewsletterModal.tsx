@@ -47,37 +47,39 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md bg-stone-50 border-stone-200">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-amber-700">
+          <DialogTitle className="text-2xl font-bold text-center text-amber-800">
             📮 뉴스레터 신청
           </DialogTitle>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">이메일 *</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">이메일 *</label>
             <Input
               type="email"
               placeholder="이메일 주소를 입력해주세요"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="bg-white border-stone-300 focus:border-amber-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">성함</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">성함</label>
             <Input
               type="text"
               placeholder="성함을 입력해주세요 (선택사항)"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="bg-white border-stone-300 focus:border-amber-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">관심 있는 소식 (복수선택 가능)</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">관심 있는 소식 (복수선택 가능)</label>
             <div className="space-y-2">
               {interestOptions.map((interest) => (
                 <div key={interest} className="flex items-center space-x-2">
@@ -86,7 +88,7 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
                     checked={interests.includes(interest)}
                     onCheckedChange={(checked) => handleInterestChange(interest, checked as boolean)}
                   />
-                  <label htmlFor={interest} className="text-sm">{interest}</label>
+                  <label htmlFor={interest} className="text-sm text-stone-700">{interest}</label>
                 </div>
               ))}
             </div>
@@ -99,7 +101,7 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
               onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
               required
             />
-            <label htmlFor="terms" className="text-xs text-gray-600">
+            <label htmlFor="terms" className="text-xs text-stone-600">
               개인정보 수집 및 이용에 동의합니다. 
               (수집목적: 뉴스레터 발송, 보관기간: 구독 해지 시까지)
             </label>

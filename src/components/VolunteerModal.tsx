@@ -47,49 +47,52 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-stone-50 border-stone-200">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-blue-700">
+          <DialogTitle className="text-2xl font-bold text-center text-blue-800">
             🙋‍♀️ 참여 신청하기
           </DialogTitle>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">성함</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">성함</label>
             <Input
               type="text"
               placeholder="성함을 입력해주세요"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="bg-white border-stone-300 focus:border-blue-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">이메일</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">이메일</label>
             <Input
               type="email"
               placeholder="이메일을 입력해주세요"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="bg-white border-stone-300 focus:border-blue-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">연락처</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">연락처</label>
             <Input
               type="tel"
               placeholder="연락처를 입력해주세요"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              className="bg-white border-stone-300 focus:border-blue-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">관심 있는 활동 영역 (복수선택 가능)</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">관심 있는 활동 영역 (복수선택 가능)</label>
             <div className="grid grid-cols-2 gap-2">
               {volunteerAreas.map((area) => (
                 <div key={area} className="flex items-center space-x-2">
@@ -98,18 +101,19 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
                     checked={interests.includes(area)}
                     onCheckedChange={(checked) => handleInterestChange(area, checked as boolean)}
                   />
-                  <label htmlFor={area} className="text-sm">{area}</label>
+                  <label htmlFor={area} className="text-sm text-stone-700">{area}</label>
                 </div>
               ))}
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">자기소개 및 참여 동기</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">자기소개 및 참여 동기</label>
             <Textarea
               placeholder="간단한 자기소개와 참여하고 싶은 이유를 적어주세요"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              className="bg-white border-stone-300 focus:border-blue-500"
               rows={4}
             />
           </div>

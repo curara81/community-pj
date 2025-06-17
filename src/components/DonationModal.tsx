@@ -28,9 +28,9 @@ const DonationModal = ({ children }: DonationModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md bg-stone-50 border-stone-200">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-amber-700">
+          <DialogTitle className="text-2xl font-bold text-center text-amber-800">
             💝 후원 신청하기
           </DialogTitle>
         </DialogHeader>
@@ -56,54 +56,58 @@ const DonationModal = ({ children }: DonationModalProps) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">후원 금액</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">후원 금액</label>
             <Input
               type="text"
               placeholder="후원 금액을 입력해주세요"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              className="bg-white border-stone-300 focus:border-amber-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">성함</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">성함</label>
             <Input
               type="text"
               placeholder="성함을 입력해주세요"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="bg-white border-stone-300 focus:border-amber-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">이메일</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">이메일</label>
             <Input
               type="email"
               placeholder="이메일을 입력해주세요"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="bg-white border-stone-300 focus:border-amber-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">연락처</label>
+            <label className="block text-sm font-medium mb-2 text-stone-700">연락처</label>
             <Input
               type="tel"
               placeholder="연락처를 입력해주세요"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              className="bg-white border-stone-300 focus:border-amber-500"
               required
             />
           </div>
 
-          <Card className="bg-amber-50">
+          <Card className="bg-amber-100 border-amber-200">
             <CardContent className="p-4">
-              <h4 className="font-semibold mb-2">💳 계좌 안내</h4>
-              <p className="text-sm">하나은행 218-910044-94704</p>
-              <p className="text-sm text-gray-600">(예금주: 사단법인 컴유니티)</p>
+              <h4 className="font-semibold mb-2 text-amber-800">💳 계좌 안내</h4>
+              <p className="text-sm text-amber-800">하나은행 218-910044-94704</p>
+              <p className="text-sm text-amber-700">(예금주: 사단법인 컴유니티)</p>
             </CardContent>
           </Card>
 

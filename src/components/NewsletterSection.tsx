@@ -3,8 +3,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Instagram, Facebook } from "lucide-react";
+import NewsletterModal from "./NewsletterModal";
+import { useState } from "react";
 
 const NewsletterSection = () => {
+  const [email, setEmail] = useState('');
+
+  const handleQuickSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      console.log('빠른 뉴스레터 신청:', email);
+      alert('뉴스레터 신청이 완료되었습니다!');
+      setEmail('');
+    }
+  };
+
   return (
     <section className="py-20 bg-gradient-to-r from-amber-50 via-orange-50 to-blue-50">
       <div className="container mx-auto px-6">
@@ -16,22 +29,38 @@ const NewsletterSection = () => {
             뉴스레터를 신청하시고 컴유니티의 준비과정부터 함께해요.
           </p>
           
-          <Card className="bg-white/90 backdrop-blur shadow-xl border-0 hover-lift mb-12">
+          <Card className="bg-white/90 backdrop-blur shadow-xl border-0 hover-lift mb-8">
             <CardContent className="p-8">
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <form onSubmit={handleQuickSignup} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <Input 
                   type="email" 
                   placeholder="이메일 주소를 입력해주세요"
                   className="flex-1 px-4 py-3 text-lg border-2 border-amber-200 focus:border-amber-500 rounded-xl"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
                 <Button 
+                  type="submit"
                   className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 text-lg font-semibold rounded-xl hover-lift whitespace-nowrap"
                 >
-                  신청하기
+                  빠른 신청
                 </Button>
-              </div>
+              </form>
             </CardContent>
           </Card>
+
+          <div className="mb-12">
+            <NewsletterModal>
+              <Button 
+                variant="outline"
+                size="lg"
+                className="border-2 border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white px-6 py-3 text-lg font-semibold rounded-xl"
+              >
+                상세 신청하기
+              </Button>
+            </NewsletterModal>
+          </div>
           
           <div className="space-y-4">
             <p className="text-lg text-gray-600 font-medium">SNS에서도 만나요</p>
@@ -40,6 +69,7 @@ const NewsletterSection = () => {
                 variant="outline" 
                 size="lg"
                 className="border-2 border-pink-400 text-pink-600 hover:bg-pink-400 hover:text-white p-3 rounded-full hover-lift"
+                onClick={() => alert('인스타그램 페이지 준비중입니다!')}
               >
                 <Instagram size={24} />
               </Button>
@@ -47,6 +77,7 @@ const NewsletterSection = () => {
                 variant="outline" 
                 size="lg"
                 className="border-2 border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white p-3 rounded-full hover-lift"
+                onClick={() => alert('페이스북 페이지 준비중입니다!')}
               >
                 <Facebook size={24} />
               </Button>

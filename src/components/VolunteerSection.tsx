@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import VolunteerModal from "./VolunteerModal";
 
 const VolunteerSection = () => {
   return (
@@ -21,12 +22,14 @@ const VolunteerSection = () => {
                 자원봉사나 프로그램 참여를 원하신다면 지금 미리 신청해주세요.
               </p>
               
-              <Button 
-                size="lg"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 text-xl font-semibold rounded-full hover-lift shadow-lg"
-              >
-                🙋‍♀️ 참여 신청하기
-              </Button>
+              <VolunteerModal>
+                <Button 
+                  size="lg"
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 text-xl font-semibold rounded-full hover-lift shadow-lg"
+                >
+                  🙋‍♀️ 참여 신청하기
+                </Button>
+              </VolunteerModal>
             </CardContent>
           </Card>
         </div>

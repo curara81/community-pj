@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import DonationModal from "./DonationModal";
 
 const DonationSection = () => {
   return (
@@ -35,19 +36,23 @@ const DonationSection = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg"
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
-                >
-                  💝 정기 후원하기
-                </Button>
-                <Button 
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
-                >
-                  💙 일시 후원하기
-                </Button>
+                <DonationModal>
+                  <Button 
+                    size="lg"
+                    className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
+                  >
+                    💝 정기 후원하기
+                  </Button>
+                </DonationModal>
+                <DonationModal>
+                  <Button 
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
+                  >
+                    💙 일시 후원하기
+                  </Button>
+                </DonationModal>
               </div>
             </CardContent>
           </Card>

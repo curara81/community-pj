@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import BusinessModal from "./BusinessModal";
 
 const CoreBusinessSection = () => {
   const businesses = [
@@ -53,12 +54,14 @@ const CoreBusinessSection = () => {
         </div>
         
         <div className="text-center">
-          <Button 
-            size="lg"
-            className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift helping-hand-shadow"
-          >
-            각 사업 자세히 보기
-          </Button>
+          <BusinessModal>
+            <Button 
+              size="lg"
+              className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift helping-hand-shadow"
+            >
+              각 사업 자세히 보기
+            </Button>
+          </BusinessModal>
         </div>
       </div>
     </section>

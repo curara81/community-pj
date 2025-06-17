@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import AboutModal from "./AboutModal";
 
 const IntroSection = () => {
   return (
@@ -19,13 +20,15 @@ const IntroSection = () => {
               난민, 장애인, 노약자, 무주택 취약계층에게 실제적인 도움을 전하고, 다음세대가 건강한 사회적 가치를 배우도록 준비하고 있습니다.
             </p>
             
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-2 border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white px-6 py-3 text-lg font-semibold rounded-xl transition-all duration-300"
-            >
-              더 알아보기
-            </Button>
+            <AboutModal>
+              <Button 
+                variant="outline"
+                size="lg"
+                className="border-2 border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white px-6 py-3 text-lg font-semibold rounded-xl transition-all duration-300"
+              >
+                더 알아보기
+              </Button>
+            </AboutModal>
           </div>
         </div>
       </div>

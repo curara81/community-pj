@@ -5,22 +5,22 @@ import { Button } from "@/components/ui/button";
 const CoreBusinessSection = () => {
   const businesses = [
     {
-      emoji: "📦",
-      title: "주거환경 개선",
-      description: "주거 취약계층을 위한 집수리 및 환경개선",
-      gradient: "from-mint-100 to-mint-200"
+      emoji: "🏠",
+      title: "난민 정착 지원",
+      description: "한국에 정착하는 난민들을 위한 주거, 언어, 문화적응 지원",
+      gradient: "from-amber-100 to-orange-100"
     },
     {
-      emoji: "🧓",
-      title: "노약자 돌봄",
-      description: "고립된 노인을 위한 정서적·생활 돌봄 프로그램",
-      gradient: "from-peach-100 to-peach-200"
+      emoji: "🤲",
+      title: "취약계층 돌봄",
+      description: "장애인, 노약자를 위한 생활돌봄 및 정서적 지원 프로그램",
+      gradient: "from-blue-100 to-indigo-100"
     },
     {
-      emoji: "🌱",
-      title: "리더십 교육",
-      description: "다음세대 리더를 위한 가치기반 교육 및 캠프 운영",
-      gradient: "from-ivory-100 to-ivory-200"
+      emoji: "📚",
+      title: "교육 및 자립 지원",
+      description: "취약계층의 자립을 위한 직업교육, 생활교육 및 멘토링",
+      gradient: "from-green-100 to-emerald-100"
     }
   ];
 
@@ -37,7 +37,7 @@ const CoreBusinessSection = () => {
           {businesses.map((business, index) => (
             <Card 
               key={index} 
-              className={`hover-lift bg-gradient-to-br ${business.gradient} border-0 shadow-md hover:shadow-xl transition-all duration-300`}
+              className={`hover-lift care-card bg-gradient-to-br ${business.gradient} border-0 shadow-md hover:shadow-xl transition-all duration-300`}
             >
               <CardContent className="p-8 text-center">
                 <div className="text-6xl mb-6">{business.emoji}</div>
@@ -55,7 +55,7 @@ const CoreBusinessSection = () => {
         <div className="text-center">
           <Button 
             size="lg"
-            className="bg-mint-600 hover:bg-mint-700 text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift shadow-lg"
+            className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift helping-hand-shadow"
           >
             각 사업 자세히 보기
           </Button>

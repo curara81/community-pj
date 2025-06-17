@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const DonationSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-mint-50 via-white to-peach-50">
+    <section className="py-20 bg-gradient-to-br from-amber-50 via-white to-blue-50">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -20,9 +20,9 @@ const DonationSection = () => {
             </p>
           </div>
           
-          <Card className="bg-white/80 backdrop-blur shadow-xl border-0 hover-lift">
+          <Card className="bg-white/90 backdrop-blur shadow-xl border-0 hover-lift">
             <CardContent className="p-8 md:p-12">
-              <div className="bg-gradient-to-r from-mint-100 to-peach-100 rounded-xl p-6 mb-8">
+              <div className="bg-gradient-to-r from-amber-100 to-blue-100 rounded-xl p-6 mb-8">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
                   💳 계좌 안내
                 </h3>
@@ -37,16 +37,16 @@ const DonationSection = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg"
-                  className="bg-mint-600 hover:bg-mint-700 text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift shadow-lg"
+                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
                 >
-                  정기 후원하기
+                  💝 정기 후원하기
                 </Button>
                 <Button 
                   variant="outline"
                   size="lg"
-                  className="border-2 border-peach-500 text-peach-700 hover:bg-peach-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift"
+                  className="border-2 border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
                 >
-                  일시 후원하기
+                  💙 일시 후원하기
                 </Button>
               </div>
             </CardContent>

@@ -4,11 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+/* 난민사역과 취약계층 돌봄을 위한 따뜻하고 포용적인 디자인 시스템 */
 
 @layer base {
   :root {
-    --background: 254 252 243; /* ivory-50 */
+    --background: 254 252 243; /* warm-50 */
     --foreground: 55 48 43;
 
     --card: 255 255 255;
@@ -17,35 +17,35 @@
     --popover: 255 255 255;
     --popover-foreground: 55 48 43;
 
-    --primary: 15 118 110; /* mint-700 */
-    --primary-foreground: 240 253 250;
+    --primary: 146 64 14; /* amber-800 - 따뜻한 희망 */
+    --primary-foreground: 255 251 235;
 
-    --secondary: 204 251 241; /* mint-100 */
-    --secondary-foreground: 15 118 110;
+    --secondary: 254 243 199; /* amber-100 */
+    --secondary-foreground: 146 64 14;
 
-    --muted: 255 244 214; /* ivory-200 */
+    --muted: 250 245 232; /* warm-100 */
     --muted-foreground: 120 113 108;
 
-    --accent: 252 217 163; /* peach-200 */
-    --accent-foreground: 146 64 14;
+    --accent: 239 246 255; /* blue-50 - 평화와 신뢰 */
+    --accent-foreground: 30 64 175;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
     --border: 229 231 235;
     --input: 229 231 235;
-    --ring: 15 118 110;
+    --ring: 146 64 14;
 
     --radius: 0.75rem;
 
     --sidebar-background: 255 255 255;
     --sidebar-foreground: 55 48 43;
-    --sidebar-primary: 15 118 110;
-    --sidebar-primary-foreground: 240 253 250;
-    --sidebar-accent: 204 251 241;
-    --sidebar-accent-foreground: 15 118 110;
+    --sidebar-primary: 146 64 14;
+    --sidebar-primary-foreground: 255 251 235;
+    --sidebar-accent: 254 243 199;
+    --sidebar-accent-foreground: 146 64 14;
     --sidebar-border: 229 231 235;
-    --sidebar-ring: 15 118 110;
+    --sidebar-ring: 146 64 14;
   }
 }
 
@@ -64,12 +64,16 @@
 }
 
 @layer components {
-  .gradient-mint-peach {
-    background: linear-gradient(135deg, #5eead4 0%, #f9c074 100%);
+  .gradient-warm-hope {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
   }
   
-  .gradient-text {
-    background: linear-gradient(135deg, #0f766e 0%, #b45309 100%);
+  .gradient-care {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+  }
+  
+  .gradient-text-warm {
+    background: linear-gradient(135deg, #92400e 0%, #d97706 50%, #f59e0b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -77,5 +81,13 @@
   
   .hover-lift {
     @apply transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .helping-hand-shadow {
+    box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.25), 0 10px 10px -5px rgba(245, 158, 11, 0.1);
+  }
+  
+  .care-card {
+    @apply bg-gradient-to-br from-amber-50 to-blue-50 border-0 shadow-md hover:shadow-xl transition-all duration-300;
   }
 }

@@ -6,11 +6,11 @@ import { Instagram, Facebook } from "lucide-react";
 
 const NewsletterSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-mint-50 via-ivory-50 to-peach-50">
+    <section className="py-20 bg-gradient-to-r from-amber-50 via-orange-50 to-blue-50">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            소식을 가장 먼저 받아보세요
+            📮 소식을 가장 먼저 받아보세요
           </h2>
           <p className="text-xl text-gray-700 mb-12">
             뉴스레터를 신청하시고 컴유니티의 준비과정부터 함께해요.
@@ -22,10 +22,10 @@ const NewsletterSection = () => {
                 <Input 
                   type="email" 
                   placeholder="이메일 주소를 입력해주세요"
-                  className="flex-1 px-4 py-3 text-lg border-2 border-mint-200 focus:border-mint-500 rounded-xl"
+                  className="flex-1 px-4 py-3 text-lg border-2 border-amber-200 focus:border-amber-500 rounded-xl"
                 />
                 <Button 
-                  className="bg-mint-600 hover:bg-mint-700 text-white px-6 py-3 text-lg font-semibold rounded-xl hover-lift whitespace-nowrap"
+                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 text-lg font-semibold rounded-xl hover-lift whitespace-nowrap"
                 >
                   신청하기
                 </Button>

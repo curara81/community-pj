@@ -24,6 +24,11 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
   const [withdrawalDay, setWithdrawalDay] = useState('5');
   const [bankName, setBankName] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
+  
+  // 신용카드 관련 상태
+  const [cardHolderName, setCardHolderName] = useState('');
+  const [cardHolderPhone, setCardHolderPhone] = useState('');
+  const [paymentDay, setPaymentDay] = useState('5');
 
   const donationAmounts = ['20,000원', '30,000원', '50,000원', '80,000원', '100,000원', '직접입력'];
 
@@ -48,7 +53,8 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
       isUnder14,
       paymentMethod,
       withdrawalDay: donationType === 'regular' ? withdrawalDay : null,
-      bankInfo: donationType === 'regular' && paymentMethod === 'cms' ? { bankName, accountNumber } : null
+      bankInfo: donationType === 'regular' && paymentMethod === 'cms' ? { bankName, accountNumber } : null,
+      cardInfo: donationType === 'regular' && paymentMethod === 'card' ? { cardHolderName, cardHolderPhone, paymentDay } : null
     });
     alert(`${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 접수되었습니다. 담당자가 연락드리겠습니다.`);
   };
@@ -60,7 +66,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
       </DialogTrigger>
       <DialogContent className="max-w-lg bg-stone-50 border-stone-200 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-amber-800">
+          <DialogTitle className="text-2xl font-bold text-center text-stone-800">
             💝 후원 신청하기
           </DialogTitle>
         </DialogHeader>
@@ -71,7 +77,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
               type="button"
               variant={donationType === 'regular' ? 'default' : 'outline'}
               onClick={() => setDonationType('regular')}
-              className="flex-1"
+              className="flex-1 bg-stone-600 hover:bg-stone-700 text-white border-stone-300"
             >
               정기후원
             </Button>
@@ -79,7 +85,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
               type="button"
               variant={donationType === 'one-time' ? 'default' : 'outline'}
               onClick={() => setDonationType('one-time')}
-              className="flex-1"
+              className="flex-1 bg-stone-600 hover:bg-stone-700 text-white border-stone-300"
             >
               일시후원
             </Button>
@@ -95,7 +101,11 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                   type="button"
                   variant={amount === amountOption ? 'default' : 'outline'}
                   onClick={() => handleAmountSelect(amountOption)}
-                  className="h-12 text-sm"
+                  className={`h-12 text-sm ${
+                    amount === amountOption 
+                      ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                      : 'border-stone-300 text-stone-700 hover:bg-stone-100'
+                  }`}
                 >
                   {amountOption}
                 </Button>
@@ -107,7 +117,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                 placeholder="금액을 입력해주세요"
                 value={customAmount}
                 onChange={(e) => setCustomAmount(e.target.value)}
-                className="bg-white border-stone-300 focus:border-amber-500"
+                className="bg-white border-stone-300 focus:border-blue-500"
                 required
               />
             )}
@@ -122,7 +132,11 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                   type="button"
                   variant={paymentMethod === 'cms' ? 'default' : 'outline'}
                   onClick={() => setPaymentMethod('cms')}
-                  className="flex-1"
+                  className={`flex-1 ${
+                    paymentMethod === 'cms'
+                      ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                      : 'border-stone-300 text-stone-700 hover:bg-stone-100'
+                  }`}
                 >
                   CMS자동이체
                 </Button>
@@ -130,7 +144,11 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                   type="button"
                   variant={paymentMethod === 'card' ? 'default' : 'outline'}
                   onClick={() => setPaymentMethod('card')}
-                  className="flex-1"
+                  className={`flex-1 ${
+                    paymentMethod === 'card'
+                      ? 'bg-orange-600 hover:bg-orange-700 text-white'
+                      : 'border-stone-300 text-stone-700 hover:bg-stone-100'
+                  }`}
                 >
                   신용카드
                 </Button>
@@ -161,7 +179,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                       placeholder="은행을 선택해 주세요"
                       value={bankName}
                       onChange={(e) => setBankName(e.target.value)}
-                      className="bg-white border-stone-300 focus:border-amber-500"
+                      className="bg-white border-stone-300 focus:border-blue-500"
                       required
                     />
                   </div>
@@ -173,7 +191,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                       placeholder="휴대폰번호 형식의 계좌번호 사용불가"
                       value={accountNumber}
                       onChange={(e) => setAccountNumber(e.target.value)}
-                      className="bg-white border-stone-300 focus:border-amber-500"
+                      className="bg-white border-stone-300 focus:border-blue-500"
                       required
                     />
                   </div>
@@ -184,6 +202,56 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                     </p>
                     <p className="text-xs text-blue-800">
                       ※ CMS자동이체 신청 시 전자금융거래법 제15조 및 동법 시행령 제10조에 따라 출금동의 인증이 필요합니다.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {paymentMethod === 'card' && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-stone-700">카드주명</label>
+                    <Input
+                      type="text"
+                      placeholder="카드 소유자 성함을 입력해주세요"
+                      value={cardHolderName}
+                      onChange={(e) => setCardHolderName(e.target.value)}
+                      className="bg-white border-stone-300 focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-stone-700">카드주 휴대폰</label>
+                    <Input
+                      type="tel"
+                      placeholder="카드 소유자 휴대폰번호를 입력해주세요"
+                      value={cardHolderPhone}
+                      onChange={(e) => setCardHolderPhone(e.target.value)}
+                      className="bg-white border-stone-300 focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-stone-700">결제일</label>
+                    <Select value={paymentDay} onValueChange={setPaymentDay}>
+                      <SelectTrigger className="bg-white border-stone-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="5">매월 5일</SelectItem>
+                        <SelectItem value="10">매월 10일</SelectItem>
+                        <SelectItem value="15">매월 15일</SelectItem>
+                        <SelectItem value="20">매월 20일</SelectItem>
+                        <SelectItem value="25">매월 25일</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="bg-orange-100 p-3 rounded-lg border border-orange-200">
+                    <p className="text-xs text-orange-800">
+                      ※ 신용카드 후원 시 나이스빌링, 나이스_정기과금, 후원금_나이스 또는 Nice로 표시되어 청구됩니다.
                     </p>
                   </div>
                 </div>
@@ -214,7 +282,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                 placeholder="성함을 입력해주세요"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="bg-white border-stone-300 focus:border-amber-500"
+                className="bg-white border-stone-300 focus:border-blue-500"
                 required
               />
             </div>
@@ -223,10 +291,10 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
               <label className="block text-sm font-medium mb-2 text-stone-700">휴대폰번호 *</label>
               <Input
                 type="tel"
-                placeholder="휴대폰번호 형식의 계좌번호 사용불가"
+                placeholder="휴대폰번호를 입력해주세요"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="bg-white border-stone-300 focus:border-amber-500"
+                className="bg-white border-stone-300 focus:border-blue-500"
                 required
               />
             </div>
@@ -238,18 +306,18 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
                 placeholder="이메일을 입력해주세요"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-white border-stone-300 focus:border-amber-500"
+                className="bg-white border-stone-300 focus:border-blue-500"
                 required
               />
             </div>
           </div>
 
-          <Card className="bg-amber-100 border-amber-200">
+          <Card className="bg-blue-100 border-blue-200">
             <CardContent className="p-4">
-              <h4 className="font-semibold mb-2 text-amber-800">💳 계좌 안내</h4>
-              <p className="text-sm text-amber-800">하나은행 218-910044-94704</p>
-              <p className="text-sm text-amber-700 mb-3">(예금주: 사단법인 컴유니티)</p>
-              <p className="text-xs text-amber-700 leading-relaxed">
+              <h4 className="font-semibold mb-2 text-blue-800">💳 계좌 안내</h4>
+              <p className="text-sm text-blue-800">하나은행 218-910044-94704</p>
+              <p className="text-sm text-blue-700 mb-3">(예금주: 사단법인 컴유니티)</p>
+              <p className="text-xs text-blue-700 leading-relaxed">
                 ※ 컴유니티는 별도의 운영후원금으로 운영되고 있어, 여러분들의 소중한 후원금은 100% 현장사업에 사용됩니다.
               </p>
             </CardContent>
@@ -263,7 +331,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
             </div>
           )}
 
-          <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700">
+          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
             후원 신청하기
           </Button>
         </form>

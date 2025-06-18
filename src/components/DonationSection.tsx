@@ -5,7 +5,7 @@ import DonationModal from "./DonationModal";
 
 const DonationSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-amber-50 via-white to-blue-50">
+    <section className="py-20 bg-gradient-to-br from-stone-50 via-white to-blue-50">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -23,7 +23,7 @@ const DonationSection = () => {
           
           <Card className="bg-white/90 backdrop-blur shadow-xl border-0 hover-lift">
             <CardContent className="p-8 md:p-12">
-              <div className="bg-gradient-to-r from-amber-100 to-blue-100 rounded-xl p-6 mb-8">
+              <div className="bg-gradient-to-r from-blue-100 to-stone-100 rounded-xl p-6 mb-8">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
                   💳 계좌 안내
                 </h3>
@@ -39,7 +39,7 @@ const DonationSection = () => {
                 <DonationModal donationType="regular">
                   <Button 
                     size="lg"
-                    className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
                   >
                     💝 정기 후원하기
                   </Button>
@@ -48,7 +48,7 @@ const DonationSection = () => {
                   <Button 
                     variant="outline"
                     size="lg"
-                    className="border-2 border-blue-500 text-blue-700 hover:bg-blue-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
+                    className="border-2 border-stone-500 text-stone-700 hover:bg-stone-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
                   >
                     💙 일시 후원하기
                   </Button>

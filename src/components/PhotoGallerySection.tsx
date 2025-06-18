@@ -7,19 +7,19 @@ const PhotoGallerySection = () => {
   const galleries = [
     {
       title: "난민 정착 지원",
-      description: "한국에 정착하는 난민들과 함께한 따뜻한 순간들",
+      description: "한국에 거주중인 난민들과 함께한 따뜻한 순간들",
       image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=300&fit=crop",
       category: "refugee"
     },
     {
       title: "취약계층 돌봄",
-      description: "도움이 필요한 이웃들과 나눈 소중한 시간들",
+      description: "도움이 필요한 취약계층 이웃들과 나눈 소중한 시간들",
       image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop",
       category: "care"
     },
     {
       title: "교육 및 자립 지원",
-      description: "새로운 희망을 키워가는 교육 현장의 모습들",
+      description: "새로운 희망을 키워가는 다음세대의 교육 현장의 모습들",
       image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop",
       category: "education"
     }

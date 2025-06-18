@@ -12,6 +12,7 @@ const Footer = () => {
           {/* 조직 정보 */}
           <div className="space-y-2 text-amber-300 text-sm mb-6">
             <p>고유번호 130-82-19150 | 대표자 박종렬</p>
+            <p>주소 서울특별시 서초구 서초대로27길 15 3층</p>
             <p>전화 070-4667-2733 | 팩스 070-8650-2128</p>
             <p>이메일문의 comm@comm-unity.or.kr</p>
           </div>

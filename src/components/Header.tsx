@@ -20,7 +20,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png" 
               alt="돌봄으로 하나 되는 사회" 
-              className="w-32 h-32 md:w-40 md:h-40 object-contain"
+              className="w-40 h-40 md:w-52 md:h-52 object-contain"
             />
           </div>
           
@@ -40,7 +40,7 @@ const Header = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
-            <DonationModal>
+            <DonationModal donationType="regular">
               <Button 
                 size="lg" 
                 className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"

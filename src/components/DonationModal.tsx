@@ -9,10 +9,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 interface DonationModalProps {
   children: React.ReactNode;
+  donationType?: 'regular' | 'one-time';
 }
 
-const DonationModal = ({ children }: DonationModalProps) => {
-  const [donationType, setDonationType] = useState<'regular' | 'one-time'>('regular');
+const DonationModal = ({ children, donationType: initialDonationType = 'regular' }: DonationModalProps) => {
+  const [donationType, setDonationType] = useState<'regular' | 'one-time'>(initialDonationType);
   const [amount, setAmount] = useState('');
   const [customAmount, setCustomAmount] = useState('');
   const [name, setName] = useState('');
@@ -21,6 +22,8 @@ const DonationModal = ({ children }: DonationModalProps) => {
   const [isUnder14, setIsUnder14] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<'cms' | 'card'>('cms');
   const [withdrawalDay, setWithdrawalDay] = useState('5');
+  const [bankName, setBankName] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
 
   const donationAmounts = ['20,000원', '30,000원', '50,000원', '80,000원', '100,000원', '직접입력'];
 
@@ -44,7 +47,8 @@ const DonationModal = ({ children }: DonationModalProps) => {
       phone, 
       isUnder14,
       paymentMethod,
-      withdrawalDay: donationType === 'regular' ? withdrawalDay : null
+      withdrawalDay: donationType === 'regular' ? withdrawalDay : null,
+      bankInfo: donationType === 'regular' && paymentMethod === 'cms' ? { bankName, accountNumber } : null
     });
     alert(`${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 접수되었습니다. 담당자가 연락드리겠습니다.`);
   };
@@ -133,20 +137,55 @@ const DonationModal = ({ children }: DonationModalProps) => {
               </div>
               
               {paymentMethod === 'cms' && (
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-stone-700">출금일</label>
-                  <Select value={withdrawalDay} onValueChange={setWithdrawalDay}>
-                    <SelectTrigger className="bg-white border-stone-300">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="5">매월 5일</SelectItem>
-                      <SelectItem value="10">매월 10일</SelectItem>
-                      <SelectItem value="15">매월 15일</SelectItem>
-                      <SelectItem value="20">매월 20일</SelectItem>
-                      <SelectItem value="25">매월 25일</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-stone-700">출금일</label>
+                    <Select value={withdrawalDay} onValueChange={setWithdrawalDay}>
+                      <SelectTrigger className="bg-white border-stone-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="5">매월 5일</SelectItem>
+                        <SelectItem value="10">매월 10일</SelectItem>
+                        <SelectItem value="15">매월 15일</SelectItem>
+                        <SelectItem value="20">매월 20일</SelectItem>
+                        <SelectItem value="25">매월 25일</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-stone-700">은행명</label>
+                    <Input
+                      type="text"
+                      placeholder="은행을 선택해 주세요"
+                      value={bankName}
+                      onChange={(e) => setBankName(e.target.value)}
+                      className="bg-white border-stone-300 focus:border-amber-500"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-stone-700">계좌번호</label>
+                    <Input
+                      type="text"
+                      placeholder="휴대폰번호 형식의 계좌번호 사용불가"
+                      value={accountNumber}
+                      onChange={(e) => setAccountNumber(e.target.value)}
+                      className="bg-white border-stone-300 focus:border-amber-500"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="bg-blue-100 p-3 rounded-lg border border-blue-200">
+                    <p className="text-xs text-blue-800 mb-1">
+                      ※ 휴대전화번호 형식의 평생계좌는 CMS자동이체신청이 불가합니다.
+                    </p>
+                    <p className="text-xs text-blue-800">
+                      ※ CMS자동이체 신청 시 전자금융거래법 제15조 및 동법 시행령 제10조에 따라 출금동의 인증이 필요합니다.
+                    </p>
+                  </div>
                 </div>
               )}
             </div>

@@ -8,7 +8,7 @@ const CoreBusinessSection = () => {
     {
       emoji: "🏠",
       title: "난민 정착 지원",
-      description: "한국에 정착하는 난민들을 위한 주거, 언어, 문화적응 지원",
+      description: "한국에 거주중인 난민들을 위한\n주거, 언어, 문화적응 지원",
       gradient: "from-amber-100 to-orange-100"
     },
     {
@@ -30,7 +30,7 @@ const CoreBusinessSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            📌 우리의 주요 활동은 이렇게 준비되고 있습니다
+            📌 우리의 주요 활동은<br />이렇게 준비되고 있습니다
           </h2>
         </div>
         
@@ -45,7 +45,7 @@ const CoreBusinessSection = () => {
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">
                   {business.title}
                 </h3>
-                <p className="text-gray-700 leading-relaxed text-lg">
+                <p className="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
                   {business.description}
                 </p>
               </CardContent>

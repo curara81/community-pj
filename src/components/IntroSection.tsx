@@ -24,7 +24,7 @@ const IntroSection = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                className="border-2 border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white px-6 py-3 text-lg font-semibold rounded-xl transition-all duration-300"
+                className="border-2 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white px-6 py-3 text-lg font-semibold rounded-xl transition-all duration-300"
               >
                 더 알아보기
               </Button>

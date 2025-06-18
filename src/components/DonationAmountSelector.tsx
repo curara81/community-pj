@@ -27,10 +27,10 @@ const DonationAmountSelector = ({
             type="button"
             variant={amount === amountOption ? 'default' : 'outline'}
             onClick={() => onAmountSelect(amountOption)}
-            className={`h-12 text-sm ${
+            className={`h-12 text-sm font-semibold ${
               amount === amountOption 
                 ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                : 'border-stone-300 text-stone-700 hover:bg-stone-100'
+                : 'border-stone-300 text-stone-700 hover:bg-blue-50 hover:border-blue-300'
             }`}
           >
             {amountOption}

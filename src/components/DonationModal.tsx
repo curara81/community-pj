@@ -73,7 +73,11 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
               type="button"
               variant={donationType === 'regular' ? 'default' : 'outline'}
               onClick={() => setDonationType('regular')}
-              className="flex-1 bg-stone-600 hover:bg-stone-700 text-white border-stone-300"
+              className={`flex-1 font-semibold ${
+                donationType === 'regular'
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'bg-white border-stone-300 text-stone-700 hover:bg-blue-50 hover:border-blue-300'
+              }`}
             >
               정기후원
             </Button>
@@ -81,7 +85,11 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
               type="button"
               variant={donationType === 'one-time' ? 'default' : 'outline'}
               onClick={() => setDonationType('one-time')}
-              className="flex-1 bg-stone-600 hover:bg-stone-700 text-white border-stone-300"
+              className={`flex-1 font-semibold ${
+                donationType === 'one-time'
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'bg-white border-stone-300 text-stone-700 hover:bg-blue-50 hover:border-blue-300'
+              }`}
             >
               일시후원
             </Button>
@@ -135,7 +143,7 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
             </CardContent>
           </Card>
 
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+          <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold">
             후원 신청하기
           </Button>
         </form>

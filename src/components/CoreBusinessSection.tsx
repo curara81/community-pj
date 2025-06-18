@@ -57,7 +57,7 @@ const CoreBusinessSection = () => {
           <BusinessModal>
             <Button 
               size="lg"
-              className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift helping-hand-shadow"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl hover-lift helping-hand-shadow"
             >
               각 사업 자세히 보기
             </Button>

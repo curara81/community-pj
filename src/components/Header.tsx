@@ -16,8 +16,16 @@ const Header = () => {
       
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="animate-fade-in">
+          <div className="flex items-center justify-center mb-8">
+            <img 
+              src="/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png" 
+              alt="돌봄으로 하나 되는 사회" 
+              className="w-32 h-32 md:w-40 md:h-40 object-contain"
+            />
+          </div>
+          
           <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text-warm leading-tight">
-            🤝 돌봄으로 하나 되는 사회,
+            돌봄으로 하나 되는 사회,
             <br />
             <span className="text-amber-700">Comm.Unity</span>
           </h1>

@@ -14,7 +14,7 @@ interface SignupModalProps {
 }
 
 const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) => {
-  const [signupMethod, setSignupMethod] = useState<'select' | 'email' | 'business'>('select');
+  const [signupMethod, setSignupMethod] = useState<'select' | 'user-type' | 'email' | 'business'>('select');
   const [showPrivacyConsent, setShowPrivacyConsent] = useState(false);
   const [privacyConsented, setPrivacyConsented] = useState(false);
   const { toast } = useToast();
@@ -78,7 +78,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
         </Button>
 
         <Button
-          onClick={() => setSignupMethod('email')}
+          onClick={() => setSignupMethod('user-type')}
           variant="outline"
           className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 h-12"
         >
@@ -156,17 +156,19 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center text-gray-800">
               {signupMethod === 'select' && '회원가입'}
+              {signupMethod === 'user-type' && '회원가입'}
               {signupMethod === 'email' && '개인 회원가입'}
               {signupMethod === 'business' && '단체 회원가입'}
             </DialogTitle>
           </DialogHeader>
 
           {signupMethod === 'select' && renderSelectMethod()}
+          {signupMethod === 'user-type' && renderUserTypeSelection()}
           
           {signupMethod === 'email' && (
             <EmailSignupForm
               userType="individual"
-              onBack={() => setSignupMethod('select')}
+              onBack={() => setSignupMethod('user-type')}
               onSuccess={() => onOpenChange(false)}
             />
           )}
@@ -174,7 +176,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
           {signupMethod === 'business' && (
             <EmailSignupForm
               userType="business"
-              onBack={() => setSignupMethod('select')}
+              onBack={() => setSignupMethod('user-type')}
               onSuccess={() => onOpenChange(false)}
             />
           )}

@@ -49,7 +49,7 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
       </DialogTrigger>
       <DialogContent className="max-w-md bg-stone-50 border-stone-200">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-amber-800">
+          <DialogTitle className="text-2xl font-bold text-center text-stone-800">
             📮 뉴스레터 신청
           </DialogTitle>
         </DialogHeader>
@@ -62,7 +62,7 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
               placeholder="이메일 주소를 입력해주세요"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white border-stone-300 focus:border-amber-500"
+              className="bg-white border-stone-300 focus:border-stone-500"
               required
             />
           </div>
@@ -74,7 +74,7 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
               placeholder="성함을 입력해주세요 (선택사항)"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-white border-stone-300 focus:border-amber-500"
+              className="bg-white border-stone-300 focus:border-stone-500"
             />
           </div>
 
@@ -107,7 +107,7 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
             </label>
           </div>
 
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+          <Button type="submit" className="w-full bg-stone-600 hover:bg-stone-700 text-white font-semibold">
             뉴스레터 신청하기
           </Button>
         </form>

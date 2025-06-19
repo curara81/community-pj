@@ -53,7 +53,7 @@ const PhotoGalleryModal = ({ children, category }: PhotoGalleryModalProps) => {
       </DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-stone-50 border-stone-200">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-amber-800">
+          <DialogTitle className="text-2xl font-bold text-center text-stone-800">
             {galleryData.title}
           </DialogTitle>
         </DialogHeader>
@@ -73,8 +73,8 @@ const PhotoGalleryModal = ({ children, category }: PhotoGalleryModalProps) => {
           ))}
         </div>
         
-        <div className="bg-amber-100 p-4 rounded-lg border border-amber-200 mt-4">
-          <p className="text-sm text-amber-800 text-center">
+        <div className="bg-stone-100 p-4 rounded-lg border border-stone-200 mt-4">
+          <p className="text-sm text-stone-800 text-center">
             * 실제 활동 사진들로 업데이트될 예정입니다.
           </p>
         </div>

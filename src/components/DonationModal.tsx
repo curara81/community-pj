@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -82,8 +83,8 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
               onClick={() => setDonationType('regular')}
               className={`flex-1 font-semibold ${
                 donationType === 'regular'
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                  : 'bg-white border-stone-300 text-stone-700 hover:bg-blue-50 hover:border-blue-300'
+                  ? 'bg-stone-600 hover:bg-stone-700 text-white'
+                  : 'bg-white border-stone-300 text-stone-700 hover:bg-stone-50 hover:border-stone-400'
               }`}
             >
               정기후원
@@ -94,8 +95,8 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
               onClick={() => setDonationType('one-time')}
               className={`flex-1 font-semibold ${
                 donationType === 'one-time'
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                  : 'bg-white border-stone-300 text-stone-700 hover:bg-blue-50 hover:border-blue-300'
+                  ? 'bg-stone-600 hover:bg-stone-700 text-white'
+                  : 'bg-white border-stone-300 text-stone-700 hover:bg-stone-50 hover:border-stone-400'
               }`}
             >
               일시후원
@@ -139,18 +140,18 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
             onUnder14Change={setIsUnder14}
           />
 
-          <Card className="bg-blue-100 border-blue-200">
+          <Card className="bg-stone-100 border-stone-200">
             <CardContent className="p-4">
-              <h4 className="font-semibold mb-2 text-blue-800">💳 계좌 안내</h4>
-              <p className="text-sm text-blue-800">하나은행 218-910044-94704</p>
-              <p className="text-sm text-blue-700 mb-3">(예금주: 사단법인 컴유니티)</p>
-              <p className="text-xs text-blue-700 leading-relaxed">
+              <h4 className="font-semibold mb-2 text-stone-800">💳 계좌 안내</h4>
+              <p className="text-sm text-stone-800">하나은행 218-910044-94704</p>
+              <p className="text-sm text-stone-700 mb-3">(예금주: 사단법인 컴유니티)</p>
+              <p className="text-xs text-stone-700 leading-relaxed">
                 ※ 컴유니티는 별도의 운영후원금으로 운영되고 있어, 여러분들의 소중한 후원금은 100% 현장사업에 사용됩니다.
               </p>
             </CardContent>
           </Card>
 
-          <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold">
+          <Button type="submit" className="w-full bg-stone-600 hover:bg-stone-700 text-white font-semibold">
             후원 신청하기
           </Button>
         </form>

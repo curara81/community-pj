@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -132,7 +133,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+            className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
           />
         </div>
 
@@ -146,7 +147,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             value={formData.password}
             onChange={(e) => handleInputChange('password', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+            className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
           />
         </div>
 
@@ -160,7 +161,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             value={formData.confirmPassword}
             onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+            className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
           />
         </div>
 
@@ -174,7 +175,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             value={formData.name}
             onChange={(e) => handleInputChange('name', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+            className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
           />
         </div>
 
@@ -190,7 +191,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 value={formData.businessName}
                 onChange={(e) => handleInputChange('businessName', e.target.value)}
                 required
-                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+                className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
               />
             </div>
 
@@ -203,7 +204,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 placeholder="사업자등록번호를 입력해주세요 (선택사항)"
                 value={formData.businessNumber}
                 onChange={(e) => handleInputChange('businessNumber', e.target.value)}
-                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+                className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
               />
             </div>
 
@@ -216,7 +217,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 placeholder="대표자명을 입력해주세요 (선택사항)"
                 value={formData.representativeName}
                 onChange={(e) => handleInputChange('representativeName', e.target.value)}
-                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+                className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
               />
             </div>
           </>
@@ -232,7 +233,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             value={formData.phone}
             onChange={(e) => handleInputChange('phone', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+            className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
           />
         </div>
 
@@ -247,7 +248,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 value={formData.birthDate}
                 onChange={(e) => handleInputChange('birthDate', e.target.value)}
                 required
-                className="bg-white border-gray-300 focus:border-blue-500"
+                className="bg-white border-gray-300 focus:border-stone-500"
               />
             </div>
 
@@ -345,7 +346,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
           <Button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+            className="flex-1 bg-stone-600 hover:bg-stone-700 text-white"
           >
             {loading ? '가입 중...' : '회원가입'}
           </Button>

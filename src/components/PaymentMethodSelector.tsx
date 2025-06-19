@@ -46,7 +46,7 @@ const PaymentMethodSelector = ({
           onClick={() => onPaymentMethodChange('cms')}
           className={`flex-1 ${
             paymentMethod === 'cms'
-              ? 'bg-blue-600 hover:bg-blue-700 text-white'
+              ? 'bg-stone-600 hover:bg-stone-700 text-white'
               : 'border-stone-300 text-stone-700 hover:bg-stone-100'
           }`}
         >
@@ -58,7 +58,7 @@ const PaymentMethodSelector = ({
           onClick={() => onPaymentMethodChange('card')}
           className={`flex-1 ${
             paymentMethod === 'card'
-              ? 'bg-orange-600 hover:bg-orange-700 text-white'
+              ? 'bg-stone-600 hover:bg-stone-700 text-white'
               : 'border-stone-300 text-stone-700 hover:bg-stone-100'
           }`}
         >
@@ -91,7 +91,7 @@ const PaymentMethodSelector = ({
               placeholder="은행을 선택해 주세요"
               value={bankName}
               onChange={(e) => onBankNameChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
+              className="bg-white border-stone-300 focus:border-stone-500 placeholder:text-stone-500"
               required
             />
           </div>
@@ -103,16 +103,16 @@ const PaymentMethodSelector = ({
               placeholder="휴대폰번호 형식의 계좌번호 사용불가"
               value={accountNumber}
               onChange={(e) => onAccountNumberChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
+              className="bg-white border-stone-300 focus:border-stone-500 placeholder:text-stone-500"
               required
             />
           </div>
           
-          <div className="bg-blue-100 p-3 rounded-lg border border-blue-200">
-            <p className="text-xs text-blue-800 mb-1">
+          <div className="bg-stone-100 p-3 rounded-lg border border-stone-200">
+            <p className="text-xs text-stone-800 mb-1">
               ※ 휴대전화번호 형식의 평생계좌는 CMS자동이체신청이 불가합니다.
             </p>
-            <p className="text-xs text-blue-800">
+            <p className="text-xs text-stone-800">
               ※ CMS자동이체 신청 시 전자금융거래법 제15조 및 동법 시행령 제10조에 따라 출금동의 인증이 필요합니다.
             </p>
           </div>
@@ -128,7 +128,7 @@ const PaymentMethodSelector = ({
               placeholder="카드 소유자 성함을 입력해주세요"
               value={cardHolderName}
               onChange={(e) => onCardHolderNameChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
+              className="bg-white border-stone-300 focus:border-stone-500 placeholder:text-stone-500"
               required
             />
           </div>
@@ -140,7 +140,7 @@ const PaymentMethodSelector = ({
               placeholder="카드 소유자 휴대폰번호를 입력해주세요"
               value={cardHolderPhone}
               onChange={(e) => onCardHolderPhoneChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
+              className="bg-white border-stone-300 focus:border-stone-500 placeholder:text-stone-500"
               required
             />
           </div>
@@ -161,8 +161,8 @@ const PaymentMethodSelector = ({
             </Select>
           </div>
           
-          <div className="bg-orange-100 p-3 rounded-lg border border-orange-200">
-            <p className="text-xs text-orange-800">
+          <div className="bg-stone-100 p-3 rounded-lg border border-stone-200">
+            <p className="text-xs text-stone-800">
               ※ 신용카드 후원 시 나이스빌링, 나이스_정기과금, 후원금_나이스 또는 Nice로 표시되어 청구됩니다.
             </p>
           </div>

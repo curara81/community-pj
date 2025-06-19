@@ -131,29 +131,44 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
               SNS 로그인/회원가입
             </h4>
             
-            <div className="flex justify-center gap-4">
+            <div className="space-y-3">
               <Button
                 onClick={() => handleSocialLogin('google')}
                 variant="outline"
-                className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+                className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center justify-start px-4 gap-3"
               >
-                <span className="text-2xl">🔍</span>
+                <img 
+                  src="/lovable-uploads/d953699d-da78-4fe5-85c7-5e53b0b41f7b.png" 
+                  alt="Google" 
+                  className="w-5 h-5"
+                />
+                <span className="flex-1 text-center pr-8">구글로 로그인</span>
               </Button>
 
               <Button
                 onClick={() => handleSocialLogin('kakao')}
                 variant="outline"
-                className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+                className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center justify-start px-4 gap-3"
               >
-                <span className="text-2xl">💬</span>
+                <img 
+                  src="/lovable-uploads/2446b190-8cd9-4de6-a358-5b54244c1d63.png" 
+                  alt="Kakao" 
+                  className="w-5 h-5"
+                />
+                <span className="flex-1 text-center pr-8">카카오로 로그인</span>
               </Button>
 
               <Button
                 onClick={() => handleSocialLogin('apple')}
                 variant="outline"
-                className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+                className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center justify-start px-4 gap-3"
               >
-                <span className="text-2xl">🍎</span>
+                <img 
+                  src="/lovable-uploads/00368c00-77f2-4835-bdf3-c5f2c7bc8ee4.png" 
+                  alt="Apple" 
+                  className="w-5 h-5"
+                />
+                <span className="flex-1 text-center pr-8">애플로 로그인</span>
               </Button>
             </div>
           </div>

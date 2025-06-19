@@ -13,16 +13,16 @@ const CopyrightModal = ({ children }: CopyrightModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[80vh]">
+      <DialogContent className="max-w-3xl max-h-[80vh] bg-white text-black">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl">
+          <DialogTitle className="flex items-center gap-2 text-xl text-black">
             <Copyright className="text-amber-600" />
             저작권정책
           </DialogTitle>
         </DialogHeader>
         
         <ScrollArea className="max-h-[60vh]">
-          <div className="space-y-4 text-sm leading-relaxed">
+          <div className="space-y-4 text-sm leading-relaxed text-black">
             <p>
               사단법인 컴유니티(이하 컴유니티) 웹사이트에서 제공하는 모든 콘텐츠, 즉 웹문서, 첨부파일, DB정보 등은 저작권법에 의하여 보호받는 저작물로써, 별도의 저작권 표시 또는 다른 출처를 명시한 경우를 제외하고는 원칙적으로 컴유니티에 저작권이 있습니다.
             </p>

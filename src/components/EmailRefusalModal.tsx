@@ -13,16 +13,16 @@ const EmailRefusalModal = ({ children }: EmailRefusalModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[80vh]">
+      <DialogContent className="max-w-4xl max-h-[80vh] bg-white text-black">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl">
+          <DialogTitle className="flex items-center gap-2 text-xl text-black">
             <MailX className="text-red-600" />
             이메일무단수신거부
           </DialogTitle>
         </DialogHeader>
         
         <ScrollArea className="max-h-[60vh]">
-          <div className="space-y-6 text-sm leading-relaxed">
+          <div className="space-y-6 text-sm leading-relaxed text-black">
             <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
               <p className="font-semibold text-red-800 mb-2">무단 이메일 수집 금지</p>
               <p>

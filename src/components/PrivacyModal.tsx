@@ -13,16 +13,16 @@ const PrivacyModal = ({ children }: PrivacyModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[80vh]">
+      <DialogContent className="max-w-4xl max-h-[80vh] bg-white text-black">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl">
+          <DialogTitle className="flex items-center gap-2 text-xl text-black">
             <Shield className="text-blue-600" />
             개인정보처리방침
           </DialogTitle>
         </DialogHeader>
         
         <ScrollArea className="max-h-[60vh]">
-          <div className="space-y-6 text-sm leading-relaxed">
+          <div className="space-y-6 text-sm leading-relaxed text-black">
             <div>
               <p className="mb-4">
                 사단법인 컴유니티(이하 "회사")는 「개인정보 보호법」 등 관련 법령에 따라 이용자의 개인정보를 보호하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보처리방침을 수립·공개합니다.
@@ -127,13 +127,6 @@ const PrivacyModal = ({ children }: PrivacyModalProps) => {
               <ul className="list-disc list-inside ml-4">
                 <li>본 방침은 시행일로부터 적용되며, 법령·정책 또는 회사 내부 방침에 따라 변경될 수 있습니다. 변경 시 홈페이지 공지사항을 통해 안내합니다.</li>
               </ul>
-            </div>
-
-            <div className="bg-yellow-50 p-4 rounded-lg mt-6">
-              <p className="text-xs text-gray-600">
-                이 샘플은 참고용이며, 실제 서비스 상황 및 수집 항목, 담당자 정보 등은 반드시 맞춤 수정 후 사용하시기 바랍니다.
-                정확한 법적 검토가 필요하다면 전문가(변호사, 개인정보 컨설팅 등)와 상의하는 것이 안전합니다.
-              </p>
             </div>
           </div>
         </ScrollArea>

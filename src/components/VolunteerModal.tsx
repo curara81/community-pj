@@ -1,10 +1,10 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { sendVolunteerEmail } from '@/utils/emailService';
 
 interface VolunteerModalProps {
   children: React.ReactNode;
@@ -38,8 +38,11 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('자원봉사 신청:', { name, email, phone, interests, message });
-    alert('자원봉사 신청이 접수되었습니다. 담당자가 연락드리겠습니다.');
+    
+    const formData = { name, email, phone, interests, message };
+    console.log('자원봉사 신청:', formData);
+    sendVolunteerEmail(formData);
+    alert('자원봉사 신청이 접수되었습니다. 이메일 클라이언트가 열립니다.');
   };
 
   return (

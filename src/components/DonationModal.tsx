@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import DonationAmountSelector from './DonationAmountSelector';
 import PaymentMethodSelector from './PaymentMethodSelector';
 import DonorInfoForm from './DonorInfoForm';
+import { sendDonationEmail } from '@/utils/emailService';
 
 interface DonationModalProps {
   children: React.ReactNode;
@@ -40,7 +40,8 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const finalAmount = amount === '직접입력' ? customAmount : amount;
-    console.log('후원 신청:', { 
+    
+    const formData = { 
       donationType, 
       amount: finalAmount, 
       name, 
@@ -48,11 +49,17 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
       phone, 
       isUnder14,
       paymentMethod,
-      withdrawalDay: donationType === 'regular' ? withdrawalDay : null,
-      bankInfo: donationType === 'regular' && paymentMethod === 'cms' ? { bankName, accountNumber } : null,
-      cardInfo: donationType === 'regular' && paymentMethod === 'card' ? { cardHolderName, cardHolderPhone, paymentDay } : null
-    });
-    alert(`${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 접수되었습니다. 담당자가 연락드리겠습니다.`);
+      withdrawalDay: donationType === 'regular' ? withdrawalDay : undefined,
+      bankName: donationType === 'regular' && paymentMethod === 'cms' ? bankName : undefined,
+      accountNumber: donationType === 'regular' && paymentMethod === 'cms' ? accountNumber : undefined,
+      cardHolderName: donationType === 'regular' && paymentMethod === 'card' ? cardHolderName : undefined,
+      cardHolderPhone: donationType === 'regular' && paymentMethod === 'card' ? cardHolderPhone : undefined,
+      paymentDay: donationType === 'regular' && paymentMethod === 'card' ? paymentDay : undefined
+    };
+    
+    console.log('후원 신청:', formData);
+    sendDonationEmail(formData);
+    alert(`${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 접수되었습니다. 이메일 클라이언트가 열립니다.`);
   };
 
   return (

@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 import NewsletterModal from "./NewsletterModal";
 import { useState } from "react";
+import { sendNewsletterEmail } from '@/utils/emailService';
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +14,8 @@ const NewsletterSection = () => {
     e.preventDefault();
     if (email) {
       console.log('빠른 뉴스레터 신청:', email);
-      alert('뉴스레터 신청이 완료되었습니다!');
+      sendNewsletterEmail(email);
+      alert('뉴스레터 신청이 완료되었습니다! 이메일 클라이언트가 열립니다.');
       setEmail('');
     }
   };

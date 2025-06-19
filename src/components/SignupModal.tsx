@@ -52,44 +52,41 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
   const renderSelectMethod = () => (
     <div className="space-y-4">
       <div className="space-y-3">
-        <div className="space-y-3">
+        <div className="flex justify-center gap-4">
           <Button
             onClick={() => handleSocialSignup('google')}
             variant="outline"
-            className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-3"
+            className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
           >
             <img 
               src="/lovable-uploads/d953699d-da78-4fe5-85c7-5e53b0b41f7b.png" 
               alt="Google" 
-              className="w-5 h-5"
+              className="w-6 h-6"
             />
-            <span>구글</span>
           </Button>
 
           <Button
             onClick={() => handleSocialSignup('kakao')}
             variant="outline"
-            className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-3"
+            className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
           >
             <img 
               src="/lovable-uploads/2446b190-8cd9-4de6-a358-5b54244c1d63.png" 
               alt="Kakao" 
-              className="w-5 h-5"
+              className="w-6 h-6"
             />
-            <span>카카오</span>
           </Button>
 
           <Button
             onClick={() => handleSocialSignup('apple')}
             variant="outline"
-            className="w-full h-12 border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-3"
+            className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
           >
             <img 
               src="/lovable-uploads/00368c00-77f2-4835-bdf3-c5f2c7bc8ee4.png" 
               alt="Apple" 
-              className="w-5 h-5"
+              className="w-6 h-6"
             />
-            <span>애플</span>
           </Button>
         </div>
 

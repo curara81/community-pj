@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import PrivacyConsentModal from './PrivacyConsentModal';
@@ -133,30 +132,29 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
               </div>
             </div>
 
-            <div className="space-y-3">
-              <RadioGroup
-                value={formData.businessType}
-                onValueChange={(value) => 
-                  setFormData({
-                    ...formData, 
-                    businessType: value as 'business_entity' | 'non_business_entity'
-                  })
+            <div className="grid grid-cols-2 gap-4">
+              <Button
+                type="button"
+                variant={formData.businessType === 'business_entity' ? 'default' : 'outline'}
+                onClick={() => setFormData({...formData, businessType: 'business_entity'})}
+                className={formData.businessType === 'business_entity' 
+                  ? "bg-orange-500 hover:bg-orange-600 text-white" 
+                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
                 }
-                className="flex gap-8"
               >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="business_entity" id="business_entity" />
-                  <label htmlFor="business_entity" className="text-sm text-gray-700">
-                    사업자
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="non_business_entity" id="non_business_entity" />
-                  <label htmlFor="non_business_entity" className="text-sm text-gray-700">
-                    비사업자
-                  </label>
-                </div>
-              </RadioGroup>
+                사업자 회원
+              </Button>
+              <Button
+                type="button"
+                variant={formData.businessType === 'non_business_entity' ? 'default' : 'outline'}
+                onClick={() => setFormData({...formData, businessType: 'non_business_entity'})}
+                className={formData.businessType === 'non_business_entity' 
+                  ? "bg-orange-500 hover:bg-orange-600 text-white" 
+                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                }
+              >
+                비사업자 회원
+              </Button>
             </div>
           </div>
         )}

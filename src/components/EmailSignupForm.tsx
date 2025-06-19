@@ -35,6 +35,39 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
+  // 만 14세 미만 체크 함수
+  const checkIsUnder14 = (birthDate: string) => {
+    if (!birthDate) return false;
+    
+    const today = new Date();
+    const birth = new Date(birthDate);
+    const age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+      return (age - 1) < 14;
+    }
+    
+    return age < 14;
+  };
+
+  // 생년월일 변경 핸들러
+  const handleBirthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newBirthDate = e.target.value;
+    setFormData({...formData, birthDate: newBirthDate});
+    
+    // 만 14세 미만 자동 체크
+    if (newBirthDate && checkIsUnder14(newBirthDate)) {
+      if (!isUnder14) {
+        setShowUnder14Consent(true);
+      }
+    } else if (isUnder14 && newBirthDate) {
+      // 만 14세 이상으로 변경된 경우 체크 해제
+      setIsUnder14(false);
+      setUnder14Consented(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -291,7 +324,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 type="date"
                 placeholder="예시) 19900101"
                 value={formData.birthDate}
-                onChange={(e) => setFormData({...formData, birthDate: e.target.value})}
+                onChange={handleBirthDateChange}
                 className="bg-white border-gray-300 focus:border-blue-500"
               />
               {isUnder14 && under14Consented && (

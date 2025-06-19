@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -140,7 +139,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 <img 
                   src="/lovable-uploads/dea4eab4-d07d-4996-99e9-e9004be8dbb2.png" 
                   alt="Google" 
-                  className="w-6 h-6"
+                  className="w-8 h-8"
                 />
               </Button>
 
@@ -152,7 +151,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 <img 
                   src="/lovable-uploads/e29d3fb8-fbb7-4566-9230-e0af1d4c4ddf.png" 
                   alt="Apple" 
-                  className="w-6 h-6"
+                  className="w-8 h-8"
                 />
               </Button>
 
@@ -164,7 +163,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 <img 
                   src="/lovable-uploads/9748ff8c-0eb2-44ff-bb6a-fada797ea6d3.png" 
                   alt="Kakao" 
-                  className="w-6 h-6"
+                  className="w-8 h-8"
                 />
               </Button>
             </div>

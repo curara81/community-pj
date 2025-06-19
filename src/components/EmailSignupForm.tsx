@@ -1,0 +1,306 @@
+
+import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import PrivacyConsentModal from './PrivacyConsentModal';
+
+interface EmailSignupFormProps {
+  userType: 'individual' | 'business';
+  onBack: () => void;
+  onSuccess: () => void;
+}
+
+const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    birthDate: '',
+    phone: '',
+    businessName: '',
+    businessRegistrationNumber: '',
+    representativeName: '',
+    isUnder14: false,
+    businessType: 'business_entity' as 'business_entity' | 'non_business_entity'
+  });
+  const [showPrivacyConsent, setShowPrivacyConsent] = useState(false);
+  const [privacyConsented, setPrivacyConsented] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!privacyConsented) {
+      setShowPrivacyConsent(true);
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      toast({
+        title: "비밀번호 확인",
+        description: "비밀번호가 일치하지 않습니다.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/`,
+          data: {
+            name: formData.name,
+            birth_date: formData.birthDate,
+            phone: formData.phone,
+            user_type: userType === 'business' ? formData.businessType : 'individual',
+            business_name: formData.businessName,
+            business_registration_number: formData.businessRegistrationNumber,
+            representative_name: formData.representativeName
+          }
+        }
+      });
+
+      if (error) {
+        toast({
+          title: "회원가입 실패",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        // 프로필 정보 업데이트
+        if (data.user) {
+          const profileData = {
+            id: data.user.id,
+            name: formData.name,
+            birth_date: formData.birthDate || null,
+            phone: formData.phone,
+            user_type: userType === 'business' ? formData.businessType : 'individual',
+            business_name: formData.businessName || null,
+            business_registration_number: formData.businessRegistrationNumber || null,
+            representative_name: formData.representativeName || null
+          };
+
+          const { error: profileError } = await supabase
+            .from('profiles')
+            .upsert(profileData);
+
+          if (profileError) {
+            console.error('Profile update error:', profileError);
+          }
+        }
+
+        toast({
+          title: "회원가입 성공",
+          description: "이메일을 확인해주세요.",
+        });
+        onSuccess();
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePrivacyConsent = (consented: boolean) => {
+    setPrivacyConsented(consented);
+    setShowPrivacyConsent(false);
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            이름 *
+          </label>
+          <Input
+            type="text"
+            placeholder="이름을 입력해주세요"
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            required
+            className="bg-white border-gray-300 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            이메일 *
+          </label>
+          <Input
+            type="email"
+            placeholder="이메일을 입력해주세요"
+            value={formData.email}
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            required
+            className="bg-white border-gray-300 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            비밀번호 *
+          </label>
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력해주세요"
+            value={formData.password}
+            onChange={(e) => setFormData({...formData, password: e.target.value})}
+            required
+            className="bg-white border-gray-300 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            비밀번호 확인 *
+          </label>
+          <Input
+            type="password"
+            placeholder="비밀번호를 다시 입력해주세요"
+            value={formData.confirmPassword}
+            onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+            required
+            className="bg-white border-gray-300 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            생년월일
+          </label>
+          <Input
+            type="date"
+            value={formData.birthDate}
+            onChange={(e) => setFormData({...formData, birthDate: e.target.value})}
+            className="bg-white border-gray-300 focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            휴대폰 번호 *
+          </label>
+          <Input
+            type="tel"
+            placeholder="휴대폰 번호를 입력해주세요"
+            value={formData.phone}
+            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            required
+            className="bg-white border-gray-300 focus:border-blue-500"
+          />
+        </div>
+
+        {userType === 'business' && (
+          <>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="businessType"
+                checked={formData.businessType === 'business_entity'}
+                onCheckedChange={(checked) => 
+                  setFormData({
+                    ...formData, 
+                    businessType: checked ? 'business_entity' : 'non_business_entity'
+                  })
+                }
+              />
+              <label htmlFor="businessType" className="text-sm text-gray-700">
+                사업자 확인
+              </label>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                단체명 *
+              </label>
+              <Input
+                type="text"
+                placeholder="단체명을 입력해주세요"
+                value={formData.businessName}
+                onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+                required
+                className="bg-white border-gray-300 focus:border-blue-500"
+              />
+            </div>
+
+            {formData.businessType === 'business_entity' && (
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-700">
+                  사업자 등록번호
+                </label>
+                <Input
+                  type="text"
+                  placeholder="사업자 등록번호를 입력해주세요"
+                  value={formData.businessRegistrationNumber}
+                  onChange={(e) => setFormData({...formData, businessRegistrationNumber: e.target.value})}
+                  className="bg-white border-gray-300 focus:border-blue-500"
+                />
+              </div>
+            )}
+
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                담당자 이름 *
+              </label>
+              <Input
+                type="text"
+                placeholder="담당자 이름을 입력해주세요"
+                value={formData.representativeName}
+                onChange={(e) => setFormData({...formData, representativeName: e.target.value})}
+                required
+                className="bg-white border-gray-300 focus:border-blue-500"
+              />
+            </div>
+          </>
+        )}
+
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="privacy"
+            checked={privacyConsented}
+            onCheckedChange={() => setShowPrivacyConsent(true)}
+          />
+          <label htmlFor="privacy" className="text-sm text-gray-700">
+            개인정보 수집 및 이용 동의 *
+          </label>
+        </div>
+
+        <div className="flex gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onBack}
+            className="flex-1"
+          >
+            이전
+          </Button>
+          <Button
+            type="submit"
+            disabled={loading || !privacyConsented}
+            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+          >
+            {loading ? '가입 중...' : '회원가입'}
+          </Button>
+        </div>
+      </form>
+
+      <PrivacyConsentModal
+        open={showPrivacyConsent}
+        onOpenChange={setShowPrivacyConsent}
+        onConsent={handlePrivacyConsent}
+      />
+    </>
+  );
+};
+
+export default EmailSignupForm;

@@ -1,4 +1,9 @@
 
+import LocationModal from "./LocationModal";
+import CopyrightModal from "./CopyrightModal";
+import PrivacyModal from "./PrivacyModal";
+import EmailRefusalModal from "./EmailRefusalModal";
+
 const Footer = () => {
   return (
     <footer className="bg-amber-800 text-amber-50 py-12">
@@ -8,6 +13,33 @@ const Footer = () => {
           <p className="text-amber-200 mb-6">
             난민과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다
           </p>
+          
+          {/* 정책 링크들 */}
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <LocationModal>
+              <button className="text-amber-200 hover:text-white text-sm underline">
+                찾아오시는 길
+              </button>
+            </LocationModal>
+            <span className="text-amber-400">|</span>
+            <CopyrightModal>
+              <button className="text-amber-200 hover:text-white text-sm underline">
+                저작권정책
+              </button>
+            </CopyrightModal>
+            <span className="text-amber-400">|</span>
+            <PrivacyModal>
+              <button className="text-amber-200 hover:text-white text-sm underline">
+                개인정보처리방침
+              </button>
+            </PrivacyModal>
+            <span className="text-amber-400">|</span>
+            <EmailRefusalModal>
+              <button className="text-amber-200 hover:text-white text-sm underline">
+                이메일무단수신거부
+              </button>
+            </EmailRefusalModal>
+          </div>
           
           {/* 조직 정보 */}
           <div className="space-y-2 text-amber-300 text-sm mb-6">

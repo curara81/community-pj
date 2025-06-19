@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -53,29 +52,31 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
   const renderSelectMethod = () => (
     <div className="space-y-4">
       <div className="space-y-3">
-        <Button
-          onClick={() => handleSocialSignup('google')}
-          variant="outline"
-          className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 h-12"
-        >
-          🔍 구글
-        </Button>
+        <div className="flex justify-center gap-4">
+          <Button
+            onClick={() => handleSocialSignup('google')}
+            variant="outline"
+            className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+          >
+            <span className="text-2xl">🔍</span>
+          </Button>
 
-        <Button
-          onClick={() => handleSocialSignup('kakao')}
-          variant="outline"
-          className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 h-12"
-        >
-          💬 카카오
-        </Button>
+          <Button
+            onClick={() => handleSocialSignup('kakao')}
+            variant="outline"
+            className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+          >
+            <span className="text-2xl">💬</span>
+          </Button>
 
-        <Button
-          onClick={() => handleSocialSignup('apple')}
-          variant="outline"
-          className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 h-12"
-        >
-          🍎 애플
-        </Button>
+          <Button
+            onClick={() => handleSocialSignup('apple')}
+            variant="outline"
+            className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+          >
+            <span className="text-2xl">🍎</span>
+          </Button>
+        </div>
 
         <Button
           onClick={() => setSignupMethod('user-type')}

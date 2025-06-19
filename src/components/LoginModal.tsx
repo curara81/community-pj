@@ -131,29 +131,31 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
               SNS 로그인/회원가입
             </h4>
             
-            <Button
-              onClick={() => handleSocialLogin('google')}
-              variant="outline"
-              className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
-            >
-              🔍 구글로 로그인
-            </Button>
+            <div className="flex justify-center gap-4">
+              <Button
+                onClick={() => handleSocialLogin('google')}
+                variant="outline"
+                className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+              >
+                <span className="text-2xl">🔍</span>
+              </Button>
 
-            <Button
-              onClick={() => handleSocialLogin('kakao')}
-              variant="outline"
-              className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
-            >
-              💬 카카오로 로그인
-            </Button>
+              <Button
+                onClick={() => handleSocialLogin('kakao')}
+                variant="outline"
+                className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+              >
+                <span className="text-2xl">💬</span>
+              </Button>
 
-            <Button
-              onClick={() => handleSocialLogin('apple')}
-              variant="outline"
-              className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
-            >
-              🍎 애플로 로그인
-            </Button>
+              <Button
+                onClick={() => handleSocialLogin('apple')}
+                variant="outline"
+                className="w-16 h-16 rounded-full border-gray-300 text-gray-700 hover:bg-gray-50 p-0"
+              >
+                <span className="text-2xl">🍎</span>
+              </Button>
+            </div>
           </div>
 
           <div className="text-center">

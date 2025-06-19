@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import PrivacyConsentModal from './PrivacyConsentModal';
+import Under14ConsentModal from './Under14ConsentModal';
 
 interface EmailSignupFormProps {
   userType: 'individual' | 'business';
@@ -28,6 +29,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
   });
   const [showPrivacyConsent, setShowPrivacyConsent] = useState(false);
   const [privacyConsented, setPrivacyConsented] = useState(false);
+  const [showUnder14Consent, setShowUnder14Consent] = useState(false);
+  const [isUnder14, setIsUnder14] = useState(false);
+  const [under14Consented, setUnder14Consented] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
@@ -36,6 +40,15 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
     
     if (!privacyConsented) {
       setShowPrivacyConsent(true);
+      return;
+    }
+
+    if (isUnder14 && !under14Consented) {
+      toast({
+        title: "보호자 동의 필요",
+        description: "만 14세 미만은 보호자 동의가 필요합니다.",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -64,7 +77,8 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             business_name: formData.businessName,
             business_registration_number: formData.businessRegistrationNumber,
             representative_name: formData.representativeName,
-            representative_phone: formData.representativePhone
+            representative_phone: formData.representativePhone,
+            is_under_14: isUnder14
           }
         }
       });
@@ -113,6 +127,26 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
   const handlePrivacyConsent = (consented: boolean) => {
     setPrivacyConsented(consented);
     setShowPrivacyConsent(false);
+  };
+
+  const handleUnder14Check = (checked: boolean) => {
+    if (checked) {
+      setShowUnder14Consent(true);
+    } else {
+      setIsUnder14(false);
+      setUnder14Consented(false);
+    }
+  };
+
+  const handleUnder14Consent = (consented: boolean) => {
+    if (consented) {
+      setIsUnder14(true);
+      setUnder14Consented(true);
+    } else {
+      setIsUnder14(false);
+      setUnder14Consented(false);
+    }
+    setShowUnder14Consent(false);
   };
 
   return (
@@ -238,9 +272,21 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                생년월일
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-medium text-gray-700">
+                  생년월일
+                </label>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="under14"
+                    checked={isUnder14}
+                    onCheckedChange={handleUnder14Check}
+                  />
+                  <label htmlFor="under14" className="text-sm text-gray-700">
+                    만 14세 미만
+                  </label>
+                </div>
+              </div>
               <Input
                 type="date"
                 placeholder="예시) 19900101"
@@ -248,6 +294,13 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 onChange={(e) => setFormData({...formData, birthDate: e.target.value})}
                 className="bg-white border-gray-300 focus:border-blue-500"
               />
+              {isUnder14 && under14Consented && (
+                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    ※ 만 14세 미만으로 보호자 동의가 완료되었습니다.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div>
@@ -347,7 +400,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
           </Button>
           <Button
             type="submit"
-            disabled={loading || !privacyConsented}
+            disabled={loading || !privacyConsented || (isUnder14 && !under14Consented)}
             className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold"
           >
             {loading ? '가입 중...' : '다음'}
@@ -359,6 +412,12 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
         open={showPrivacyConsent}
         onOpenChange={setShowPrivacyConsent}
         onConsent={handlePrivacyConsent}
+      />
+
+      <Under14ConsentModal
+        open={showUnder14Consent}
+        onOpenChange={setShowUnder14Consent}
+        onConsent={handleUnder14Consent}
       />
     </>
   );

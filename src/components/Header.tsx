@@ -20,7 +20,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png" 
               alt="돌봄으로 하나 되는 사회" 
-              className="w-40 h-40 md:w-52 md:h-52 object-contain"
+              className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-contain"
             />
           </div>
           
@@ -43,7 +43,7 @@ const Header = () => {
             <DonationModal donationType="regular">
               <Button 
                 size="lg" 
-                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
               >
                 💝 정기 후원하기
               </Button>

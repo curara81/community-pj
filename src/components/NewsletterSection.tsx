@@ -19,7 +19,7 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-r from-amber-50 via-orange-50 to-blue-50">
+    <section className="py-20 bg-gradient-to-r from-blue-50 via-gray-50 to-blue-50">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
@@ -35,14 +35,14 @@ const NewsletterSection = () => {
                 <Input 
                   type="email" 
                   placeholder="이메일 주소를 입력해주세요"
-                  className="flex-1 px-4 py-3 text-lg border-2 border-amber-200 focus:border-amber-500 rounded-xl"
+                  className="flex-1 px-4 py-3 text-lg border-2 border-blue-200 focus:border-blue-500 rounded-xl bg-white"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 <Button 
                   type="submit"
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 text-lg font-semibold rounded-xl hover-lift whitespace-nowrap"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-lg font-semibold rounded-xl hover-lift whitespace-nowrap"
                 >
                   빠른 신청
                 </Button>
@@ -55,7 +55,7 @@ const NewsletterSection = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                className="border-2 border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white px-6 py-3 text-lg font-semibold rounded-xl"
+                className="border-2 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white px-6 py-3 text-lg font-semibold rounded-xl"
               >
                 상세 신청하기
               </Button>

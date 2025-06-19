@@ -103,6 +103,52 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
     </div>
   );
 
+  const renderUserTypeSelection = () => (
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-4">
+        <div 
+          onClick={() => setSignupMethod('email')}
+          className="border-2 border-orange-400 rounded-lg p-6 cursor-pointer hover:bg-orange-50 transition-colors"
+        >
+          <div className="flex flex-col items-center space-y-2">
+            <div className="w-8 h-8 rounded-full border-2 border-gray-400 flex items-center justify-center">
+              <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+            </div>
+            <span className="font-medium text-gray-700">개인 회원가입</span>
+          </div>
+        </div>
+        
+        <div 
+          onClick={() => setSignupMethod('business')}
+          className="border-2 border-gray-300 rounded-lg p-6 cursor-pointer hover:bg-gray-50 transition-colors"
+        >
+          <div className="flex flex-col items-center space-y-2">
+            <div className="w-8 h-8 text-orange-400">
+              🏢
+            </div>
+            <span className="font-medium text-gray-700">단체 회원가입</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex gap-2">
+        <Button
+          variant="outline"
+          onClick={() => setSignupMethod('select')}
+          className="flex-1"
+        >
+          취소
+        </Button>
+        <Button
+          onClick={() => setSignupMethod('email')}
+          className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+        >
+          다음
+        </Button>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -117,9 +163,17 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
 
           {signupMethod === 'select' && renderSelectMethod()}
           
-          {(signupMethod === 'email' || signupMethod === 'business') && (
+          {signupMethod === 'email' && (
             <EmailSignupForm
-              userType={signupMethod === 'business' ? 'business' : 'individual'}
+              userType="individual"
+              onBack={() => setSignupMethod('select')}
+              onSuccess={() => onOpenChange(false)}
+            />
+          )}
+
+          {signupMethod === 'business' && (
+            <EmailSignupForm
+              userType="business"
               onBack={() => setSignupMethod('select')}
               onSuccess={() => onOpenChange(false)}
             />

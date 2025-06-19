@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,6 +47,14 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
       return;
     }
     setAgreements(prev => ({ ...prev, [field]: checked }));
+  };
+
+  const handleUnder14Consent = (consented: boolean) => {
+    if (consented) {
+      // User agreed to proceed with guardian consent process
+      setAgreements(prev => ({ ...prev, age14Plus: true }));
+    }
+    // If not consented, the age14Plus remains false
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -348,6 +355,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
       <Under14ConsentModal
         open={showUnder14Modal}
         onOpenChange={setShowUnder14Modal}
+        onConsent={handleUnder14Consent}
       />
     </>
   );

@@ -59,20 +59,8 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
             className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
           >
             <img 
-              src="/lovable-uploads/d953699d-da78-4fe5-85c7-5e53b0b41f7b.png" 
+              src="/lovable-uploads/dea4eab4-d07d-4996-99e9-e9004be8dbb2.png" 
               alt="Google" 
-              className="w-6 h-6"
-            />
-          </Button>
-
-          <Button
-            onClick={() => handleSocialSignup('kakao')}
-            variant="outline"
-            className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
-          >
-            <img 
-              src="/lovable-uploads/2446b190-8cd9-4de6-a358-5b54244c1d63.png" 
-              alt="Kakao" 
               className="w-6 h-6"
             />
           </Button>
@@ -83,8 +71,20 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
             className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
           >
             <img 
-              src="/lovable-uploads/00368c00-77f2-4835-bdf3-c5f2c7bc8ee4.png" 
+              src="/lovable-uploads/e29d3fb8-fbb7-4566-9230-e0af1d4c4ddf.png" 
               alt="Apple" 
+              className="w-6 h-6"
+            />
+          </Button>
+
+          <Button
+            onClick={() => handleSocialSignup('kakao')}
+            variant="outline"
+            className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
+          >
+            <img 
+              src="/lovable-uploads/9748ff8c-0eb2-44ff-bb6a-fada797ea6d3.png" 
+              alt="Kakao" 
               className="w-6 h-6"
             />
           </Button>

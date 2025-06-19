@@ -12,12 +12,16 @@ const AuthButton = () => {
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showDonationHistory, setShowDonationHistory] = useState(false);
 
+  const handleDonationHistoryClick = () => {
+    window.open('https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=cS5wf7XV59', '_blank');
+  };
+
   if (user) {
     return (
       <div className="flex items-center gap-2">
         <Button
           variant="ghost"
-          onClick={() => setShowDonationHistory(true)}
+          onClick={handleDonationHistoryClick}
           className="text-gray-700 hover:text-blue-600"
         >
           기부내역조회
@@ -29,16 +33,19 @@ const AuthButton = () => {
         >
           로그아웃
         </Button>
-        <DonationHistoryModal 
-          open={showDonationHistory} 
-          onOpenChange={setShowDonationHistory}
-        />
       </div>
     );
   }
 
   return (
     <div className="flex items-center gap-2">
+      <Button
+        variant="ghost"
+        onClick={handleDonationHistoryClick}
+        className="text-gray-700 hover:text-blue-600"
+      >
+        기부내역조회
+      </Button>
       <Button
         variant="ghost"
         onClick={() => setShowLoginModal(true)}

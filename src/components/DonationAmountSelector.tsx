@@ -43,7 +43,7 @@ const DonationAmountSelector = ({
           placeholder="금액을 입력해주세요"
           value={customAmount}
           onChange={(e) => onCustomAmountChange(e.target.value)}
-          className="bg-white border-stone-300 focus:border-blue-500"
+          className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
           required
         />
       )}

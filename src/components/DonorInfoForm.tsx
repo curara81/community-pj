@@ -46,7 +46,7 @@ const DonorInfoForm = ({
           placeholder="성함을 입력해주세요"
           value={name}
           onChange={(e) => onNameChange(e.target.value)}
-          className="bg-white border-stone-300 focus:border-blue-500"
+          className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
           required
         />
       </div>
@@ -58,7 +58,7 @@ const DonorInfoForm = ({
           placeholder="휴대폰번호를 입력해주세요"
           value={phone}
           onChange={(e) => onPhoneChange(e.target.value)}
-          className="bg-white border-stone-300 focus:border-blue-500"
+          className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
           required
         />
       </div>
@@ -70,7 +70,7 @@ const DonorInfoForm = ({
           placeholder="이메일을 입력해주세요"
           value={email}
           onChange={(e) => onEmailChange(e.target.value)}
-          className="bg-white border-stone-300 focus:border-blue-500"
+          className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
           required
         />
       </div>

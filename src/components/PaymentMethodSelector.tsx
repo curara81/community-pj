@@ -91,7 +91,7 @@ const PaymentMethodSelector = ({
               placeholder="은행을 선택해 주세요"
               value={bankName}
               onChange={(e) => onBankNameChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
               required
             />
           </div>
@@ -103,7 +103,7 @@ const PaymentMethodSelector = ({
               placeholder="휴대폰번호 형식의 계좌번호 사용불가"
               value={accountNumber}
               onChange={(e) => onAccountNumberChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
               required
             />
           </div>
@@ -128,7 +128,7 @@ const PaymentMethodSelector = ({
               placeholder="카드 소유자 성함을 입력해주세요"
               value={cardHolderName}
               onChange={(e) => onCardHolderNameChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
               required
             />
           </div>
@@ -140,7 +140,7 @@ const PaymentMethodSelector = ({
               placeholder="카드 소유자 휴대폰번호를 입력해주세요"
               value={cardHolderPhone}
               onChange={(e) => onCardHolderPhoneChange(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
               required
             />
           </div>

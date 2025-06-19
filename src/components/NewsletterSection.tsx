@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Instagram, Facebook } from "lucide-react";
+import { Mail } from "lucide-react";
 import NewsletterModal from "./NewsletterModal";
 import { useState } from "react";
 
@@ -16,6 +16,10 @@ const NewsletterSection = () => {
       alert('뉴스레터 신청이 완료되었습니다!');
       setEmail('');
     }
+  };
+
+  const handleContactUs = () => {
+    window.location.href = 'mailto:comm@comm-unity.or.kr';
   };
 
   return (
@@ -63,27 +67,18 @@ const NewsletterSection = () => {
           </div>
           
           <div className="space-y-4">
-            <p className="text-lg text-gray-600 font-medium">SNS에서도 만나요</p>
-            <div className="flex justify-center gap-6">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-2 border-pink-400 text-pink-600 hover:bg-pink-400 hover:text-white p-3 rounded-full hover-lift"
-                onClick={() => alert('인스타그램 페이지 준비중입니다!')}
-              >
-                <Instagram size={24} />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-2 border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white p-3 rounded-full hover-lift"
-                onClick={() => alert('페이스북 페이지 준비중입니다!')}
-              >
-                <Facebook size={24} />
-              </Button>
-            </div>
+            <p className="text-lg text-gray-600 font-medium">Contact Us</p>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-2 border-gray-400 text-gray-600 hover:bg-gray-500 hover:text-white px-6 py-3 rounded-full hover-lift"
+              onClick={handleContactUs}
+            >
+              <Mail size={20} className="mr-2" />
+              comm@comm-unity.or.kr
+            </Button>
             <p className="text-sm text-gray-500">
-              인스타그램 / 페이스북 / 카카오채널 (준비중)
+              문의사항이 있으시면 언제든 연락주세요
             </p>
           </div>
         </div>

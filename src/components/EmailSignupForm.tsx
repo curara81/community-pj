@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -121,17 +120,6 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
       <form onSubmit={handleSubmit} className="space-y-4">
         {userType === 'business' && (
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="border-2 border-gray-300 rounded-lg p-4 text-center">
-                <div className="text-2xl mb-2">👤</div>
-                <span className="text-sm text-gray-700">개인 회원가입</span>
-              </div>
-              <div className="border-2 border-orange-400 rounded-lg p-4 text-center bg-orange-50">
-                <div className="text-2xl mb-2">🏢</div>
-                <span className="text-sm text-gray-700 font-medium">단체 회원가입</span>
-              </div>
-            </div>
-
             <div className="grid grid-cols-2 gap-4">
               <Button
                 type="button"

@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -89,7 +90,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="bg-white border-gray-300 focus:border-blue-500"
+                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
               />
             </div>
 
@@ -103,7 +104,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="bg-white border-gray-300 focus:border-blue-500"
+                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
               />
             </div>
 
@@ -139,7 +140,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 <img 
                   src="/lovable-uploads/dea4eab4-d07d-4996-99e9-e9004be8dbb2.png" 
                   alt="Google" 
-                  className="w-8 h-8"
+                  className="w-10 h-10"
                 />
               </Button>
 
@@ -151,7 +152,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 <img 
                   src="/lovable-uploads/e29d3fb8-fbb7-4566-9230-e0af1d4c4ddf.png" 
                   alt="Apple" 
-                  className="w-8 h-8"
+                  className="w-10 h-10"
                 />
               </Button>
 
@@ -163,7 +164,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
                 <img 
                   src="/lovable-uploads/9748ff8c-0eb2-44ff-bb6a-fada797ea6d3.png" 
                   alt="Kakao" 
-                  className="w-8 h-8"
+                  className="w-10 h-10"
                 />
               </Button>
             </div>

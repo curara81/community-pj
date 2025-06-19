@@ -1,10 +1,10 @@
+
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import PrivacyConsentModal from './PrivacyConsentModal';
 import Under14ConsentModal from './Under14ConsentModal';
 
 interface EmailSignupFormProps {
@@ -15,76 +15,44 @@ interface EmailSignupFormProps {
 
 const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
     confirmPassword: '',
-    birthDate: '',
+    name: '',
     phone: '',
+    birthDate: '',
+    gender: '',
     businessName: '',
-    businessRegistrationNumber: '',
+    businessNumber: '',
     representativeName: '',
-    representativePhone: '',
-    businessType: 'business_entity' as 'business_entity' | 'non_business_entity'
   });
-  const [showPrivacyConsent, setShowPrivacyConsent] = useState(false);
-  const [privacyConsented, setPrivacyConsented] = useState(false);
-  const [showUnder14Consent, setShowUnder14Consent] = useState(false);
-  const [isUnder14, setIsUnder14] = useState(false);
-  const [under14Consented, setUnder14Consented] = useState(false);
+  
+  const [agreements, setAgreements] = useState({
+    termsOfService: false,
+    privacyPolicy: false,
+    marketingConsent: false,
+    age14Plus: false,
+  });
+  
   const [loading, setLoading] = useState(false);
+  const [showUnder14Modal, setShowUnder14Modal] = useState(false);
   const { toast } = useToast();
 
-  // 만 14세 미만 체크 함수
-  const checkIsUnder14 = (birthDate: string) => {
-    if (!birthDate) return false;
-    
-    const today = new Date();
-    const birth = new Date(birthDate);
-    const age = today.getFullYear() - birth.getFullYear();
-    const monthDiff = today.getMonth() - birth.getMonth();
-    
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-      return (age - 1) < 14;
-    }
-    
-    return age < 14;
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  // 생년월일 변경 핸들러
-  const handleBirthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newBirthDate = e.target.value;
-    setFormData({...formData, birthDate: newBirthDate});
-    
-    // 만 14세 미만 자동 체크
-    if (newBirthDate && checkIsUnder14(newBirthDate)) {
-      if (!isUnder14) {
-        setShowUnder14Consent(true);
-      }
-    } else if (isUnder14 && newBirthDate) {
-      // 만 14세 이상으로 변경된 경우 체크 해제
-      setIsUnder14(false);
-      setUnder14Consented(false);
+  const handleAgreementChange = (field: string, checked: boolean) => {
+    if (field === 'age14Plus' && !checked) {
+      setShowUnder14Modal(true);
+      return;
     }
+    setAgreements(prev => ({ ...prev, [field]: checked }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!privacyConsented) {
-      setShowPrivacyConsent(true);
-      return;
-    }
-
-    if (isUnder14 && !under14Consented) {
-      toast({
-        title: "보호자 동의 필요",
-        description: "만 14세 미만은 보호자 동의가 필요합니다.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     if (formData.password !== formData.confirmPassword) {
       toast({
         title: "비밀번호 확인",
@@ -94,24 +62,32 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
       return;
     }
 
+    if (!agreements.termsOfService || !agreements.privacyPolicy || !agreements.age14Plus) {
+      toast({
+        title: "약관 동의",
+        description: "필수 약관에 동의해주세요.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/`,
           data: {
             name: formData.name,
-            birth_date: formData.birthDate,
             phone: formData.phone,
-            user_type: userType === 'business' ? formData.businessType : 'individual',
-            business_name: formData.businessName,
-            business_registration_number: formData.businessRegistrationNumber,
-            representative_name: formData.representativeName,
-            representative_phone: formData.representativePhone,
-            is_under_14: isUnder14
+            birth_date: formData.birthDate,
+            gender: formData.gender,
+            user_type: userType,
+            business_name: userType === 'business' ? formData.businessName : null,
+            business_number: userType === 'business' ? formData.businessNumber : null,
+            representative_name: userType === 'business' ? formData.representativeName : null,
+            marketing_consent: agreements.marketingConsent,
           }
         }
       });
@@ -123,30 +99,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
           variant: "destructive",
         });
       } else {
-        if (data.user) {
-          const profileData = {
-            id: data.user.id,
-            name: formData.name,
-            birth_date: formData.birthDate || null,
-            phone: formData.phone,
-            user_type: userType === 'business' ? formData.businessType : 'individual',
-            business_name: formData.businessName || null,
-            business_registration_number: formData.businessRegistrationNumber || null,
-            representative_name: formData.representativeName || null
-          };
-
-          const { error: profileError } = await supabase
-            .from('profiles')
-            .upsert(profileData);
-
-          if (profileError) {
-            console.error('Profile update error:', profileError);
-          }
-        }
-
         toast({
           title: "회원가입 성공",
-          description: "이메일을 확인해주세요.",
+          description: "이메일 인증을 확인해주세요.",
         });
         onSuccess();
       }
@@ -157,210 +112,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
     }
   };
 
-  const handlePrivacyConsent = (consented: boolean) => {
-    setPrivacyConsented(consented);
-    setShowPrivacyConsent(false);
-  };
-
-  const handleUnder14Check = (checked: boolean) => {
-    if (checked) {
-      setShowUnder14Consent(true);
-    } else {
-      setIsUnder14(false);
-      setUnder14Consented(false);
-    }
-  };
-
-  const handleUnder14Consent = (consented: boolean) => {
-    if (consented) {
-      setIsUnder14(true);
-      setUnder14Consented(true);
-    } else {
-      setIsUnder14(false);
-      setUnder14Consented(false);
-    }
-    setShowUnder14Consent(false);
-  };
-
   return (
     <>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {userType === 'business' && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <Button
-                type="button"
-                variant={formData.businessType === 'business_entity' ? 'default' : 'outline'}
-                onClick={() => setFormData({...formData, businessType: 'business_entity'})}
-                className={formData.businessType === 'business_entity' 
-                  ? "bg-orange-500 hover:bg-orange-600 text-white" 
-                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                }
-              >
-                사업자 회원
-              </Button>
-              <Button
-                type="button"
-                variant={formData.businessType === 'non_business_entity' ? 'default' : 'outline'}
-                onClick={() => setFormData({...formData, businessType: 'non_business_entity'})}
-                className={formData.businessType === 'non_business_entity' 
-                  ? "bg-orange-500 hover:bg-orange-600 text-white" 
-                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                }
-              >
-                비사업자 회원
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {userType === 'business' && (
-          <>
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                {formData.businessType === 'business_entity' ? '사업자 확인' : '단체명 확인'}
-              </label>
-              <Input
-                type="text"
-                placeholder="단체명"
-                value={formData.businessName}
-                onChange={(e) => setFormData({...formData, businessName: e.target.value})}
-                required
-                className="bg-white border-gray-300 focus:border-blue-500"
-              />
-            </div>
-
-            {formData.businessType === 'business_entity' && (
-              <div className="flex gap-2">
-                <Input
-                  type="text"
-                  placeholder="사업자등록번호"
-                  value={formData.businessRegistrationNumber}
-                  onChange={(e) => setFormData({...formData, businessRegistrationNumber: e.target.value})}
-                  className="flex-1 bg-white border-gray-300 focus:border-blue-500"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="whitespace-nowrap text-orange-500 border-orange-500 hover:bg-orange-50"
-                >
-                  사업자번호 확인
-                </Button>
-              </div>
-            )}
-
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                담당자 이름
-              </label>
-              <Input
-                type="text"
-                placeholder="담당자 이름"
-                value={formData.representativeName}
-                onChange={(e) => setFormData({...formData, representativeName: e.target.value})}
-                required
-                className="bg-white border-gray-300 focus:border-blue-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                휴대폰 번호
-              </label>
-              <div className="flex gap-2">
-                <Input
-                  type="tel"
-                  placeholder="-없이 숫자만 입력"
-                  value={formData.representativePhone}
-                  onChange={(e) => setFormData({...formData, representativePhone: e.target.value})}
-                  required
-                  className="flex-1 bg-white border-gray-300 focus:border-blue-500"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="whitespace-nowrap text-orange-500 border-orange-500 hover:bg-orange-50"
-                >
-                  인증번호 발송
-                </Button>
-              </div>
-            </div>
-          </>
-        )}
-
-        {userType === 'individual' && (
-          <>
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                이름 *
-              </label>
-              <Input
-                type="text"
-                placeholder="이름을 입력해주세요"
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
-                required
-                className="bg-white border-gray-300 focus:border-blue-500"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-medium text-gray-700">
-                  생년월일
-                </label>
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="under14"
-                    checked={isUnder14}
-                    onCheckedChange={handleUnder14Check}
-                  />
-                  <label htmlFor="under14" className="text-sm text-gray-700">
-                    만 14세 미만
-                  </label>
-                </div>
-              </div>
-              <Input
-                type="date"
-                placeholder="예시) 19900101"
-                value={formData.birthDate}
-                onChange={handleBirthDateChange}
-                className="bg-white border-gray-300 focus:border-blue-500"
-              />
-              {isUnder14 && under14Consented && (
-                <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-sm text-blue-800">
-                    ※ 만 14세 미만으로 보호자 동의가 완료되었습니다.
-                  </p>
-                </div>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                휴대폰 번호
-              </label>
-              <div className="flex gap-2">
-                <Input
-                  type="tel"
-                  placeholder="-없이 숫자만 입력"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  required
-                  className="flex-1 bg-white border-gray-300 focus:border-blue-500"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="whitespace-nowrap text-orange-500 border-orange-500 hover:bg-orange-50"
-                >
-                  인증번호 발송
-                </Button>
-              </div>
-            </div>
-          </>
-        )}
-
         <div>
           <label className="block text-sm font-medium mb-2 text-gray-700">
             이메일 *
@@ -369,9 +123,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             type="email"
             placeholder="이메일을 입력해주세요"
             value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            onChange={(e) => handleInputChange('email', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500"
+            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
           />
         </div>
 
@@ -383,9 +137,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             type="password"
             placeholder="비밀번호를 입력해주세요"
             value={formData.password}
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
+            onChange={(e) => handleInputChange('password', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500"
+            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
           />
         </div>
 
@@ -397,60 +151,203 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             type="password"
             placeholder="비밀번호를 다시 입력해주세요"
             value={formData.confirmPassword}
-            onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+            onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
             required
-            className="bg-white border-gray-300 focus:border-blue-500"
+            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
           />
         </div>
 
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="privacy"
-            checked={privacyConsented}
-            onCheckedChange={() => setShowPrivacyConsent(true)}
-          />
-          <label htmlFor="privacy" className="text-sm text-gray-700">
-            [필수] 개인정보 수집 및 이용 동의
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            {userType === 'business' ? '담당자명' : '이름'} *
           </label>
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={() => setShowPrivacyConsent(true)}
-            className="text-blue-600 hover:text-blue-700 p-0 h-auto text-sm underline"
-          >
-            보기
-          </Button>
+          <Input
+            type="text"
+            placeholder={userType === 'business' ? '담당자명을 입력해주세요' : '이름을 입력해주세요'}
+            value={formData.name}
+            onChange={(e) => handleInputChange('name', e.target.value)}
+            required
+            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+          />
         </div>
 
-        <div className="flex gap-2">
+        {userType === 'business' && (
+          <>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                단체명 *
+              </label>
+              <Input
+                type="text"
+                placeholder="단체명을 입력해주세요"
+                value={formData.businessName}
+                onChange={(e) => handleInputChange('businessName', e.target.value)}
+                required
+                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                사업자등록번호
+              </label>
+              <Input
+                type="text"
+                placeholder="사업자등록번호를 입력해주세요 (선택사항)"
+                value={formData.businessNumber}
+                onChange={(e) => handleInputChange('businessNumber', e.target.value)}
+                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                대표자명
+              </label>
+              <Input
+                type="text"
+                placeholder="대표자명을 입력해주세요 (선택사항)"
+                value={formData.representativeName}
+                onChange={(e) => handleInputChange('representativeName', e.target.value)}
+                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+              />
+            </div>
+          </>
+        )}
+
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">
+            휴대폰번호 *
+          </label>
+          <Input
+            type="tel"
+            placeholder="휴대폰번호를 입력해주세요"
+            value={formData.phone}
+            onChange={(e) => handleInputChange('phone', e.target.value)}
+            required
+            className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
+          />
+        </div>
+
+        {userType === 'individual' && (
+          <>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                생년월일 *
+              </label>
+              <Input
+                type="date"
+                value={formData.birthDate}
+                onChange={(e) => handleInputChange('birthDate', e.target.value)}
+                required
+                className="bg-white border-gray-300 focus:border-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">
+                성별 *
+              </label>
+              <div className="flex gap-4">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={formData.gender === 'male'}
+                    onChange={(e) => handleInputChange('gender', e.target.value)}
+                    className="mr-2"
+                  />
+                  남성
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={formData.gender === 'female'}
+                    onChange={(e) => handleInputChange('gender', e.target.value)}
+                    className="mr-2"
+                  />
+                  여성
+                </label>
+              </div>
+            </div>
+          </>
+        )}
+
+        <div className="space-y-3 border-t pt-4">
+          <h4 className="font-medium text-gray-700">약관 동의</h4>
+          
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="age14Plus"
+                checked={agreements.age14Plus}
+                onCheckedChange={(checked) => handleAgreementChange('age14Plus', !!checked)}
+              />
+              <label htmlFor="age14Plus" className="text-sm text-gray-700">
+                만 14세 이상입니다 (필수)
+              </label>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="termsOfService"
+                checked={agreements.termsOfService}
+                onCheckedChange={(checked) => handleAgreementChange('termsOfService', !!checked)}
+              />
+              <label htmlFor="termsOfService" className="text-sm text-gray-700">
+                이용약관에 동의합니다 (필수)
+              </label>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="privacyPolicy"
+                checked={agreements.privacyPolicy}
+                onCheckedChange={(checked) => handleAgreementChange('privacyPolicy', !!checked)}
+              />
+              <label htmlFor="privacyPolicy" className="text-sm text-gray-700">
+                개인정보처리방침에 동의합니다 (필수)
+              </label>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="marketingConsent"
+                checked={agreements.marketingConsent}
+                onCheckedChange={(checked) => handleAgreementChange('marketingConsent', !!checked)}
+              />
+              <label htmlFor="marketingConsent" className="text-sm text-gray-700">
+                마케팅 정보 수신에 동의합니다 (선택)
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-2 pt-4">
           <Button
             type="button"
             variant="outline"
             onClick={onBack}
             className="flex-1"
           >
-            취소
+            이전
           </Button>
           <Button
             type="submit"
-            disabled={loading || !privacyConsented || (isUnder14 && !under14Consented)}
-            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+            disabled={loading}
+            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
           >
-            {loading ? '가입 중...' : '다음'}
+            {loading ? '가입 중...' : '회원가입'}
           </Button>
         </div>
       </form>
 
-      <PrivacyConsentModal
-        open={showPrivacyConsent}
-        onOpenChange={setShowPrivacyConsent}
-        onConsent={handlePrivacyConsent}
-      />
-
       <Under14ConsentModal
-        open={showUnder14Consent}
-        onOpenChange={setShowUnder14Consent}
-        onConsent={handleUnder14Consent}
+        open={showUnder14Modal}
+        onOpenChange={setShowUnder14Modal}
       />
     </>
   );

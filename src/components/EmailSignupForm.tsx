@@ -31,9 +31,10 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
     termsOfService: false,
     privacyPolicy: false,
     marketingConsent: false,
-    age14Plus: false,
   });
   
+  const [isUnder14, setIsUnder14] = useState(false);
+  const [under14Consented, setUnder14Consented] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showUnder14Modal, setShowUnder14Modal] = useState(false);
   const { toast } = useToast();
@@ -43,19 +44,23 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
   };
 
   const handleAgreementChange = (field: string, checked: boolean) => {
-    if (field === 'age14Plus' && !checked) {
-      setShowUnder14Modal(true);
-      return;
-    }
     setAgreements(prev => ({ ...prev, [field]: checked }));
   };
 
-  const handleUnder14Consent = (consented: boolean) => {
-    if (consented) {
-      // User agreed to proceed with guardian consent process
-      setAgreements(prev => ({ ...prev, age14Plus: true }));
+  const handleUnder14Check = (checked: boolean) => {
+    setIsUnder14(checked);
+    if (checked) {
+      setShowUnder14Modal(true);
+    } else {
+      setUnder14Consented(false);
     }
-    // If not consented, the age14Plus remains false
+  };
+
+  const handleUnder14Consent = (consented: boolean) => {
+    setUnder14Consented(consented);
+    if (!consented) {
+      setIsUnder14(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,10 +75,19 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
       return;
     }
 
-    if (!agreements.termsOfService || !agreements.privacyPolicy || !agreements.age14Plus) {
+    if (!agreements.termsOfService || !agreements.privacyPolicy) {
       toast({
         title: "약관 동의",
         description: "필수 약관에 동의해주세요.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (isUnder14 && !under14Consented) {
+      toast({
+        title: "보호자 동의 필요",
+        description: "만 14세 미만의 경우 보호자 동의가 필요합니다.",
         variant: "destructive",
       });
       return;
@@ -96,6 +110,8 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             business_number: userType === 'business' ? formData.businessNumber : null,
             representative_name: userType === 'business' ? formData.representativeName : null,
             marketing_consent: agreements.marketingConsent,
+            under_14: isUnder14,
+            guardian_consent: under14Consented,
           }
         }
       });
@@ -243,13 +259,25 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
               <label className="block text-sm font-medium mb-2 text-gray-700">
                 생년월일 *
               </label>
-              <Input
-                type="date"
-                value={formData.birthDate}
-                onChange={(e) => handleInputChange('birthDate', e.target.value)}
-                required
-                className="bg-white border-gray-300 focus:border-stone-500"
-              />
+              <div className="flex gap-3 items-center">
+                <Input
+                  type="date"
+                  value={formData.birthDate}
+                  onChange={(e) => handleInputChange('birthDate', e.target.value)}
+                  required
+                  className="bg-white border-gray-300 focus:border-stone-500 flex-1"
+                />
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="under14"
+                    checked={isUnder14}
+                    onCheckedChange={handleUnder14Check}
+                  />
+                  <label htmlFor="under14" className="text-sm text-gray-700 whitespace-nowrap">
+                    만 14세 미만
+                  </label>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -288,17 +316,6 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
           <h4 className="font-medium text-gray-700">약관 동의</h4>
           
           <div className="space-y-2">
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="age14Plus"
-                checked={agreements.age14Plus}
-                onCheckedChange={(checked) => handleAgreementChange('age14Plus', !!checked)}
-              />
-              <label htmlFor="age14Plus" className="text-sm text-gray-700">
-                만 14세 이상입니다 (필수)
-              </label>
-            </div>
-
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="termsOfService"

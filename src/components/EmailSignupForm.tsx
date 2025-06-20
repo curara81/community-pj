@@ -11,7 +11,7 @@ import MarketingConsentModal from './MarketingConsentModal';
 import PrivacyConsentModal from './PrivacyConsentModal';
 
 interface EmailSignupFormProps {
-  userType: 'individual' | 'business';
+  userType: 'individual' | 'business' | 'non-business';
   onBack: () => void;
   onSuccess: () => void;
 }
@@ -112,9 +112,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
             birth_date: formData.birthDate,
             gender: formData.gender,
             user_type: userType,
-            business_name: userType === 'business' ? formData.businessName : null,
+            business_name: (userType === 'business' || userType === 'non-business') ? formData.businessName : null,
             business_number: userType === 'business' ? formData.businessNumber : null,
-            representative_name: userType === 'business' ? formData.representativeName : null,
+            representative_name: (userType === 'business' || userType === 'non-business') ? formData.representativeName : null,
             marketing_consent: agreements.marketingConsent,
             under_14: isUnder14,
             guardian_consent: under14Consented,
@@ -189,11 +189,11 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
 
         <div>
           <label className="block text-sm font-medium mb-2 text-gray-700">
-            {userType === 'business' ? '담당자명' : '이름'} *
+            {(userType === 'business' || userType === 'non-business') ? '담당자명' : '이름'} *
           </label>
           <Input
             type="text"
-            placeholder={userType === 'business' ? '담당자명을 입력해주세요' : '이름을 입력해주세요'}
+            placeholder={(userType === 'business' || userType === 'non-business') ? '담당자명을 입력해주세요' : '이름을 입력해주세요'}
             value={formData.name}
             onChange={(e) => handleInputChange('name', e.target.value)}
             required
@@ -201,7 +201,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
           />
         </div>
 
-        {userType === 'business' && (
+        {(userType === 'business' || userType === 'non-business') && (
           <>
             <div>
               <label className="block text-sm font-medium mb-2 text-gray-700">
@@ -217,26 +217,29 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                사업자등록번호
-              </label>
-              <Input
-                type="text"
-                placeholder="사업자등록번호를 입력해주세요 (선택사항)"
-                value={formData.businessNumber}
-                onChange={(e) => handleInputChange('businessNumber', e.target.value)}
-                className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
-              />
-            </div>
+            {userType === 'business' && (
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-700">
+                  사업자등록번호 *
+                </label>
+                <Input
+                  type="text"
+                  placeholder="사업자등록번호를 입력해주세요"
+                  value={formData.businessNumber}
+                  onChange={(e) => handleInputChange('businessNumber', e.target.value)}
+                  required
+                  className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"
+                />
+              </div>
+            )}
 
             <div>
               <label className="block text-sm font-medium mb-2 text-gray-700">
-                대표자명
+                {userType === 'business' ? '대표자명' : '대표자명 (선택)'}
               </label>
               <Input
                 type="text"
-                placeholder="대표자명을 입력해주세요 (선택사항)"
+                placeholder="대표자명을 입력해주세요"
                 value={formData.representativeName}
                 onChange={(e) => handleInputChange('representativeName', e.target.value)}
                 className="bg-white border-gray-300 focus:border-stone-500 placeholder:text-gray-600"

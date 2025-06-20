@@ -14,7 +14,7 @@ interface SignupModalProps {
 }
 
 const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) => {
-  const [signupMethod, setSignupMethod] = useState<'select' | 'user-type' | 'email' | 'business'>('select');
+  const [signupMethod, setSignupMethod] = useState<'select' | 'user-type' | 'business-type' | 'email' | 'business' | 'non-business'>('select');
   const [showPrivacyConsent, setShowPrivacyConsent] = useState(false);
   const [privacyConsented, setPrivacyConsented] = useState(false);
   const { toast } = useToast();
@@ -133,7 +133,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
         </div>
         
         <div 
-          onClick={() => setSignupMethod('business')}
+          onClick={() => setSignupMethod('business-type')}
           className="border-2 border-gray-300 rounded-lg p-6 cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-center space-y-2">
@@ -163,6 +163,58 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
     </div>
   );
 
+  const renderBusinessTypeSelection = () => (
+    <div className="space-y-4">
+      <div className="space-y-3">
+        <div 
+          onClick={() => setSignupMethod('business')}
+          className="border-2 border-gray-300 rounded-lg p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+        >
+          <div className="flex items-center space-y-2">
+            <div className="w-6 h-6 text-slate-400 mr-3">
+              📋
+            </div>
+            <div>
+              <div className="font-medium text-gray-700">사업자 회원가입</div>
+              <div className="text-sm text-gray-500">사업자등록번호가 있는 단체</div>
+            </div>
+          </div>
+        </div>
+        
+        <div 
+          onClick={() => setSignupMethod('non-business')}
+          className="border-2 border-gray-300 rounded-lg p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+        >
+          <div className="flex items-center space-y-2">
+            <div className="w-6 h-6 text-slate-400 mr-3">
+              🤝
+            </div>
+            <div>
+              <div className="font-medium text-gray-700">비사업자 회원가입</div>
+              <div className="text-sm text-gray-500">비영리단체, 동호회, 커뮤니티 등</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex gap-2">
+        <Button
+          variant="outline"
+          onClick={() => setSignupMethod('user-type')}
+          className="flex-1"
+        >
+          이전
+        </Button>
+        <Button
+          onClick={() => setSignupMethod('business')}
+          className="flex-1 bg-slate-600 hover:bg-slate-700 text-white"
+        >
+          다음
+        </Button>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -171,13 +223,16 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
             <DialogTitle className="text-2xl font-bold text-center text-gray-800">
               {signupMethod === 'select' && '회원가입'}
               {signupMethod === 'user-type' && '회원가입'}
+              {signupMethod === 'business-type' && '단체 회원가입'}
               {signupMethod === 'email' && '개인 회원가입'}
-              {signupMethod === 'business' && '단체 회원가입'}
+              {signupMethod === 'business' && '사업자 회원가입'}
+              {signupMethod === 'non-business' && '비사업자 회원가입'}
             </DialogTitle>
           </DialogHeader>
 
           {signupMethod === 'select' && renderSelectMethod()}
           {signupMethod === 'user-type' && renderUserTypeSelection()}
+          {signupMethod === 'business-type' && renderBusinessTypeSelection()}
           
           {signupMethod === 'email' && (
             <EmailSignupForm
@@ -190,7 +245,15 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
           {signupMethod === 'business' && (
             <EmailSignupForm
               userType="business"
-              onBack={() => setSignupMethod('user-type')}
+              onBack={() => setSignupMethod('business-type')}
+              onSuccess={() => onOpenChange(false)}
+            />
+          )}
+
+          {signupMethod === 'non-business' && (
+            <EmailSignupForm
+              userType="non-business"
+              onBack={() => setSignupMethod('business-type')}
               onSuccess={() => onOpenChange(false)}
             />
           )}

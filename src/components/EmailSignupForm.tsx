@@ -6,6 +6,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import Under14ConsentModal from './Under14ConsentModal';
+import TermsModal from './TermsModal';
+import MarketingConsentModal from './MarketingConsentModal';
+import PrivacyConsentModal from './PrivacyConsentModal';
 
 interface EmailSignupFormProps {
   userType: 'individual' | 'business';
@@ -37,6 +40,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
   const [under14Consented, setUnder14Consented] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showUnder14Modal, setShowUnder14Modal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showMarketingModal, setShowMarketingModal] = useState(false);
   const { toast } = useToast();
 
   const handleInputChange = (field: string, value: string) => {
@@ -322,9 +328,18 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 checked={agreements.termsOfService}
                 onCheckedChange={(checked) => handleAgreementChange('termsOfService', !!checked)}
               />
-              <label htmlFor="termsOfService" className="text-sm text-gray-700">
+              <label htmlFor="termsOfService" className="text-sm text-gray-700 flex-1">
                 이용약관에 동의합니다 (필수)
               </label>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowTermsModal(true)}
+                className="text-stone-600 hover:text-stone-700 underline p-0 h-auto"
+              >
+                내용보기
+              </Button>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -333,9 +348,18 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 checked={agreements.privacyPolicy}
                 onCheckedChange={(checked) => handleAgreementChange('privacyPolicy', !!checked)}
               />
-              <label htmlFor="privacyPolicy" className="text-sm text-gray-700">
+              <label htmlFor="privacyPolicy" className="text-sm text-gray-700 flex-1">
                 개인정보처리방침에 동의합니다 (필수)
               </label>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowPrivacyModal(true)}
+                className="text-stone-600 hover:text-stone-700 underline p-0 h-auto"
+              >
+                내용보기
+              </Button>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -344,9 +368,18 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 checked={agreements.marketingConsent}
                 onCheckedChange={(checked) => handleAgreementChange('marketingConsent', !!checked)}
               />
-              <label htmlFor="marketingConsent" className="text-sm text-gray-700">
+              <label htmlFor="marketingConsent" className="text-sm text-gray-700 flex-1">
                 마케팅 정보 수신에 동의합니다 (선택)
               </label>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowMarketingModal(true)}
+                className="text-stone-600 hover:text-stone-700 underline p-0 h-auto"
+              >
+                내용보기
+              </Button>
             </div>
           </div>
         </div>
@@ -363,7 +396,7 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
           <Button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-stone-600 hover:bg-stone-700 text-white"
+            className="flex-1 bg-slate-600 hover:bg-slate-700 text-white"
           >
             {loading ? '가입 중...' : '회원가입'}
           </Button>
@@ -374,6 +407,22 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
         open={showUnder14Modal}
         onOpenChange={setShowUnder14Modal}
         onConsent={handleUnder14Consent}
+      />
+
+      <TermsModal
+        open={showTermsModal}
+        onOpenChange={setShowTermsModal}
+      />
+
+      <PrivacyConsentModal
+        open={showPrivacyModal}
+        onOpenChange={setShowPrivacyModal}
+        onConsent={() => {}}
+      />
+
+      <MarketingConsentModal
+        open={showMarketingModal}
+        onOpenChange={setShowMarketingModal}
       />
     </>
   );

@@ -46,7 +46,7 @@ const PaymentMethodSelector = ({
           onClick={() => onPaymentMethodChange('cms')}
           className={`flex-1 ${
             paymentMethod === 'cms'
-              ? 'bg-stone-600 hover:bg-stone-700 text-white'
+              ? 'bg-slate-600 hover:bg-slate-700 text-white'
               : 'border-stone-300 text-stone-700 hover:bg-stone-100'
           }`}
         >
@@ -58,7 +58,7 @@ const PaymentMethodSelector = ({
           onClick={() => onPaymentMethodChange('card')}
           className={`flex-1 ${
             paymentMethod === 'card'
-              ? 'bg-stone-600 hover:bg-stone-700 text-white'
+              ? 'bg-slate-600 hover:bg-slate-700 text-white'
               : 'border-stone-300 text-stone-700 hover:bg-stone-100'
           }`}
         >

@@ -122,11 +122,11 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
       <div className="grid grid-cols-2 gap-4">
         <div 
           onClick={() => setSignupMethod('email')}
-          className="border-2 border-orange-400 rounded-lg p-6 cursor-pointer hover:bg-orange-50 transition-colors"
+          className="border-2 border-slate-400 rounded-lg p-6 cursor-pointer hover:bg-slate-50 transition-colors"
         >
           <div className="flex flex-col items-center space-y-2">
             <div className="w-8 h-8 rounded-full border-2 border-gray-400 flex items-center justify-center">
-              <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
+              <div className="w-3 h-3 bg-slate-400 rounded-full"></div>
             </div>
             <span className="font-medium text-gray-700">개인 회원가입</span>
           </div>
@@ -137,7 +137,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
           className="border-2 border-gray-300 rounded-lg p-6 cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-center space-y-2">
-            <div className="w-8 h-8 text-orange-400">
+            <div className="w-8 h-8 text-slate-400">
               🏢
             </div>
             <span className="font-medium text-gray-700">단체 회원가입</span>
@@ -155,7 +155,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
         </Button>
         <Button
           onClick={() => setSignupMethod('email')}
-          className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+          className="flex-1 bg-slate-600 hover:bg-slate-700 text-white"
         >
           다음
         </Button>

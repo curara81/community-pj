@@ -55,7 +55,7 @@ const MarketingConsentModal = ({ open, onOpenChange }: MarketingConsentModalProp
               <h4 className="font-semibold mb-2">5. 동의 철회 및 변경</h4>
               <ul className="list-disc list-inside ml-4">
                 <li>회원님은 언제든지 마케팅 정보 수신 동의를 철회하거나 변경하실 수 있습니다.</li>
-                <li>철회(변경) 방법: 마이페이지 > 개인정보 관리 또는 고객센터 문의</li>
+                <li>철회(변경) 방법: 마이페이지 &gt; 개인정보 관리 또는 고객센터 문의</li>
                 <li>동의 철회 시, 즉시 마케팅 정보 전송이 중단됩니다.</li>
               </ul>
             </div>

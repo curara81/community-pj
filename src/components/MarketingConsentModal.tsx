@@ -75,14 +75,6 @@ const MarketingConsentModal = ({ open, onOpenChange }: MarketingConsentModalProp
                 ※ 수신 동의 없는 상태에서 광고성 정보를 발송하는 것은 불법이며, 동의 이후에도 언제든지 수신 거부가 가능합니다.
               </p>
             </div>
-
-            <div className="border-t pt-4">
-              <h4 className="font-semibold mb-2">마케팅 정보 수신 동의</h4>
-              <p className="text-sm">
-                ☐ (선택) 컴유니티가 제공하는 마케팅 및 광고성 정보 수신에 동의합니다.<br/>
-                (동의하지 않으셔도 서비스 이용에 제한이 없습니다.)
-              </p>
-            </div>
           </div>
         </ScrollArea>
 

@@ -63,7 +63,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom Comm.Unity brand colors
+				// Custom Comm.Unity brand colors - neutral colors instead of yellow
 				'mint': {
 					50: '#f0fdfa',
 					100: '#ccfbf1',
@@ -76,29 +76,29 @@ export default {
 					800: '#115e59',
 					900: '#134e4a'
 				},
-				'peach': {
-					50: '#fef7ed',
-					100: '#feedcc',
-					200: '#fcd9a3',
-					300: '#f9c074',
-					400: '#f59e0b',
-					500: '#d97706',
-					600: '#b45309',
-					700: '#92400e',
-					800: '#78350f',
-					900: '#451a03'
+				'neutral': {
+					50: '#f8fafc',
+					100: '#f1f5f9',
+					200: '#e2e8f0',
+					300: '#cbd5e1',
+					400: '#94a3b8',
+					500: '#64748b',
+					600: '#475569',
+					700: '#334155',
+					800: '#1e293b',
+					900: '#0f172a'
 				},
-				'ivory': {
-					50: '#fffef7',
-					100: '#fffaed',
-					200: '#fff4d6',
-					300: '#ffeaa7',
-					400: '#ffdc82',
-					500: '#ffd32a',
-					600: '#ca8a04',
-					700: '#a16207',
-					800: '#854d0e',
-					900: '#713f12'
+				'stone': {
+					50: '#fafaf9',
+					100: '#f5f5f4',
+					200: '#e7e5e4',
+					300: '#d6d3d1',
+					400: '#a8a29e',
+					500: '#78716c',
+					600: '#57534e',
+					700: '#44403c',
+					800: '#292524',
+					900: '#1c1917'
 				}
 			},
 			fontFamily: {

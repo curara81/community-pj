@@ -17,13 +17,13 @@
     --popover: 255 255 255;
     --popover-foreground: 55 48 43;
 
-    --primary: 146 64 14; /* amber-800 - 따뜻한 희망 */
-    --primary-foreground: 255 251 235;
+    --primary: 100 116 139; /* slate-500 - 중성적이고 안정적인 색상 */
+    --primary-foreground: 255 255 255;
 
-    --secondary: 254 243 199; /* amber-100 */
-    --secondary-foreground: 146 64 14;
+    --secondary: 241 245 249; /* slate-100 */
+    --secondary-foreground: 100 116 139;
 
-    --muted: 250 245 232; /* warm-100 */
+    --muted: 248 250 252; /* slate-50 */
     --muted-foreground: 120 113 108;
 
     --accent: 239 246 255; /* blue-50 - 평화와 신뢰 */
@@ -34,18 +34,18 @@
 
     --border: 229 231 235;
     --input: 229 231 235;
-    --ring: 146 64 14;
+    --ring: 100 116 139;
 
     --radius: 0.75rem;
 
     --sidebar-background: 255 255 255;
     --sidebar-foreground: 55 48 43;
-    --sidebar-primary: 146 64 14;
-    --sidebar-primary-foreground: 255 251 235;
-    --sidebar-accent: 254 243 199;
-    --sidebar-accent-foreground: 146 64 14;
+    --sidebar-primary: 100 116 139;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 241 245 249;
+    --sidebar-accent-foreground: 100 116 139;
     --sidebar-border: 229 231 235;
-    --sidebar-ring: 146 64 14;
+    --sidebar-ring: 100 116 139;
   }
 }
 
@@ -65,7 +65,7 @@
 
 @layer components {
   .gradient-warm-hope {
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    background: linear-gradient(135deg, #64748b 0%, #475569 50%, #334155 100%);
   }
   
   .gradient-care {
@@ -73,7 +73,7 @@
   }
   
   .gradient-text-warm {
-    background: linear-gradient(135deg, #92400e 0%, #d97706 50%, #f59e0b 100%);
+    background: linear-gradient(135deg, #475569 0%, #64748b 50%, #94a3b8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -84,10 +84,10 @@
   }
   
   .helping-hand-shadow {
-    box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.25), 0 10px 10px -5px rgba(245, 158, 11, 0.1);
+    box-shadow: 0 10px 25px -5px rgba(100, 116, 139, 0.25), 0 10px 10px -5px rgba(100, 116, 139, 0.1);
   }
   
   .care-card {
-    @apply bg-gradient-to-br from-amber-50 to-blue-50 border-0 shadow-md hover:shadow-xl transition-all duration-300;
+    @apply bg-gradient-to-br from-slate-50 to-blue-50 border-0 shadow-md hover:shadow-xl transition-all duration-300;
   }
 }

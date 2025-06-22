@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import Under14ConsentModal from './Under14ConsentModal';
@@ -281,8 +282,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                     id="under14"
                     checked={isUnder14}
                     onCheckedChange={handleUnder14Check}
+                    className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
                   />
-                  <label htmlFor="under14" className="text-sm text-gray-700 whitespace-nowrap">
+                  <label htmlFor="under14" className="text-sm text-black font-bold whitespace-nowrap">
                     만 14세 미만
                   </label>
                 </div>
@@ -293,30 +295,28 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
               <label className="block text-sm font-medium mb-2 text-gray-700">
                 성별 *
               </label>
-              <div className="flex gap-4">
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="male"
-                    checked={formData.gender === 'male'}
-                    onChange={(e) => handleInputChange('gender', e.target.value)}
-                    className="mr-2"
+              <RadioGroup
+                value={formData.gender}
+                onValueChange={(value) => handleInputChange('gender', value)}
+                className="flex gap-6"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem 
+                    value="male" 
+                    id="male" 
+                    className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
                   />
-                  남성
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="female"
-                    checked={formData.gender === 'female'}
-                    onChange={(e) => handleInputChange('gender', e.target.value)}
-                    className="mr-2"
+                  <label htmlFor="male" className="text-sm text-black font-bold">남성</label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem 
+                    value="female" 
+                    id="female" 
+                    className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
                   />
-                  여성
-                </label>
-              </div>
+                  <label htmlFor="female" className="text-sm text-black font-bold">여성</label>
+                </div>
+              </RadioGroup>
             </div>
           </>
         )}
@@ -330,8 +330,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 id="termsOfService"
                 checked={agreements.termsOfService}
                 onCheckedChange={(checked) => handleAgreementChange('termsOfService', !!checked)}
+                className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
               />
-              <label htmlFor="termsOfService" className="text-sm text-gray-700 flex-1">
+              <label htmlFor="termsOfService" className="text-sm text-black font-bold flex-1">
                 이용약관에 동의합니다 (필수)
               </label>
               <Button
@@ -350,8 +351,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 id="privacyPolicy"
                 checked={agreements.privacyPolicy}
                 onCheckedChange={(checked) => handleAgreementChange('privacyPolicy', !!checked)}
+                className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
               />
-              <label htmlFor="privacyPolicy" className="text-sm text-gray-700 flex-1">
+              <label htmlFor="privacyPolicy" className="text-sm text-black font-bold flex-1">
                 개인정보처리방침에 동의합니다 (필수)
               </label>
               <Button
@@ -370,8 +372,9 @@ const EmailSignupForm = ({ userType, onBack, onSuccess }: EmailSignupFormProps) 
                 id="marketingConsent"
                 checked={agreements.marketingConsent}
                 onCheckedChange={(checked) => handleAgreementChange('marketingConsent', !!checked)}
+                className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
               />
-              <label htmlFor="marketingConsent" className="text-sm text-gray-700 flex-1">
+              <label htmlFor="marketingConsent" className="text-sm text-black font-bold flex-1">
                 마케팅 정보 수신에 동의합니다 (선택)
               </label>
               <Button

@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -103,8 +104,9 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
                     id={area}
                     checked={interests.includes(area)}
                     onCheckedChange={(checked) => handleInterestChange(area, checked as boolean)}
+                    className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
                   />
-                  <label htmlFor={area} className="text-sm text-stone-700">{area}</label>
+                  <label htmlFor={area} className="text-sm text-black font-bold">{area}</label>
                 </div>
               ))}
             </div>

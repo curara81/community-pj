@@ -34,10 +34,10 @@ const Header = () => {
               />
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text-warm leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent leading-tight">
               돌봄으로 하나 되는 사회,
               <br />
-              <span className="text-amber-700">Comm.Unity</span>
+              <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
             <div className="space-y-4 mb-12 animate-slide-up">

@@ -28,19 +28,20 @@ export const totalExpenditure = 31010774342;
 
 // 수입 세부 내역
 export const incomeDetails = [
-  { category: "후원 회비", amount: 136214954814, detail: "국내, 해외 등 사업 후원 정기 남부 회비" },
-  { category: "기부금/물품", amount: 98509489688, detail: "국내, 해외 등 사업 후원 일시 기부금 및 기부물품" },
-  { category: "보조금", amount: 9758019234, detail: "자치체 보조금 및 KOICA(한국국제협력단) 등 보조금" },
-  { category: "사업수입", amount: 213460855, detail: "프로그램 이용 수입" },
-  { category: "기타수입", amount: 2470641487, detail: "수익사업(임대) 수입 및 잡수입(이자 수입 등)" },
+  { category: "후원회비", amount: 136214954814, detail: "국내·해외 사업 후원 정기 남부 회비" },
+  { category: "기부금/물품", amount: 98509489688, detail: "국내·해외 사업 후원 일시 기부금 및 기부물품" },
+  { category: "보조금", amount: 9758019234, detail: "자치체 보조금" },
+  { category: "기타수입", amount: 2470641487, detail: "수익사업(굿즈) 수입 및 잡수입(이자 수입 등)" },
   { category: "이월사업비", amount: 9376156031, detail: "2024년 사업 준비비" }
 ];
 
 // 지출 세부 내역
 export const expenditureDetails = [
-  { category: "위기가정아동지원", amount: 13629196714, detail: "지역사회 빈곤·위기가정아동 발굴을 통한 사례관리와 주거, 교육비 등 지원" },
-  { category: "아동건강지원", amount: 597094790, detail: "저소득가정 위한 제증 아동에 대한 조식 지원, 지역사회 물품 배분 등 지원" },
-  { category: "미래성장지원", amount: 7587163620, detail: "미래 사회에 필요한 역량 지원을 위한 희망나눔프로그램, GN창학지원사업, 미래성장 프로그램 등 지원" },
-  { category: "지역사회복지지원", amount: 2453722818, detail: "봉사자 및 자원 내 전문가 조직화 등 지역사회 협력 체계 구축을 통한 사업" },
-  { category: "사회개발교육사업", amount: 3999101227, detail: "사회개발교육, 세계시민교육 프로그램 연구 개발 및 보급, 실행" }
+  { category: "난민 정착 지원 사업", amount: 13629196714, detail: "임시 주거 지원, 한국어·문화적응 교육, 취업 연계, 법률상담, 자녀교육 등" },
+  { category: "취약계층 돌봄 사업", amount: 7587163620, detail: "재가 방문 돌봄, 정서지원, 생활편의, 간병관리, 사회활동 지원" },
+  { category: "교육 및 자립 지원 사업", amount: 3999101227, detail: "직업기술교육, 금융·디지털 교육, 창업·멘토링, 장학금 등" },
+  { category: "모금관리비", amount: 2453722818, detail: "모금기획, 모금행사, 관련 운영 관리비" },
+  { category: "회원관리비", amount: 597094790, detail: "후원회원 대상 우편 발송, 시스템 유지 관리비" },
+  { category: "일반관리비", amount: 1966642341, detail: "연수·인력사업, 행정사무국 운영사업" },
+  { category: "기타사업", amount: 778052832, detail: "수익사업(임대) 및 기타 잡지출 등" }
 ];

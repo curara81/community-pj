@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import DonationModal from "./DonationModal";
@@ -29,33 +28,33 @@ const Header = () => {
               variant="outline" 
               size="sm"
               onClick={handleSeoulClick}
-              className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[200px] !h-[55px] flex items-center justify-center"
+              className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[180px] !h-[50px] flex items-center justify-center"
               title="서울특별시"
             >
               <img 
-                src="/seoul-logo.png" 
+                src="/seoul.png" 
                 alt="서울특별시" 
-                className="max-w-[180px] max-h-[40px] object-contain"
+                className="max-w-[160px] max-h-[35px] object-contain"
               />
             </Button>
             <Button 
               variant="outline" 
               size="sm"
               onClick={handleTaxOfficeClick}
-              className="!border-2 !border-green-500 hover:!bg-green-50 !w-[200px] !h-[55px] flex items-center justify-center"
+              className="!border-2 !border-green-500 hover:!bg-green-50 !w-[180px] !h-[50px] flex items-center justify-center"
               title="국세청"
             >
               <img 
-                src="/nts-logo.svg" 
+                src="/국세청.png" 
                 alt="국세청" 
-                className="max-w-[180px] max-h-[40px] object-contain"
+                className="max-w-[160px] max-h-[35px] object-contain"
               />
             </Button>
             <Button 
               variant="outline" 
               size="sm"
               onClick={handleWhistleblowerClick}
-              className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[200px] !h-[55px] flex items-center justify-center text-sm font-semibold"
+              className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[180px] !h-[50px] flex items-center justify-center text-sm font-semibold"
             >
               📢 공익위반신고
             </Button>

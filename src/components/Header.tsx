@@ -34,7 +34,7 @@ const Header = memo(() => {
               title="서울특별시"
             >
               <img 
-                src="/seoul.png" 
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=160&h=35&fit=crop" 
                 alt="서울특별시" 
                 className="max-w-[160px] max-h-[35px] object-contain"
               />
@@ -47,7 +47,7 @@ const Header = memo(() => {
               title="국세청"
             >
               <img 
-                src="/국세청.png" 
+                src="/nts-logo.png" 
                 alt="국세청" 
                 className="max-w-[160px] max-h-[35px] object-contain"
               />

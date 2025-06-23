@@ -33,9 +33,9 @@ const Header = () => {
               title="서울특별시"
             >
               <img 
-                src="/seoul-metro-logo.svg" 
+                src="/seoul-logo.png" 
                 alt="서울특별시" 
-                className="w-40 h-10 object-contain"
+                className="max-w-[180px] max-h-[40px] object-contain"
               />
             </Button>
             <Button 
@@ -48,14 +48,14 @@ const Header = () => {
               <img 
                 src="/nts-logo.svg" 
                 alt="국세청" 
-                className="w-40 h-10 object-contain"
+                className="max-w-[180px] max-h-[40px] object-contain"
               />
             </Button>
             <Button 
               variant="outline" 
               size="sm"
               onClick={handleWhistleblowerClick}
-              className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 px-4 py-2 text-sm font-semibold rounded-full"
+              className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[200px] !h-[55px] flex items-center justify-center text-sm font-semibold"
             >
               📢 공익위반신고
             </Button>

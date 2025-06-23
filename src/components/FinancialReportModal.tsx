@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -65,21 +64,17 @@ const FinancialReportModal = ({ children }: FinancialReportModalProps) => {
       {React.cloneElement(children as React.ReactElement, {
         onClick: () => setOpen(true)
       })}
-      <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto bg-white">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center mb-6">
-            사단법인 컴유니티 인더네셔날(외교부 등록)은 국내전문봉사지사업, 국제개발협력사업을 수행하며,<br />
-            나눔 문화 확산을 위한 캠페인을 통해 더불어 사는 세상을 만들어가고 있습니다.
+            사단법인 컴유니티(서울시 등록)는 '돌봄을 통해 사회를 하나로 연결하는 것'을 사명으로, 난민, 장애인, 노약자, 무주택 취약계층 등 연약한 이웃들에게 따뜻한 손길과 실질적인 도움을 전하고 있습니다.<br />
+            모든 이웃을 존중하고 포용하며, 누구도 소외되지 않는 따뜻한 공동체를 지향합니다.<br />
+            작은 사랑과 나눔이 모여 모두가 함께 행복한 사회를 만들어가길 소망합니다.<br />
+            컴유니티는 사랑이 머무는 곳이며, 그 사랑이 세상을 변화시키는 힘이 된다고 믿습니다.
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-8">
-          {/* 통계 정보 */}
-          <div className="text-center space-y-2">
-            <p className="text-lg font-semibold">*국내 : 4개 권역본부, 11개 사업본부, 3개 지부</p>
-            <p className="text-lg font-semibold">*해외 : 42개 해외 사업국, 20개 사업장</p>
-          </div>
-
           {/* 파이차트 섹션 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* 2024 수입 */}
@@ -234,7 +229,7 @@ const FinancialReportModal = ({ children }: FinancialReportModalProps) => {
           </div>
 
           <div className="text-center text-sm text-gray-600 mt-6">
-            *위의 사단법인 컴유니티 인더네셔날 2024년 결산은 현금주의(예산 회계)로 작성한 것으로 재무제표 및 결산서와 상이함.
+            *위의 사단법인 컴유니티 2024년 결산은 현금주의(예산 회계)로 작성한 것으로 재무제표 및 결산서와 상이함.
           </div>
         </div>
       </DialogContent>

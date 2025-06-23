@@ -87,8 +87,9 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
                     id={interest}
                     checked={interests.includes(interest)}
                     onCheckedChange={(checked) => handleInterestChange(interest, checked as boolean)}
+                    className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
                   />
-                  <label htmlFor={interest} className="text-sm text-stone-700">{interest}</label>
+                  <label htmlFor={interest} className="text-sm text-stone-700 font-bold">{interest}</label>
                 </div>
               ))}
             </div>
@@ -100,8 +101,9 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
               checked={agreeToTerms}
               onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
               required
+              className="border-2 border-black data-[state=checked]:bg-black data-[state=checked]:border-black w-5 h-5"
             />
-            <label htmlFor="terms" className="text-xs text-stone-600">
+            <label htmlFor="terms" className="text-xs text-stone-600 font-bold">
               개인정보 수집 및 이용에 동의합니다. 
               (수집목적: 뉴스레터 발송, 보관기간: 구독 해지 시까지)
             </label>

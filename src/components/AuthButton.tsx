@@ -3,11 +3,14 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/hooks/useAuth';
 import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
 import DonationHistoryModal from './DonationHistoryModal';
 import { useToast } from '@/hooks/use-toast';
 
 const AuthButton = () => {
   const { user, signOut, loading } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const [showDonationHistory, setShowDonationHistory] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
   const { toast } = useToast();
@@ -42,6 +45,16 @@ const AuthButton = () => {
       return;
     }
     setShowDonationHistory(true);
+  };
+
+  const handleSwitchToSignup = () => {
+    setShowLoginModal(false);
+    setShowSignupModal(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setShowSignupModal(false);
+    setShowLoginModal(true);
   };
 
   if (loading) {
@@ -81,7 +94,26 @@ const AuthButton = () => {
     );
   }
 
-  return <LoginModal />;
+  return (
+    <>
+      <Button
+        onClick={() => setShowLoginModal(true)}
+        className="!bg-blue-600 hover:!bg-blue-700 !text-white"
+      >
+        로그인
+      </Button>
+      <LoginModal 
+        open={showLoginModal}
+        onOpenChange={setShowLoginModal}
+        onSwitchToSignup={handleSwitchToSignup}
+      />
+      <SignupModal 
+        open={showSignupModal}
+        onOpenChange={setShowSignupModal}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
+    </>
+  );
 };
 
 export default AuthButton;

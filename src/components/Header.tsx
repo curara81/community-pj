@@ -29,22 +29,27 @@ const Header = () => {
               variant="outline" 
               size="sm"
               onClick={handleSeoulClick}
-              className="!border-2 !border-blue-500 !text-blue-700 hover:!bg-blue-50 px-4 py-2 text-sm font-semibold rounded-full flex items-center gap-2"
+              className="!border-2 !border-blue-500 hover:!bg-blue-50 p-2 rounded-full"
+              title="서울특별시"
             >
               <img 
                 src="/lovable-uploads/b6f0bddb-3fc4-415c-8b5a-75b9b5c743cb.png" 
                 alt="서울특별시" 
-                className="w-5 h-5"
+                className="w-8 h-8"
               />
-              서울특별시
             </Button>
             <Button 
               variant="outline" 
               size="sm"
               onClick={handleTaxOfficeClick}
-              className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-50 px-4 py-2 text-sm font-semibold rounded-full"
+              className="!border-2 !border-green-500 hover:!bg-green-50 p-2 rounded-full"
+              title="국세청"
             >
-              🏛️ 국세청
+              <img 
+                src="/nts-logo.svg" 
+                alt="국세청" 
+                className="w-8 h-8"
+              />
             </Button>
             <Button 
               variant="outline" 

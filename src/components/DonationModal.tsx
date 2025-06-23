@@ -6,7 +6,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import DonationAmountSelector from './DonationAmountSelector';
 import PaymentMethodSelector from './PaymentMethodSelector';
 import DonorInfoForm from './DonorInfoForm';
-import { sendDonationEmail } from '@/utils/emailService';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
+import { validateEmail, validateKoreanPhone, validateDonationAmount, sanitizeInput } from '@/utils/validation';
 
 interface DonationModalProps {
   children: React.ReactNode;
@@ -28,6 +31,11 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
   const [cardHolderName, setCardHolderName] = useState('');
   const [cardHolderPhone, setCardHolderPhone] = useState('');
   const [paymentDay, setPaymentDay] = useState('5');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { user } = useAuth();
+  const { toast } = useToast();
 
   const handleAmountSelect = (selectedAmount: string) => {
     if (selectedAmount === '직접입력') {
@@ -38,33 +46,143 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const validateForm = (): boolean => {
     const finalAmount = amount === '직접입력' ? customAmount : amount;
     
-    const formData = { 
-      donationType, 
-      amount: finalAmount, 
-      name, 
-      email, 
-      phone, 
-      isUnder14,
-      paymentMethod,
-      withdrawalDay: donationType === 'regular' ? withdrawalDay : undefined,
-      bankName: donationType === 'regular' && paymentMethod === 'cms' ? bankName : undefined,
-      accountNumber: donationType === 'regular' && paymentMethod === 'cms' ? accountNumber : undefined,
-      cardHolderName: donationType === 'regular' && paymentMethod === 'card' ? cardHolderName : undefined,
-      cardHolderPhone: donationType === 'regular' && paymentMethod === 'card' ? cardHolderPhone : undefined,
-      paymentDay: donationType === 'regular' && paymentMethod === 'card' ? paymentDay : undefined
-    };
+    if (!name.trim()) {
+      toast({
+        title: "입력 오류",
+        description: "성함을 입력해주세요.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (!validateEmail(email)) {
+      toast({
+        title: "입력 오류",
+        description: "올바른 이메일 주소를 입력해주세요.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (!validateKoreanPhone(phone)) {
+      toast({
+        title: "입력 오류",
+        description: "올바른 연락처를 입력해주세요. (예: 010-1234-5678)",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (!validateDonationAmount(finalAmount)) {
+      toast({
+        title: "입력 오류",
+        description: "후원금액은 1,000원 이상 10,000,000원 이하로 입력해주세요.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    // Validate payment method specific fields for regular donations
+    if (donationType === 'regular') {
+      if (paymentMethod === 'cms') {
+        if (!bankName.trim() || !accountNumber.trim()) {
+          toast({
+            title: "입력 오류",
+            description: "은행명과 계좌번호를 입력해주세요.",
+            variant: "destructive",
+          });
+          return false;
+        }
+      } else if (paymentMethod === 'card') {
+        if (!cardHolderName.trim() || !validateKoreanPhone(cardHolderPhone)) {
+          toast({
+            title: "입력 오류",
+            description: "카드 소유자 정보를 올바르게 입력해주세요.",
+            variant: "destructive",
+          });
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     
-    console.log('후원 신청:', formData);
-    sendDonationEmail(formData);
-    alert(`${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 접수되었습니다. 이메일 클라이언트가 열립니다.`);
+    if (!validateForm()) {
+      return;
+    }
+
+    // Check if user is authenticated for database storage
+    if (!user) {
+      toast({
+        title: "로그인 필요",
+        description: "후원 신청을 위해 로그인이 필요합니다.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const finalAmount = amount === '직접입력' ? customAmount : amount;
+      const amountValue = parseInt(finalAmount.replace(/[^\d]/g, ''));
+
+      // Sanitize all inputs
+      const donationData = {
+        user_id: user.id,
+        amount: amountValue,
+        donation_type: donationType,
+        payment_method: donationType === 'regular' ? paymentMethod : 'one-time',
+        status: 'pending'
+      };
+
+      const { error } = await supabase
+        .from('donations')
+        .insert([donationData]);
+
+      if (error) {
+        console.error('Donation submission error:', error);
+        toast({
+          title: "후원 신청 실패",
+          description: "후원 신청 중 오류가 발생했습니다. 다시 시도해주세요.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "후원 신청 완료",
+          description: `${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 성공적으로 접수되었습니다.`,
+        });
+        
+        // Reset form
+        setAmount('');
+        setCustomAmount('');
+        setName('');
+        setEmail('');
+        setPhone('');
+        setIsUnder14(false);
+        setIsOpen(false);
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast({
+        title: "후원 신청 실패",
+        description: "예상치 못한 오류가 발생했습니다. 다시 시도해주세요.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
@@ -151,8 +269,12 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
             </CardContent>
           </Card>
 
-          <Button type="submit" className="w-full bg-stone-600 hover:bg-stone-700 text-white font-semibold">
-            후원 신청하기
+          <Button 
+            type="submit" 
+            disabled={isSubmitting}
+            className="w-full bg-stone-600 hover:bg-stone-700 text-white font-semibold disabled:opacity-50"
+          >
+            {isSubmitting ? '신청 중...' : '후원 신청하기'}
           </Button>
         </form>
       </DialogContent>

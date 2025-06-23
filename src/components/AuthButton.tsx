@@ -1,11 +1,12 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/hooks/useAuth';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import DonationHistoryModal from './DonationHistoryModal';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const AuthButton = () => {
   const { user, signOut, loading } = useAuth();
@@ -13,7 +14,37 @@ const AuthButton = () => {
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showDonationHistory, setShowDonationHistory] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
+  const [userName, setUserName] = useState<string | null>(null);
   const { toast } = useToast();
+
+  // 사용자 프로필 정보 가져오기
+  useEffect(() => {
+    if (user) {
+      const fetchUserProfile = async () => {
+        try {
+          const { data, error } = await supabase
+            .from('profiles')
+            .select('name')
+            .eq('id', user.id)
+            .single();
+          
+          if (error) {
+            console.error('Error fetching user profile:', error);
+            setUserName(user.email?.split('@')[0] || '사용자');
+          } else {
+            setUserName(data?.name || user.email?.split('@')[0] || '사용자');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          setUserName(user.email?.split('@')[0] || '사용자');
+        }
+      };
+      
+      fetchUserProfile();
+    } else {
+      setUserName(null);
+    }
+  }, [user]);
 
   const handleSignOut = async () => {
     setIsSigningOut(true);
@@ -59,7 +90,7 @@ const AuthButton = () => {
 
   if (loading) {
     return (
-      <Button disabled className="!bg-gray-400 !text-white">
+      <Button disabled className="bg-slate-400 text-white hover:bg-slate-400">
         로딩 중...
       </Button>
     );
@@ -71,18 +102,18 @@ const AuthButton = () => {
         <Button
           onClick={handleDonationHistory}
           variant="outline"
-          className="!border-blue-500 !text-blue-600 hover:!bg-blue-50"
+          className="border-blue-500 text-blue-600 hover:bg-blue-50 bg-white"
         >
           기부내역
         </Button>
-        <span className="text-sm text-gray-600 max-w-[150px] truncate">
-          {user.email}
+        <span className="text-sm text-gray-700 max-w-[200px] truncate font-medium">
+          {userName}님 환영합니다.
         </span>
         <Button
           onClick={handleSignOut}
           disabled={isSigningOut}
           variant="outline"
-          className="!border-red-500 !text-red-600 hover:!bg-red-50 disabled:opacity-50"
+          className="border-red-500 text-red-600 hover:bg-red-50 disabled:opacity-50 bg-white"
         >
           {isSigningOut ? '로그아웃 중...' : '로그아웃'}
         </Button>
@@ -98,7 +129,7 @@ const AuthButton = () => {
     <>
       <Button
         onClick={() => setShowLoginModal(true)}
-        className="!bg-blue-600 hover:!bg-blue-700 !text-white"
+        className="bg-blue-600 hover:bg-blue-700 text-white"
       >
         로그인
       </Button>

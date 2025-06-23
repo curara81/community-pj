@@ -25,93 +25,96 @@ const SimpleHeader = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-20 bg-white shadow-sm border-b p-6">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* 좌측: 서울특별시, 국세청, 공익위반신고 버튼 */}
-        <div className="flex gap-3">
+    <nav className="sticky top-0 z-20 bg-white shadow-sm border-b p-3 md:p-6">
+      <div className="container mx-auto">
+        {/* 첫 번째 줄: 로고 버튼들 */}
+        <div className="flex flex-wrap justify-center xl:justify-start gap-2 md:gap-3 mb-4 xl:mb-0">
           <Button 
             variant="outline" 
             size="sm"
             onClick={handleSeoulClick}
-            className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[180px] !h-[50px] flex items-center justify-center"
+            className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
             title="서울특별시"
           >
             <img 
               src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
               alt="서울특별시" 
-              className="max-w-[160px] max-h-[35px] object-contain"
+              className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
             />
           </Button>
           <Button 
             variant="outline" 
             size="sm"
             onClick={handleTaxOfficeClick}
-            className="!border-2 !border-green-500 hover:!bg-green-50 !w-[180px] !h-[50px] flex items-center justify-center"
+            className="!border-2 !border-green-500 hover:!bg-green-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
             title="국세청"
           >
             <img 
               src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
               alt="국세청" 
-              className="max-w-[160px] max-h-[35px] object-contain"
+              className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
             />
           </Button>
           <Button 
             variant="outline" 
             size="sm"
             onClick={handleWhistleblowerClick}
-            className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[180px] !h-[50px] flex items-center justify-center text-sm font-semibold"
+            className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-xs sm:text-sm font-semibold"
           >
             📢 공익위반신고
           </Button>
         </div>
         
-        {/* 중앙: 네비게이션 메뉴 (데스크탑) */}
-        <div className="hidden lg:flex gap-6">
-          <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            홈
-          </Link>
-          <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            소개
-          </Link>
-          <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            핵심사업
-          </Link>
-          <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            갤러리
-          </Link>
-          <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            후원하기
-          </Link>
-          <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            참여신청
-          </Link>
-          <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            뉴스레터
-          </Link>
-          <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-            재정보고
-          </Link>
-        </div>
-        
-        {/* 우측: 모바일 메뉴 버튼과 인증 버튼 */}
-        <div className="flex items-center gap-3">
-          <AuthButton />
+        {/* 두 번째 줄: 네비게이션과 모바일 메뉴 */}
+        <div className="flex flex-wrap items-center justify-between">
+          {/* 데스크탑 네비게이션 메뉴 */}
+          <div className="hidden xl:flex flex-wrap gap-4 2xl:gap-6 order-1">
+            <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              홈
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              소개
+            </Link>
+            <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              핵심사업
+            </Link>
+            <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              갤러리
+            </Link>
+            <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              후원하기
+            </Link>
+            <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              참여신청
+            </Link>
+            <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              뉴스레터
+            </Link>
+            <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
+              재정보고
+            </Link>
+          </div>
           
-          {/* 모바일 메뉴 버튼 */}
-          <Button
-            variant="outline"
-            size="sm"
-            className="lg:hidden"
-            onClick={toggleMenu}
-          >
-            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
-          </Button>
+          {/* 우측: 모바일 메뉴 버튼과 인증 버튼 */}
+          <div className="flex items-center gap-3 ml-auto">
+            <AuthButton />
+            
+            {/* 모바일 메뉴 버튼 */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="xl:hidden"
+              onClick={toggleMenu}
+            >
+              {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+            </Button>
+          </div>
         </div>
       </div>
       
       {/* 모바일 메뉴 드롭다운 */}
       {isMenuOpen && (
-        <div className="lg:hidden mt-4 bg-white border-t pt-4">
+        <div className="xl:hidden mt-4 bg-white border-t pt-4">
           <div className="flex flex-col space-y-3">
             <Link 
               to="/" 

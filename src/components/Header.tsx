@@ -3,13 +3,40 @@ import { Button } from "@/components/ui/button";
 import DonationModal from "./DonationModal";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
+import FinancialReportModal from "./FinancialReportModal";
 
 const Header = () => {
+  const handleTaxOfficeClick = () => {
+    window.open("https://hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index_pp.xml&menuCd=index3", "_blank");
+  };
+
   return (
     <header className="relative min-h-screen flex flex-col">
       {/* 상단 네비게이션 */}
       <nav className="absolute top-0 left-0 right-0 z-20 p-6">
-        <div className="container mx-auto flex justify-end">
+        <div className="container mx-auto flex justify-between items-center">
+          {/* 좌측: 재정보고, 국세청 홈페이지 버튼 */}
+          <div className="flex gap-3">
+            <FinancialReportModal>
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="!border-2 !border-blue-500 !text-blue-700 hover:!bg-blue-50 px-4 py-2 text-sm font-semibold rounded-full"
+              >
+                📊 재정보고
+              </Button>
+            </FinancialReportModal>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleTaxOfficeClick}
+              className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-50 px-4 py-2 text-sm font-semibold rounded-full"
+            >
+              🏛️ 국세청 홈페이지
+            </Button>
+          </div>
+          
+          {/* 우측: 인증 버튼 */}
           <AuthButton />
         </div>
       </nav>

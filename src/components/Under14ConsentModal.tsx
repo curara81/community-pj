@@ -1,8 +1,6 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from 'react';
 
 interface Under14ConsentModalProps {
   open: boolean;
@@ -11,20 +9,14 @@ interface Under14ConsentModalProps {
 }
 
 const Under14ConsentModal = ({ open, onOpenChange, onConsent }: Under14ConsentModalProps) => {
-  const [agreed, setAgreed] = useState(false);
-
   const handleAgree = () => {
-    if (agreed) {
-      onConsent(true);
-      onOpenChange(false);
-      setAgreed(false);
-    }
+    onConsent(true);
+    onOpenChange(false);
   };
 
   const handleDisagree = () => {
     onConsent(false);
     onOpenChange(false);
-    setAgreed(false);
   };
 
   return (
@@ -66,18 +58,7 @@ const Under14ConsentModal = ({ open, onOpenChange, onConsent }: Under14ConsentMo
           </p>
         </div>
 
-        <div className="flex items-center space-x-2 mt-6">
-          <Checkbox
-            id="under14-consent"
-            checked={agreed}
-            onCheckedChange={(checked) => setAgreed(checked as boolean)}
-          />
-          <label htmlFor="under14-consent" className="text-sm text-gray-700 cursor-pointer">
-            위 내용을 확인하였으며, 보호자 동의 절차를 진행하는 것에 동의합니다.
-          </label>
-        </div>
-
-        <DialogFooter className="flex gap-2">
+        <DialogFooter className="flex gap-2 mt-6">
           <Button
             type="button"
             variant="outline"
@@ -89,8 +70,7 @@ const Under14ConsentModal = ({ open, onOpenChange, onConsent }: Under14ConsentMo
           <Button
             type="button"
             onClick={handleAgree}
-            disabled={!agreed}
-            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
           >
             동의함
           </Button>

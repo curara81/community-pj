@@ -1,10 +1,11 @@
 
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { supabase } from '@/integrations/supabase/client';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface LoginModalProps {
   open: boolean;
@@ -15,12 +16,12 @@ interface LoginModalProps {
 const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleEmailLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setIsLoading(true);
 
     try {
       const { error } = await supabase.auth.signInWithPassword({
@@ -35,151 +36,70 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
           variant: "destructive",
         });
       } else {
+        // 로그인 성공 시 슬레이트 색상으로 토스트 표시
         toast({
           title: "로그인 성공",
           description: "환영합니다!",
+          className: "bg-slate-600 text-white border-slate-700",
         });
         onOpenChange(false);
+        setEmail('');
+        setPassword('');
       }
     } catch (error) {
-      console.error('Login error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSocialLogin = async (provider: 'google' | 'kakao' | 'apple') => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: `${window.location.origin}/`
-        }
+      toast({
+        title: "로그인 실패",
+        description: "로그인 중 오류가 발생했습니다.",
+        variant: "destructive",
       });
-
-      if (error) {
-        toast({
-          title: "소셜 로그인 실패",
-          description: error.message,
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error(`${provider} login error:`, error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md bg-white">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-gray-800">
-            로그인
-          </DialogTitle>
+          <DialogTitle>로그인</DialogTitle>
         </DialogHeader>
-
-        <div className="space-y-4">
-          <form onSubmit={handleEmailLogin} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                아이디 (이메일)
-              </label>
-              <Input
-                type="email"
-                placeholder="이메일을 입력해주세요"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">
-                패스워드
-              </label>
-              <Input
-                type="password"
-                placeholder="패스워드를 입력해주세요"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="bg-white border-gray-300 focus:border-blue-500 placeholder:text-gray-600"
-              />
-            </div>
-
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full !bg-slate-600 hover:!bg-slate-700 !text-white font-semibold"
-            >
-              {loading ? '로그인 중...' : '로그인'}
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email">이메일</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="이메일을 입력하세요"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="password">비밀번호</Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="비밀번호를 입력하세요"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-3">
+            <Button type="submit" disabled={isLoading} className="w-full">
+              {isLoading ? '로그인 중...' : '로그인'}
             </Button>
-          </form>
-
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">또는</span>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <h4 className="text-center text-sm font-medium text-gray-700">
-              SNS 로그인/회원가입
-            </h4>
-            
-            <div className="flex justify-center gap-4">
-              <Button
-                onClick={() => handleSocialLogin('google')}
-                variant="outline"
-                className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
-              >
-                <img 
-                  src="/lovable-uploads/dea4eab4-d07d-4996-99e9-e9004be8dbb2.png" 
-                  alt="Google" 
-                  className="w-10 h-10"
-                />
-              </Button>
-
-              <Button
-                onClick={() => handleSocialLogin('apple')}
-                variant="outline"
-                className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
-              >
-                <img 
-                  src="/lovable-uploads/e29d3fb8-fbb7-4566-9230-e0af1d4c4ddf.png" 
-                  alt="Apple" 
-                  className="w-10 h-10"
-                />
-              </Button>
-
-              <Button
-                onClick={() => handleSocialLogin('kakao')}
-                variant="outline"
-                className="w-14 h-14 rounded-full border-gray-300 hover:bg-gray-50 p-0 flex items-center justify-center"
-              >
-                <img 
-                  src="/lovable-uploads/9748ff8c-0eb2-44ff-bb6a-fada797ea6d3.png" 
-                  alt="Kakao" 
-                  className="w-10 h-10"
-                />
-              </Button>
-            </div>
-          </div>
-
-          <div className="text-center">
             <Button
+              type="button"
               variant="ghost"
               onClick={onSwitchToSignup}
-              className="!text-blue-600 hover:!text-blue-700"
+              className="w-full"
             >
-              아직 계정이 없으신가요? 회원가입
+              계정이 없으신가요? 회원가입
             </Button>
           </div>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

@@ -7,6 +7,7 @@ import DonationSection from "@/components/DonationSection";
 import VolunteerSection from "@/components/VolunteerSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <VolunteerSection />
       <NewsletterSection />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

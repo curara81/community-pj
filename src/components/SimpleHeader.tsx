@@ -37,7 +37,7 @@ const SimpleHeader = () => {
             title="서울특별시"
           >
             <img 
-              src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=160&h=35&fit=crop" 
+              src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
               alt="서울특별시" 
               className="max-w-[160px] max-h-[35px] object-contain"
             />
@@ -50,7 +50,7 @@ const SimpleHeader = () => {
             title="국세청"
           >
             <img 
-              src="/nts-logo.png" 
+              src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
               alt="국세청" 
               className="max-w-[160px] max-h-[35px] object-contain"
             />

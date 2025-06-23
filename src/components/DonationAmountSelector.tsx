@@ -1,4 +1,5 @@
 
+import { memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -9,13 +10,17 @@ interface DonationAmountSelectorProps {
   onCustomAmountChange: (amount: string) => void;
 }
 
-const DonationAmountSelector = ({ 
+const donationAmounts = ['20,000원', '30,000원', '50,000원', '80,000원', '100,000원', '직접입력'];
+
+const DonationAmountSelector = memo(({ 
   amount, 
   customAmount, 
   onAmountSelect, 
   onCustomAmountChange 
 }: DonationAmountSelectorProps) => {
-  const donationAmounts = ['20,000원', '30,000원', '50,000원', '80,000원', '100,000원', '직접입력'];
+  const handleCustomAmountChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    onCustomAmountChange(e.target.value);
+  }, [onCustomAmountChange]);
 
   return (
     <div>
@@ -42,13 +47,15 @@ const DonationAmountSelector = ({
           type="text"
           placeholder="금액을 입력해주세요"
           value={customAmount}
-          onChange={(e) => onCustomAmountChange(e.target.value)}
+          onChange={handleCustomAmountChange}
           className="bg-white border-stone-300 focus:border-blue-500 placeholder:text-stone-500"
           required
         />
       )}
     </div>
   );
-};
+});
+
+DonationAmountSelector.displayName = 'DonationAmountSelector';
 
 export default DonationAmountSelector;

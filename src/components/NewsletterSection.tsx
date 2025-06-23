@@ -1,16 +1,16 @@
 
+import { memo, useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 import NewsletterModal from "./NewsletterModal";
-import { useState } from "react";
 import { sendNewsletterEmail } from '@/utils/emailService';
 
-const NewsletterSection = () => {
+const NewsletterSection = memo(() => {
   const [email, setEmail] = useState('');
 
-  const handleQuickSignup = (e: React.FormEvent) => {
+  const handleQuickSignup = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
       console.log('빠른 뉴스레터 신청:', email);
@@ -18,11 +18,15 @@ const NewsletterSection = () => {
       alert('뉴스레터 신청이 완료되었습니다! 이메일 클라이언트가 열립니다.');
       setEmail('');
     }
-  };
+  }, [email]);
 
-  const handleContactUs = () => {
+  const handleContactUs = useCallback(() => {
     window.location.href = 'mailto:comm@comm-unity.or.kr';
-  };
+  }, []);
+
+  const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  }, []);
 
   return (
     <section className="py-20 bg-gradient-to-r from-blue-50 via-gray-50 to-blue-50">
@@ -43,7 +47,7 @@ const NewsletterSection = () => {
                   placeholder="이메일 주소를 입력해주세요"
                   className="flex-1 px-4 py-3 text-lg border-2 border-blue-200 focus:border-blue-500 rounded-xl bg-white"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleEmailChange}
                   required
                 />
                 <Button 
@@ -87,6 +91,8 @@ const NewsletterSection = () => {
       </div>
     </section>
   );
-};
+});
+
+NewsletterSection.displayName = 'NewsletterSection';
 
 export default NewsletterSection;

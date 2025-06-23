@@ -1,8 +1,9 @@
 
+import { memo } from 'react';
 import { Button } from "@/components/ui/button";
 import AboutModal from "./AboutModal";
 
-const IntroSection = () => {
+const IntroSection = memo(() => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -38,6 +39,8 @@ const IntroSection = () => {
       </div>
     </section>
   );
-};
+});
+
+IntroSection.displayName = 'IntroSection';
 
 export default IntroSection;

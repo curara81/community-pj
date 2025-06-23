@@ -1,21 +1,23 @@
+
+import { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import DonationModal from "./DonationModal";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
 
-const Header = () => {
-  const handleSeoulClick = () => {
+const Header = memo(() => {
+  const handleSeoulClick = useCallback(() => {
     window.open("https://www.seoul.go.kr/main/index.jsp", "_blank");
-  };
+  }, []);
 
-  const handleTaxOfficeClick = () => {
+  const handleTaxOfficeClick = useCallback(() => {
     window.open("https://hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index_pp.xml&menuCd=index3", "_blank");
-  };
+  }, []);
 
-  const handleWhistleblowerClick = () => {
+  const handleWhistleblowerClick = useCallback(() => {
     window.open("https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=13386&cntntsId=109155", "_blank");
-  };
+  }, []);
 
   return (
     <header className="relative min-h-screen flex flex-col">
@@ -95,7 +97,7 @@ const Header = () => {
 
       {/* 기존 헤더 콘텐츠 */}
       <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden">
-        {/* Background decoration - 따뜻하고 포용적인 분위기 */}
+        {/* Background decoration */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-32 h-32 bg-amber-200 rounded-full blur-xl"></div>
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200 rounded-full blur-xl"></div>
@@ -152,6 +154,8 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;

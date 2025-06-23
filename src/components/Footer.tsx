@@ -1,10 +1,11 @@
 
+import { memo } from 'react';
 import LocationModal from "./LocationModal";
 import CopyrightModal from "./CopyrightModal";
 import PrivacyModal from "./PrivacyModal";
 import EmailRefusalModal from "./EmailRefusalModal";
 
-const Footer = () => {
+const Footer = memo(() => {
   return (
     <footer className="bg-amber-800 text-amber-50 py-12">
       <div className="container mx-auto px-6">
@@ -56,6 +57,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = 'Footer';
 
 export default Footer;

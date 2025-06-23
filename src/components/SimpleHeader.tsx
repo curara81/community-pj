@@ -27,9 +27,14 @@ const SimpleHeader = () => {
             variant="outline" 
             size="sm"
             onClick={handleSeoulClick}
-            className="!border-2 !border-blue-500 !text-blue-700 hover:!bg-blue-50 px-4 py-2 text-sm font-semibold rounded-full"
+            className="!border-2 !border-blue-500 !text-blue-700 hover:!bg-blue-50 px-4 py-2 text-sm font-semibold rounded-full flex items-center gap-2"
           >
-            🏛️ 서울특별시
+            <img 
+              src="/lovable-uploads/b6f0bddb-3fc4-415c-8b5a-75b9b5c743cb.png" 
+              alt="서울특별시" 
+              className="w-5 h-5"
+            />
+            서울특별시
           </Button>
           <Button 
             variant="outline" 

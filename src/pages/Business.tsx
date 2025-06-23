@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import Header from "@/components/Header";
+import SimpleHeader from "@/components/SimpleHeader";
 import CoreBusinessSection from "@/components/CoreBusinessSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -12,7 +12,7 @@ const Business = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <SimpleHeader />
       <CoreBusinessSection />
       <Footer />
       <ScrollToTop />

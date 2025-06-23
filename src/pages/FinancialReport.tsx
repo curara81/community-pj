@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import Header from "@/components/Header";
+import SimpleHeader from "@/components/SimpleHeader";
 import FinancialChartSection from "@/components/FinancialChartSection";
 import FinancialIncomeTable from "@/components/FinancialIncomeTable";
 import FinancialExpenditureTable from "@/components/FinancialExpenditureTable";
@@ -14,12 +14,12 @@ const FinancialReport = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <SimpleHeader />
       <div className="bg-white py-16">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-              재정보고
+              연간 기부금 모금액 및 활용실적
             </h1>
             <div className="text-slate-700 text-lg leading-relaxed font-medium max-w-4xl mx-auto px-4">
               사단법인 컴유니티(서울시 등록)는 '돌봄을 통해 사회를 하나로 연결하는 것'을 사명으로, 

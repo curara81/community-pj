@@ -1,5 +1,5 @@
 
-import { memo } from 'react';
+import React, { memo } from 'react';
 import LocationModal from "./LocationModal";
 import CopyrightModal from "./CopyrightModal";
 import PrivacyModal from "./PrivacyModal";

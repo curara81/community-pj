@@ -1,5 +1,5 @@
 
-import { memo, useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 

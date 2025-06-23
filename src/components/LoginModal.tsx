@@ -59,7 +59,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md bg-white">
+      <DialogContent className="sm:max-w-md bg-white border-slate-300">
         <DialogHeader>
           <DialogTitle>로그인</DialogTitle>
         </DialogHeader>
@@ -72,6 +72,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
               placeholder="이메일을 입력하세요"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="border-slate-300 focus-visible:ring-slate-400"
               required
             />
           </div>
@@ -83,6 +84,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
               placeholder="비밀번호를 입력하세요"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="border-slate-300 focus-visible:ring-slate-400"
               required
             />
           </div>
@@ -94,7 +96,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
               type="button"
               variant="ghost"
               onClick={onSwitchToSignup}
-              className="w-full"
+              className="w-full hover:bg-slate-600 hover:text-white"
             >
               계정이 없으신가요? 회원가입
             </Button>

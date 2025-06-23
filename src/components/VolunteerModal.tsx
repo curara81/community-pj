@@ -155,7 +155,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-stone-50 border-stone-200">
+      <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-stone-50 border-slate-300">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-blue-800">
             🙋‍♀️ 참여 신청하기
@@ -172,7 +172,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
               placeholder="성함을 입력해주세요"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-slate-300 focus:border-slate-500 focus-visible:ring-slate-400"
               maxLength={50}
               required
             />
@@ -187,7 +187,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
               placeholder="이메일을 입력해주세요"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-slate-300 focus:border-slate-500 focus-visible:ring-slate-400"
               maxLength={100}
               required
             />
@@ -202,7 +202,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
               placeholder="010-1234-5678"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-slate-300 focus:border-slate-500 focus-visible:ring-slate-400"
               maxLength={20}
               required
             />
@@ -234,7 +234,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
               placeholder="간단한 자기소개와 참여하고 싶은 이유를 적어주세요"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="bg-white border-stone-300 focus:border-blue-500"
+              className="bg-white border-slate-300 focus:border-slate-500 focus-visible:ring-slate-400"
               maxLength={500}
               rows={4}
             />

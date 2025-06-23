@@ -27,7 +27,7 @@ const Under14ConsentModal = ({ open, onOpenChange, onConsent }: Under14ConsentMo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
+      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white border-slate-300">
         <DialogHeader>
           <DialogTitle className="text-lg font-bold text-center text-gray-800">
             만 14세 미만 아동의 회원가입 및 개인정보 처리에 관한 안내

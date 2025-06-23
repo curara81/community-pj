@@ -94,7 +94,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
         <Button
           onClick={() => setSignupMethod('user-type')}
           variant="outline"
-          className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 h-12"
+          className="w-full border-gray-300 text-gray-700 hover:bg-slate-600 hover:text-white h-12"
         >
           ID/PW로 가입하기
         </Button>
@@ -109,7 +109,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
         <Button
           variant="ghost"
           onClick={onSwitchToLogin}
-          className="text-blue-600 hover:text-blue-700"
+          className="text-blue-600 hover:bg-slate-600 hover:text-white"
         >
           이미 계정이 있으신가요? 로그인
         </Button>
@@ -134,7 +134,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
         
         <div 
           onClick={() => setSignupMethod('business-type')}
-          className="border-2 border-gray-300 rounded-lg p-6 cursor-pointer hover:bg-gray-50 transition-colors"
+          className="border-2 border-slate-300 rounded-lg p-6 cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-center space-y-2">
             <div className="w-8 h-8 text-slate-400">
@@ -168,7 +168,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
       <div className="space-y-3">
         <div 
           onClick={() => setSignupMethod('business')}
-          className="border-2 border-gray-300 rounded-lg p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+          className="border-2 border-slate-300 rounded-lg p-4 cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <div className="flex items-center space-y-2">
             <div className="w-6 h-6 text-slate-400 mr-3">
@@ -183,7 +183,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
         
         <div 
           onClick={() => setSignupMethod('non-business')}
-          className="border-2 border-gray-300 rounded-lg p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+          className="border-2 border-slate-300 rounded-lg p-4 cursor-pointer hover:bg-gray-50 transition-colors"
         >
           <div className="flex items-center space-y-2">
             <div className="w-6 h-6 text-slate-400 mr-3">
@@ -218,7 +218,7 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-md bg-white max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-md bg-white border-slate-300 max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center text-gray-800">
               {signupMethod === 'select' && '회원가입'}

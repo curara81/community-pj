@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -123,7 +122,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
             />
           </div>
 
-          <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold">
+          <Button type="submit" className="w-full !bg-green-600 hover:!bg-green-700 !text-white font-semibold">
             신청하기
           </Button>
         </form>

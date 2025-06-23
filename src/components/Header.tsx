@@ -53,7 +53,7 @@ const Header = () => {
               <DonationModal donationType="regular">
                 <Button 
                   size="lg" 
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
+                  className="!bg-blue-600 hover:!bg-blue-700 !text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
                 >
                   💝 정기 후원하기
                 </Button>
@@ -62,7 +62,7 @@ const Header = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-2 border-blue-500 text-blue-700 hover:bg-blue-50 px-8 py-4 text-lg font-semibold rounded-full hover-lift"
+                  className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-600 hover:!text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
                 >
                   🙋‍♀️ 참여 신청하기
                 </Button>

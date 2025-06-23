@@ -25,7 +25,7 @@ const VolunteerSection = () => {
               <VolunteerModal>
                 <Button 
                   size="lg"
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 text-xl font-semibold rounded-full hover-lift shadow-lg"
+                  className="!bg-green-600 hover:!bg-green-700 !text-white px-8 py-4 text-xl font-semibold rounded-full hover-lift shadow-lg"
                 >
                   🙋‍♀️ 참여 신청하기
                 </Button>

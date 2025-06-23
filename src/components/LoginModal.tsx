@@ -111,7 +111,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-slate-600 hover:bg-slate-700 text-white font-semibold"
+              className="w-full !bg-slate-600 hover:!bg-slate-700 !text-white font-semibold"
             >
               {loading ? '로그인 중...' : '로그인'}
             </Button>
@@ -174,7 +174,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
             <Button
               variant="ghost"
               onClick={onSwitchToSignup}
-              className="text-blue-600 hover:text-blue-700"
+              className="!text-blue-600 hover:!text-blue-700"
             >
               아직 계정이 없으신가요? 회원가입
             </Button>

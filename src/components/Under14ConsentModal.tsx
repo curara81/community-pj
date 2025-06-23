@@ -14,9 +14,11 @@ const Under14ConsentModal = ({ open, onOpenChange, onConsent }: Under14ConsentMo
   const [agreed, setAgreed] = useState(false);
 
   const handleAgree = () => {
-    onConsent(true);
-    onOpenChange(false);
-    setAgreed(false);
+    if (agreed) {
+      onConsent(true);
+      onOpenChange(false);
+      setAgreed(false);
+    }
   };
 
   const handleDisagree = () => {
@@ -70,7 +72,7 @@ const Under14ConsentModal = ({ open, onOpenChange, onConsent }: Under14ConsentMo
             checked={agreed}
             onCheckedChange={(checked) => setAgreed(checked as boolean)}
           />
-          <label htmlFor="under14-consent" className="text-sm text-gray-700">
+          <label htmlFor="under14-consent" className="text-sm text-gray-700 cursor-pointer">
             위 내용을 확인하였으며, 보호자 동의 절차를 진행하는 것에 동의합니다.
           </label>
         </div>
@@ -88,7 +90,7 @@ const Under14ConsentModal = ({ open, onOpenChange, onConsent }: Under14ConsentMo
             type="button"
             onClick={handleAgree}
             disabled={!agreed}
-            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+            className="flex-1 bg-orange-500 hover:bg-orange-600 text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             동의함
           </Button>

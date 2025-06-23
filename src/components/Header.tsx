@@ -29,26 +29,26 @@ const Header = () => {
               variant="outline" 
               size="sm"
               onClick={handleSeoulClick}
-              className="!border-2 !border-blue-500 hover:!bg-blue-50 p-2 rounded-full"
+              className="!border-2 !border-blue-500 hover:!bg-blue-50 p-3 rounded-full"
               title="서울특별시"
             >
               <img 
-                src="/lovable-uploads/b6f0bddb-3fc4-415c-8b5a-75b9b5c743cb.png" 
+                src="/seoul-metro-logo.svg" 
                 alt="서울특별시" 
-                className="w-8 h-8"
+                className="w-12 h-12"
               />
             </Button>
             <Button 
               variant="outline" 
               size="sm"
               onClick={handleTaxOfficeClick}
-              className="!border-2 !border-green-500 hover:!bg-green-50 p-2 rounded-full"
+              className="!border-2 !border-green-500 hover:!bg-green-50 p-3 rounded-full"
               title="국세청"
             >
               <img 
                 src="/nts-logo.svg" 
                 alt="국세청" 
-                className="w-8 h-8"
+                className="w-12 h-12"
               />
             </Button>
             <Button 

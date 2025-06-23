@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import DonationModal from "./DonationModal";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
@@ -34,6 +35,31 @@ const Header = () => {
             >
               🏛️ 국세청 홈페이지
             </Button>
+          </div>
+          
+          {/* 중앙: 네비게이션 메뉴 */}
+          <div className="hidden md:flex gap-6">
+            <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              홈
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              소개
+            </Link>
+            <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              핵심사업
+            </Link>
+            <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              갤러리
+            </Link>
+            <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              후원하기
+            </Link>
+            <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              참여신청
+            </Link>
+            <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              뉴스레터
+            </Link>
           </div>
           
           {/* 우측: 인증 버튼 */}

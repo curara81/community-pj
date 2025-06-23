@@ -59,7 +59,7 @@ const LoginModal = ({ open, onOpenChange, onSwitchToSignup }: LoginModalProps) =
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md bg-white">
         <DialogHeader>
           <DialogTitle>로그인</DialogTitle>
         </DialogHeader>

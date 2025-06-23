@@ -53,6 +53,7 @@ const AuthButton = () => {
       toast({
         title: "로그아웃 완료",
         description: "성공적으로 로그아웃되었습니다.",
+        className: "bg-slate-600 text-white border-slate-700",
       });
     } catch (error) {
       console.error('Sign out error:', error);

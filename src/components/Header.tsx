@@ -4,11 +4,18 @@ import { Link } from "react-router-dom";
 import DonationModal from "./DonationModal";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
-import FinancialReportModal from "./FinancialReportModal";
 
 const Header = () => {
+  const handleSeoulClick = () => {
+    window.open("https://www.seoul.go.kr/main/index.jsp", "_blank");
+  };
+
   const handleTaxOfficeClick = () => {
     window.open("https://hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index_pp.xml&menuCd=index3", "_blank");
+  };
+
+  const handleWhistleblowerClick = () => {
+    window.open("https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=13386&cntntsId=109155", "_blank");
   };
 
   return (
@@ -16,24 +23,31 @@ const Header = () => {
       {/* 상단 네비게이션 */}
       <nav className="absolute top-0 left-0 right-0 z-20 p-6">
         <div className="container mx-auto flex justify-between items-center">
-          {/* 좌측: 재정보고, 국세청 홈페이지 버튼 */}
+          {/* 좌측: 서울특별시, 국세청, 공익위반신고 버튼 */}
           <div className="flex gap-3">
-            <FinancialReportModal>
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="!border-2 !border-blue-500 !text-blue-700 hover:!bg-blue-50 px-4 py-2 text-sm font-semibold rounded-full"
-              >
-                📊 재정보고
-              </Button>
-            </FinancialReportModal>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleSeoulClick}
+              className="!border-2 !border-blue-500 !text-blue-700 hover:!bg-blue-50 px-4 py-2 text-sm font-semibold rounded-full"
+            >
+              🏛️ 서울특별시
+            </Button>
             <Button 
               variant="outline" 
               size="sm"
               onClick={handleTaxOfficeClick}
               className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-50 px-4 py-2 text-sm font-semibold rounded-full"
             >
-              🏛️ 국세청 홈페이지
+              🏛️ 국세청
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleWhistleblowerClick}
+              className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 px-4 py-2 text-sm font-semibold rounded-full"
+            >
+              📢 공익위반신고
             </Button>
           </div>
           
@@ -59,6 +73,9 @@ const Header = () => {
             </Link>
             <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
               뉴스레터
+            </Link>
+            <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              재정보고
             </Link>
           </div>
           

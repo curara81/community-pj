@@ -16,3 +16,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: http://www.comm-unity.or.kr/sitemap.xml

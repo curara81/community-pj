@@ -51,7 +51,7 @@ const Header = memo(() => {
                 <img 
                   src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
                   alt="국세청" 
-                  className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
+                  className="max-w-[130px] sm:max-w-[150px] lg:max-w-[170px] max-h-[30px] sm:max-h-[35px] lg:max-h-[40px] object-contain"
                 />
               </Button>
               <Button 

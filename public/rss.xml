@@ -1,0 +1,108 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>사단법인 컴유니티 - Comm.Unity</title>
+    <link>http://www.comm-unity.or.kr</link>
+    <description>난민과 취약계층을 위한 돌봄 서비스를 제공하는 사단법인 컴유니티의 최신 소식과 활동 정보를 전해드립니다.</description>
+    <language>ko-KR</language>
+    <copyright>Copyright 2024 사단법인 컴유니티. All rights reserved.</copyright>
+    <managingEditor>comm@comm-unity.or.kr (사단법인 컴유니티)</managingEditor>
+    <webMaster>comm@comm-unity.or.kr (사단법인 컴유니티)</webMaster>
+    <pubDate>Fri, 20 Dec 2024 00:00:00 +0900</pubDate>
+    <lastBuildDate>Fri, 20 Dec 2024 00:00:00 +0900</lastBuildDate>
+    <generator>Comm.Unity RSS Generator</generator>
+    <docs>https://www.rssboard.org/rss-specification</docs>
+    <ttl>1440</ttl>
+    <atom:link href="http://www.comm-unity.or.kr/rss.xml" rel="self" type="application/rss+xml" />
+    
+    <image>
+      <url>http://www.comm-unity.or.kr/favicon.ico</url>
+      <title>사단법인 컴유니티</title>
+      <link>http://www.comm-unity.or.kr</link>
+      <width>32</width>
+      <height>32</height>
+    </image>
+
+    <item>
+      <title>컴유니티 공식 웹사이트 오픈</title>
+      <link>http://www.comm-unity.or.kr</link>
+      <description><![CDATA[사단법인 컴유니티의 공식 웹사이트가 오픈되었습니다. 난민과 취약계층을 위한 돌봄 서비스 및 다양한 지원 사업에 대해 자세히 알아보실 수 있습니다.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>공지사항</category>
+      <pubDate>Fri, 20 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/news/website-launch</guid>
+    </item>
+
+    <item>
+      <title>난민 지원 사업 안내</title>
+      <link>http://www.comm-unity.or.kr/business</link>
+      <description><![CDATA[컴유니티의 핵심 사업인 난민 지원 사업에 대해 소개합니다. 언어 교육, 생활 적응 지원, 취업 상담 등 다양한 서비스를 제공합니다.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>사업안내</category>
+      <pubDate>Thu, 19 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/business#refugee-support</guid>
+    </item>
+
+    <item>
+      <title>취약계층 돌봄 서비스</title>
+      <link>http://www.comm-unity.or.kr/business</link>
+      <description><![CDATA[독거노인, 저소득층 가정, 장애인 등 취약계층을 위한 맞춤형 돌봄 서비스를 제공합니다. 생활 지원, 정서적 돌봄, 의료 지원 등을 통해 따뜻한 사회를 만들어갑니다.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>사업안내</category>
+      <pubDate>Wed, 18 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/business#vulnerable-care</guid>
+    </item>
+
+    <item>
+      <title>자립준비청년 교육 프로그램</title>
+      <link>http://www.comm-unity.or.kr/business</link>
+      <description><![CDATA[보육원에서 나온 청년들의 자립을 돕는 교육 프로그램을 운영합니다. 직업 교육, 생활 기술 교육, 심리 상담 등을 통해 사회 진출을 지원합니다.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>사업안내</category>
+      <pubDate>Tue, 17 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/business#youth-education</guid>
+    </item>
+
+    <item>
+      <title>후원 참여 안내</title>
+      <link>http://www.comm-unity.or.kr/donation</link>
+      <description><![CDATA[컴유니티의 사업에 후원으로 참여해주세요. 정기후원과 일시후원이 가능하며, 모든 후원금은 투명하게 사용됩니다. 여러분의 작은 관심이 큰 변화를 만듭니다.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>후원</category>
+      <pubDate>Mon, 16 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/donation</guid>
+    </item>
+
+    <item>
+      <title>자원봉사자 모집</title>
+      <link>http://www.comm-unity.or.kr/volunteer</link>
+      <description><![CDATA[함께할 동역자를 찾습니다. 난민사역, 돌봄, 상담, 행정, 교육 등 다양한 영역에서 자원봉사에 참여하실 수 있습니다. 따뜻한 사회 만들기에 동참해주세요.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>자원봉사</category>
+      <pubDate>Sun, 15 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/volunteer</guid>
+    </item>
+
+    <item>
+      <title>뉴스레터 구독 안내</title>
+      <link>http://www.comm-unity.or.kr/newsletter</link>
+      <description><![CDATA[컴유니티의 최신 소식과 활동 정보를 뉴스레터로 받아보세요. 준비 과정부터 함께하며 따뜻한 변화의 순간들을 공유합니다.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>소식</category>
+      <pubDate>Sat, 14 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/newsletter</guid>
+    </item>
+
+    <item>
+      <title>컴유니티 스토리 갤러리</title>
+      <link>http://www.comm-unity.or.kr/gallery</link>
+      <description><![CDATA[컴유니티의 활동 모습과 이야기를 사진으로 만나보세요. 봉사활동 현장, 교육 프로그램, 후원자 모임 등 다양한 순간들을 담았습니다.]]></description>
+      <author>comm@comm-unity.or.kr (사단법인 컴유니티)</author>
+      <category>갤러리</category>
+      <pubDate>Fri, 13 Dec 2024 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">http://www.comm-unity.or.kr/gallery</guid>
+    </item>
+
+  </channel>
+</rss>

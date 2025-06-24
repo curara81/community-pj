@@ -24,78 +24,78 @@ const Header = memo(() => {
       {/* 상단 네비게이션 */}
       <nav className="absolute top-0 left-0 right-0 z-20 p-3 md:p-6">
         <div className="container mx-auto">
-          {/* 첫 번째 줄: 로고 버튼들 */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3 mb-4 lg:mb-0">
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={handleSeoulClick}
-              className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
-              title="서울특별시"
-            >
-              <img 
-                src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
-                alt="서울특별시" 
-                className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
-              />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={handleTaxOfficeClick}
-              className="!border-2 !border-green-500 hover:!bg-green-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
-              title="국세청"
-            >
-              <img 
-                src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
-                alt="국세청" 
-                className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
-              />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={handleWhistleblowerClick}
-              className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-xs sm:text-sm font-semibold"
-            >
-              📢 공익위반신고
-            </Button>
-          </div>
-          
-          {/* 두 번째 줄: 네비게이션 메뉴와 인증 버튼 */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-between gap-3 lg:gap-6">
-            {/* 네비게이션 메뉴 */}
-            <div className="flex flex-wrap justify-center gap-3 lg:gap-6 order-2 lg:order-1">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                홈
-              </Link>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                소개
-              </Link>
-              <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                핵심사업
-              </Link>
-              <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                갤러리
-              </Link>
-              <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                후원하기
-              </Link>
-              <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                참여신청
-              </Link>
-              <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                뉴스레터
-              </Link>
-              <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-                재정보고
-              </Link>
+          {/* 첫 번째 줄: 좌측 로고 버튼들과 우측 로그인 버튼 */}
+          <div className="flex flex-wrap justify-between items-center gap-2 md:gap-3 mb-4">
+            {/* 좌측: 로고 버튼들 */}
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={handleSeoulClick}
+                className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
+                title="서울특별시"
+              >
+                <img 
+                  src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
+                  alt="서울특별시" 
+                  className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
+                />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={handleTaxOfficeClick}
+                className="!border-2 !border-green-500 hover:!bg-green-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
+                title="국세청"
+              >
+                <img 
+                  src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
+                  alt="국세청" 
+                  className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
+                />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={handleWhistleblowerClick}
+                className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-xs sm:text-sm font-semibold"
+              >
+                📢 공익위반신고
+              </Button>
             </div>
             
-            {/* 인증 버튼 */}
-            <div className="order-1 lg:order-2">
+            {/* 우측: 로그인 버튼 */}
+            <div className="flex items-center gap-3">
               <AuthButton />
             </div>
+          </div>
+          
+          {/* 두 번째 줄: 네비게이션 메뉴 */}
+          <div className="flex flex-wrap justify-center lg:justify-start gap-3 lg:gap-6">
+            <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              홈
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              소개
+            </Link>
+            <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              핵심사업
+            </Link>
+            <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              갤러리
+            </Link>
+            <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              후원하기
+            </Link>
+            <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              참여신청
+            </Link>
+            <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              뉴스레터
+            </Link>
+            <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+              재정보고
+            </Link>
           </div>
         </div>
       </nav>

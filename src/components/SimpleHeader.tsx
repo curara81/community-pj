@@ -27,45 +27,53 @@ const SimpleHeader = () => {
   return (
     <nav className="sticky top-0 z-20 bg-white shadow-sm border-b p-3 md:p-6">
       <div className="container mx-auto">
-        {/* 첫 번째 줄: 로고 버튼들 */}
-        <div className="flex flex-wrap justify-center xl:justify-start gap-2 md:gap-3 mb-4 xl:mb-0">
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={handleSeoulClick}
-            className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
-            title="서울특별시"
-          >
-            <img 
-              src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
-              alt="서울특별시" 
-              className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
-            />
-          </Button>
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={handleTaxOfficeClick}
-            className="!border-2 !border-green-500 hover:!bg-green-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
-            title="국세청"
-          >
-            <img 
-              src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
-              alt="국세청" 
-              className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
-            />
-          </Button>
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={handleWhistleblowerClick}
-            className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-xs sm:text-sm font-semibold"
-          >
-            📢 공익위반신고
-          </Button>
+        {/* 첫 번째 줄: 좌측 로고 버튼들과 우측 로그인 버튼 */}
+        <div className="flex flex-wrap justify-between items-center gap-2 md:gap-3 mb-4">
+          {/* 좌측: 로고 버튼들 */}
+          <div className="flex flex-wrap gap-2 md:gap-3">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleSeoulClick}
+              className="!border-2 !border-blue-500 hover:!bg-blue-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
+              title="서울특별시"
+            >
+              <img 
+                src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
+                alt="서울특별시" 
+                className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
+              />
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleTaxOfficeClick}
+              className="!border-2 !border-green-500 hover:!bg-green-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
+              title="국세청"
+            >
+              <img 
+                src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
+                alt="국세청" 
+                className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
+              />
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleWhistleblowerClick}
+              className="!border-2 !border-red-500 !text-red-700 hover:!bg-red-50 !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-xs sm:text-sm font-semibold"
+            >
+              📢 공익위반신고
+            </Button>
+          </div>
+          
+          {/* 우측: 로그인 버튼 */}
+          <div className="flex items-center gap-3">
+            <AuthButton />
+          </div>
         </div>
         
-        {/* 두 번째 줄: 네비게이션과 모바일 메뉴 */}
+        {/* 두 번째 줄: 네비게이션 메뉴와 모바일 메뉴 버튼 */}
         <div className="flex flex-wrap items-center justify-between">
           {/* 데스크탑 네비게이션 메뉴 */}
           <div className="hidden xl:flex flex-wrap gap-4 2xl:gap-6 order-1">
@@ -95,15 +103,11 @@ const SimpleHeader = () => {
             </Link>
           </div>
           
-          {/* 우측: 모바일 메뉴 버튼과 인증 버튼 */}
-          <div className="flex items-center gap-3 ml-auto">
-            <AuthButton />
-            
-            {/* 모바일 메뉴 버튼 */}
+          {/* 모바일 메뉴 버튼 */}
+          <div className="xl:hidden ml-auto">
             <Button
               variant="outline"
               size="sm"
-              className="xl:hidden"
               onClick={toggleMenu}
             >
               {isMenuOpen ? <X size={16} /> : <Menu size={16} />}

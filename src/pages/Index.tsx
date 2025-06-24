@@ -12,7 +12,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Comm.Unity - 돌봄으로 하나 되는 사회";
+    document.title = "사단법인 컴유니티(Comm-Unity) - 돌봄으로 하나 되는 사회";
   }, []);
 
   return (

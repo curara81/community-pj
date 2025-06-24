@@ -47,7 +47,7 @@ const SEOHead = ({ title, description, keywords, ogImage, structuredData }: SEOH
 
     // 구조화된 데이터 추가
     if (structuredData) {
-      let structuredDataScript = document.querySelector('#structured-data');
+      let structuredDataScript = document.querySelector('#structured-data') as HTMLScriptElement;
       if (!structuredDataScript) {
         structuredDataScript = document.createElement('script');
         structuredDataScript.id = 'structured-data';

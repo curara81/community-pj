@@ -10,11 +10,6 @@ interface PrivacyConsentModalProps {
 }
 
 const PrivacyConsentModal = ({ open, onOpenChange, onConsent }: PrivacyConsentModalProps) => {
-  const handleConsent = (agree: boolean) => {
-    onConsent(agree);
-    onOpenChange(false);
-  };
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl bg-white">
@@ -55,19 +50,12 @@ const PrivacyConsentModal = ({ open, onOpenChange, onConsent }: PrivacyConsentMo
           </div>
         </ScrollArea>
 
-        <div className="flex gap-2 mt-4">
+        <div className="flex justify-end mt-4">
           <Button
-            variant="outline"
-            onClick={() => handleConsent(false)}
-            className="flex-1"
+            onClick={() => onOpenChange(false)}
+            className="bg-stone-600 hover:bg-stone-700 text-white"
           >
-            동의하지 않음
-          </Button>
-          <Button
-            onClick={() => handleConsent(true)}
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
-          >
-            동의합니다
+            확인
           </Button>
         </div>
       </DialogContent>

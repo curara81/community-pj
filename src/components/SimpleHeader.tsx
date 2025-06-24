@@ -118,7 +118,7 @@ const SimpleHeader = () => {
       
       {/* 모바일 메뉴 드롭다운 */}
       {isMenuOpen && (
-        <div className="xl:hidden mt-4 bg-white border-t pt-4">
+        <div className="xl:hidden mt-4 bg-white border-t pt-4 pb-8">
           <div className="flex flex-col space-y-3">
             <Link 
               to="/" 

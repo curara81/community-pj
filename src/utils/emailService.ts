@@ -1,4 +1,3 @@
-
 export const sendDonationEmail = (formData: {
   donationType: 'regular' | 'one-time';
   amount: string;
@@ -69,4 +68,28 @@ export const sendNewsletterEmail = (email: string) => {
   
   const mailtoLink = `mailto:comm@comm-unity.or.kr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   window.location.href = mailtoLink;
+};
+
+export const sendSignupConfirmationEmail = async (email: string, confirmationUrl: string) => {
+  try {
+    const response = await fetch('/functions/v1/send-confirmation-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        confirmation_url: confirmationUrl,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to send confirmation email');
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error sending confirmation email:', error);
+    throw error;
+  }
 };

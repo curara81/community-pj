@@ -5,7 +5,6 @@ import SignupMethodSelector from './signup/SignupMethodSelector';
 import UserTypeSelector from './signup/UserTypeSelector';
 import BusinessTypeSelector from './signup/BusinessTypeSelector';
 import EmailSignupForm from './EmailSignupForm';
-import PrivacyConsentModal from './PrivacyConsentModal';
 
 interface SignupModalProps {
   open: boolean;
@@ -17,10 +16,6 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
   const {
     signupMethod,
     setSignupMethod,
-    showPrivacyConsent,
-    setShowPrivacyConsent,
-    handleSocialSignup,
-    handlePrivacyConsent,
   } = useSignupModal();
 
   const getTitle = () => {
@@ -36,73 +31,64 @@ const SignupModal = ({ open, onOpenChange, onSwitchToLogin }: SignupModalProps) 
   };
 
   return (
-    <>
-      <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-md bg-white border-slate-300 max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center text-gray-800">
-              {getTitle()}
-            </DialogTitle>
-          </DialogHeader>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-md bg-white border-slate-300 max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-center text-gray-800">
+            {getTitle()}
+          </DialogTitle>
+        </DialogHeader>
 
-          {signupMethod === 'select' && (
-            <SignupMethodSelector
-              onSocialSignup={handleSocialSignup}
-              onEmailSignup={() => setSignupMethod('user-type')}
-              onSwitchToLogin={onSwitchToLogin}
-            />
-          )}
+        {signupMethod === 'select' && (
+          <SignupMethodSelector
+            onEmailSignup={() => setSignupMethod('user-type')}
+            onSwitchToLogin={onSwitchToLogin}
+          />
+        )}
 
-          {signupMethod === 'user-type' && (
-            <UserTypeSelector
-              onSelectIndividual={() => setSignupMethod('email')}
-              onSelectBusiness={() => setSignupMethod('business-type')}
-              onBack={() => setSignupMethod('select')}
-              onNext={() => setSignupMethod('email')}
-            />
-          )}
+        {signupMethod === 'user-type' && (
+          <UserTypeSelector
+            onSelectIndividual={() => setSignupMethod('email')}
+            onSelectBusiness={() => setSignupMethod('business-type')}
+            onBack={() => setSignupMethod('select')}
+            onNext={() => setSignupMethod('email')}
+          />
+        )}
 
-          {signupMethod === 'business-type' && (
-            <BusinessTypeSelector
-              onSelectBusiness={() => setSignupMethod('business')}
-              onSelectNonBusiness={() => setSignupMethod('non-business')}
-              onBack={() => setSignupMethod('user-type')}
-              onNext={() => setSignupMethod('business')}
-            />
-          )}
-          
-          {signupMethod === 'email' && (
-            <EmailSignupForm
-              userType="individual"
-              onBack={() => setSignupMethod('user-type')}
-              onSuccess={() => onOpenChange(false)}
-            />
-          )}
+        {signupMethod === 'business-type' && (
+          <BusinessTypeSelector
+            onSelectBusiness={() => setSignupMethod('business')}
+            onSelectNonBusiness={() => setSignupMethod('non-business')}
+            onBack={() => setSignupMethod('user-type')}
+            onNext={() => setSignupMethod('business')}
+          />
+        )}
+        
+        {signupMethod === 'email' && (
+          <EmailSignupForm
+            userType="individual"
+            onBack={() => setSignupMethod('user-type')}
+            onSuccess={() => onOpenChange(false)}
+          />
+        )}
 
-          {signupMethod === 'business' && (
-            <EmailSignupForm
-              userType="business"
-              onBack={() => setSignupMethod('business-type')}
-              onSuccess={() => onOpenChange(false)}
-            />
-          )}
+        {signupMethod === 'business' && (
+          <EmailSignupForm
+            userType="business"
+            onBack={() => setSignupMethod('business-type')}
+            onSuccess={() => onOpenChange(false)}
+          />
+        )}
 
-          {signupMethod === 'non-business' && (
-            <EmailSignupForm
-              userType="non-business"
-              onBack={() => setSignupMethod('business-type')}
-              onSuccess={() => onOpenChange(false)}
-            />
-          )}
-        </DialogContent>
-      </Dialog>
-
-      <PrivacyConsentModal
-        open={showPrivacyConsent}
-        onOpenChange={setShowPrivacyConsent}
-        onConsent={handlePrivacyConsent}
-      />
-    </>
+        {signupMethod === 'non-business' && (
+          <EmailSignupForm
+            userType="non-business"
+            onBack={() => setSignupMethod('business-type')}
+            onSuccess={() => onOpenChange(false)}
+          />
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 

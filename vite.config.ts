@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -19,4 +20,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // 정적 파일 직접 서빙 설정
+  publicDir: 'public',
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      }
+    }
+  },
+  // 개발 서버에서 XML 파일들이 직접 서빙되도록 설정
+  optimizeDeps: {
+    exclude: ['*.xml']
+  }
 }));

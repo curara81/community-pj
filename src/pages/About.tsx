@@ -8,7 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const About = () => {
   useEffect(() => {
-    document.title = "소개 - Comm.Unity";
+    document.title = "단체소개 - Comm.Unity";
   }, []);
 
   return (

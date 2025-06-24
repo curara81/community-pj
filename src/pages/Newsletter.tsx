@@ -7,7 +7,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const Newsletter = () => {
   useEffect(() => {
-    document.title = "뉴스레터 - Comm.Unity";
+    document.title = "소식받기 - Comm.Unity";
   }, []);
 
   return (

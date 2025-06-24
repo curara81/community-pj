@@ -7,7 +7,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const Volunteer = () => {
   useEffect(() => {
-    document.title = "참여신청 - Comm.Unity";
+    document.title = "동참하기 - Comm.Unity";
   }, []);
 
   return (

@@ -7,7 +7,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const Gallery = () => {
   useEffect(() => {
-    document.title = "갤러리 - Comm.Unity";
+    document.title = "스토리 - Comm.Unity";
   }, []);
 
   return (

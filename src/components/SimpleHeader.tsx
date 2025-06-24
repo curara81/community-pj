@@ -54,7 +54,7 @@ const SimpleHeader = () => {
               <img 
                 src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
                 alt="국세청" 
-                className="max-w-[130px] sm:max-w-[150px] lg:max-w-[170px] max-h-[30px] sm:max-h-[35px] lg:max-h-[40px] object-contain"
+                className="max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] max-h-[35px] sm:max-h-[40px] lg:max-h-[45px] object-contain"
               />
             </Button>
             <Button 
@@ -81,22 +81,22 @@ const SimpleHeader = () => {
               홈
             </Link>
             <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
-              소개
+              단체소개
             </Link>
             <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
-              핵심사업
+              사업안내
             </Link>
             <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
-              갤러리
+              스토리
             </Link>
             <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
               후원하기
             </Link>
             <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
-              참여신청
+              동참하기
             </Link>
             <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
-              뉴스레터
+              소식받기
             </Link>
             <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm 2xl:text-base whitespace-nowrap">
               재정보고
@@ -132,21 +132,21 @@ const SimpleHeader = () => {
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              소개
+              단체소개
             </Link>
             <Link 
               to="/business" 
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              핵심사업
+              사업안내
             </Link>
             <Link 
               to="/gallery" 
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              갤러리
+              스토리
             </Link>
             <Link 
               to="/donation" 
@@ -160,14 +160,14 @@ const SimpleHeader = () => {
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              참여신청
+              동참하기
             </Link>
             <Link 
               to="/newsletter" 
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              뉴스레터
+              소식받기
             </Link>
             <Link 
               to="/financial-report" 

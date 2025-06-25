@@ -29,10 +29,16 @@ const PhotoGalleryModal = ({ children, category }: PhotoGalleryModalProps) => {
         return {
           title: '🤲 취약계층 돌봄 활동',
           photos: [
-            { src: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=400&fit=crop', alt: '어르신 돌봄 서비스' },
-            { src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop', alt: '장애인 지원 활동' },
-            { src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&h=400&fit=crop', alt: '생활 지원' },
-            { src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop', alt: '정서적 지원' }
+            { src: '/lovable-uploads/bc6c631d-7b67-49aa-8492-4eec1abd239c.png', alt: '연탄 배달 봉사활동' },
+            { src: '/lovable-uploads/f052105c-77b6-4fe0-b81b-e5e40dcc038f.png', alt: '지역 어르신들과의 만남' },
+            { src: '/lovable-uploads/97c8f0c7-4e36-4617-b48f-b980c27d1cf4.png', alt: '어르신 식사 지원' },
+            { src: '/lovable-uploads/4ac0706c-155b-40db-8ad1-a60f2ceebae1.png', alt: '생필품 전달 및 나눔' },
+            { src: '/lovable-uploads/b66ec126-f790-449b-854a-e7fc31a5db96.png', alt: '연탄 운반 작업' },
+            { src: '/lovable-uploads/420703c5-510f-4bc3-ae30-ee1e49dd6086.png', alt: '어르신들과의 레크리에이션' },
+            { src: '/lovable-uploads/e74317dd-114a-4e80-8393-577f58f50bb9.png', alt: '설날 선물 나눔 행사' },
+            { src: '/lovable-uploads/0e1f6939-95ba-4ea3-b2d7-ba2242d6148f.png', alt: '가족과 함께하는 시간' },
+            { src: '/lovable-uploads/e2acd34b-8e18-4e5a-a655-17fd4ffdf8db.png', alt: '따뜻한 음식 나눔' },
+            { src: '/lovable-uploads/34cd007b-6574-4508-a331-8750997db9d1.png', alt: '어르신 건강 돌봄' }
           ]
         };
       case 'education':

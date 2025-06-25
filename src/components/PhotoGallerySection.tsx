@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import PhotoGalleryModal from "./PhotoGalleryModal";
@@ -14,7 +13,7 @@ const PhotoGallerySection = () => {
     {
       title: "취약계층 돌봄",
       description: "도움이 필요한 취약계층 이웃들과 나눈 소중한 시간들",
-      image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop",
+      image: "/lovable-uploads/bc6c631d-7b67-49aa-8492-4eec1abd239c.png",
       category: "care"
     },
     {

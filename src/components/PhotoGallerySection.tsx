@@ -8,7 +8,7 @@ const PhotoGallerySection = () => {
     {
       title: "난민 정착 지원",
       description: "한국에 거주중인 난민들과 함께한 따뜻한 순간들",
-      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=300&fit=crop",
+      image: "/lovable-uploads/6c7cb959-8222-4e92-baa8-29e03b733f22.png",
       category: "refugee"
     },
     {

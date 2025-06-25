@@ -52,9 +52,9 @@ const CEOMessageSection = memo(() => {
                 
                 <div className="flex justify-end mt-8">
                   <img 
-                    src="/lovable-uploads/a6a6644d-12fb-40f2-9a22-c01f779b0973.png" 
+                    src="/lovable-uploads/cdab38ae-0da3-4207-ba17-3ee14e487d6c.png" 
                     alt="박종렬 대표 서명" 
-                    className="h-16 object-contain mix-blend-multiply"
+                    className="h-20 object-contain mix-blend-multiply"
                     style={{ filter: 'contrast(1.2) brightness(0.8)' }}
                   />
                 </div>

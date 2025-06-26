@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const AuthButton = () => {
   const handleDonationHistory = () => {
-    window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=cS5wf7XV59", "_blank");
+    window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=5H4nnMENSe", "_blank");
   };
 
   return (
@@ -11,7 +11,7 @@ const AuthButton = () => {
       onClick={handleDonationHistory}
       className="bg-blue-600 hover:bg-blue-700 text-white"
     >
-      후원내역 조회
+      납부자 조회 서비스
     </Button>
   );
 };

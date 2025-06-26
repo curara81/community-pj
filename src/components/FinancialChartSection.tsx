@@ -58,7 +58,9 @@ const FinancialChartSection = () => {
                 />
                 <span>{item.name}</span>
               </div>
-              <span className="font-semibold">{item.percentage}</span>
+              <span className="font-semibold">
+                <span className="text-white">{item.percentage.replace('%', '')}</span>%
+              </span>
             </div>
           ))}
         </div>
@@ -102,7 +104,9 @@ const FinancialChartSection = () => {
                 />
                 <span>{item.name}</span>
               </div>
-              <span className="font-semibold">{item.percentage}</span>
+              <span className="font-semibold">
+                <span className="text-white">{item.percentage.replace('%', '')}</span>%
+              </span>
             </div>
           ))}
         </div>

@@ -1,21 +1,21 @@
 
 // 2024년 수입 데이터
 export const incomeData = [
-  { name: "후원 회비", value: 0, percentage: "-" },
-  { name: "기부금/물품", value: 0, percentage: "-" },
-  { name: "운영비", value: 0, percentage: "-" },
-  { name: "보조금", value: 0, percentage: "-" },
-  { name: "기타수입", value: 0, percentage: "-" },
-  { name: "이월사업비", value: 0, percentage: "-" },
-  { name: "사업수입", value: 0, percentage: "-" },
-  { name: "기타 사업", value: 0, percentage: "-" }
+  { name: "후원 회비", value: 35, percentage: "35%" },
+  { name: "기부금/물품", value: 25, percentage: "25%" },
+  { name: "운영비", value: 15, percentage: "15%" },
+  { name: "보조금", value: 10, percentage: "10%" },
+  { name: "기타수입", value: 8, percentage: "8%" },
+  { name: "이월사업비", value: 4, percentage: "4%" },
+  { name: "사업수입", value: 2, percentage: "2%" },
+  { name: "기타 사업", value: 1, percentage: "1%" }
 ];
 
 // 2024년 지출 데이터
 export const expenditureData = [
-  { name: "사업비", value: 0, percentage: "-" },
-  { name: "운영비", value: 0, percentage: "-" },
-  { name: "기타 사업", value: 0, percentage: "-" }
+  { name: "사업비", value: 70, percentage: "70%" },
+  { name: "운영비", value: 25, percentage: "25%" },
+  { name: "기타 사업", value: 5, percentage: "5%" }
 ];
 
 // 파이차트 색상

@@ -10,7 +10,7 @@ const CustomTooltipContent = ({ active, payload }: any) => {
     return (
       <div className="bg-white border rounded-lg shadow-lg p-2">
         <p className="font-medium">{data.name}</p>
-        <p className="text-blue-600">금액: -</p>
+        <p className="text-blue-600">비율: {data.payload.percentage}</p>
       </div>
     );
   }
@@ -20,9 +20,9 @@ const CustomTooltipContent = ({ active, payload }: any) => {
 const FinancialChartSection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* 2024 수입 */}
+      {/* 2024년 수입 */}
       <div className="text-center">
-        <h3 className="text-xl font-bold mb-4">2024 수입</h3>
+        <h3 className="text-xl font-bold mb-4">2024년 수입</h3>
         <div className="h-80">
           <ChartContainer
             config={{
@@ -58,15 +58,15 @@ const FinancialChartSection = () => {
                 />
                 <span>{item.name}</span>
               </div>
-              <span className="font-semibold">-%</span>
+              <span className="font-semibold">{item.percentage}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* 2024 지출 */}
+      {/* 2024년 지출 */}
       <div className="text-center">
-        <h3 className="text-xl font-bold mb-4">2024 지출</h3>
+        <h3 className="text-xl font-bold mb-4">2024년 지출</h3>
         <div className="h-80">
           <ChartContainer
             config={{
@@ -102,7 +102,7 @@ const FinancialChartSection = () => {
                 />
                 <span>{item.name}</span>
               </div>
-              <span className="font-semibold">-%</span>
+              <span className="font-semibold">{item.percentage}</span>
             </div>
           ))}
         </div>

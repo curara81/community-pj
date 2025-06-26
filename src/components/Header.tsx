@@ -2,7 +2,6 @@
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import DonationModal from "./DonationModal";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
 
@@ -17,6 +16,10 @@ const Header = memo(() => {
 
   const handleWhistleblowerClick = useCallback(() => {
     window.open("https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=13386&cntntsId=109155", "_blank");
+  }, []);
+
+  const handleDonationClick = useCallback(() => {
+    window.open("https://link.donationbox.co.kr/donationBoxList.jsp?campaignuid=J9B2CMgACb", "_blank");
   }, []);
 
   return (
@@ -136,14 +139,13 @@ const Header = memo(() => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
-              <DonationModal donationType="regular">
-                <Button 
-                  size="lg" 
-                  className="!bg-blue-600 hover:!bg-blue-700 !text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
-                >
-                  💝 정기 후원하기
-                </Button>
-              </DonationModal>
+              <Button 
+                size="lg" 
+                onClick={handleDonationClick}
+                className="!bg-blue-600 hover:!bg-blue-700 !text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
+              >
+                💝 후원하기
+              </Button>
               <VolunteerModal>
                 <Button 
                   variant="outline" 

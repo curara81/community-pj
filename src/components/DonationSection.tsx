@@ -1,9 +1,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import DonationModal from "./DonationModal";
 
 const DonationSection = () => {
+  const handleDonationClick = () => {
+    window.open("https://link.donationbox.co.kr/donationBoxList.jsp?campaignuid=J9B2CMgACb", "_blank");
+  };
+
   return (
     <section className="py-20 bg-gradient-to-br from-stone-50 via-white to-blue-50">
       <div className="container mx-auto px-6">
@@ -36,23 +39,21 @@ const DonationSection = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <DonationModal donationType="regular">
-                  <Button 
-                    size="lg"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
-                  >
-                    💝 정기 후원하기
-                  </Button>
-                </DonationModal>
-                <DonationModal donationType="one-time">
-                  <Button 
-                    variant="outline"
-                    size="lg"
-                    className="border-2 border-stone-500 text-stone-700 hover:bg-stone-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
-                  >
-                    💙 일시 후원하기
-                  </Button>
-                </DonationModal>
+                <Button 
+                  onClick={handleDonationClick}
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
+                >
+                  💝 정기 후원하기
+                </Button>
+                <Button 
+                  onClick={handleDonationClick}
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-stone-500 text-stone-700 hover:bg-stone-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
+                >
+                  💙 일시 후원하기
+                </Button>
               </div>
             </CardContent>
           </Card>

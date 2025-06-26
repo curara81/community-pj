@@ -51,6 +51,11 @@ const FinancialReport = () => {
               <FinancialExpenditureTable />
             </div>
           </div>
+          
+          {/* 안내 메시지 */}
+          <div className="text-center text-sm text-slate-500 mt-8 italic">
+            * 위 항목은 예시이며, 향후 예산이 집행되면 위 사항과 같이 공유드릴 예정입니다.
+          </div>
         </div>
       </div>
       <Footer />

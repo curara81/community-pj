@@ -1,3 +1,4 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 interface PhotoGalleryModalProps {
@@ -81,6 +82,9 @@ const PhotoGalleryModal = ({ children, category }: PhotoGalleryModalProps) => {
               <img 
                 src={photo.src} 
                 alt={photo.alt}
+                width={400}
+                height={256}
+                loading="lazy"
                 className="w-full h-64 object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">

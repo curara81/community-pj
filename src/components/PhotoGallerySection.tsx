@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import PhotoGalleryModal from "./PhotoGalleryModal";
@@ -49,6 +50,9 @@ const PhotoGallerySection = () => {
                   <img 
                     src={gallery.image} 
                     alt={gallery.title}
+                    width={400}
+                    height={192}
+                    loading="lazy"
                     className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>

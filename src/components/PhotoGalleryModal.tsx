@@ -1,3 +1,4 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 interface PhotoGalleryModalProps {
@@ -44,10 +45,16 @@ const PhotoGalleryModal = ({ children, category }: PhotoGalleryModalProps) => {
         return {
           title: '📚 교육 및 자립 지원 활동',
           photos: [
-            { src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop', alt: '직업 교육 현장' },
-            { src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&h=400&fit=crop', alt: '생활 교육' },
-            { src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop', alt: '멘토링 프로그램' },
-            { src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop', alt: '자립 지원' }
+            { src: '/lovable-uploads/f69d0d4c-5186-4bd0-a56a-c7bef1da42b7.png', alt: '학생들과 함께하는 교육 프로그램' },
+            { src: '/lovable-uploads/c86c2b10-f19b-45c7-986a-e69b150e1b85.png', alt: '아동 미술 및 창의성 교육' },
+            { src: '/lovable-uploads/6eb84c0d-d1d6-4ea3-a35f-53a3eb6c9eb9.png', alt: '아동 학습 지원 및 돌봄' },
+            { src: '/lovable-uploads/a60983e8-d1a2-45e8-adc2-9bb1f7d98021.png', alt: '아동 체험 활동 및 놀이 교육' },
+            { src: '/lovable-uploads/8842a1bc-4462-414d-9e25-eea7ba5c6369.png', alt: '교실 수업 및 학습 지도' },
+            { src: '/lovable-uploads/5918fc70-cf00-4756-819d-24dfb3e1176c.png', alt: '대학교 강의 및 교육 지원' },
+            { src: '/lovable-uploads/1e783146-1401-4ce0-8de9-b0e7bc66ea25.png', alt: '아동 학습 활동 및 참여 수업' },
+            { src: '/lovable-uploads/0b2b0831-ebee-4f53-b71c-3036f7b9a0d8.png', alt: '청소년 교육 및 진로 지도' },
+            { src: '/lovable-uploads/b01a4943-74c8-4571-b05d-2c27f34d049d.png', alt: '소그룹 멘토링 및 토론' },
+            { src: '/lovable-uploads/2f014a4f-71bd-4a30-b550-9b73d17b4b97.png', alt: '교육 현장 및 학습 환경' }
           ]
         };
       default:
@@ -75,7 +82,7 @@ const PhotoGalleryModal = ({ children, category }: PhotoGalleryModalProps) => {
               <img 
                 src={photo.src} 
                 alt={photo.alt}
-                className="w-full h-64 object-cover object-bottom transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-64 object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                 <p className="text-white text-sm font-medium">{photo.alt}</p>

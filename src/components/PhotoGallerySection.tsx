@@ -19,7 +19,7 @@ const PhotoGallerySection = () => {
     {
       title: "교육 및 자립 지원",
       description: "새로운 희망을 키워가는 다음세대의 교육 현장의 모습들",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop",
+      image: "/lovable-uploads/c86c2b10-f19b-45c7-986a-e69b150e1b85.png",
       category: "education"
     }
   ];

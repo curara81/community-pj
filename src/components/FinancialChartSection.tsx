@@ -4,6 +4,19 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import { PieChart, Pie, Cell } from "recharts";
 import { incomeData, expenditureData, incomeColors, expenditureColors } from "@/utils/financialData";
 
+const CustomTooltipContent = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0];
+    return (
+      <div className="bg-white border rounded-lg shadow-lg p-2">
+        <p className="font-medium">{data.name}</p>
+        <p className="text-blue-600">금액: -</p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const FinancialChartSection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -30,7 +43,7 @@ const FinancialChartSection = () => {
                 ))}
               </Pie>
               <ChartTooltip
-                content={<ChartTooltipContent />}
+                content={<CustomTooltipContent />}
               />
             </PieChart>
           </ChartContainer>
@@ -45,7 +58,7 @@ const FinancialChartSection = () => {
                 />
                 <span>{item.name}</span>
               </div>
-              <span className="font-semibold">{item.percentage}%</span>
+              <span className="font-semibold">-%</span>
             </div>
           ))}
         </div>
@@ -74,7 +87,7 @@ const FinancialChartSection = () => {
                 ))}
               </Pie>
               <ChartTooltip
-                content={<ChartTooltipContent />}
+                content={<CustomTooltipContent />}
               />
             </PieChart>
           </ChartContainer>
@@ -89,7 +102,7 @@ const FinancialChartSection = () => {
                 />
                 <span>{item.name}</span>
               </div>
-              <span className="font-semibold">{item.percentage}%</span>
+              <span className="font-semibold">-%</span>
             </div>
           ))}
         </div>

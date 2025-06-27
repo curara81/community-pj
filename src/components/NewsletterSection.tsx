@@ -47,7 +47,7 @@ const NewsletterSection = memo(() => {
                 <Input 
                   type="email" 
                   placeholder="이메일 주소를 입력해주세요"
-                  className="flex-1 px-4 py-3 text-lg border-2 border-blue-200 focus:border-blue-500 rounded-xl bg-white"
+                  className="flex-1 px-4 py-3 text-lg border-2 border-slate-300 focus:border-slate-500 focus-visible:ring-slate-400 rounded-xl bg-white"
                   value={email}
                   onChange={handleEmailChange}
                   required

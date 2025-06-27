@@ -27,7 +27,7 @@ const VolunteerSection = () => {
                   </h3>
                   <p className="text-lg text-gray-700 mb-4">
                     <span className="hidden md:block">난민, 취약계층과 함께하는 활동에 여러분의 동참이 필요합니다.</span>
-                    <span className="md:hidden">난민, 취약계층과 함께하는 활동에<br />여러분의<br />동참이<br />필요합니다.</span>
+                    <span className="md:hidden">난민, 취약계층과 함께하는<br />활동에 여러분의 동참이<br />필요합니다.</span>
                   </p>
                   <ul className="text-left text-gray-600 space-y-2 max-w-2xl mx-auto">
                     <li>✨ 번역 및 통역 지원</li>

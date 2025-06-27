@@ -12,7 +12,8 @@ const Footer = memo(() => {
         <div className="text-center">
           <h3 className="text-2xl font-bold mb-4 text-white">사단법인 컴유니티</h3>
           <p className="text-slate-200 mb-6">
-            난민과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다
+            <span className="hidden md:block">난민과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다</span>
+            <span className="md:hidden">난민과 취약계층을 위한 돌봄으로<br />하나 되는 사회를 만들어갑니다</span>
           </p>
           
           {/* 정책 링크들 */}

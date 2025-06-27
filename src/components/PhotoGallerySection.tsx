@@ -45,7 +45,7 @@ const PhotoGallerySection = () => {
           {galleries.map((gallery, index) => (
             <Card 
               key={index} 
-              className="hover-lift bg-white shadow-md hover:shadow-xl transition-all duration-300"
+              className="hover-lift bg-white shadow-md hover:shadow-xl transition-all duration-300 border-0"
             >
               <CardContent className="p-0">
                 <div className="relative overflow-hidden rounded-t-lg">

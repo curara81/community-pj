@@ -33,10 +33,12 @@ const NewsletterSection = memo(() => {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            📮 소식을 가장 먼저 받아보세요
+            📮 <span className="hidden md:inline">소식을 가장 먼저 받아보세요</span>
+            <span className="md:hidden">소식을 가장 먼저<br />받아보세요</span>
           </h2>
           <p className="text-xl text-gray-700 mb-12">
-            뉴스레터를 신청하시고 컴유니티의 준비과정부터 함께해요.
+            <span className="hidden md:block">뉴스레터를 신청하시고 컴유니티의 준비과정부터 함께해요.</span>
+            <span className="md:hidden">뉴스레터를 신청하시고 컴유니티의<br />준비과정부터 함께해요.</span>
           </p>
           
           <Card className="bg-white/90 backdrop-blur shadow-xl border-0 hover-lift mb-8">

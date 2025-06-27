@@ -14,13 +14,13 @@ const CoreBusinessSection = () => {
     {
       emoji: "🤲",
       title: "취약계층 돌봄",
-      description: "장애인, 노약자를 위한 생활돌봄 및 정서적 지원 프로그램",
+      description: "장애인, 노약자를 위한 생활돌봄\n및 정서적 지원 프로그램",
       gradient: "from-blue-100 to-indigo-100"
     },
     {
       emoji: "📚",
       title: "교육 및 자립 지원",
-      description: "취약계층의 자립을 위한 직업교육, 생활교육 및 멘토링",
+      description: "취약계층의 자립을 위한 직업교육,\n생활교육 및 멘토링",
       gradient: "from-green-100 to-emerald-100"
     }
   ];
@@ -30,7 +30,8 @@ const CoreBusinessSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            📌 우리의 주요 활동은<br />이렇게 준비되고 있습니다
+            📌 <span className="hidden md:inline">우리의 주요 활동은<br />이렇게 준비되고 있습니다</span>
+            <span className="md:hidden">우리의 주요 활동은<br />이렇게 준비되고<br />있습니다</span>
           </h2>
         </div>
         

@@ -128,14 +128,16 @@ const Header = memo(() => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent leading-tight">
-              돌봄으로 하나 되는 사회,
+              <span className="block md:inline">돌봄으로</span>
+              <span className="block md:inline md:ml-2">하나 되는 사회,</span>
               <br />
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
             <div className="space-y-4 mb-12 animate-slide-up">
               <p className="text-xl md:text-2xl text-gray-700 font-medium">
-                난민과 취약계층에게 희망과 돌봄을 전합니다.
+                <span className="block md:inline">난민과 취약계층에게</span>
+                <span className="block md:inline md:ml-2">희망과 돌봄을 전합니다.</span>
               </p>
               <p className="text-lg md:text-xl text-gray-600">
                 함께 사는 사회, 함께 살아내는 연대.

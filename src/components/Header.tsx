@@ -146,7 +146,7 @@ const Header = memo(() => {
               <Button 
                 size="lg" 
                 onClick={handleDonationClick}
-                className="!bg-blue-600 hover:!bg-blue-700 !text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow"
+                className="!bg-blue-600 hover:!bg-blue-700 !text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
               >
                 💝 후원하기
               </Button>
@@ -154,7 +154,7 @@ const Header = memo(() => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-600 hover:!text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift"
+                  className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-600 hover:!text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px]"
                 >
                   🙋‍♀️ 참여 신청하기
                 </Button>

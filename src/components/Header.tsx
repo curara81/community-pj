@@ -61,9 +61,9 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleWhistleblowerClick}
-                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-xs sm:text-sm font-semibold"
+                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-sm sm:text-base font-semibold"
               >
-                📢 공익위반신고
+                공익위반 신고
               </Button>
               {/* 모바일에서만 납부자 조회 서비스 버튼을 공익위반신고 옆에 배치 */}
               <div className="block md:hidden">
@@ -119,7 +119,7 @@ const Header = memo(() => {
         
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="animate-fade-in">
-            <div className="flex items-center justify-center mb-8">
+            <div className="flex items-center justify-center mb-4 md:mb-8">
               <img 
                 src="/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png" 
                 alt="돌봄으로 하나 되는 사회" 

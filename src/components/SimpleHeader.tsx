@@ -61,9 +61,9 @@ const SimpleHeader = () => {
               variant="outline" 
               size="sm"
               onClick={handleWhistleblowerClick}
-              className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-xs sm:text-sm font-semibold"
+              className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-sm sm:text-base font-semibold"
             >
-              📢 공익위반신고
+              공익위반 신고
             </Button>
             {/* 모바일에서만 납부자 조회 서비스 버튼을 공익위반신고 옆에 배치 */}
             <div className="block md:hidden">

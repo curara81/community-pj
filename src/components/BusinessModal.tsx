@@ -102,15 +102,15 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
             <h3 className="text-lg font-semibold mb-3 text-center text-stone-800">🚀 2025년 목표</h3>
             <div className="grid md:grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-amber-700">50+</div>
+                <div className="text-2xl font-bold text-amber-700">10+</div>
                 <div className="text-sm text-stone-600">난민 가정 지원</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-700">100+</div>
+                <div className="text-2xl font-bold text-blue-700">50+</div>
                 <div className="text-sm text-stone-600">취약계층 돌봄</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-green-700">200+</div>
+                <div className="text-2xl font-bold text-green-700">100+</div>
                 <div className="text-sm text-stone-600">교육 프로그램 참여자</div>
               </div>
             </div>

@@ -61,7 +61,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleWhistleblowerClick}
-                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-sm sm:text-base font-semibold"
+                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-base sm:text-lg font-semibold"
               >
                 공익위반 신고
               </Button>
@@ -129,7 +129,7 @@ const Header = memo(() => {
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent leading-tight">
               <span className="block">돌봄으로</span>
-              <span className="block">하나 되는 사회,</span>
+              <span className="block">하나되는 사회,</span>
               <br />
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>

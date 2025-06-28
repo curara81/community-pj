@@ -119,7 +119,7 @@ const Header = memo(() => {
         
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="animate-fade-in">
-            <div className="flex items-center justify-center mb-4 md:mb-8">
+            <div className="flex items-center justify-center mb-2 md:mb-8">
               <img 
                 src="/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png" 
                 alt="돌봄으로 하나 되는 사회" 
@@ -128,8 +128,8 @@ const Header = memo(() => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent leading-tight">
-              <span className="block md:inline">돌봄으로</span>
-              <span className="block md:inline md:ml-2">하나 되는 사회,</span>
+              <span className="block">돌봄으로</span>
+              <span className="block">하나 되는 사회,</span>
               <br />
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>

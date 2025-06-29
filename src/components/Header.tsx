@@ -1,4 +1,3 @@
-
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -130,7 +129,6 @@ const Header = memo(() => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent leading-tight">
               <span className="block">돌봄으로</span>
               <span className="block">하나되는 사회,</span>
-              <br />
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             

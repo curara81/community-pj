@@ -14,7 +14,10 @@ const IntroSection = memo(() => {
           
           <div className="care-card rounded-2xl p-8 md:p-12 shadow-sm hover-lift">
             <p className="text-lg md:text-xl leading-relaxed text-gray-700 mb-8">
-              컴유니티(Comm.Unity)는 <strong className="text-amber-700">난민사역과 돌봄의 사각지대</strong>에 놓인 이웃들과 함께하기 위해 설립된 비영리 사단법인입니다.
+              컴유니티(Comm.Unity)는 <br className="block md:hidden" />
+              <strong className="text-amber-700">난민사역과 돌봄의 사각지대</strong>에 놓인 <br className="block md:hidden" />
+              이웃들과 함께하기 위해 설립된 <br className="block md:hidden" />
+              비영리 사단법인입니다.
               <br /><br />
               2025년, 우리는 <strong className="text-blue-700">'돌봄을 통해 사회를 하나로 연결하는 것'</strong>을 사명으로 시작합니다. 난민, 장애인, 노약자, 무주택 취약계층 등 우리 사회의 가장 연약한 이웃들에게 따뜻한 손길과 실제적인 도움을 전하며, 다음 세대가 사랑과 배려, 나눔의 가치를 자연스럽게 배울 수 있도록 다양한 프로그램을 준비하고 있습니다.
               <br /><br />

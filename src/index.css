@@ -56,11 +56,11 @@
 
   body {
     @apply bg-background text-foreground font-noto;
-    overscroll-behavior-color: white;
+    overscroll-behavior-color: #f1f5f9; /* 연한 회색으로 변경 */
   }
   
   html {
-    overscroll-behavior-color: white;
+    overscroll-behavior-color: #f1f5f9; /* 연한 회색으로 변경 */
   }
   
   h1, h2, h3, h4, h5, h6 {

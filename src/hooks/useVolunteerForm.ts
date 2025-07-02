@@ -93,7 +93,6 @@ export const useVolunteerForm = () => {
         .insert([sanitizedData]);
 
       if (error) {
-        console.error('Volunteer application error:', error);
         toast({
           title: "신청 실패",
           description: "자원봉사 신청 중 오류가 발생했습니다. 다시 시도해주세요.",
@@ -109,7 +108,6 @@ export const useVolunteerForm = () => {
         return true;
       }
     } catch (error) {
-      console.error('Unexpected error:', error);
       toast({
         title: "신청 실패",
         description: "예상치 못한 오류가 발생했습니다. 다시 시도해주세요.",

@@ -38,7 +38,6 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
       alert('개인정보 처리방침에 동의해주세요.');
       return;
     }
-    console.log('뉴스레터 신청:', { email, name, interests });
     alert('뉴스레터 신청이 완료되었습니다. 감사합니다!');
   };
 

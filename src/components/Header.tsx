@@ -107,7 +107,7 @@ const Header = memo(() => {
       </nav>
 
       {/* 기존 헤더 콘텐츠 */}
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden pt-32 lg:pt-0">
+      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden pt-40 md:pt-32 lg:pt-0">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-32 h-32 bg-amber-200 rounded-full blur-xl"></div>
@@ -118,7 +118,7 @@ const Header = memo(() => {
         
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="animate-fade-in">
-            <div className="flex items-center justify-center mb-2 md:mb-8">
+            <div className="flex items-center justify-center mb-6 md:mb-6">
               <img 
                 src="/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png" 
                 alt="돌봄으로 하나 되는 사회" 

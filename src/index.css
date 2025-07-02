@@ -24,7 +24,7 @@
     --secondary-foreground: 100 116 139;
 
     --muted: 248 250 252; /* slate-50 */
-    --muted-foreground: 120 113 108;
+    --muted-foreground: 71 85 105; /* slate-600 - 더 진한 회색으로 시인성 개선 */
 
     --accent: 239 246 255; /* blue-50 - 평화와 신뢰 */
     --accent-foreground: 30 64 175;

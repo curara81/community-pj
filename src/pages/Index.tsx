@@ -21,7 +21,7 @@ const Index = () => {
     "url": "http://www.comm-unity.or.kr",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://www.comm-unity.or.kr/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png",
+      "url": "http://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png",
       "width": 512,
       "height": 512
     },
@@ -55,7 +55,7 @@ const Index = () => {
         title="사단법인 컴유니티(Comm-Unity) - 돌봄으로 하나 되는 사회"
         description="컴유니티는 난민, 취약계층, 자립준비청년 돌봄과 교육으로 따뜻한 사회를 만듭니다."
         keywords="사단법인 컴유니티, 컴유니티, Comm.Unity, 난민사역, 취약계층, 돌봄, 구호, 봉사, 비영리단체, 후원, 자원봉사"
-        ogImage="http://www.comm-unity.or.kr/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png"
+        ogImage="http://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png"
         canonicalUrl="http://www.comm-unity.or.kr/"
         structuredData={structuredData}
         pageType="website"

@@ -120,7 +120,7 @@ const Header = memo(() => {
           <div className="animate-fade-in">
             <div className="flex items-center justify-center mb-6 md:mb-6">
               <img 
-                src="/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png" 
+                src="/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png" 
                 alt="돌봄으로 하나 되는 사회" 
                 className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-contain"
               />

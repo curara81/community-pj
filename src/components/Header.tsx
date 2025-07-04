@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
-import communityLogo from "@/assets/community-logo-optimized.webp";
+import handshakeLogo from "@/assets/handshake-logo-optimized.webp";
 
 const Header = memo(() => {
   const handleSeoulClick = useCallback(() => {
@@ -121,7 +121,7 @@ const Header = memo(() => {
           <div className="animate-fade-in">
             <div className="flex items-center justify-center mb-6 md:mb-6 mt-8 md:mt-12 lg:mt-16">
               <img 
-                src={communityLogo} 
+                src={handshakeLogo} 
                 alt="돌봄으로 하나 되는 사회" 
                 className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-contain"
               />

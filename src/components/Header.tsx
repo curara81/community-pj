@@ -130,7 +130,7 @@ const Header = memo(() => {
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight px-4">
               <span className="block text-slate-800">돌봄으로</span>
               <span className="block text-slate-800">하나되는 사회,</span>
-              <span className="text-blue-600">Comm.Unity</span>
+              <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
             <div className="space-y-6 mb-12 animate-slide-up px-4">

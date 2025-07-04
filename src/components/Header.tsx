@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
+import communityLogo from "@/assets/community-logo-optimized.webp";
 
 const Header = memo(() => {
   const handleSeoulClick = useCallback(() => {
@@ -120,24 +121,24 @@ const Header = memo(() => {
           <div className="animate-fade-in">
             <div className="flex items-center justify-center mb-6 md:mb-6 mt-8 md:mt-12 lg:mt-16">
               <img 
-                src="/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png" 
+                src={communityLogo} 
                 alt="돌봄으로 하나 되는 사회" 
                 className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-contain"
               />
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent leading-tight">
-              <span className="block">돌봄으로</span>
-              <span className="block">하나되는 사회,</span>
-              <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight px-4">
+              <span className="block text-slate-800">돌봄으로</span>
+              <span className="block text-slate-800">하나되는 사회,</span>
+              <span className="text-blue-600">Comm.Unity</span>
             </h1>
             
-            <div className="space-y-4 mb-12 animate-slide-up">
-              <p className="text-xl md:text-2xl text-gray-700 font-medium">
-                <span className="block md:inline">난민과 취약계층에게</span>
-                <span className="block md:inline md:ml-2">희망과 돌봄을 전합니다.</span>
+            <div className="space-y-6 mb-12 animate-slide-up px-4">
+              <p className="text-2xl md:text-3xl lg:text-4xl text-slate-700 font-semibold text-center">
+                <span className="block">난민과 취약계층에게</span>
+                <span className="block">희망과 돌봄을 전합니다.</span>
               </p>
-              <p className="text-lg md:text-xl text-gray-600">
+              <p className="text-xl md:text-2xl lg:text-3xl text-slate-600 font-medium text-center">
                 함께 사는 사회, 함께 살아내는 연대.
               </p>
             </div>

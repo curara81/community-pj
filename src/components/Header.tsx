@@ -1,11 +1,15 @@
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Languages } from "lucide-react";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 
 const Header = memo(() => {
+  const { language, toggleLanguage, t } = useLanguage();
+
   const handleSeoulClick = useCallback(() => {
     window.open("https://www.seoul.go.kr/main/index.jsp", "_blank");
   }, []);
@@ -63,16 +67,34 @@ const Header = memo(() => {
                 onClick={handleWhistleblowerClick}
                 className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-base sm:text-lg font-semibold"
               >
-                공익위반 신고
+                {t('공익위반 신고', 'Report Violation')}
               </Button>
-              {/* 모바일에서만 납부자 조회 서비스 버튼을 공익위반신고 옆에 배치 */}
-              <div className="block md:hidden">
+              {/* 모바일에서만 언어 전환 버튼과 납부자 조회 서비스 버튼을 공익위반신고 옆에 배치 */}
+              <div className="flex md:hidden gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={toggleLanguage}
+                  className="!border-2 !border-purple-500 !text-purple-700 hover:!bg-purple-50 !h-[40px] flex items-center gap-1"
+                >
+                  <Languages size={14} />
+                  {language === 'ko' ? 'EN' : '한글'}
+                </Button>
                 <AuthButton />
               </div>
             </div>
             
-            {/* 우측: 로그인 버튼 (데스크탑에서만 표시) */}
+            {/* 우측: 언어 전환 버튼과 로그인 버튼 (데스크탑에서만 표시) */}
             <div className="hidden md:flex items-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={toggleLanguage}
+                className="!border-2 !border-purple-500 !text-purple-700 hover:!bg-purple-50 !h-[40px] flex items-center gap-2"
+              >
+                <Languages size={16} />
+                {language === 'ko' ? 'EN' : '한글'}
+              </Button>
               <AuthButton />
             </div>
           </div>
@@ -80,28 +102,28 @@ const Header = memo(() => {
           {/* 두 번째 줄: 네비게이션 메뉴 */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-3 lg:gap-6">
             <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              홈
+              {t('홈', 'Home')}
             </Link>
             <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              단체소개
+              {t('단체소개', 'About Us')}
             </Link>
             <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              사업안내
+              {t('사업안내', 'Programs')}
             </Link>
             <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              스토리
+              {t('스토리', 'Stories')}
             </Link>
             <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              후원하기
+              {t('후원하기', 'Donate')}
             </Link>
             <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              동참하기
+              {t('동참하기', 'Volunteer')}
             </Link>
             <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              소식받기
+              {t('소식받기', 'Newsletter')}
             </Link>
             <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              재정보고
+              {t('재정보고', 'Financial Report')}
             </Link>
           </div>
         </div>
@@ -127,19 +149,19 @@ const Header = memo(() => {
               />
             </div>
             
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight px-4">
-              <span className="block text-slate-800">돌봄으로</span>
-              <span className="block text-slate-800">하나되는 사회,</span>
+            <h1 className="text-3xl sm:text-4xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight px-4">
+              <span className="block text-slate-800">{t('돌봄으로', 'Through Care,')}</span>
+              <span className="block text-slate-800">{t('하나되는 사회,', 'United Society,')}</span>
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
             <div className="space-y-6 mb-12 animate-slide-up px-4">
-              <p className="text-2xl md:text-3xl lg:text-4xl text-slate-700 font-semibold text-center">
-                <span className="block">난민과 취약계층에게</span>
-                <span className="block">희망과 돌봄을 전합니다.</span>
+              <p className="text-lg sm:text-xl md:text-3xl lg:text-4xl text-slate-700 font-semibold text-center">
+                <span className="block">{t('난민과 취약계층에게', 'To refugees and')}</span>
+                <span className="block">{t('희망과 돌봄을 전합니다.', 'vulnerable communities, we deliver hope and care.')}</span>
               </p>
-              <p className="text-xl md:text-2xl lg:text-3xl text-slate-600 font-medium text-center">
-                함께 사는 사회, 함께 살아내는 연대.
+              <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-slate-600 font-medium text-center">
+                {t('함께 사는 사회, 함께 살아내는 연대.', 'A society where we live together, solidarity where we survive together.')}
               </p>
             </div>
             
@@ -149,7 +171,7 @@ const Header = memo(() => {
                 onClick={handleDonationClick}
                 className="!bg-blue-600 hover:!bg-blue-700 !text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
               >
-                💝 후원하기
+                💝 {t('후원하기', 'Donate')}
               </Button>
               <VolunteerModal>
                 <Button 
@@ -157,7 +179,7 @@ const Header = memo(() => {
                   size="lg"
                   className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-600 hover:!text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px]"
                 >
-                  🙋‍♀️ 참여 신청하기
+                  🙋‍♀️ {t('참여 신청하기', 'Apply to Volunteer')}
                 </Button>
               </VolunteerModal>
             </div>

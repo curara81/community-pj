@@ -69,13 +69,18 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleWhistleblowerClick}
-                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[120px] !h-[40px] flex items-center justify-center text-sm font-semibold"
+                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
               >
                 {t('공익위반 신고', 'Report Violation')}
               </Button>
-              <div className="w-[140px]">
-                <AuthButton />
-              </div>
+              <Button
+                onClick={() => window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=5H4nnMENSe", "_blank")}
+                variant="outline"
+                size="sm"
+                className="!border-2 !border-blue-500 !text-blue-700 !bg-white hover:!bg-blue-600 hover:!text-white !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
+              >
+                납부자 조회 서비스
+              </Button>
               <Button
                 variant="outline"
                 size="sm"

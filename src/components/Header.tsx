@@ -63,7 +63,7 @@ const Header = memo(() => {
               </Button>
             </div>
             
-            {/* 두 번째 줄: 공익위반 신고, EN, 납부자 조회 서비스 */}
+            {/* 두 번째 줄: 공익위반 신고, 납부자 조회 서비스, EN */}
             <div className="flex flex-wrap justify-center gap-2 mb-4">
               <Button 
                 variant="outline" 
@@ -73,6 +73,9 @@ const Header = memo(() => {
               >
                 {t('공익위반 신고', 'Report Violation')}
               </Button>
+              <div className="w-[140px]">
+                <AuthButton />
+              </div>
               <Button
                 variant="outline"
                 size="sm"
@@ -82,9 +85,6 @@ const Header = memo(() => {
                 <Languages size={14} />
                 <span className="ml-1 text-xs">{language === 'ko' ? 'EN' : '한글'}</span>
               </Button>
-              <div className="w-[140px]">
-                <AuthButton />
-              </div>
             </div>
           </div>
 

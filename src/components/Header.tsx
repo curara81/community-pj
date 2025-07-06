@@ -31,61 +31,105 @@ const Header = memo(() => {
       {/* 상단 네비게이션 */}
       <nav className="absolute top-0 left-0 right-0 z-20 p-3 md:p-6">
         <div className="container mx-auto">
-          {/* 첫 번째 줄: 좌측 로고 버튼들과 우측 로그인 버튼 */}
-          <div className="flex flex-wrap justify-between items-center gap-2 md:gap-3 mb-4">
-            {/* 좌측: 로고 버튼들 */}
-            <div className="flex flex-wrap gap-2 md:gap-3">
+          {/* 모바일 레이아웃 */}
+          <div className="block md:hidden">
+            {/* 첫 번째 줄: 서울특별시, 국세청 */}
+            <div className="flex flex-wrap justify-center gap-2 mb-3">
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={handleSeoulClick}
-                className="!border-2 !border-blue-500 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
+                className="!border-2 !border-blue-500 !bg-white hover:!bg-white !w-[140px] !h-[40px] flex items-center justify-center"
                 title="서울특별시"
               >
                 <img 
                   src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
                   alt="서울특별시" 
-                  className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
+                  className="max-w-[120px] max-h-[25px] object-contain"
                 />
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={handleTaxOfficeClick}
-                className="!border-2 !border-green-500 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center"
+                className="!border-2 !border-green-500 !bg-white hover:!bg-white !w-[140px] !h-[40px] flex items-center justify-center"
                 title="국세청"
               >
                 <img 
                   src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
                   alt="국세청" 
-                  className="max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] max-h-[35px] sm:max-h-[40px] lg:max-h-[45px] object-contain"
+                  className="max-w-[140px] max-h-[35px] object-contain"
+                />
+              </Button>
+            </div>
+            
+            {/* 두 번째 줄: 공익위반 신고, EN, 납부자 조회 서비스 */}
+            <div className="flex flex-wrap justify-center gap-2 mb-4">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={handleWhistleblowerClick}
+                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[120px] !h-[40px] flex items-center justify-center text-sm font-semibold"
+              >
+                {t('공익위반 신고', 'Report Violation')}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={toggleLanguage}
+                className="!border-2 !border-purple-500 !text-purple-700 hover:!bg-purple-50 !w-[60px] !h-[40px] flex items-center justify-center"
+              >
+                <Languages size={14} />
+                <span className="ml-1 text-xs">{language === 'ko' ? 'EN' : '한글'}</span>
+              </Button>
+              <div className="w-[140px]">
+                <AuthButton />
+              </div>
+            </div>
+          </div>
+
+          {/* 데스크탑 레이아웃 */}
+          <div className="hidden md:flex justify-between items-center gap-2 md:gap-3 mb-4">
+            {/* 좌측: 로고 버튼들 */}
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={handleSeoulClick}
+                className="!border-2 !border-blue-500 !bg-white hover:!bg-white !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
+                title="서울특별시"
+              >
+                <img 
+                  src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
+                  alt="서울특별시" 
+                  className="max-w-[140px] lg:max-w-[160px] max-h-[30px] lg:max-h-[35px] object-contain"
+                />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={handleTaxOfficeClick}
+                className="!border-2 !border-green-500 !bg-white hover:!bg-white !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
+                title="국세청"
+              >
+                <img 
+                  src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
+                  alt="국세청" 
+                  className="max-w-[160px] lg:max-w-[180px] max-h-[40px] lg:max-h-[45px] object-contain"
                 />
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={handleWhistleblowerClick}
-                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] sm:!w-[160px] lg:!w-[180px] !h-[40px] sm:!h-[45px] lg:!h-[50px] flex items-center justify-center text-base sm:text-lg font-semibold"
+                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center text-base sm:text-lg font-semibold"
               >
                 {t('공익위반 신고', 'Report Violation')}
               </Button>
-              {/* 모바일에서만 언어 전환 버튼과 납부자 조회 서비스 버튼을 공익위반신고 옆에 배치 */}
-              <div className="flex md:hidden gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={toggleLanguage}
-                  className="!border-2 !border-purple-500 !text-purple-700 hover:!bg-purple-50 !h-[40px] flex items-center gap-1"
-                >
-                  <Languages size={14} />
-                  {language === 'ko' ? 'EN' : '한글'}
-                </Button>
-                <AuthButton />
-              </div>
             </div>
             
-            {/* 우측: 언어 전환 버튼과 로그인 버튼 (데스크탑에서만 표시) */}
-            <div className="hidden md:flex items-center gap-3">
+            {/* 우측: 언어 전환 버튼과 로그인 버튼 */}
+            <div className="flex items-center gap-3">
               <Button
                 variant="outline"
                 size="sm"

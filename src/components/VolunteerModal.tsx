@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { useVolunteerForm } from '@/hooks/useVolunteerForm';
 import VolunteerFormFields from './volunteer/VolunteerFormFields';
 import VolunteerInterestCheckboxes from './volunteer/VolunteerInterestCheckboxes';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface VolunteerModalProps {
   children: React.ReactNode;
 }
 
 const VolunteerModal = ({ children }: VolunteerModalProps) => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const {
     name,
@@ -43,7 +45,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
       <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-stone-50 border-slate-300">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-blue-800">
-            🙋‍♀️ 참여 신청하기
+            🙋‍♀️ {t("참여 신청하기", "Apply to Volunteer")}
           </DialogTitle>
         </DialogHeader>
         
@@ -69,7 +71,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
             disabled={isSubmitting}
             className="w-full !bg-green-600 hover:!bg-green-700 !text-white font-semibold disabled:opacity-50"
           >
-            {isSubmitting ? '신청 중...' : '신청하기'}
+            {isSubmitting ? t('신청 중...', 'Submitting...') : t('신청하기', 'Submit Application')}
           </Button>
         </form>
       </DialogContent>

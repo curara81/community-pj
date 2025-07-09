@@ -9,7 +9,7 @@
 @layer base {
   :root {
     --background: 255 255 255; /* white */
-    --foreground: 55 48 43;
+    --foreground: 55 48 43; /* warm-dark */
 
     --card: 255 255 255;
     --card-foreground: 55 48 43;
@@ -17,35 +17,54 @@
     --popover: 255 255 255;
     --popover-foreground: 55 48 43;
 
-    --primary: 100 116 139; /* slate-500 - 중성적이고 안정적인 색상 */
+    /* Primary: 신뢰감 있는 slate-blue 계열 */
+    --primary: 71 85 105; /* slate-600 - 더 안정적이고 신뢰감 있는 톤 */
     --primary-foreground: 255 255 255;
+    --primary-light: 100 116 139; /* slate-500 */
+    --primary-lighter: 148 163 184; /* slate-400 */
 
-    --secondary: 241 245 249; /* slate-100 */
-    --secondary-foreground: 100 116 139;
+    /* Secondary: 따뜻함을 주는 amber 계열 */
+    --secondary: 251 191 36; /* amber-400 - 따뜻하고 희망적인 톤 */
+    --secondary-foreground: 255 255 255;
+    --secondary-light: 252 211 77; /* amber-300 */
+    --secondary-lighter: 254 243 199; /* amber-100 */
 
+    /* Accent: 부드러운 blue 계열 (희망과 평화) */
+    --accent: 59 130 246; /* blue-500 - 희망적이고 신뢰감 있는 톤 */
+    --accent-foreground: 255 255 255;
+    --accent-light: 96 165 250; /* blue-400 */
+    --accent-lighter: 219 234 254; /* blue-100 */
+
+    /* Success: 성장과 희망을 위한 green 계열 */
+    --success: 34 197 94; /* green-500 */
+    --success-foreground: 255 255 255;
+    --success-light: 74 222 128; /* green-400 */
+    --success-lighter: 220 252 231; /* green-100 */
+
+    /* Muted: 부드러운 회색 계열 */
     --muted: 248 250 252; /* slate-50 */
-    --muted-foreground: 71 85 105; /* slate-600 - 더 진한 회색으로 시인성 개선 */
-
-    --accent: 239 246 255; /* blue-50 - 평화와 신뢰 */
-    --accent-foreground: 30 64 175;
+    --muted-foreground: 71 85 105; /* slate-600 */
+    --muted-medium: 226 232 240; /* slate-200 */
+    --muted-dark: 148 163 184; /* slate-400 */
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
     --border: 229 231 235;
     --input: 229 231 235;
-    --ring: 59 130 246;
+    --ring: 71 85 105; /* primary color for focus ring */
 
     --radius: 0.75rem;
 
+    /* Sidebar colors aligned with design system */
     --sidebar-background: 255 255 255;
     --sidebar-foreground: 55 48 43;
-    --sidebar-primary: 100 116 139;
+    --sidebar-primary: 71 85 105;
     --sidebar-primary-foreground: 255 255 255;
     --sidebar-accent: 241 245 249;
-    --sidebar-accent-foreground: 100 116 139;
+    --sidebar-accent-foreground: 71 85 105;
     --sidebar-border: 229 231 235;
-    --sidebar-ring: 100 116 139;
+    --sidebar-ring: 71 85 105;
   }
 }
 
@@ -69,16 +88,29 @@
 }
 
 @layer components {
-  .gradient-warm-hope {
-    background: linear-gradient(135deg, #64748b 0%, #475569 50%, #334155 100%);
+  /* Primary gradients using semantic tokens */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 50%, hsl(var(--primary-lighter)) 100%);
   }
   
-  .gradient-care {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+  .gradient-secondary {
+    background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--secondary-light)) 50%, hsl(var(--secondary-lighter)) 100%);
   }
   
-  .gradient-text-warm {
-    background: linear-gradient(135deg, #475569 0%, #64748b 50%, #94a3b8 100%);
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-light)) 50%, hsl(var(--accent-lighter)) 100%);
+  }
+  
+  .gradient-success {
+    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(var(--success-light)) 50%, hsl(var(--success-lighter)) 100%);
+  }
+  
+  .gradient-muted {
+    background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--muted-medium)) 50%, hsl(var(--muted-dark)) 100%);
+  }
+  
+  .gradient-text-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 50%, hsl(var(--primary-lighter)) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -89,10 +121,22 @@
   }
   
   .helping-hand-shadow {
-    box-shadow: 0 10px 25px -5px rgba(100, 116, 139, 0.25), 0 10px 10px -5px rgba(100, 116, 139, 0.1);
+    box-shadow: 0 10px 25px -5px hsl(var(--primary) / 0.25), 0 10px 10px -5px hsl(var(--primary) / 0.1);
   }
   
   .care-card {
-    @apply bg-gradient-to-br from-slate-50 to-blue-50 border-0 shadow-md hover:shadow-xl transition-all duration-300;
+    @apply bg-gradient-to-br from-muted to-accent-lighter border-0 shadow-md hover:shadow-xl transition-all duration-300;
+  }
+  
+  .business-card-primary {
+    @apply bg-gradient-to-br from-secondary-lighter to-secondary-light/20 border border-secondary-light;
+  }
+  
+  .business-card-accent {
+    @apply bg-gradient-to-br from-accent-lighter to-accent-light/20 border border-accent-light;
+  }
+  
+  .business-card-success {
+    @apply bg-gradient-to-br from-success-lighter to-success-light/20 border border-success-light;
   }
 }

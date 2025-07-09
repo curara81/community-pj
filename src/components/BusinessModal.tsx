@@ -54,13 +54,13 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
   const getColorClasses = (color: string) => {
     switch (color) {
       case 'amber':
-        return 'bg-amber-100 border-amber-200 text-amber-800';
+        return 'business-card-primary text-secondary';
       case 'blue':
-        return 'bg-blue-100 border-blue-200 text-blue-800';
+        return 'business-card-accent text-accent';
       case 'green':
-        return 'bg-green-100 border-green-200 text-green-800';
+        return 'business-card-success text-success';
       default:
-        return 'bg-stone-100 border-stone-200 text-stone-800';
+        return 'bg-muted border-muted-medium text-muted-foreground';
     }
   };
 
@@ -69,9 +69,9 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-stone-50 border-stone-200">
+      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-muted border-muted-medium">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-amber-800">
+          <DialogTitle className="text-2xl font-bold text-center text-secondary">
             📌 {t("컴유니티 주요 사업 소개", "Comm.Unity Main Programs")}
           </DialogTitle>
         </DialogHeader>
@@ -84,13 +84,13 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
                   <div className="text-4xl">{business.emoji}</div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold mb-2">{business.title}</h3>
-                    <p className="text-stone-700 mb-4">{business.description}</p>
+                    <p className="text-muted-foreground mb-4">{business.description}</p>
                     
                     <div className="space-y-2">
                       <h4 className="font-semibold">{t("주요 활동:", "Main Activities:")}</h4>
                       <ul className="list-disc list-inside space-y-1 text-sm">
                         {business.details.map((detail, idx) => (
-                          <li key={idx} className="text-stone-600">{detail}</li>
+                          <li key={idx} className="text-muted-foreground">{detail}</li>
                         ))}
                       </ul>
                     </div>
@@ -100,20 +100,20 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
             </Card>
           ))}
           
-          <div className="bg-gradient-to-r from-amber-100 to-blue-100 p-6 rounded-lg border border-stone-200">
-            <h3 className="text-lg font-semibold mb-3 text-center text-stone-800">🚀 {t("2025년 목표", "2025 Goals")}</h3>
+          <div className="bg-gradient-to-r from-secondary-lighter to-accent-lighter p-6 rounded-lg border border-muted-medium">
+            <h3 className="text-lg font-semibold mb-3 text-center text-foreground">🚀 {t("2025년 목표", "2025 Goals")}</h3>
             <div className="grid md:grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-amber-700">{t("10+ (가정)", "10+ Families")}</div>
-                <div className="text-sm text-stone-600">{t("난민 가정 지원", "Refugee Family Support")}</div>
+                <div className="text-2xl font-bold text-secondary">{t("10+ (가정)", "10+ Families")}</div>
+                <div className="text-sm text-muted-foreground">{t("난민 가정 지원", "Refugee Family Support")}</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-700">{t("50+ (명)", "50+ People")}</div>
-                <div className="text-sm text-stone-600">{t("취약계층 돌봄", "Vulnerable Population Care")}</div>
+                <div className="text-2xl font-bold text-accent">{t("50+ (명)", "50+ People")}</div>
+                <div className="text-sm text-muted-foreground">{t("취약계층 돌봄", "Vulnerable Population Care")}</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-green-700">{t("100+ (명)", "100+ People")}</div>
-                <div className="text-sm text-stone-600">{t("교육 프로그램 참여자", "Education Program Participants")}</div>
+                <div className="text-2xl font-bold text-success">{t("100+ (명)", "100+ People")}</div>
+                <div className="text-sm text-muted-foreground">{t("교육 프로그램 참여자", "Education Program Participants")}</div>
               </div>
             </div>
           </div>

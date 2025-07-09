@@ -29,14 +29,14 @@ const PhotoGallerySection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-20 bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             📸 <span className="hidden md:inline">{t("함께한 소중한 순간들", "Precious Moments Together")}</span>
             <span className="md:hidden">{t("함께한", "Precious")}<br />{t("소중한 순간들", "Moments Together")}</span>
           </h2>
-          <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
             <span className="hidden md:block">{t("아직 시작 단계이지만, 그동안 함께했던 의미있는 활동들을 통해", "Though we're still in the beginning stages, through the meaningful activities we've shared together")} 
             <br />
             {t("우리가 만들어갈 미래를 상상해보세요.", "imagine the future we will create together.")}</span>
@@ -48,7 +48,7 @@ const PhotoGallerySection = () => {
           {galleries.map((gallery, index) => (
             <Card 
               key={index} 
-              className="hover-lift bg-white shadow-md hover:shadow-xl transition-all duration-300 border-0"
+              className="hover-lift bg-card shadow-md hover:shadow-xl transition-all duration-300 border-0"
             >
               <CardContent className="p-0">
                 <div className="relative overflow-hidden rounded-t-lg">
@@ -63,17 +63,17 @@ const PhotoGallerySection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">
+                  <h3 className="text-xl font-bold text-foreground mb-3">
                     {gallery.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 whitespace-pre-line">
+                  <p className="text-muted-foreground mb-4 whitespace-pre-line">
                     <span className="hidden md:block">{gallery.description.replace('\n', ' ')}</span>
                     <span className="md:hidden">{gallery.description}</span>
                   </p>
                   <PhotoGalleryModal category={gallery.category}>
                     <Button 
                       variant="outline"
-                      className="w-full border-amber-500 text-amber-700 hover:bg-amber-50"
+                      className="w-full border-secondary text-secondary hover:bg-secondary-lighter"
                     >
                       {t("사진 더보기", "View More Photos")}
                     </Button>

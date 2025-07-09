@@ -39,7 +39,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleSeoulClick}
-                className="!border-2 !border-blue-500 !bg-white hover:!bg-white !w-[140px] !h-[40px] flex items-center justify-center"
+                className="!border-2 !border-accent !bg-background hover:!bg-accent-lighter !w-[140px] !h-[40px] flex items-center justify-center"
                 title="서울특별시"
               >
                 <img 
@@ -52,7 +52,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleTaxOfficeClick}
-                className="!border-2 !border-green-500 !bg-white hover:!bg-white !w-[140px] !h-[40px] flex items-center justify-center"
+                className="!border-2 !border-success !bg-background hover:!bg-success-lighter !w-[140px] !h-[40px] flex items-center justify-center"
                 title="국세청"
               >
                 <img 
@@ -69,7 +69,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleWhistleblowerClick}
-                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
+                className="!border-2 !border-destructive !text-destructive !bg-background hover:!bg-destructive hover:!text-destructive-foreground !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
               >
                 {t('공익위반 신고', 'Report Violation')}
               </Button>
@@ -77,7 +77,7 @@ const Header = memo(() => {
                 onClick={() => window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=5H4nnMENSe", "_blank")}
                 variant="outline"
                 size="sm"
-                className="!border-2 !border-blue-500 !text-blue-700 !bg-white hover:!bg-blue-600 hover:!text-white !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
+                className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
               >
                 납부자 조회 서비스
               </Button>
@@ -85,7 +85,7 @@ const Header = memo(() => {
                 variant="outline"
                 size="sm"
                 onClick={toggleLanguage}
-                className="!border-2 !border-purple-500 !text-purple-700 hover:!bg-purple-50 !w-[60px] !h-[40px] flex items-center justify-center"
+                className="!border-2 !border-secondary !text-secondary !bg-background hover:!bg-secondary hover:!text-secondary-foreground !w-[60px] !h-[40px] flex items-center justify-center"
               >
                 <Languages size={14} />
                 <span className="ml-1 text-xs">{language === 'ko' ? 'EN' : '한글'}</span>
@@ -101,7 +101,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleSeoulClick}
-                className="!border-2 !border-blue-500 !bg-white hover:!bg-white !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
+                className="!border-2 !border-accent !bg-background hover:!bg-accent-lighter !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
                 title="서울특별시"
               >
                 <img 
@@ -114,7 +114,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleTaxOfficeClick}
-                className="!border-2 !border-green-500 !bg-white hover:!bg-white !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
+                className="!border-2 !border-success !bg-background hover:!bg-success-lighter !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
                 title="국세청"
               >
                 <img 
@@ -127,7 +127,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleWhistleblowerClick}
-                className="!border-2 !border-red-500 !text-red-700 !bg-white hover:!bg-white !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center text-base sm:text-lg font-semibold"
+                className="!border-2 !border-destructive !text-destructive !bg-background hover:!bg-destructive hover:!text-destructive-foreground !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center text-base sm:text-lg font-semibold"
               >
                 {t('공익위반 신고', 'Report Violation')}
               </Button>
@@ -139,7 +139,7 @@ const Header = memo(() => {
                 variant="outline"
                 size="sm"
                 onClick={toggleLanguage}
-                className="!border-2 !border-purple-500 !text-purple-700 hover:!bg-purple-50 !h-[40px] flex items-center gap-2"
+                className="!border-2 !border-secondary !text-secondary !bg-background hover:!bg-secondary hover:!text-secondary-foreground !h-[40px] flex items-center gap-2"
               >
                 <Languages size={16} />
                 {language === 'ko' ? 'EN' : '한글'}
@@ -150,28 +150,28 @@ const Header = memo(() => {
           
           {/* 두 번째 줄: 네비게이션 메뉴 */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-3 lg:gap-6">
-            <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('홈', 'Home')}
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/about" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('단체소개', 'About Us')}
             </Link>
-            <Link to="/business" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/business" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('사업안내', 'Programs')}
             </Link>
-            <Link to="/gallery" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/gallery" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('스토리', 'Stories')}
             </Link>
-            <Link to="/donation" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/donation" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('후원하기', 'Donate')}
             </Link>
-            <Link to="/volunteer" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/volunteer" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('동참하기', 'Volunteer')}
             </Link>
-            <Link to="/newsletter" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/newsletter" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('소식받기', 'Newsletter')}
             </Link>
-            <Link to="/financial-report" className="text-gray-700 hover:text-blue-600 font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+            <Link to="/financial-report" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
               {t('재정보고', 'Financial Report')}
             </Link>
           </div>
@@ -216,17 +216,18 @@ const Header = memo(() => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
               <Button 
+                variant="accent"
                 size="lg" 
                 onClick={handleDonationClick}
-                className="!bg-blue-600 hover:!bg-blue-700 !text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
+                className="px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
               >
                 💝 {t('후원하기', 'Donate')}
               </Button>
               <VolunteerModal>
                 <Button 
-                  variant="outline" 
+                  variant="success"
                   size="lg"
-                  className="!border-2 !border-green-500 !text-green-700 hover:!bg-green-600 hover:!text-white px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px]"
+                  className="px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px]"
                 >
                   🙋‍♀️ {t('참여 신청하기', 'Apply to Volunteer')}
                 </Button>

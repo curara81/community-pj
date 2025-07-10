@@ -44,7 +44,7 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
       </DialogTrigger>
       <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto bg-stone-50 border-slate-300">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-blue-800">
+          <DialogTitle className="text-2xl font-bold text-center text-primary">
             🙋‍♀️ {t("참여 신청하기", "Apply to Volunteer")}
           </DialogTitle>
         </DialogHeader>
@@ -69,7 +69,8 @@ const VolunteerModal = ({ children }: VolunteerModalProps) => {
           <Button 
             type="submit" 
             disabled={isSubmitting}
-            className="w-full !bg-green-600 hover:!bg-green-700 !text-white font-semibold disabled:opacity-50"
+            variant="success"
+            className="w-full font-semibold disabled:opacity-50"
           >
             {isSubmitting ? t('신청 중...', 'Submitting...') : t('신청하기', 'Submit Application')}
           </Button>

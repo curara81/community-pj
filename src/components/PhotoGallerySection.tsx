@@ -73,7 +73,7 @@ const PhotoGallerySection = () => {
                   <PhotoGalleryModal category={gallery.category}>
                     <Button 
                       variant="outline"
-                      className="w-full border-secondary text-secondary hover:bg-secondary-lighter"
+                      className="w-full border-primary text-primary hover:bg-primary hover:text-white"
                     >
                       {t("사진 더보기", "View More Photos")}
                     </Button>

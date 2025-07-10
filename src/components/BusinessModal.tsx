@@ -71,7 +71,7 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
       </DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-muted border-muted-medium">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-secondary">
+          <DialogTitle className="text-2xl font-bold text-center text-primary">
             📌 {t("컴유니티 주요 사업 소개", "Comm.Unity Main Programs")}
           </DialogTitle>
         </DialogHeader>
@@ -100,11 +100,11 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
             </Card>
           ))}
           
-          <div className="bg-gradient-to-r from-secondary-lighter to-accent-lighter p-6 rounded-lg border border-muted-medium">
+          <div className="bg-gradient-to-r from-primary-lighter to-accent-lighter p-6 rounded-lg border border-muted-medium">
             <h3 className="text-lg font-semibold mb-3 text-center text-foreground">🚀 {t("2025년 목표", "2025 Goals")}</h3>
             <div className="grid md:grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-secondary">{t("10+ (가정)", "10+ Families")}</div>
+                <div className="text-2xl font-bold text-primary">{t("10+ (가정)", "10+ Families")}</div>
                 <div className="text-sm text-muted-foreground">{t("난민 가정 지원", "Refugee Family Support")}</div>
               </div>
               <div>

@@ -5,20 +5,20 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const CEOMessageSection = memo(() => {
   const { t } = useLanguage();
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section className="py-16 bg-gradient-to-br from-accent-lighter to-primary-lighter">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              {t("대표자", "CEO's")} <span className="text-blue-700">{t("인사말", "Message")}</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              {t("대표자", "CEO's")} <span className="text-accent">{t("인사말", "Message")}</span>
             </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
           </div>
           
           <div className="care-card rounded-2xl p-8 md:p-12 shadow-lg">
             <div className="prose prose-xl max-w-none">
-              <div className="text-gray-700 leading-relaxed space-y-8">
-                <p className="font-semibold text-xl text-gray-800">{t("컴유니티는...", "Comm.Unity is...")}</p>
+              <div className="text-muted-foreground leading-relaxed space-y-8">
+                <p className="font-semibold text-xl text-foreground">{t("컴유니티는...", "Comm.Unity is...")}</p>
                 
                 <p className="text-lg">
                   {t(

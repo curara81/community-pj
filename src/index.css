@@ -23,11 +23,11 @@
     --primary-light: 100 116 139; /* slate-500 */
     --primary-lighter: 148 163 184; /* slate-400 */
 
-    /* Secondary: 차분한 slate 계열 (노란색 제거) */
-    --secondary: 100 116 139; /* slate-500 - 차분하고 신뢰감 있는 톤 */
+    /* Secondary: 따뜻한 amber 계열 (따뜻함과 희망) */
+    --secondary: 245 158 11; /* amber-500 - 따뜻하고 활기찬 톤 */
     --secondary-foreground: 255 255 255;
-    --secondary-light: 148 163 184; /* slate-400 */
-    --secondary-lighter: 241 245 249; /* slate-100 */
+    --secondary-light: 251 191 36; /* amber-400 */
+    --secondary-lighter: 254 243 199; /* amber-100 */
 
     /* Accent: 부드러운 blue 계열 (희망과 평화) */
     --accent: 59 130 246; /* blue-500 - 희망적이고 신뢰감 있는 톤 */

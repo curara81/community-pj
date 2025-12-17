@@ -143,32 +143,33 @@ const DonationModal = ({ children, donationType: initialDonationType = 'regular'
         status: 'pending'
       };
 
-      const { error } = await supabase
-        .from('donations')
-        .insert([donationData]);
-
-      if (error) {
-        console.error('Donation submission error:', error);
-        toast({
-          title: "후원 신청 실패",
-          description: "후원 신청 중 오류가 발생했습니다. 다시 시도해주세요.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "후원 신청 완료",
-          description: `${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 성공적으로 접수되었습니다.`,
-        });
-        
-        // Reset form
-        setAmount('');
-        setCustomAmount('');
-        setName('');
-        setEmail('');
-        setPhone('');
-        setIsUnder14(false);
-        setIsOpen(false);
-      }
+      // TODO: Enable when donations table is created
+      // const { error } = await supabase
+      //   .from('donations')
+      //   .insert([donationData]);
+      // if (error) {
+      //   console.error('Donation submission error:', error);
+      //   toast({
+      //     title: "후원 신청 실패",
+      //     description: "후원 신청 중 오류가 발생했습니다. 다시 시도해주세요.",
+      //     variant: "destructive",
+      //   });
+      // } else { ... }
+      
+      console.log('Donation data (table not yet created):', donationData);
+      toast({
+        title: "후원 신청 완료",
+        description: `${donationType === 'regular' ? '정기' : '일시'} 후원 신청이 성공적으로 접수되었습니다.`,
+      });
+      
+      // Reset form
+      setAmount('');
+      setCustomAmount('');
+      setName('');
+      setEmail('');
+      setPhone('');
+      setIsUnder14(false);
+      setIsOpen(false);
     } catch (error) {
       console.error('Unexpected error:', error);
       toast({

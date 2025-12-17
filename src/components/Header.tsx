@@ -221,15 +221,15 @@ const Header = memo(() => {
                 onClick={handleDonationClick}
                 className="px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
               >
-                💝 {t('후원하기', 'Donate')}
+                ❤️ {t('후원하기', 'Donate')}
               </Button>
               <VolunteerModal>
                 <Button 
-                  variant="success"
+                  variant="outline"
                   size="lg"
-                  className="px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px]"
+                  className="px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px] bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50"
                 >
-                  🙋‍♀️ {t('참여 신청하기', 'Apply to Volunteer')}
+                  🌸 {t('참여 신청하기', 'Apply to Volunteer')}
                 </Button>
               </VolunteerModal>
             </div>

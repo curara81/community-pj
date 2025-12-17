@@ -37,21 +37,22 @@ const DonationHistoryModal = ({ open, onOpenChange }: DonationHistoryModalProps)
 
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('donations')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        toast({
-          title: "기부내역 조회 실패",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        setDonations(data || []);
-      }
+      // TODO: Enable when donations table is created
+      // const { data, error } = await supabase
+      //   .from('donations')
+      //   .select('*')
+      //   .eq('user_id', user.id)
+      //   .order('created_at', { ascending: false });
+      // if (error) {
+      //   toast({
+      //     title: "기부내역 조회 실패",
+      //     description: error.message,
+      //     variant: "destructive",
+      //   });
+      // } else {
+      //   setDonations(data || []);
+      // }
+      setDonations([]);
     } catch (error) {
       console.error('Error fetching donations:', error);
     } finally {

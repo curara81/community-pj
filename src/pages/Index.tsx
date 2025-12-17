@@ -1,6 +1,7 @@
 
 import Header from "@/components/Header";
 import IntroSection from "@/components/IntroSection";
+import WelcomePopup from "@/components/WelcomePopup";
 import CoreBusinessSection from "@/components/CoreBusinessSection";
 import PhotoGallerySection from "@/components/PhotoGallerySection";
 import DonationSection from "@/components/DonationSection";
@@ -51,6 +52,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <WelcomePopup />
       <SEOHead 
         title="사단법인 컴유니티(Comm-Unity) - 돌봄으로 하나 되는 사회"
         description="컴유니티는 난민, 취약계층, 자립준비청년 돌봄과 교육으로 따뜻한 사회를 만듭니다."

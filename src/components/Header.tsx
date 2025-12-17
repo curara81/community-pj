@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Languages } from "lucide-react";
+import { Languages, Heart, Flower2 } from "lucide-react";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -148,32 +148,40 @@ const Header = memo(() => {
             </div>
           </div>
           
-          {/* 두 번째 줄: 네비게이션 메뉴 */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-3 lg:gap-6">
-            <Link to="/" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('홈', 'Home')}
+          {/* 두 번째 줄: Comm.Unity 로고 + 네비게이션 메뉴 */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-between gap-3 lg:gap-6">
+            {/* Comm.Unity 로고 */}
+            <Link to="/" className="text-xl lg:text-2xl font-bold text-slate-800 whitespace-nowrap">
+              Comm.Unity
             </Link>
-            <Link to="/about" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('단체소개', 'About Us')}
-            </Link>
-            <Link to="/business" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('사업안내', 'Programs')}
-            </Link>
-            <Link to="/gallery" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('스토리', 'Stories')}
-            </Link>
-            <Link to="/donation" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('후원하기', 'Donate')}
-            </Link>
-            <Link to="/volunteer" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('동참하기', 'Volunteer')}
-            </Link>
-            <Link to="/newsletter" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('소식받기', 'Newsletter')}
-            </Link>
-            <Link to="/financial-report" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              {t('재정보고', 'Financial Report')}
-            </Link>
+            
+            {/* 네비게이션 메뉴 */}
+            <div className="flex flex-wrap justify-center gap-3 lg:gap-6">
+              <Link to="/" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('홈', 'Home')}
+              </Link>
+              <Link to="/about" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('단체소개', 'About Us')}
+              </Link>
+              <Link to="/business" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('사업안내', 'Programs')}
+              </Link>
+              <Link to="/gallery" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('스토리', 'Stories')}
+              </Link>
+              <Link to="/donation" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('후원하기', 'Donate')}
+              </Link>
+              <Link to="/volunteer" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('동참하기', 'Volunteer')}
+              </Link>
+              <Link to="/newsletter" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('소식받기', 'Newsletter')}
+              </Link>
+              <Link to="/financial-report" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
+                {t('재정보고', 'Financial Report')}
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -221,7 +229,8 @@ const Header = memo(() => {
                 onClick={handleDonationClick}
                 className="px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
               >
-                ❤️ {t('후원하기', 'Donate')}
+                <Heart className="w-5 h-5 mr-2" />
+                {t('후원하기', 'Donate')}
               </Button>
               <VolunteerModal>
                 <Button 
@@ -229,7 +238,8 @@ const Header = memo(() => {
                   size="lg"
                   className="px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px] bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50"
                 >
-                  🌸 {t('참여 신청하기', 'Apply to Volunteer')}
+                  <Flower2 className="w-5 h-5 mr-2" />
+                  {t('참여 신청하기', 'Apply to Volunteer')}
                 </Button>
               </VolunteerModal>
             </div>

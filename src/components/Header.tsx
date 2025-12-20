@@ -77,18 +77,26 @@ const Header = memo(() => {
                 onClick={() => window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=5H4nnMENSe", "_blank")}
                 variant="outline"
                 size="sm"
-                className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
+                className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !px-3 !h-[36px] flex items-center justify-center text-xs font-semibold"
               >
-                납부자 조회 서비스
+                납부자 조회
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={toggleLanguage}
-                className="!border-2 !border-secondary !text-secondary !bg-background hover:!bg-secondary hover:!text-secondary-foreground !w-[60px] !h-[40px] flex items-center justify-center"
+                className="!border-2 !border-secondary !text-secondary !bg-background hover:!bg-secondary hover:!text-secondary-foreground !w-[50px] !h-[36px] flex items-center justify-center"
               >
                 <Languages size={14} />
                 <span className="ml-1 text-xs">{language === 'ko' ? 'EN' : '한글'}</span>
+              </Button>
+              <Button
+                onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
+                variant="outline"
+                size="sm"
+                className="!border-2 !border-success !text-success !bg-background hover:!bg-success hover:!text-success-foreground !px-3 !h-[36px] flex items-center justify-center text-xs font-semibold"
+              >
+                기부금 영수증
               </Button>
             </div>
           </div>
@@ -134,17 +142,25 @@ const Header = memo(() => {
             </div>
             
             {/* 우측: 언어 전환 버튼과 로그인 버튼 */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={toggleLanguage}
-                className="!border-2 !border-secondary !text-secondary !bg-background hover:!bg-secondary hover:!text-secondary-foreground !h-[40px] flex items-center gap-2"
+                className="!border-2 !border-secondary !text-secondary !bg-background hover:!bg-secondary hover:!text-secondary-foreground !h-[36px] !px-3 flex items-center gap-1 text-xs"
               >
-                <Languages size={16} />
+                <Languages size={14} />
                 {language === 'ko' ? 'EN' : '한글'}
               </Button>
               <AuthButton />
+              <Button
+                onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
+                variant="outline"
+                size="sm"
+                className="!border-2 !border-success !text-success !bg-background hover:!bg-success hover:!text-success-foreground !h-[36px] !px-3 flex items-center justify-center text-xs font-semibold"
+              >
+                기부금 영수증
+              </Button>
             </div>
           </div>
           

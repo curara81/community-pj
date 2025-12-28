@@ -66,7 +66,7 @@ const WelcomePopup = () => {
               </div>
 
               <p className="text-center font-medium text-primary">
-                📅 구글폼 작성 및 제출기한: <span className="underline">12/23(화)까지</span>
+                📅 구글폼 작성 및 제출기한: <span className="underline">12/31(수)까지</span>
               </p>
             </div>
 

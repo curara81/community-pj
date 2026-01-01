@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { X, ExternalLink } from "lucide-react";
+import { X } from "lucide-react";
 
 const WelcomePopup = () => {
   const [open, setOpen] = useState(false);
@@ -42,59 +42,49 @@ const WelcomePopup = () => {
 
         {/* Content */}
         <div className="p-6 pt-8">
-          <div className="space-y-4">
+          <div className="space-y-5">
             {/* Title */}
-            <h2 className="text-lg md:text-xl font-bold text-gray-800 text-center">
-              📢 2025년 기부금영수증 발급 안내
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 text-center">
+              📢 기부금영수증 안내
             </h2>
 
             {/* Description */}
-            <div className="text-gray-700 text-sm leading-relaxed space-y-3">
-              <p>
-                저희 (사)컴유니티에서는 <strong>2025년도 기부금영수증 발급</strong>을 위하여 아래와 같이 후원자님의 개인정보를 구글폼에 입력해 주시면 국세청 연말정산 간소화 서비스 이용 및 전자기부금 영수증 조회가 가능합니다.
-              </p>
-              <p>
-                부부인 경우는 대표자 1인으로 등록해주세요. <span className="text-red-600 font-medium">개인정보가 등록되지 않을 경우에는 2025년 기부금영수증 발급이 불가함을 안내드립니다.</span>
+            <div className="text-gray-700 text-sm md:text-base leading-relaxed space-y-4">
+              <p className="text-center">
+                사단법인 컴유니티는<br />
+                <strong>2025년도 기부금영수증</strong>을 국세청 연말정산 간소화 서비스를 통해 제공합니다.
               </p>
               
-              <div className="bg-gray-50 p-3 rounded-lg space-y-2">
-                <p className="font-medium">📋 방법은 아래와 같습니다:</p>
-                <ul className="list-disc list-inside space-y-1 text-xs md:text-sm">
-                  <li>컴유니티가 문자로 보내드리는 개인 정보 제공을 위한 구글폼 작성 및 제출</li>
-                  <li className="text-gray-500">(소득세법 제 160조의 3에 의거한 기부금영수증 발급을 위한 절차)</li>
-                </ul>
+              <div className="bg-blue-50 p-4 rounded-lg space-y-2">
+                <p>✔ <strong>2026년 1월 15일</strong>부터 조회 가능합니다.</p>
+                <p>✔ 국세청 홈택스 → 연말정산 간소화 서비스에서 확인하실 수 있습니다.</p>
+                <p>✔ 자세한 이용 방법은 홈페이지 상단의 <strong>'국세청' 바로가기 버튼</strong>을 참고해 주세요.</p>
               </div>
 
-              <p className="text-center font-medium text-primary">
-                📅 구글폼 작성 및 제출기한: <span className="underline">12/31(수)까지</span>
-              </p>
-            </div>
-
-            {/* CTA Button */}
-            <Button
-              onClick={() => window.open("https://forms.gle/h3fY4v9FhXSrT6h46", "_blank")}
-              className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 text-base"
-            >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              구글폼 작성하기
-            </Button>
-
-            {/* Additional Info */}
-            <div className="text-xs text-gray-500 space-y-1 bg-blue-50 p-3 rounded-lg">
-              <p>✅ 2026년 1월 15일 이후 국세청 홈택스 사이트에서 연말정산 간소화 서비스로 기부금 영수증을 조회할 수 있습니다.</p>
+              <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                <p className="text-amber-800">
+                  ⚠️ 기부금영수증 발급을 위해 사전에 안내드린 <strong>개인정보 등록(구글폼 제출)</strong>이 완료되어야 합니다.
+                </p>
+                <p className="text-amber-700 text-sm mt-2">
+                  개인정보가 등록되지 않은 경우 기부금영수증 발급이 불가할 수 있습니다.
+                </p>
+              </div>
             </div>
 
             {/* Contact Info */}
-            <div className="text-xs text-gray-600 text-center border-t pt-3">
-              <p>※ 궁금하신 점은 아래 연락처로 문의 바랍니다.</p>
-              <p className="font-medium mt-1">홍지윤 간사 T. 010-9160-7544</p>
-              <p>Email. comm@comm-unity.or.kr</p>
+            <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
+              <p className="font-semibold text-gray-800 mb-2">📞 문의</p>
+              <div className="space-y-1">
+                <p><strong>홍지윤 간사</strong></p>
+                <p>T. 010-9160-7544</p>
+                <p>Email. comm@comm-unity.or.kr</p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Footer - Don't show today checkbox */}
-        <div className="border-t border-gray-100 px-6 py-3 bg-gray-50 flex items-center justify-between">
+        <div className="border-t border-gray-100 px-6 py-4 bg-gray-50 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Checkbox
               id="dontShowToday"

@@ -101,7 +101,7 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
           ))}
           
           <div className="bg-gradient-to-r from-primary-lighter to-accent-lighter p-6 rounded-lg border border-muted-medium">
-            <h3 className="text-lg font-semibold mb-3 text-center text-foreground">🚀 {t("2025년 목표", "2025 Goals")}</h3>
+            <h3 className="text-lg font-semibold mb-3 text-center text-foreground">🚀 {t("2026년 목표", "2026 Goals")}</h3>
             <div className="grid md:grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-primary">{t("10+ (가정)", "10+ Families")}</div>

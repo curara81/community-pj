@@ -1,16 +1,18 @@
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface TermsModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  children: React.ReactNode;
 }
 
-const TermsModal = ({ open, onOpenChange }: TermsModalProps) => {
+const TermsModal = ({ children }: TermsModalProps) => {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
       <DialogContent className="max-w-2xl max-h-[80vh] bg-white border-gray-200">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-center text-gray-800">
@@ -119,15 +121,6 @@ const TermsModal = ({ open, onOpenChange }: TermsModalProps) => {
             </div>
           </div>
         </ScrollArea>
-
-        <div className="flex justify-end">
-          <Button
-            onClick={() => onOpenChange(false)}
-            className="bg-stone-600 hover:bg-stone-700 text-white"
-          >
-            확인
-          </Button>
-        </div>
       </DialogContent>
     </Dialog>
   );

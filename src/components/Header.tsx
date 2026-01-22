@@ -23,7 +23,7 @@ const Header = memo(() => {
   }, []);
 
   const handleDonationClick = useCallback(() => {
-    window.open("https://link.donationbox.co.kr/donationBoxList.jsp?campaignuid=J9B2CMgACb", "_blank");
+    window.open("https://mrmweb.hsit.co.kr/v2?server=p1sI9yjs7eXe0DMIKf7SCA==&action=once&supportgroup=412", "_blank");
   }, []);
 
   return (

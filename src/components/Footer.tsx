@@ -1,6 +1,7 @@
 
 import React, { memo } from 'react';
 import LocationModal from "./LocationModal";
+import TermsModal from "./TermsModal";
 import CopyrightModal from "./CopyrightModal";
 import PrivacyModal from "./PrivacyModal";
 import EmailRefusalModal from "./EmailRefusalModal";
@@ -19,7 +20,7 @@ const Footer = memo(() => {
             <span className="md:hidden">{t("난민과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for refugees and vulnerable groups")}</span>
           </p>
           
-          {/* 정책 링크들 */}
+          {/* 정책 링크들 - 순서: 이용약관 | 개인정보처리방침 | 저작권정책 | 이메일무단수신거부 */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             <LocationModal>
               <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
@@ -27,17 +28,23 @@ const Footer = memo(() => {
               </button>
             </LocationModal>
             <span className="text-slate-400">|</span>
-            <CopyrightModal>
+            <TermsModal>
               <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
-                {t("저작권정책", "Copyright Policy")}
+                {t("이용약관", "Terms of Service")}
               </button>
-            </CopyrightModal>
+            </TermsModal>
             <span className="text-slate-400">|</span>
             <PrivacyModal>
               <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
                 {t("개인정보처리방침", "Privacy Policy")}
               </button>
             </PrivacyModal>
+            <span className="text-slate-400">|</span>
+            <CopyrightModal>
+              <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
+                {t("저작권정책", "Copyright Policy")}
+              </button>
+            </CopyrightModal>
             <span className="text-slate-400">|</span>
             <EmailRefusalModal>
               <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">

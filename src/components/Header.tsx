@@ -213,7 +213,7 @@ const Header = memo(() => {
             </Link>
             
             {/* 네비게이션 메뉴 */}
-            <div className="flex flex-wrap justify-center gap-3 lg:gap-6">
+            <div className="hidden md:flex flex-wrap justify-center gap-3 lg:gap-6">
               <Link to="/" className="text-muted-foreground hover:text-accent font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
                 {t('홈', 'Home')}
               </Link>

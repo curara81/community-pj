@@ -1,7 +1,7 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Languages, Heart, Flower2 } from "lucide-react";
+import { Languages, Heart, Flower2, Menu, X } from "lucide-react";
 import VolunteerModal from "./VolunteerModal";
 import AuthButton from "./AuthButton";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -9,6 +9,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = memo(() => {
   const { language, toggleLanguage, t } = useLanguage();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSeoulClick = useCallback(() => {
     window.open("https://www.seoul.go.kr/main/index.jsp", "_blank");
@@ -33,72 +34,112 @@ const Header = memo(() => {
         <div className="container mx-auto">
           {/* 모바일 레이아웃 */}
           <div className="block md:hidden">
-            {/* 첫 번째 줄: 서울특별시, 국세청 */}
-            <div className="flex flex-wrap justify-center gap-2 mb-3">
-              <Button 
-                variant="outline" 
+            {/* 모바일 상단: 외부 링크 버튼 + 햄버거 */}
+            <div className="flex items-center justify-between gap-1 mb-2">
+              <div className="flex flex-wrap gap-1">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleSeoulClick}
+                  className="!border !border-accent !bg-background !w-[100px] !h-[32px] flex items-center justify-center !p-0"
+                  title="서울특별시"
+                >
+                  <img 
+                    src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
+                    alt="서울특별시" 
+                    className="max-w-[80px] max-h-[20px] object-contain"
+                  />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleTaxOfficeClick}
+                  className="!border !border-success !bg-background !w-[100px] !h-[32px] flex items-center justify-center !p-0"
+                  title="국세청"
+                >
+                  <img 
+                    src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
+                    alt="국세청" 
+                    className="max-w-[90px] max-h-[24px] object-contain"
+                  />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleWhistleblowerClick}
+                  className="!border !border-destructive !text-destructive !bg-background !w-[80px] !h-[32px] flex items-center justify-center !text-[10px] font-semibold !p-0"
+                >
+                  공익위반 신고
+                </Button>
+              </div>
+              <Button
+                variant="outline"
                 size="sm"
-                onClick={handleSeoulClick}
-                className="!border-2 !border-accent !bg-background hover:!bg-accent-lighter !w-[140px] !h-[40px] flex items-center justify-center"
-                title="서울특별시"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="!w-[36px] !h-[32px] !p-0 flex items-center justify-center"
               >
-                <img 
-                  src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
-                  alt="서울특별시" 
-                  className="max-w-[120px] max-h-[25px] object-contain"
-                />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={handleTaxOfficeClick}
-                className="!border-2 !border-success !bg-background hover:!bg-success-lighter !w-[140px] !h-[40px] flex items-center justify-center"
-                title="국세청"
-              >
-                <img 
-                  src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
-                  alt="국세청" 
-                  className="max-w-[140px] max-h-[35px] object-contain"
-                />
+                {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
               </Button>
             </div>
             
-            {/* 두 번째 줄: 공익위반 신고, 납부자 조회 서비스, EN */}
-            <div className="flex flex-wrap justify-center gap-2 mb-4">
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={handleWhistleblowerClick}
-                className="!border-2 !border-destructive !text-destructive !bg-background hover:!bg-destructive hover:!text-destructive-foreground !w-[140px] !h-[40px] flex items-center justify-center text-sm font-semibold"
-              >
-                {t('공익위반 신고', 'Report Violation')}
-              </Button>
-              <Button
-                onClick={() => window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=5H4nnMENSe", "_blank")}
-                variant="outline"
-                size="sm"
-                className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !px-3 !h-[36px] flex items-center justify-center text-xs font-semibold"
-              >
-                납부자 조회
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={toggleLanguage}
-                className="!border-2 !border-secondary !text-secondary !bg-background hover:!bg-secondary hover:!text-secondary-foreground !w-[50px] !h-[36px] flex items-center justify-center"
-              >
-                <Languages size={14} />
-                <span className="ml-1 text-xs">{language === 'ko' ? 'EN' : '한글'}</span>
-              </Button>
-              <Button
-                onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
-                variant="outline"
-                size="sm"
-                className="!border-2 !border-success !text-success !bg-background hover:!bg-success hover:!text-success-foreground !px-3 !h-[36px] flex items-center justify-center text-xs font-semibold"
-              >
-                기부금 영수증
-              </Button>
-            </div>
+            {/* 모바일 햄버거 드롭다운 메뉴 */}
+            {isMobileMenuOpen && (
+              <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border p-3 mb-2 animate-fade-in">
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  <Link to="/" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('홈', 'Home')}
+                  </Link>
+                  <Link to="/about" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('단체소개', 'About Us')}
+                  </Link>
+                  <Link to="/business" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('사업안내', 'Programs')}
+                  </Link>
+                  <Link to="/gallery" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('스토리', 'Stories')}
+                  </Link>
+                  <Link to="/donation" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('후원하기', 'Donate')}
+                  </Link>
+                  <Link to="/volunteer" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('동참하기', 'Volunteer')}
+                  </Link>
+                  <Link to="/newsletter" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('소식받기', 'Newsletter')}
+                  </Link>
+                  <Link to="/financial-report" className="text-sm text-foreground hover:text-accent font-medium py-2 px-3 rounded-md hover:bg-muted transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('재정보고', 'Financial Report')}
+                  </Link>
+                </div>
+                <div className="flex flex-wrap gap-1 pt-2 border-t">
+                  <Button
+                    onClick={() => window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=5H4nnMENSe", "_blank")}
+                    variant="outline"
+                    size="sm"
+                    className="!border !border-accent !text-accent !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
+                  >
+                    납부자 조회
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={toggleLanguage}
+                    className="!border !border-secondary !text-secondary !bg-background !px-2 !h-[28px] text-[10px]"
+                  >
+                    <Languages size={12} />
+                    <span className="ml-1">{language === 'ko' ? 'EN' : '한글'}</span>
+                  </Button>
+                  <Button
+                    onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
+                    variant="outline"
+                    size="sm"
+                    className="!border !border-success !text-success !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
+                  >
+                    기부금 영수증
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* 데스크탑 레이아웃 */}
@@ -203,7 +244,7 @@ const Header = memo(() => {
       </nav>
 
       {/* 기존 헤더 콘텐츠 */}
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden pt-40 md:pt-32 lg:pt-0">
+      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden pt-28 md:pt-32 lg:pt-0">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-32 h-32 bg-amber-200 rounded-full blur-xl"></div>
@@ -222,18 +263,18 @@ const Header = memo(() => {
               />
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight px-4">
+            <h1 className="text-2xl sm:text-3xl md:text-8xl lg:text-9xl font-bold mb-6 md:mb-8 leading-tight px-4">
               <span className="block text-slate-800">{t('돌봄으로', 'Through Care,')}</span>
               <span className="block text-slate-800">{t('하나되는 사회,', 'United Society,')}</span>
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
-            <div className="space-y-6 mb-12 animate-slide-up px-4">
-              <p className="text-lg sm:text-xl md:text-3xl lg:text-4xl text-slate-700 font-semibold text-center">
+            <div className="space-y-4 md:space-y-6 mb-8 md:mb-12 animate-slide-up px-4">
+              <p className="text-base sm:text-lg md:text-3xl lg:text-4xl text-slate-700 font-semibold text-center">
                 <span className="block">{t('난민과 취약계층에게', 'To refugees and')}</span>
                 <span className="block">{t('희망과 돌봄을 전합니다.', 'vulnerable communities, we deliver hope and care.')}</span>
               </p>
-              <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-slate-600 font-medium text-center">
+              <p className="text-sm sm:text-base md:text-2xl lg:text-3xl text-slate-600 font-medium text-center">
                 {t('함께 사는 사회, 함께 살아내는 연대.', 'A society where we live together, solidarity where we survive together.')}
               </p>
             </div>

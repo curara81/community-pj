@@ -25,8 +25,8 @@ const FinancialReport = () => {
         title="재정보고 - 사단법인 컴유니티(Comm-Unity)"
         description="투명한 기부금 사용내역과 재정 현황을 공개합니다. 연간 기부금 모금액 및 활용실적을 확인하세요."
         keywords="재정보고, 기부금사용내역, 투명경영, 회계공시, 모금실적, 사용실적"
-        ogImage="http://www.comm-unity.or.kr/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png"
-        canonicalUrl="http://www.comm-unity.or.kr/financial-report"
+        ogImage="https://www.comm-unity.or.kr/lovable-uploads/97f02cb3-e112-40d1-8b4c-9d2a11e1c4a3.png"
+        canonicalUrl="https://www.comm-unity.or.kr/financial-report"
         structuredData={structuredData}
         pageType="article"
       />

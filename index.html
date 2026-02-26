@@ -12,11 +12,11 @@
     <meta name="naver-site-verification" content="478c64212a1f637ffa46b0eede549c17c2e6f07f" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://www.comm-unity.or.kr/" />
+    <link rel="canonical" href="https://www.comm-unity.or.kr/" />
     
     <!-- Hreflang -->
-    <link rel="alternate" hreflang="ko" href="http://www.comm-unity.or.kr/" />
-    <link rel="alternate" hreflang="x-default" href="http://www.comm-unity.or.kr/" />
+    <link rel="alternate" hreflang="ko" href="https://www.comm-unity.or.kr/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.comm-unity.or.kr/" />
 
     <!-- 네이버 검색 최적화 메타 태그 -->
     <meta property="og:site_name" content="사단법인 컴유니티" />
@@ -34,9 +34,10 @@
     <link rel="icon" href="/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png" type="image/png">
     
     <!-- Apple Touch Icon (모바일 홈화면 아이콘) -->
-    <link rel="apple-touch-icon" href="/src/assets/mobile-app-icon-final.png">
+    <link rel="apple-touch-icon" href="/mobile-app-icon-final.png">
     
-    <!-- PWA 매니페스트 관련 -->
+    <!-- PWA 매니페스트 -->
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2563eb">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -45,37 +46,37 @@
     <meta property="og:title" content="사단법인 컴유니티(Comm-Unity) - 돌봄으로 하나 되는 사회" />
     <meta property="og:description" content="컴유니티는 난민, 취약계층, 자립준비청년 돌봄과 교육으로 따뜻한 사회를 만듭니다." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png" />
-    <meta property="og:url" content="http://www.comm-unity.or.kr" />
+    <meta property="og:image" content="https://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png" />
+    <meta property="og:url" content="https://www.comm-unity.or.kr" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@community_org" />
     <meta name="twitter:title" content="사단법인 컴유니티(Comm-Unity) - 돌봄으로 하나 되는 사회" />
     <meta name="twitter:description" content="컴유니티는 난민, 취약계층, 자립준비청년 돌봄과 교육으로 따뜻한 사회를 만듭니다." />
-    <meta name="twitter:image" content="http://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png" />
+    <meta name="twitter:image" content="https://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png" />
 
     <!-- RSS 피드 링크 -->
-    <link rel="alternate" type="application/rss+xml" title="사단법인 컴유니티 RSS" href="http://www.comm-unity.or.kr/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="사단법인 컴유니티 RSS" href="https://www.comm-unity.or.kr/rss.xml" />
 
     <!-- 구조화된 데이터 (JSON-LD) - 네이버 검색 최적화 강화 -->
     <script type="application/ld+json">
     [
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "http://www.comm-unity.or.kr/#organization",
+        "@type": ["Organization", "NGO"],
+        "@id": "https://www.comm-unity.or.kr/#organization",
         "name": "사단법인 컴유니티",
         "alternateName": "Comm.Unity",
         "description": "난민사역과 취약계층을 위한 돌봄, 구호, 봉사 활동을 하는 비영리 단체",
-        "url": "http://www.comm-unity.or.kr",
+        "url": "https://www.comm-unity.or.kr",
         "logo": {
           "@type": "ImageObject",
-          "url": "http://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png",
+          "url": "https://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png",
           "width": 512,
           "height": 512
         },
         "foundingDate": "2025",
-        "organizationType": "비영리법인",
+        "nonprofitStatus": "NonprofitType",
         "legalName": "사단법인 컴유니티",
         "address": {
           "@type": "PostalAddress",
@@ -97,7 +98,7 @@
         "mission": "돌봄을 통해 사회를 하나로 연결하는 것",
         "slogan": "돌봄으로 하나 되는 사회",
         "sameAs": [
-          "http://www.comm-unity.or.kr"
+          "https://www.comm-unity.or.kr"
         ],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -108,34 +109,26 @@
           {
             "@type": "DonateAction",
             "name": "후원하기",
-            "target": "http://www.comm-unity.or.kr/donation"
+            "target": "https://www.comm-unity.or.kr/donation"
           },
           {
             "@type": "VolunteerAction", 
             "name": "자원봉사 신청",
-            "target": "http://www.comm-unity.or.kr/volunteer"
+            "target": "https://www.comm-unity.or.kr/volunteer"
           }
         ]
       },
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": "http://www.comm-unity.or.kr/#website",
-        "url": "http://www.comm-unity.or.kr",
+        "@id": "https://www.comm-unity.or.kr/#website",
+        "url": "https://www.comm-unity.or.kr",
         "name": "사단법인 컴유니티",
         "description": "컴유니티는 난민, 취약계층, 자립준비청년 돌봄과 교육으로 따뜻한 사회를 만듭니다.",
         "publisher": {
-          "@id": "http://www.comm-unity.or.kr/#organization"
+          "@id": "https://www.comm-unity.or.kr/#organization"
         },
-        "inLanguage": "ko-KR",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "http://www.comm-unity.or.kr/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
+        "inLanguage": "ko-KR"
       },
       {
         "@context": "https://schema.org",
@@ -145,25 +138,25 @@
             "@type": "ListItem",
             "position": 1,
             "name": "홈",
-            "item": "http://www.comm-unity.or.kr/"
+            "item": "https://www.comm-unity.or.kr/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "단체소개",
-            "item": "http://www.comm-unity.or.kr/about"
+            "item": "https://www.comm-unity.or.kr/about"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "사업안내",
-            "item": "http://www.comm-unity.or.kr/business"
+            "item": "https://www.comm-unity.or.kr/business"
           },
           {
             "@type": "ListItem",
             "position": 4,
             "name": "후원하기",
-            "item": "http://www.comm-unity.or.kr/donation"
+            "item": "https://www.comm-unity.or.kr/donation"
           }
         ]
       }

@@ -29,8 +29,8 @@ const faqItems = [
   {
     question: "기부금 영수증은 어떻게 받나요?",
     questionEn: "How do I get a donation receipt?",
-    answer: "상단 메뉴의 '기부금 영수증' 버튼을 클릭하여 신청 양식을 작성해 주시면 발급해 드립니다. 연말정산 시 소득공제 혜택을 받으실 수 있습니다.",
-    answerEn: "Click the 'Donation Receipt' button in the top menu and fill out the form. You can receive tax deduction benefits during year-end tax settlement.",
+    answer: "국세청 연말정산 간소화 서비스를 통해 자동으로 조회 가능합니다. 상단의 '기부금 영수증' 버튼을 참고해주세요.",
+    answerEn: "You can check automatically through the NTS year-end tax settlement service. Please refer to the 'Donation Receipt' button at the top.",
   },
   {
     question: "컴유니티의 주요 사업은 무엇인가요?",

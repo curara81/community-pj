@@ -27,6 +27,10 @@ const Donation = () => {
         canonicalUrl="https://www.comm-unity.or.kr/donation"
         structuredData={structuredData}
         pageType="article"
+        breadcrumbs={[
+          { name: "홈", url: "https://www.comm-unity.or.kr/" },
+          { name: "후원하기", url: "https://www.comm-unity.or.kr/donation" }
+        ]}
       />
       <SimpleHeader />
       <DonationSection />

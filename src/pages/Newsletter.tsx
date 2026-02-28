@@ -27,6 +27,10 @@ const Newsletter = () => {
         canonicalUrl="https://www.comm-unity.or.kr/newsletter"
         structuredData={structuredData}
         pageType="article"
+        breadcrumbs={[
+          { name: "홈", url: "https://www.comm-unity.or.kr/" },
+          { name: "소식받기", url: "https://www.comm-unity.or.kr/newsletter" }
+        ]}
       />
       <SimpleHeader />
       <NewsletterSection />

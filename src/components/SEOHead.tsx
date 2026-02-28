@@ -1,6 +1,11 @@
 
 import { useEffect } from 'react';
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -9,6 +14,7 @@ interface SEOHeadProps {
   canonicalUrl?: string;
   structuredData?: object;
   pageType?: 'website' | 'article' | 'profile';
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const SEOHead = ({ 
@@ -18,7 +24,8 @@ const SEOHead = ({
   ogImage, 
   canonicalUrl,
   structuredData,
-  pageType = 'website'
+  pageType = 'website',
+  breadcrumbs
 }: SEOHeadProps) => {
   useEffect(() => {
     // 페이지 제목 설정
@@ -99,7 +106,32 @@ const SEOHead = ({
       }
       structuredDataScript.textContent = JSON.stringify(structuredData);
     }
-  }, [title, description, keywords, ogImage, canonicalUrl, structuredData, pageType]);
+
+    // BreadcrumbList 구조화된 데이터 추가
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      const breadcrumbData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      };
+      let breadcrumbScript = document.querySelector('#breadcrumb-data') as HTMLScriptElement;
+      if (!breadcrumbScript) {
+        breadcrumbScript = document.createElement('script');
+        breadcrumbScript.id = 'breadcrumb-data';
+        breadcrumbScript.type = 'application/ld+json';
+        document.head.appendChild(breadcrumbScript);
+      }
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbData);
+    } else {
+      const existing = document.querySelector('#breadcrumb-data');
+      if (existing) existing.remove();
+    }
+  }, [title, description, keywords, ogImage, canonicalUrl, structuredData, pageType, breadcrumbs]);
 
   return null;
 };

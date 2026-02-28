@@ -29,6 +29,10 @@ const FinancialReport = () => {
         canonicalUrl="https://www.comm-unity.or.kr/financial-report"
         structuredData={structuredData}
         pageType="article"
+        breadcrumbs={[
+          { name: "홈", url: "https://www.comm-unity.or.kr/" },
+          { name: "재정보고", url: "https://www.comm-unity.or.kr/financial-report" }
+        ]}
       />
       <SimpleHeader />
       <div className="py-16 bg-gray-50">

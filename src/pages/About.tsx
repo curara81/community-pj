@@ -30,6 +30,10 @@ const About = () => {
         canonicalUrl="https://www.comm-unity.or.kr/about"
         structuredData={structuredData}
         pageType="profile"
+        breadcrumbs={[
+          { name: "홈", url: "https://www.comm-unity.or.kr/" },
+          { name: "단체소개", url: "https://www.comm-unity.or.kr/about" }
+        ]}
       />
       <SimpleHeader />
       <IntroSection />

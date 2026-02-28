@@ -7,6 +7,7 @@ import PhotoGallerySection from "@/components/PhotoGallerySection";
 import DonationSection from "@/components/DonationSection";
 import VolunteerSection from "@/components/VolunteerSection";
 import NewsletterSection from "@/components/NewsletterSection";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import SEOHead from "@/components/SEOHead";
@@ -69,6 +70,7 @@ const Index = () => {
       <PhotoGallerySection />
       <DonationSection />
       <VolunteerSection />
+      <FAQSection />
       <NewsletterSection />
       <Footer />
       <ScrollToTop />

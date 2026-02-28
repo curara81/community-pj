@@ -27,6 +27,10 @@ const Gallery = () => {
         canonicalUrl="https://www.comm-unity.or.kr/gallery"
         structuredData={structuredData}
         pageType="article"
+        breadcrumbs={[
+          { name: "홈", url: "https://www.comm-unity.or.kr/" },
+          { name: "스토리", url: "https://www.comm-unity.or.kr/gallery" }
+        ]}
       />
       <SimpleHeader />
       <PhotoGallerySection />

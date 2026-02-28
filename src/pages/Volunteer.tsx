@@ -27,6 +27,10 @@ const Volunteer = () => {
         canonicalUrl="https://www.comm-unity.or.kr/volunteer"
         structuredData={structuredData}
         pageType="article"
+        breadcrumbs={[
+          { name: "홈", url: "https://www.comm-unity.or.kr/" },
+          { name: "동참하기", url: "https://www.comm-unity.or.kr/volunteer" }
+        ]}
       />
       <SimpleHeader />
       <VolunteerSection />

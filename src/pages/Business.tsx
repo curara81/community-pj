@@ -28,6 +28,10 @@ const Business = () => {
         canonicalUrl="https://www.comm-unity.or.kr/business"
         structuredData={structuredData}
         pageType="article"
+        breadcrumbs={[
+          { name: "홈", url: "https://www.comm-unity.or.kr/" },
+          { name: "사업안내", url: "https://www.comm-unity.or.kr/business" }
+        ]}
       />
       <SimpleHeader />
       <CoreBusinessSection />

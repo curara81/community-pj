@@ -113,14 +113,6 @@ const Header = memo(() => {
                 </div>
                 <div className="flex flex-wrap gap-1 pt-2 border-t">
                   <Button
-                    onClick={() => window.open("https://link.donationbox.co.kr/userPaymentsLogin.jsp?uid=5H4nnMENSe", "_blank")}
-                    variant="outline"
-                    size="sm"
-                    className="!border !border-accent !text-accent !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
-                  >
-                    납부자 조회
-                  </Button>
-                  <Button
                     variant="outline"
                     size="sm"
                     onClick={toggleLanguage}
@@ -193,7 +185,6 @@ const Header = memo(() => {
                 <Languages size={14} />
                 {language === 'ko' ? 'EN' : '한글'}
               </Button>
-              <AuthButton />
               <Button
                 onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
                 variant="outline"

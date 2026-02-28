@@ -1,5 +1,6 @@
 
 import React, { memo } from 'react';
+import { Instagram, Youtube, MessageCircle } from 'lucide-react';
 import LocationModal from "./LocationModal";
 import TermsModal from "./TermsModal";
 import CopyrightModal from "./CopyrightModal";
@@ -61,8 +62,21 @@ const Footer = memo(() => {
             <p>{t("이메일문의 comm@comm-unity.or.kr", "Email comm@comm-unity.or.kr")}</p>
           </div>
           
+          {/* 소셜미디어 링크 */}
+          <div className="flex justify-center gap-5 mb-6">
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors" aria-label="Instagram">
+              <Instagram size={22} />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors" aria-label="YouTube">
+              <Youtube size={22} />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors" aria-label="KakaoTalk">
+              <MessageCircle size={22} />
+            </a>
+          </div>
+          
           <p className="text-slate-400 text-sm">
-            © 2025 Comm.Unity. All rights reserved.
+            © 2025-2026 Comm.Unity. All rights reserved.
           </p>
         </div>
       </div>

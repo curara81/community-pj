@@ -235,7 +235,7 @@ const Header = memo(() => {
       </nav>
 
       {/* 기존 헤더 콘텐츠 */}
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden pt-28 md:pt-32 lg:pt-0">
+      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden pt-32 md:pt-40 lg:pt-8">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-32 h-32 bg-amber-200 rounded-full blur-xl"></div>

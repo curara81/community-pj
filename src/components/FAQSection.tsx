@@ -17,14 +17,14 @@ const faqItems = [
   {
     question: "후원금은 어떻게 사용되나요?",
     questionEn: "How are donations used?",
-    answer: "후원금은 난민 지원, 취약계층 돌봄, 자립준비청년 교육 프로그램 등에 투명하게 사용되며, 재정보고 페이지에서 상세 내역을 확인하실 수 있습니다.",
-    answerEn: "Donations are transparently used for refugee support, vulnerable community care, and youth education programs. Detailed reports are available on our Financial Report page.",
+    answer: "후원금은 난민 정착 지원, 취약계층 생활 돌봄, 자립준비청년 교육 프로그램 등에 투명하게 사용됩니다. 재정보고 페이지에서 확인하실 수 있습니다.",
+    answerEn: "Donations are transparently used for refugee settlement support, vulnerable community care, and youth education programs. Details are available on our Financial Report page.",
   },
   {
     question: "자원봉사는 어떻게 참여하나요?",
     questionEn: "How can I volunteer?",
-    answer: "동참하기 페이지에서 자원봉사 신청서를 작성해 주시면, 담당자가 확인 후 안내 연락을 드립니다. 돌봄, 교육, 상담 등 다양한 분야에서 참여가 가능합니다.",
-    answerEn: "Fill out the volunteer application on our Volunteer page, and our team will contact you. You can participate in care, education, counseling, and more.",
+    answer: "동참하기 페이지에서 봉사 신청서를 작성해주시면 담당자가 연락드립니다. 번역/통역, 멘토링, 교육, 행정 등 다양한 분야에서 참여 가능합니다.",
+    answerEn: "Fill out the volunteer form on our Volunteer page and our team will contact you. You can participate in translation, mentoring, education, administration, and more.",
   },
   {
     question: "기부금 영수증은 어떻게 받나요?",

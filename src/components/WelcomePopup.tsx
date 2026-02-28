@@ -52,7 +52,7 @@ const WelcomePopup = () => {
             <div className="text-gray-700 text-sm md:text-base leading-relaxed space-y-4">
               <p className="text-center">
                 사단법인 컴유니티는<br />
-                <strong>2025년도 기부금영수증</strong>을 국세청 연말정산 간소화 서비스를 통해 제공합니다.
+                <strong>2025년도 기부금영수증 (연말정산용)</strong>을 국세청 연말정산 간소화 서비스를 통해 제공합니다.
               </p>
               
               <div className="bg-blue-50 p-4 rounded-lg space-y-2">

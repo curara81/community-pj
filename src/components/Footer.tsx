@@ -1,10 +1,10 @@
 
 import React, { memo } from 'react';
 import { Instagram, Youtube, MessageCircle } from 'lucide-react';
+import { Link } from "react-router-dom";
 import LocationModal from "./LocationModal";
 import TermsModal from "./TermsModal";
 import CopyrightModal from "./CopyrightModal";
-import PrivacyModal from "./PrivacyModal";
 import EmailRefusalModal from "./EmailRefusalModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -35,11 +35,9 @@ const Footer = memo(() => {
               </button>
             </TermsModal>
             <span className="text-slate-400">|</span>
-            <PrivacyModal>
-              <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
-                {t("개인정보처리방침", "Privacy Policy")}
-              </button>
-            </PrivacyModal>
+            <Link to="/privacy" className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
+              {t("개인정보처리방침", "Privacy Policy")}
+            </Link>
             <span className="text-slate-400">|</span>
             <CopyrightModal>
               <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">

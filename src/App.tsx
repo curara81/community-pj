@@ -14,6 +14,7 @@ import Donation from "./pages/Donation";
 import Volunteer from "./pages/Volunteer";
 import Newsletter from "./pages/Newsletter";
 import FinancialReport from "./pages/FinancialReport";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
               <Route path="/volunteer" element={<Volunteer />} />
               <Route path="/newsletter" element={<Newsletter />} />
               <Route path="/financial-report" element={<FinancialReport />} />
+              <Route path="/privacy" element={<Privacy />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -14,6 +14,7 @@ const Terms = () => {
 
   return (
     <div className="min-h-screen">
+      <SimpleHeader showBanner={false} />
       <SEOHead
         title="이용약관 - 사단법인 컴유니티(Comm-Unity)"
         description="사단법인 컴유니티 홈페이지 이용약관입니다. 서비스 이용에 관한 권리, 의무 및 책임사항을 안내합니다."
@@ -21,7 +22,7 @@ const Terms = () => {
         canonicalUrl="https://www.comm-unity.or.kr/terms"
         structuredData={structuredData}
       />
-      <SimpleHeader />
+      
       <main className="bg-background py-12 md:py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <article className="prose prose-slate max-w-none">

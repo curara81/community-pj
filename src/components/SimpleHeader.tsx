@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import AuthButton from "./AuthButton";
 
-const SimpleHeader = () => {
+const SimpleHeader = ({ showBanner = true }: { showBanner?: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSeoulClick = () => {
@@ -28,6 +28,7 @@ const SimpleHeader = () => {
     <nav className="sticky top-0 z-20 bg-white shadow-sm border-b p-3 md:p-6">
       <div className="container mx-auto">
         {/* 첫 번째 줄: 좌측 로고 버튼들과 우측 로그인 버튼 */}
+        {showBanner && (
         <div className="flex flex-wrap justify-between items-center gap-2 md:gap-3 mb-4">
           {/* 좌측: 로고 버튼들 */}
           <div className="flex flex-wrap gap-2 md:gap-3">
@@ -69,6 +70,7 @@ const SimpleHeader = () => {
           
           {/* 우측: 로그인 버튼 (데스크탑에서만 표시) */}
         </div>
+        )}
         
         {/* 두 번째 줄: 네비게이션 메뉴와 모바일 메뉴 버튼 */}
         <div className="flex flex-wrap items-center justify-between">

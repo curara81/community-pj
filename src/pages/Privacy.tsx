@@ -14,6 +14,7 @@ const Privacy = () => {
 
   return (
     <div className="min-h-screen">
+      <SimpleHeader showBanner={false} />
       <SEOHead
         title="개인정보처리방침 - 사단법인 컴유니티(Comm-Unity)"
         description="사단법인 컴유니티의 개인정보처리방침입니다. 개인정보의 수집, 이용, 보유, 파기 등에 관한 사항을 안내합니다."
@@ -21,7 +22,7 @@ const Privacy = () => {
         canonicalUrl="https://www.comm-unity.or.kr/privacy"
         structuredData={structuredData}
       />
-      <SimpleHeader />
+      
       <main className="bg-background py-12 md:py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <article className="prose prose-slate max-w-none">

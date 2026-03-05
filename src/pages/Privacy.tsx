@@ -212,7 +212,7 @@ const Privacy = () => {
                 <ul className="text-muted-foreground space-y-1">
                   <li>성명: 심서윤</li>
                   <li>소속 및 직위: 컴유니티 매니저</li>
-                  <li>전화번호: 070-4667-2733</li>
+                  <li>전화번호: 070-5133-7280</li>
                   <li>이메일: comm@comm-unity.or.kr</li>
                 </ul>
               </div>

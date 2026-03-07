@@ -62,6 +62,8 @@ const CEOMessageSection = memo(() => {
                     alt={t("박종렬 대표 서명", "CEO Park Jong-ryeol's signature")}
                     className="h-20 object-contain mix-blend-multiply"
                     style={{ filter: 'contrast(1.2) brightness(0.8)' }}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

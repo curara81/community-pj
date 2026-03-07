@@ -43,6 +43,8 @@ const SimpleHeader = ({ showBanner = true }: { showBanner?: boolean }) => {
                 src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
                 alt="서울특별시" 
                 className="max-w-[120px] sm:max-w-[140px] lg:max-w-[160px] max-h-[25px] sm:max-h-[30px] lg:max-h-[35px] object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </Button>
             <Button 
@@ -56,6 +58,8 @@ const SimpleHeader = ({ showBanner = true }: { showBanner?: boolean }) => {
                 src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
                 alt="국세청" 
                 className="max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] max-h-[35px] sm:max-h-[40px] lg:max-h-[45px] object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </Button>
             <Button 

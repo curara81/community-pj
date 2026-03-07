@@ -1,16 +1,17 @@
-
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import IntroSection from "@/components/IntroSection";
-import WelcomePopup from "@/components/WelcomePopup";
-import CoreBusinessSection from "@/components/CoreBusinessSection";
-import PhotoGallerySection from "@/components/PhotoGallerySection";
-import DonationSection from "@/components/DonationSection";
-import VolunteerSection from "@/components/VolunteerSection";
-import NewsletterSection from "@/components/NewsletterSection";
-import FAQSection from "@/components/FAQSection";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
 import SEOHead from "@/components/SEOHead";
+import Footer from "@/components/Footer";
+
+const WelcomePopup = lazy(() => import("@/components/WelcomePopup"));
+const CoreBusinessSection = lazy(() => import("@/components/CoreBusinessSection"));
+const PhotoGallerySection = lazy(() => import("@/components/PhotoGallerySection"));
+const DonationSection = lazy(() => import("@/components/DonationSection"));
+const VolunteerSection = lazy(() => import("@/components/VolunteerSection"));
+const NewsletterSection = lazy(() => import("@/components/NewsletterSection"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const ScrollToTop = lazy(() => import("@/components/ScrollToTop"));
 
 const Index = () => {
   const structuredData = {
@@ -53,7 +54,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <WelcomePopup />
       <SEOHead 
         title="사단법인 컴유니티(Comm-Unity) - 돌봄으로 하나 되는 사회"
         description="사단법인 컴유니티(Comm-Unity)는 난민, 취약계층, 자립준비청년을 위한 돌봄과 교육 활동을 하는 비영리 단체입니다."
@@ -66,14 +66,17 @@ const Index = () => {
       />
       <Header />
       <IntroSection />
-      <CoreBusinessSection />
-      <PhotoGallerySection />
-      <DonationSection />
-      <VolunteerSection />
-      <FAQSection />
-      <NewsletterSection />
+      <Suspense fallback={null}>
+        <WelcomePopup />
+        <CoreBusinessSection />
+        <PhotoGallerySection />
+        <DonationSection />
+        <VolunteerSection />
+        <FAQSection />
+        <NewsletterSection />
+        <ScrollToTop />
+      </Suspense>
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

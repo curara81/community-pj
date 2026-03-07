@@ -251,6 +251,11 @@ const Header = memo(() => {
                 src="/lovable-uploads/a8a64d27-d20f-4ce7-96ca-1c7063ad7838.png" 
                 alt="돌봄으로 하나 되는 사회" 
                 className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-contain"
+                width={320}
+                height={320}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
             

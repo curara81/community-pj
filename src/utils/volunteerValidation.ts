@@ -11,5 +11,17 @@ export const validatePhone = (phone: string): boolean => {
 };
 
 export const sanitizeInput = (input: string): string => {
-  return input.trim().replace(/[<>]/g, '');
+  return input
+    .trim()
+    .replace(/[<>&"'/]/g, (char) => {
+      const entities: Record<string, string> = {
+        '<': '&lt;',
+        '>': '&gt;',
+        '&': '&amp;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        '/': '&#x2F;',
+      };
+      return entities[char] || char;
+    });
 };

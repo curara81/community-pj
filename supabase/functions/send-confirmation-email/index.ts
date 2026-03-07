@@ -64,7 +64,7 @@ Deno.serve(async (req) => {
     return new Response(
       JSON.stringify({
         error: {
-          message: error.message,
+          message: 'An error occurred processing your request',
         },
       }),
       {

@@ -20,16 +20,31 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // 정적 파일 직접 서빙 설정
   publicDir: 'public',
   build: {
+    target: 'es2020',
+    cssCodeSplit: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
-      }
-    }
+      },
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-ui': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-select',
+          ],
+          'vendor-data': ['@tanstack/react-query', '@supabase/supabase-js'],
+          'vendor-charts': ['recharts'],
+        },
+      },
+    },
   },
-  // 개발 서버에서 XML 파일들이 직접 서빙되도록 설정
   optimizeDeps: {
     exclude: ['*.xml']
   }

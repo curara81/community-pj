@@ -1,4 +1,4 @@
-
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,19 +6,34 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Business from "./pages/Business";
-import Gallery from "./pages/Gallery";
-import Donation from "./pages/Donation";
-import Volunteer from "./pages/Volunteer";
-import Newsletter from "./pages/Newsletter";
-import FinancialReport from "./pages/FinancialReport";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+import Index from "./pages/Index";
+
+const About = lazy(() => import("./pages/About"));
+const Business = lazy(() => import("./pages/Business"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Donation = lazy(() => import("./pages/Donation"));
+const Volunteer = lazy(() => import("./pages/Volunteer"));
+const Newsletter = lazy(() => import("./pages/Newsletter"));
+const FinancialReport = lazy(() => import("./pages/FinancialReport"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      gcTime: 10 * 60 * 1000,
+    },
+  },
+});
+
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -28,20 +43,21 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/business" element={<Business />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/donation" element={<Donation />} />
-              <Route path="/volunteer" element={<Volunteer />} />
-              <Route path="/newsletter" element={<Newsletter />} />
-              <Route path="/financial-report" element={<FinancialReport />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/business" element={<Business />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/donation" element={<Donation />} />
+                <Route path="/volunteer" element={<Volunteer />} />
+                <Route path="/newsletter" element={<Newsletter />} />
+                <Route path="/financial-report" element={<FinancialReport />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>

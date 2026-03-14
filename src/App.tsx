@@ -58,6 +58,9 @@ const App = () => (
                 <Route path="/financial-report" element={<FinancialReport />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/copyright" element={<CopyrightPage />} />
+                <Route path="/email-refusal" element={<EmailRefusal />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

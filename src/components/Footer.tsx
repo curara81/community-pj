@@ -2,9 +2,6 @@
 import React, { memo } from 'react';
 import { Instagram, Youtube, MessageCircle } from 'lucide-react';
 import { Link } from "react-router-dom";
-import LocationModal from "./LocationModal";
-import CopyrightModal from "./CopyrightModal";
-import EmailRefusalModal from "./EmailRefusalModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = memo(() => {
@@ -20,13 +17,11 @@ const Footer = memo(() => {
             <span className="md:hidden">{t("난민과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for refugees and vulnerable groups")}</span>
           </p>
           
-          {/* 정책 링크들 - 순서: 이용약관 | 개인정보처리방침 | 저작권정책 | 이메일무단수신거부 */}
+          {/* 정책 링크들 - 순서: 찾아오시는 길 | 이용약관 | 개인정보처리방침 | 저작권정책 | 이메일무단수신거부 */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
-            <LocationModal>
-              <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
-                {t("찾아오시는 길", "Directions")}
-              </button>
-            </LocationModal>
+            <Link to="/location" className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
+              {t("찾아오시는 길", "Directions")}
+            </Link>
             <span className="text-slate-400">|</span>
             <Link to="/terms" className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
               {t("이용약관", "Terms of Service")}
@@ -36,17 +31,13 @@ const Footer = memo(() => {
               {t("개인정보처리방침", "Privacy Policy")}
             </Link>
             <span className="text-slate-400">|</span>
-            <CopyrightModal>
-              <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
-                {t("저작권정책", "Copyright Policy")}
-              </button>
-            </CopyrightModal>
+            <Link to="/copyright" className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
+              {t("저작권정책", "Copyright Policy")}
+            </Link>
             <span className="text-slate-400">|</span>
-            <EmailRefusalModal>
-              <button className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
-                {t("이메일무단수신거부", "Email Opt-out")}
-              </button>
-            </EmailRefusalModal>
+            <Link to="/email-refusal" className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
+              {t("이메일무단수신거부", "Email Opt-out")}
+            </Link>
           </div>
           
           {/* 조직 정보 */}

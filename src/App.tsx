@@ -18,6 +18,9 @@ const Newsletter = lazy(() => import("./pages/Newsletter"));
 const FinancialReport = lazy(() => import("./pages/FinancialReport"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
+const Location = lazy(() => import("./pages/Location"));
+const CopyrightPage = lazy(() => import("./pages/Copyright"));
+const EmailRefusal = lazy(() => import("./pages/EmailRefusal"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({

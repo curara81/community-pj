@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { X } from "lucide-react";
 
 const WelcomePopup = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // 팝업 비활성화됨
   const [dontShowToday, setDontShowToday] = useState(false);
 
   useEffect(() => {

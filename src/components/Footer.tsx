@@ -2,9 +2,6 @@
 import React, { memo } from 'react';
 import { Instagram, Youtube, MessageCircle } from 'lucide-react';
 import { Link } from "react-router-dom";
-import LocationModal from "./LocationModal";
-import CopyrightModal from "./CopyrightModal";
-import EmailRefusalModal from "./EmailRefusalModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = memo(() => {

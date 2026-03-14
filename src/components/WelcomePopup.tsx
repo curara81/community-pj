@@ -5,22 +5,23 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { X } from "lucide-react";
 
 const WelcomePopup = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // 팝업 비활성화됨
   const [dontShowToday, setDontShowToday] = useState(false);
 
-  useEffect(() => {
-    const lastDismissed = localStorage.getItem("welcomePopupDismissed");
-    const dismissedTime = lastDismissed ? parseInt(lastDismissed, 10) : 0;
-    const now = Date.now();
-    const twentyFourHours = 24 * 60 * 60 * 1000;
-    
-    if (now - dismissedTime > twentyFourHours) {
-      const timer = setTimeout(() => {
-        setOpen(true);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+  // 팝업 비활성화 - 자동 열림 중단
+  // useEffect(() => {
+  //   const lastDismissed = localStorage.getItem("welcomePopupDismissed");
+  //   const dismissedTime = lastDismissed ? parseInt(lastDismissed, 10) : 0;
+  //   const now = Date.now();
+  //   const twentyFourHours = 24 * 60 * 60 * 1000;
+  //   
+  //   if (now - dismissedTime > twentyFourHours) {
+  //     const timer = setTimeout(() => {
+  //       setOpen(true);
+  //     }, 500);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, []);
 
   const handleClose = () => {
     if (dontShowToday) {

@@ -24,7 +24,7 @@ const Header = memo(() => {
   }, []);
 
   const handleDonationClick = useCallback(() => {
-    window.open("https://mrmweb.hsit.co.kr/v2?server=p1sI9yjs7eXe0DMIKf7SCA==&action=once&supportgroup=412", "_blank");
+    window.open("https://online.mrm.or.kr/jp40Mng", "_blank");
   }, []);
 
   return (

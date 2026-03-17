@@ -94,7 +94,7 @@ export const useVolunteerForm = () => {
       //   .insert([sanitizedData]);
       // if (error) { ... }
       
-      console.log('Volunteer application data (table not yet created):', sanitizedData);
+      // TODO: Enable when volunteer_applications table is created
       toast({
         title: "신청 완료",
         description: "자원봉사 신청이 성공적으로 접수되었습니다. 검토 후 연락드리겠습니다.",

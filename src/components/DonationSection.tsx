@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Heart } from "lucide-react";
 
-const DONATION_URL = "https://mrmweb.hsit.co.kr/v2?server=p1sI9yjs7eXe0DMIKf7SCA==&action=once&supportgroup=412";
+const DONATION_URL = "https://online.mrm.or.kr/jp40Mn";
 
 const DonationSection = () => {
   const { t } = useLanguage();

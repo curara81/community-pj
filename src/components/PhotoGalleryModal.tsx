@@ -22,7 +22,8 @@ const PhotoGalleryModal = ({ children, category }: PhotoGalleryModalProps) => {
             { src: '/lovable-uploads/2413879a-9d4d-4ff9-ae09-106e6d42996a.png', alt: '난민아동과 함께하는 문화 교류' },
             { src: '/lovable-uploads/8315089d-a0b2-478b-9596-7ea3be4f933c.png', alt: '난민 숙소 환경 개선 지원' },
             { src: '/lovable-uploads/dc46daf3-d1bc-4415-9e5f-4b01d374429a.png', alt: '난민 숙소 환경 개선 지원' },
-            { src: '/lovable-uploads/86c70a35-0487-4161-8b97-b9f3042f47ab.png', alt: '난민 가족들과 함께하는 체육 활동' }
+            { src: '/lovable-uploads/86c70a35-0487-4161-8b97-b9f3042f47ab.png', alt: '난민 가족들과 함께하는 체육 활동' },
+            { src: '/lovable-uploads/christmas-refugee-event.jpg', alt: '난민 아동들과 함께하는 성탄절 행사' }
           ]
         };
       case 'care':

@@ -29,8 +29,8 @@ const CEOMessageSection = memo(() => {
                 
                 <p className="text-lg">
                   {t(
-                    "국가 간 분쟁과 내란으로 속출하고 있는 난민 문제는 이제 전 세계적 사회구조 변화의 기폭제가 되었으나 이를 외면하고 있는 상황이 지속된다면 우리 자녀세대의 미래는 더욱 불투명해 질 것입니다.",
-                    "The refugee problem emerging from international conflicts and civil wars has now become a catalyst for global social structural change, but if we continue to turn away from this, the future of our children's generation will become even more uncertain."
+                    "국가 간 분쟁과 내란으로 속출하고 있는 다문화 가정 문제는 이제 전 세계적 사회구조 변화의 기폭제가 되었으나 이를 외면하고 있는 상황이 지속된다면 우리 자녀세대의 미래는 더욱 불투명해 질 것입니다.",
+                    "The multicultural family issues emerging from international conflicts and civil wars have now become a catalyst for global social structural change, but if we continue to turn away from this, the future of our children's generation will become even more uncertain."
                   )}
                 </p>
                 

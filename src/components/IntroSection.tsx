@@ -18,7 +18,7 @@ const IntroSection = memo(() => {
           <div className="care-card rounded-2xl p-8 md:p-12 shadow-sm hover-lift">
             <p className="text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground mb-8">
               {t('컴유니티(Comm.Unity)는', 'Comm.Unity is a')} <br className="block md:hidden" />
-              <strong className="text-primary">{t('난민사역과 돌봄의 사각지대', 'refugee ministry and care blind spots')}</strong>{t('에 놓인', ' that are placed in')} <br className="block md:hidden" />
+              <strong className="text-primary">{t('다문화 가정 사역과 돌봄의 사각지대', 'multicultural family ministry and care blind spots')}</strong>{t('에 놓인', ' that are placed in')} <br className="block md:hidden" />
               {t('이웃들과 함께하기 위해 설립된', 'established to be with neighbors')} <br className="block md:hidden" />
               {t('비영리 사단법인입니다.', 'non-profit corporation.')}
               <br /><br />

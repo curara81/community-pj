@@ -16,7 +16,7 @@ const About = () => {
       "@type": "Organization",
       "name": "사단법인 컴유니티",
       "alternateName": "Comm.Unity",
-      "description": "난민과 취약계층을 위한 돌봄 서비스 제공 단체"
+      "description": "다문화 가정과 취약계층을 위한 돌봄 서비스 제공 단체"
     }
   };
 

@@ -10,7 +10,7 @@ const Business = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "컴유니티 사업안내",
-    "description": "난민 지원, 취약계층 돌봄, 자립준비청년 교육 사업",
+    "description": "다문화 가정 지원, 취약계층 돌봄, 자립준비청년 교육 사업",
     "provider": {
       "@type": "Organization",
       "name": "사단법인 컴유니티"

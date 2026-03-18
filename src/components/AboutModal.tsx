@@ -65,9 +65,9 @@ const AboutModal = ({ children }: AboutModalProps) => {
             <div className="space-y-1 text-sm text-muted-foreground">
               <p><strong>단체명:</strong> 사단법인 컴유니티</p>
               <p><strong>고유번호:</strong> 130-82-19150</p>
-              <p><strong>대표자:</strong> 박종렬</p>
+              <p><strong>대표자:</strong> 박준섭</p>
               <p><strong>설립연도:</strong> 2025년</p>
-              <p><strong>연락처:</strong> 070-4667-2733</p>
+              <p><strong>연락처:</strong> 070-5133-7280</p>
               <p><strong>이메일:</strong> comm@comm-unity.or.kr</p>
             </div>
           </div>

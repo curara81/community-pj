@@ -12,8 +12,8 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
   const businesses = [
     {
       emoji: "🏠",
-      title: t("난민 정착 지원 사업", "Refugee Settlement Program"),
-      description: t("한국에 정착하는 난민들을 위한 종합적인 지원", "Comprehensive support for refugees settling in Korea"),
+      title: t("다문화 가정 정착 지원 사업", "Multicultural Family Settlement Program"),
+      description: t("한국에 정착하는 다문화 가정을 위한 종합적인 지원", "Comprehensive support for multicultural families settling in Korea"),
       details: [
         t("임시 주거 지원 및 주택 확보 도움", "Temporary housing support and housing assistance"),
         t("한국어 교육 및 문화적응 프로그램", "Korean language education and cultural adaptation programs"),

@@ -20,7 +20,7 @@ const Index = () => {
     "@id": "https://www.comm-unity.or.kr/#organization",
     "name": "사단법인 컴유니티",
     "alternateName": "Comm.Unity",
-    "description": "난민사역과 취약계층을 위한 돌봄, 구호, 봉사 활동을 하는 비영리 단체",
+    "description": "다문화 가정과 취약계층을 위한 돌봄, 구호, 봉사 활동을 하는 비영리 단체",
     "url": "https://www.comm-unity.or.kr",
     "logo": {
       "@type": "ImageObject",
@@ -41,7 +41,7 @@ const Index = () => {
       "name": "대한민국"
     },
     "knowsAbout": [
-      "난민 지원",
+      "다문화 가정 지원",
       "취약계층 돌봄",
       "자립준비청년 교육",
       "사회복지",
@@ -56,8 +56,8 @@ const Index = () => {
     <div className="min-h-screen">
       <SEOHead 
         title="사단법인 컴유니티(Comm-Unity) - 돌봄으로 하나 되는 사회"
-        description="사단법인 컴유니티(Comm-Unity)는 난민, 취약계층, 자립준비청년을 위한 돌봄과 교육 활동을 하는 비영리 단체입니다."
-        keywords="사단법인 컴유니티, 컴유니티, Comm.Unity, 난민사역, 취약계층, 돌봄, 구호, 봉사, 비영리단체, 후원, 자원봉사"
+        description="사단법인 컴유니티(Comm-Unity)는 다문화 가정, 취약계층, 자립준비청년을 위한 돌봄과 교육 활동을 하는 비영리 단체입니다."
+        keywords="사단법인 컴유니티, 컴유니티, Comm.Unity, 다문화가정, 취약계층, 돌봄, 구호, 봉사, 비영리단체, 후원, 자원봉사"
         ogImage="https://www.comm-unity.or.kr/lovable-uploads/64193635-1583-49bf-b99d-0f5aafcfcea9.png"
         canonicalUrl="https://www.comm-unity.or.kr/"
         structuredData={structuredData}

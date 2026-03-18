@@ -80,7 +80,7 @@ const VolunteerFormFields = ({
       <div>
         <label className={labelClass}>{t("자기소개 및 참여 동기", "Self-introduction and motivation")}</label>
         <Textarea
-          placeholder={t("예시: 안녕하세요. 저는 대학생입니다. 난민 분들과 취약계층을 도울 수 있는 봉사활동에 관심이 많아서 신청하게 되었습니다. 특히 한국어 교육이나 생활 정착 지원에 도움을 드리고 싶습니다.", "Example: Hello, I am a college student. I am very interested in volunteer work that can help refugees and vulnerable groups, so I applied. I would especially like to help with Korean language education and life settlement support.")}
+          placeholder={t("예시: 안녕하세요. 저는 대학생입니다. 다문화 가정과 취약계층을 도울 수 있는 봉사활동에 관심이 많아서 신청하게 되었습니다. 특히 한국어 교육이나 생활 정착 지원에 도움을 드리고 싶습니다.", "Example: Hello, I am a college student. I am very interested in volunteer work that can help multicultural families and vulnerable groups, so I applied. I would especially like to help with Korean language education and life settlement support.")}
           value={message}
           onChange={(e) => onMessageChange(e.target.value)}
           className={fieldClass}

@@ -23,7 +23,7 @@ const FinancialReportModal = ({ children }: FinancialReportModalProps) => {
           <DialogTitle className="text-center mb-8">
             <div className="text-slate-700 text-lg leading-relaxed font-medium max-w-4xl mx-auto px-4">
               사단법인 컴유니티(서울시 등록)는 '돌봄을 통해 사회를 하나로 연결하는 것'을 사명으로, 
-              난민, 장애인, 노약자, 무주택 취약계층 등 연약한 이웃들에게 
+              다문화 가정, 장애인, 노약자, 무주택 취약계층 등 연약한 이웃들에게 
               따뜻한 손길과 실질적인 도움을 전하고 있습니다.
             </div>
           </DialogTitle>

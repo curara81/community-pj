@@ -29,8 +29,8 @@ const VolunteerSection = () => {
                     🤝 {t('당신의 마음과 시간이 필요합니다', 'We need your heart and time')}
                   </h3>
                   <p className="text-base sm:text-lg text-muted-foreground mb-4">
-                    <span className="hidden md:block">{t('난민, 취약계층과 함께하는 활동에 여러분의 동참이 필요합니다.', 'We need your participation in activities with refugees and vulnerable groups.')}</span>
-                    <span className="md:hidden">{t('난민, 취약계층과 함께하는', 'Activities with refugees')}<br />{t('활동에 여러분의 동참이', 'and vulnerable groups')}<br />{t('필요합니다.', 'need your participation.')}</span>
+                    <span className="hidden md:block">{t('다문화 가정, 취약계층과 함께하는 활동에 여러분의 동참이 필요합니다.', 'We need your participation in activities with multicultural families and vulnerable groups.')}</span>
+                    <span className="md:hidden">{t('다문화 가정, 취약계층과 함께하는', 'Activities with multicultural families')}<br />{t('활동에 여러분의 동참이', 'and vulnerable groups')}<br />{t('필요합니다.', 'need your participation.')}</span>
                   </p>
                   <ul className="text-left text-muted-foreground space-y-2 max-w-2xl mx-auto">
                     <li>✨ {t('번역 및 통역 지원', 'Translation and interpretation support')}</li>

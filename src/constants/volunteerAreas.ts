@@ -1,6 +1,6 @@
 
 export const VOLUNTEER_AREAS = [
-  { ko: '난민사역', en: 'Refugee Ministry' },
+  { ko: '다문화 가정 사역', en: 'Multicultural Family Ministry' },
   { ko: '돌봄 서비스', en: 'Care Services' },
   { ko: '상담', en: 'Counseling' },
   { ko: '행정업무', en: 'Administration' },

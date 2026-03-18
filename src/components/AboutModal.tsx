@@ -22,7 +22,7 @@ const AboutModal = ({ children }: AboutModalProps) => {
           <div>
             <h3 className="text-xl font-semibold mb-3 text-primary">🎯 우리의 미션</h3>
             <p className="text-muted-foreground leading-relaxed">
-              컴유니티(Comm.Unity)는 난민사역과 돌봄의 사각지대에 놓인 이웃들과 함께하기 위해 설립된 비영리 사단법인입니다. 
+              컴유니티(Comm.Unity)는 다문화 가정 사역과 돌봄의 사각지대에 놓인 이웃들과 함께하기 위해 설립된 비영리 사단법인입니다. 
               '돌봄을 통해 사회를 하나로 연결하는 것'을 사명으로 2025년부터 본격적인 활동을 시작합니다.
             </p>
           </div>
@@ -30,7 +30,7 @@ const AboutModal = ({ children }: AboutModalProps) => {
           <div>
             <h3 className="text-xl font-semibold mb-3 text-accent">🎯 주요 대상</h3>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li>한국에 정착하는 난민들</li>
+              <li>한국에 정착하는 다문화 가정</li>
               <li>장애인 및 거동불편자</li>
               <li>독거노인 및 소외계층</li>
               <li>무주택 취약계층</li>

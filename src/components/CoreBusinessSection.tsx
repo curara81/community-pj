@@ -10,8 +10,8 @@ const CoreBusinessSection = () => {
   const businesses = [
     {
       emoji: "🏠",
-      title: t("난민 정착 지원", "Refugee Settlement Support"),
-      description: t("한국에 거주중인 난민들을 위한\n주거, 언어, 문화적응 지원", "Housing, language, and cultural adaptation\nsupport for refugees in Korea"),
+      title: t("다문화 가정 정착 지원", "Multicultural Family Settlement Support"),
+      description: t("한국에 거주중인 다문화 가정을 위한\n주거, 언어, 문화적응 지원", "Housing, language, and cultural adaptation\nsupport for multicultural families in Korea"),
       cardClass: "business-card-primary"
     },
     {

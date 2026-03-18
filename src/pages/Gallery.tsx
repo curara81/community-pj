@@ -22,7 +22,7 @@ const Gallery = () => {
       <SEOHead 
         title="스토리 - 사단법인 컴유니티(Comm-Unity)"
         description="컴유니티의 활동 모습과 이야기를 사진으로 만나보세요. 봉사활동 현장, 교육 프로그램, 후원자 모임 등 다양한 순간들을 담았습니다."
-        keywords="컴유니티 스토리, 활동사진, 갤러리, 봉사활동, 난민지원 현장, 활동후기"
+        keywords="컴유니티 스토리, 활동사진, 갤러리, 봉사활동, 다문화가정지원 현장, 활동후기"
         ogImage="https://www.comm-unity.or.kr/lovable-uploads/e29d3fb8-fbb7-4566-9230-e0af1d4c4ddf.png"
         canonicalUrl="https://www.comm-unity.or.kr/gallery"
         structuredData={structuredData}

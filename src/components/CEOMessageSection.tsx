@@ -29,15 +29,15 @@ const CEOMessageSection = memo(() => {
                 
                 <p className="text-lg">
                   {t(
-                    "국가 간 분쟁과 내란으로 속출하고 있는 난민 문제는 이제 전 세계적 사회구조 변화의 기폭제가 되었으나 이를 외면하고 있는 상황이 지속된다면 우리 자녀세대의 미래는 더욱 불투명해 질 것입니다.",
-                    "The refugee problem emerging from international conflicts and civil wars has now become a catalyst for global social structural change, but if we continue to turn away from this, the future of our children's generation will become even more uncertain."
+                    "국가 간 분쟁과 내란으로 속출하고 있는 다문화 가정 문제는 이제 전 세계적 사회구조 변화의 기폭제가 되었으나 이를 외면하고 있는 상황이 지속된다면 우리 자녀세대의 미래는 더욱 불투명해 질 것입니다.",
+                    "The multicultural family issues emerging from international conflicts and civil wars have now become a catalyst for global social structural change, but if we continue to turn away from this, the future of our children's generation will become even more uncertain."
                   )}
                 </p>
                 
                 <p className="text-lg">
                   {t(
-                    "컴유니티는 이런 시대적 현상을 외면할 수 없어 계속해서 발생하는 난민들의 어려움과 그 자녀들의 진로를 도와 국제 사회의 도움이 되는 지도자로 양성하려 합니다. 국내외에 널리 퍼져있는 이주, 난민들을 향한 진정성 있는 교육과 자립지원 돌봄으로 시대에 꼭 필요한 지도자들로 세우고자 합니다. 이제 국내적으로 급격한 인구감소로 인한 인재 부족과 국제적으로 잠재된 위기를 기회로 이끌어내는 노력들이 절실합니다.",
-                    "Comm.Unity cannot ignore these contemporary phenomena and aims to help with the ongoing difficulties of refugees and their children's futures, nurturing them as leaders who can help international society. We seek to establish leaders essential for our times through sincere education and independence support care for migrants and refugees spread widely at home and abroad. Now, efforts to turn the domestic talent shortage due to rapid population decline and internationally latent crises into opportunities are urgently needed."
+                    "컴유니티는 이런 시대적 현상을 외면할 수 없어 계속해서 발생하는 다문화 가정의 어려움과 그 자녀들의 진로를 도와 국제 사회의 도움이 되는 지도자로 양성하려 합니다. 국내외에 널리 퍼져있는 이주민, 다문화 가정을 향한 진정성 있는 교육과 자립지원 돌봄으로 시대에 꼭 필요한 지도자들로 세우고자 합니다. 이제 국내적으로 급격한 인구감소로 인한 인재 부족과 국제적으로 잠재된 위기를 기회로 이끌어내는 노력들이 절실합니다.",
+                    "Comm.Unity cannot ignore these contemporary phenomena and aims to help with the ongoing difficulties of multicultural families and their children's futures, nurturing them as leaders who can help international society. We seek to establish leaders essential for our times through sincere education and independence support care for migrants and multicultural families spread widely at home and abroad. Now, efforts to turn the domestic talent shortage due to rapid population decline and internationally latent crises into opportunities are urgently needed."
                   )}
                 </p>
                 

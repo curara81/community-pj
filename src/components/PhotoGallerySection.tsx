@@ -9,8 +9,8 @@ const PhotoGallerySection = () => {
   
   const galleries = [
     {
-      title: t("난민 정착 지원", "Refugee Settlement Support"),
-      description: t("한국에 거주중인 난민들과\n함께한 따뜻한 순간들", "Warm moments shared with\nrefugees living in Korea"),
+      title: t("다문화 가정 정착 지원", "Multicultural Family Settlement Support"),
+      description: t("한국에 거주중인 다문화 가정과\n함께한 따뜻한 순간들", "Warm moments shared with\nmulticultural families living in Korea"),
       image: "/lovable-uploads/6c7cb959-8222-4e92-baa8-29e03b733f22.png",
       category: "refugee"
     },

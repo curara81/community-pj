@@ -15,7 +15,7 @@ const Business = () => {
       "@type": "Organization",
       "name": "사단법인 컴유니티"
     },
-    "serviceType": ["난민 지원", "취약계층 돌봄", "자립준비청년 교육"]
+    "serviceType": ["다문화 가정 지원", "취약계층 돌봄", "자립준비청년 교육"]
   };
 
   return (

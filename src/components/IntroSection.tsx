@@ -23,7 +23,7 @@ const IntroSection = memo(() => {
               {t('비영리 사단법인입니다.', 'non-profit corporation.')}
               <br /><br />
               {t('2025년, 우리는', '2025, we are')} <strong className="text-accent">{t('"돌봄을 통해 사회를 하나로 연결하는 것"', '"connecting society as one through care"')}</strong>{t('을 사명으로 시작합니다.', ' as our mission.')} <br />
-              {t('난민, 장애인, 노약자, 무주택 취약계층 등 우리 사회의 가장 연약한 이웃들에게', 'To the most vulnerable neighbors in our society, including refugees, people with disabilities, the elderly, and homeless vulnerable groups,')} <br />
+              {t('다문화 가정, 장애인, 노약자, 무주택 취약계층 등 우리 사회의 가장 연약한 이웃들에게', 'To the most vulnerable neighbors in our society, including multicultural families, people with disabilities, the elderly, and homeless vulnerable groups,')} <br />
               {t('따뜻한 손길과 실제적인 도움을 전하며, 다음 세대가 사랑과 배려, 나눔의 가치를', 'we deliver warm hands and practical help, and ensure that the next generation can naturally learn the values of love, care, and sharing')} <br />
               {t('자연스럽게 배울 수 있도록 다양한 프로그램을 준비하고 있습니다.', 'through various programs we are preparing.')}
               <br /><br />

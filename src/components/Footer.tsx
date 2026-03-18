@@ -13,8 +13,8 @@ const Footer = memo(() => {
         <div className="text-center">
           <h3 className="text-2xl font-bold mb-4 text-white">{t("사단법인 컴유니티", "Comm.Unity")}</h3>
           <p className="text-slate-200 mb-6">
-            <span className="hidden md:block">{t("난민과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for refugees and vulnerable groups")}</span>
-            <span className="md:hidden">{t("난민과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for refugees and vulnerable groups")}</span>
+            <span className="hidden md:block">{t("다문화 가정과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for multicultural families and vulnerable groups")}</span>
+            <span className="md:hidden">{t("다문화 가정과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for multicultural families and vulnerable groups")}</span>
           </p>
           
           {/* 정책 링크들 - 순서: 찾아오시는 길 | 이용약관 | 개인정보처리방침 | 저작권정책 | 이메일무단수신거부 */}

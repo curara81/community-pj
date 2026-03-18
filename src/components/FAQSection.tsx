@@ -35,8 +35,8 @@ const faqItems = [
   {
     question: "컴유니티의 주요 사업은 무엇인가요?",
     questionEn: "What are Comm.Unity's main programs?",
-    answer: "난민 정착 지원, 취약계층 긴급 돌봄, 자립준비청년 교육 및 멘토링, 지역사회 연대 프로그램 등을 운영하고 있습니다.",
-    answerEn: "We operate refugee settlement support, emergency care for vulnerable groups, youth education and mentoring, and community solidarity programs.",
+    answer: "다문화 가정 정착 지원, 취약계층 긴급 돌봄, 자립준비청년 교육 및 멘토링, 지역사회 연대 프로그램 등을 운영하고 있습니다.",
+    answerEn: "We operate multicultural family settlement support, emergency care for vulnerable groups, youth education and mentoring, and community solidarity programs.",
   },
 ];
 

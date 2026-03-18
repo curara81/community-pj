@@ -30,7 +30,7 @@ const AboutModal = ({ children }: AboutModalProps) => {
           <div>
             <h3 className="text-xl font-semibold mb-3 text-accent">🎯 주요 대상</h3>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li>한국에 정착하는 난민들</li>
+              <li>한국에 정착하는 다문화 가정</li>
               <li>장애인 및 거동불편자</li>
               <li>독거노인 및 소외계층</li>
               <li>무주택 취약계층</li>

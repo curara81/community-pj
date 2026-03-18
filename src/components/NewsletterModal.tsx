@@ -18,7 +18,7 @@ const NewsletterModal = ({ children }: NewsletterModalProps) => {
   const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const interestOptions = [
-    { ko: '난민사역 소식', en: 'Refugee Ministry News' },
+    { ko: '다문화 가정 사역 소식', en: 'Multicultural Family Ministry News' },
     { ko: '돌봄 사업 현황', en: 'Care Program Updates' },
     { ko: '자원봉사 기회', en: 'Volunteer Opportunities' },
     { ko: '후원 안내', en: 'Donation Information' },

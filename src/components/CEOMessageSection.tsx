@@ -36,8 +36,8 @@ const CEOMessageSection = memo(() => {
                 
                 <p className="text-lg">
                   {t(
-                    "컴유니티는 이런 시대적 현상을 외면할 수 없어 계속해서 발생하는 난민들의 어려움과 그 자녀들의 진로를 도와 국제 사회의 도움이 되는 지도자로 양성하려 합니다. 국내외에 널리 퍼져있는 이주, 난민들을 향한 진정성 있는 교육과 자립지원 돌봄으로 시대에 꼭 필요한 지도자들로 세우고자 합니다. 이제 국내적으로 급격한 인구감소로 인한 인재 부족과 국제적으로 잠재된 위기를 기회로 이끌어내는 노력들이 절실합니다.",
-                    "Comm.Unity cannot ignore these contemporary phenomena and aims to help with the ongoing difficulties of refugees and their children's futures, nurturing them as leaders who can help international society. We seek to establish leaders essential for our times through sincere education and independence support care for migrants and refugees spread widely at home and abroad. Now, efforts to turn the domestic talent shortage due to rapid population decline and internationally latent crises into opportunities are urgently needed."
+                    "컴유니티는 이런 시대적 현상을 외면할 수 없어 계속해서 발생하는 다문화 가정의 어려움과 그 자녀들의 진로를 도와 국제 사회의 도움이 되는 지도자로 양성하려 합니다. 국내외에 널리 퍼져있는 이주민, 다문화 가정을 향한 진정성 있는 교육과 자립지원 돌봄으로 시대에 꼭 필요한 지도자들로 세우고자 합니다. 이제 국내적으로 급격한 인구감소로 인한 인재 부족과 국제적으로 잠재된 위기를 기회로 이끌어내는 노력들이 절실합니다.",
+                    "Comm.Unity cannot ignore these contemporary phenomena and aims to help with the ongoing difficulties of multicultural families and their children's futures, nurturing them as leaders who can help international society. We seek to establish leaders essential for our times through sincere education and independence support care for migrants and multicultural families spread widely at home and abroad. Now, efforts to turn the domestic talent shortage due to rapid population decline and internationally latent crises into opportunities are urgently needed."
                   )}
                 </p>
                 

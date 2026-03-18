@@ -105,7 +105,7 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
             <div className="grid md:grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-primary">{t("10+ (가정)", "10+ Families")}</div>
-                <div className="text-sm text-muted-foreground">{t("난민 가정 지원", "Refugee Family Support")}</div>
+                <div className="text-sm text-muted-foreground">{t("다문화 가정 지원", "Multicultural Family Support")}</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-accent">{t("50+ (명)", "50+ People")}</div>

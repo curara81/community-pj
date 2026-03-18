@@ -10,7 +10,7 @@ const Donation = () => {
     "@context": "https://schema.org",
     "@type": "DonateAction",
     "name": "컴유니티 후원하기",
-    "description": "난민과 취약계층을 위한 후원에 참여하세요",
+    "description": "다문화 가정과 취약계층을 위한 후원에 참여하세요",
     "recipient": {
       "@type": "Organization",
       "name": "사단법인 컴유니티"

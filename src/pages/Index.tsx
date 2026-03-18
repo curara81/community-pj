@@ -20,7 +20,7 @@ const Index = () => {
     "@id": "https://www.comm-unity.or.kr/#organization",
     "name": "사단법인 컴유니티",
     "alternateName": "Comm.Unity",
-    "description": "난민사역과 취약계층을 위한 돌봄, 구호, 봉사 활동을 하는 비영리 단체",
+    "description": "다문화 가정과 취약계층을 위한 돌봄, 구호, 봉사 활동을 하는 비영리 단체",
     "url": "https://www.comm-unity.or.kr",
     "logo": {
       "@type": "ImageObject",

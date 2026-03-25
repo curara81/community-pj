@@ -59,8 +59,8 @@ const CEOMessageSection = memo(() => {
                 <div className="flex justify-end mt-8">
                   <img 
                     src="/images/ceo-signature.png" 
-                    alt={t("박종렬 대표 서명", "CEO Park Jong-ryeol's signature")}
-                    className="h-20 object-contain mix-blend-multiply"
+                    alt={t("박준섭 대표 서명", "CEO Park Jun-seob's signature")}
+                    className="h-36 object-contain mix-blend-multiply"
                     style={{ filter: 'contrast(1.2) brightness(0.8)' }}
                     loading="lazy"
                     decoding="async"

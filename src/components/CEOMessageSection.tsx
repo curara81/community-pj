@@ -58,7 +58,7 @@ const CEOMessageSection = memo(() => {
                 
                 <div className="flex justify-end mt-8">
                   <img 
-                    src="/lovable-uploads/cdab38ae-0da3-4207-ba17-3ee14e487d6c.png" 
+                    src="/images/ceo-signature.png" 
                     alt={t("박종렬 대표 서명", "CEO Park Jong-ryeol's signature")}
                     className="h-20 object-contain mix-blend-multiply"
                     style={{ filter: 'contrast(1.2) brightness(0.8)' }}

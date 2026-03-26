@@ -124,6 +124,15 @@ const Header = memo(() => {
                     <span className="ml-1">{language === 'ko' ? 'EN' : '한글'}</span>
                   </Button>
                   <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsDonationHistoryOpen(true)}
+                    className="!border !border-accent !text-accent !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
+                  >
+                    <Heart size={12} />
+                    <span className="ml-1">{t('나의 후원', 'My Donations')}</span>
+                  </Button>
+                  <Button
                     onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
                     variant="outline"
                     size="sm"
@@ -310,6 +319,7 @@ const Header = memo(() => {
           </div>
         </div>
       </div>
+      <DonationHistoryModal open={isDonationHistoryOpen} onOpenChange={setIsDonationHistoryOpen} />
     </header>
   );
 });

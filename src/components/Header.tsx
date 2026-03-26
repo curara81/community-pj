@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Languages, Heart, Flower2, Menu, X } from "lucide-react";
 import VolunteerModal from "./VolunteerModal";
+import DonationHistoryModal from "./DonationHistoryModal";
 import AuthButton from "./AuthButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -10,6 +11,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const Header = memo(() => {
   const { language, toggleLanguage, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDonationHistoryOpen, setIsDonationHistoryOpen] = useState(false);
 
   const handleSeoulClick = useCallback(() => {
     window.open("https://www.seoul.go.kr/main/index.jsp", "_blank");
@@ -122,6 +124,15 @@ const Header = memo(() => {
                     <span className="ml-1">{language === 'ko' ? 'EN' : '한글'}</span>
                   </Button>
                   <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsDonationHistoryOpen(true)}
+                    className="!border !border-accent !text-accent !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
+                  >
+                    <Heart size={12} />
+                    <span className="ml-1">{t('나의 후원', 'My Donations')}</span>
+                  </Button>
+                  <Button
                     onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
                     variant="outline"
                     size="sm"
@@ -184,6 +195,15 @@ const Header = memo(() => {
               >
                 <Languages size={14} />
                 {language === 'ko' ? 'EN' : '한글'}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsDonationHistoryOpen(true)}
+                className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !h-[36px] !px-3 flex items-center gap-1 text-xs font-semibold"
+              >
+                <Heart size={14} />
+                {t('나의 후원', 'My Donations')}
               </Button>
               <Button
                 onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSffGIBu7bfcnmBXzVPNvdvBydJg7mdz4I6SP1xguNu8KNVY_Q/viewform", "_blank")}
@@ -299,6 +319,7 @@ const Header = memo(() => {
           </div>
         </div>
       </div>
+      <DonationHistoryModal open={isDonationHistoryOpen} onOpenChange={setIsDonationHistoryOpen} />
     </header>
   );
 });

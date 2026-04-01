@@ -42,6 +42,11 @@
     --success-light: 142 69% 58%;
     --success-lighter: 143 85% 96%;
 
+    /* Donate: orange #f08300 */
+    --donate: 33 100% 47%;
+    --donate-foreground: 0 0% 100%;
+    --donate-hover: 33 100% 42%;
+
     /* Muted */
     --muted: 210 40% 98%;
     --muted-foreground: 215 19% 35%;

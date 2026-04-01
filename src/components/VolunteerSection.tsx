@@ -23,7 +23,7 @@ const VolunteerSection = () => {
           </h2>
           <div className="h-6 md:h-8" />
           
-          <div className="bg-green-50 rounded-2xl p-8 md:p-10">
+          <div className="rounded-2xl p-8 md:p-10" style={{ backgroundColor: '#e8f6f5' }}>
             <h3 className="text-lg font-bold text-foreground mb-2">
               🤝 {t('당신의 마음과 시간이 필요합니다', 'We need your heart and time')}
             </h3>
@@ -34,7 +34,7 @@ const VolunteerSection = () => {
             <ul className="space-y-3 mb-8">
               {items.map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm text-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: '#83c5be' }} />
                   <span className="font-light">{item}</span>
                 </li>
               ))}
@@ -42,7 +42,8 @@ const VolunteerSection = () => {
             
             <VolunteerModal>
               <Button 
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 text-sm font-semibold rounded-lg"
+                className="text-white px-6 py-2.5 text-sm font-semibold rounded-lg"
+                style={{ backgroundColor: '#83c5be' }}
               >
                 🙋 {t('자원봉사 신청하기', 'Apply for Volunteering')}
               </Button>

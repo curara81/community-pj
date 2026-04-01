@@ -35,6 +35,7 @@
     --accent-foreground: 0 0% 100%;
     --accent-light: 33 100% 57%;
     --accent-lighter: 33 100% 93%;
+    --warm-bg: 30 50% 96%;
 
     /* Success: green */
     --success: 142 71% 45%;

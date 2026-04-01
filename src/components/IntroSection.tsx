@@ -22,7 +22,7 @@ const IntroSection = memo(() => {
                 <strong className="text-primary">{t('다문화 가정 사역과 돌봄의 사각지대', 'multicultural family ministry and care blind spots')}</strong>{t('에 놓인 이웃들과 함께하기 위해 설립된 비영리 사단법인입니다.', ' established to stand with neighbors in need, a non-profit corporation.')}
               </p>
               <p>
-                {t('2025년 우리는', 'In 2025, we begin with')}{' '}<strong className="text-accent">{t('"돌봄을 통해 사회를 하나로 연결하는 것"', '"connecting society as one through care"')}</strong>{t('을 사명으로 시작합니다.', ' as our mission.')}{' '}
+                {t('2025년 우리는', 'In 2025, we begin with')}{' '}<strong className="text-primary">{t('"돌봄을 통해 사회를 하나로 연결하는 것"', '"connecting society as one through care"')}</strong>{t('을 사명으로 시작합니다.', ' as our mission.')}{' '}
                 {t('다문화 가정, 장애인, 노약자, 무주택 취약계층 등 우리 사회의 가장 연약한 이웃들에게 따뜻한 손길과 실제적인 도움을 전하며 다음 세대가 사랑과 배려, 나눔의 가치를 자연스럽게 배울 수 있도록 다양한 프로그램을 준비하고 있습니다.', 'We deliver warm hands and practical help to the most vulnerable neighbors in our society—multicultural families, people with disabilities, the elderly, and homeless vulnerable groups—and prepare various programs so the next generation can naturally learn the values of love, care, and sharing.')}
               </p>
               <p>

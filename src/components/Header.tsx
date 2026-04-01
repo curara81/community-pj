@@ -200,7 +200,7 @@ const Header = memo(() => {
                 variant="outline"
                 size="sm"
                 onClick={() => window.open("https://mrmweb.hsit.co.kr/v2/?server=skiZ1MMB3nSXnYx5MK2cQw==&action=info", "_blank")}
-                className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !h-[36px] !px-3 flex items-center gap-1 text-xs font-semibold"
+                className="!border-2 !border-primary !text-primary !bg-background hover:!bg-primary hover:!text-primary-foreground !h-[36px] !px-3 flex items-center gap-1 text-xs font-semibold"
               >
                 <Heart size={14} />
                 {t('나의 후원', 'My Donations')}

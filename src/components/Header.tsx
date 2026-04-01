@@ -266,13 +266,13 @@ const Header = memo(() => {
         
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="animate-fade-in">
-            <div className="flex items-center justify-center mb-6 md:mb-6 mt-8 md:mt-12 lg:mt-16">
+            <div className="flex items-center justify-center mb-4 md:mb-6 mt-8 md:mt-12 lg:mt-16">
               <img 
                 src="/lovable-uploads/a8a64d27-d20f-4ce7-96ca-1c7063ad7838.png" 
                 alt="돌봄으로 하나 되는 사회" 
-                className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-contain"
-                width={320}
-                height={320}
+                className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
+                width={192}
+                height={192}
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"

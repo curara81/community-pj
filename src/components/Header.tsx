@@ -127,7 +127,7 @@ const Header = memo(() => {
                     variant="outline"
                     size="sm"
                     onClick={() => window.open("https://mrmweb.hsit.co.kr/v2/?server=skiZ1MMB3nSXnYx5MK2cQw==&action=info", "_blank")}
-                    className="!border !border-accent !text-accent !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
+                    className="!border !border-primary !text-primary !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
                   >
                     <Heart size={12} />
                     <span className="ml-1">{t('나의 후원', 'My Donations')}</span>
@@ -153,7 +153,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleSeoulClick}
-                className="!border-2 !border-accent !bg-background hover:!bg-accent-lighter !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
+                className="!border-2 !border-primary !bg-background hover:!bg-muted !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
                 title="서울특별시"
               >
                 <img 
@@ -200,7 +200,7 @@ const Header = memo(() => {
                 variant="outline"
                 size="sm"
                 onClick={() => window.open("https://mrmweb.hsit.co.kr/v2/?server=skiZ1MMB3nSXnYx5MK2cQw==&action=info", "_blank")}
-                className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !h-[36px] !px-3 flex items-center gap-1 text-xs font-semibold"
+                className="!border-2 !border-primary !text-primary !bg-background hover:!bg-primary hover:!text-primary-foreground !h-[36px] !px-3 flex items-center gap-1 text-xs font-semibold"
               >
                 <Heart size={14} />
                 {t('나의 후원', 'My Donations')}

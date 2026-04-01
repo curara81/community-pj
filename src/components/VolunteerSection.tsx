@@ -23,7 +23,7 @@ const VolunteerSection = () => {
             🙋 {t('함께할 동역자를 찾습니다', 'We are looking for partners to join us')}
           </h2>
           
-          <div className="bg-success-lighter/60 rounded-2xl p-6 md:p-8 mb-8">
+          <div className="bg-muted rounded-2xl p-6 md:p-8 mb-8">
             <h3 className="text-lg font-bold text-foreground mb-2">
               🤝 {t('당신의 마음과 시간이 필요합니다', 'We need your heart and time')}
             </h3>
@@ -34,7 +34,7 @@ const VolunteerSection = () => {
             <ul className="text-left max-w-sm mx-auto space-y-3">
               {activities.map((activity, index) => (
                 <li key={index} className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-success flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                   {activity}
                 </li>
               ))}
@@ -45,7 +45,7 @@ const VolunteerSection = () => {
             <Button 
               variant="outline"
               size="lg"
-              className="px-6 py-3 text-base font-semibold rounded-full hover-lift border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+              className="px-6 py-3 text-base font-semibold rounded-full hover-lift border-donate text-donate hover:bg-donate hover:text-donate-foreground"
             >
               🙋 {t('자원봉사 신청하기', 'Apply for Volunteering')}
             </Button>

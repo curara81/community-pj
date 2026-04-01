@@ -11,7 +11,7 @@ const AuthButton = () => {
       onClick={handleDonationHistory}
       variant="outline"
       size="sm"
-      className="!border-2 !border-accent !text-accent !bg-background hover:!bg-accent hover:!text-accent-foreground !h-[36px] !px-3 flex items-center justify-center text-xs font-semibold"
+      className="!border-2 !border-primary !text-primary !bg-background hover:!bg-primary hover:!text-primary-foreground !h-[36px] !px-3 flex items-center justify-center text-xs font-semibold"
     >
       납부자 조회
     </Button>

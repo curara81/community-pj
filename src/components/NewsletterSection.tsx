@@ -25,9 +25,9 @@ const NewsletterSection = memo(() => {
   }, []);
 
   return (
-    <section className="py-16 md:py-20 bg-accent-lighter/40">
+    <section className="py-16 md:py-20 bg-muted">
       <div className="container mx-auto px-6 max-w-xl text-center">
-        <Mail className="w-7 h-7 text-accent mx-auto mb-1" />
+        <Mail className="w-7 h-7 text-primary mx-auto mb-1" />
         <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
           {t("소식을 가장 먼저 받아보세요", "Be the First to Receive Our News")}
         </h2>
@@ -46,7 +46,8 @@ const NewsletterSection = memo(() => {
           />
           <Button
             type="submit"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground px-5 text-sm font-medium rounded-lg whitespace-nowrap"
+            variant="donate"
+            className="px-5 text-sm font-medium rounded-lg whitespace-nowrap"
           >
             {t("빠른 신청", "Quick Apply")}
           </Button>
@@ -56,7 +57,7 @@ const NewsletterSection = memo(() => {
           <Button
             variant="outline"
             size="sm"
-            className="border-accent text-accent hover:bg-accent hover:text-accent-foreground text-xs rounded-lg"
+            className="border-donate text-donate hover:bg-donate hover:text-donate-foreground text-xs rounded-lg"
           >
             {t("상세 신청하기", "Detailed Application")}
           </Button>

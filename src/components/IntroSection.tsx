@@ -12,17 +12,17 @@ const IntroSection = memo(() => {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
-            {t('사단법인', 'Incorporated Foundation')} <span className="text-accent">{t('컴유니티', 'Comm.Unity')}</span>{t('는…', ' is...')}
+            {t('사단법인', 'Incorporated Foundation')} <span className="text-primary">{t('컴유니티', 'Comm.Unity')}</span>{t('는…', ' is...')}
           </h2>
           
-          <div className="bg-warm-bg rounded-2xl p-6 md:p-10">
+          <div className="bg-muted rounded-2xl p-6 md:p-10">
             <div className="text-left text-sm sm:text-base md:text-lg leading-[1.9] text-muted-foreground space-y-4">
               <p>
                 {t('컴유니티(Comm.Unity)는', 'Comm.Unity is a')}{' '}
                 <strong className="text-primary">{t('다문화 가정 사역과 돌봄의 사각지대', 'multicultural family ministry and care blind spots')}</strong>{t('에 놓인 이웃들과 함께하기 위해 설립된 비영리 사단법인입니다.', ' established to stand with neighbors in need, a non-profit corporation.')}
               </p>
               <p>
-                {t('2025년 우리는', 'In 2025, we begin with')}{' '}<strong className="text-accent">{t('"돌봄을 통해 사회를 하나로 연결하는 것"', '"connecting society as one through care"')}</strong>{t('을 사명으로 시작합니다.', ' as our mission.')}{' '}
+                {t('2025년 우리는', 'In 2025, we begin with')}{' '}<strong className="text-primary">{t('"돌봄을 통해 사회를 하나로 연결하는 것"', '"connecting society as one through care"')}</strong>{t('을 사명으로 시작합니다.', ' as our mission.')}{' '}
                 {t('다문화 가정, 장애인, 노약자, 무주택 취약계층 등 우리 사회의 가장 연약한 이웃들에게 따뜻한 손길과 실제적인 도움을 전하며 다음 세대가 사랑과 배려, 나눔의 가치를 자연스럽게 배울 수 있도록 다양한 프로그램을 준비하고 있습니다.', 'We deliver warm hands and practical help to the most vulnerable neighbors in our society—multicultural families, people with disabilities, the elderly, and homeless vulnerable groups—and prepare various programs so the next generation can naturally learn the values of love, care, and sharing.')}
               </p>
               <p>
@@ -40,7 +40,7 @@ const IntroSection = memo(() => {
               <AboutModal>
                 <Button 
                   variant="link"
-                  className="text-accent hover:text-accent-light text-base font-medium"
+                  className="text-primary hover:text-primary-light text-base font-medium"
                 >
                   {t('더 알아보기 →', 'Learn More →')}
                 </Button>

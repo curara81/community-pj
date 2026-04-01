@@ -36,7 +36,7 @@ const DonationSection = () => {
           
           <Button 
             onClick={handleDonationClick}
-            variant="accent"
+            variant="donate"
             size="lg"
             className="px-6 py-3 text-base font-semibold rounded-full hover-lift"
           >

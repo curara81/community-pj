@@ -295,10 +295,10 @@ const Header = memo(() => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
               <Button 
-                variant="accent"
                 size="lg" 
                 onClick={handleDonationClick}
-                className="px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
+                className="px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px] text-white"
+                style={{ backgroundColor: '#f08300' }}
               >
                 <Heart className="w-5 h-5 mr-2" />
                 {t('후원하기', 'Donate')}
@@ -307,7 +307,8 @@ const Header = memo(() => {
                 <Button 
                   variant="outline"
                   size="lg"
-                  className="px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px] border-2 border-success text-success bg-background hover:bg-success-lighter"
+                  className="px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px] border-2 text-white"
+                  style={{ backgroundColor: '#83c5be', borderColor: '#83c5be' }}
                 >
                   <Flower2 className="w-5 h-5 mr-2" />
                   {t('참여 신청하기', 'Apply to Volunteer')}

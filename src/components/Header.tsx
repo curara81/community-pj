@@ -13,18 +13,6 @@ const Header = memo(() => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDonationHistoryOpen, setIsDonationHistoryOpen] = useState(false);
 
-  const handleSeoulClick = useCallback(() => {
-    window.open("https://www.seoul.go.kr/main/index.jsp", "_blank");
-  }, []);
-
-  const handleTaxOfficeClick = useCallback(() => {
-    window.open("https://hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index_pp.xml&menuCd=index3", "_blank");
-  }, []);
-
-  const handleWhistleblowerClick = useCallback(() => {
-    window.open("https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=13386&cntntsId=109155", "_blank");
-  }, []);
-
   const handleDonationClick = useCallback(() => {
     window.open("https://online.mrm.or.kr/jp40Mng", "_blank");
   }, []);

@@ -279,7 +279,7 @@ const Header = memo(() => {
               />
             </div>
             
-            <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight px-4">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight px-4">
               <span className="text-slate-800">{t('돌봄으로 하나되는 사회,', 'Through Care, United Society,')}</span>
               <br />
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>

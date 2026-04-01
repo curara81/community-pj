@@ -36,44 +36,8 @@ const Header = memo(() => {
         <div className="container mx-auto">
           {/* 모바일 레이아웃 */}
           <div className="block md:hidden">
-            {/* 모바일 상단: 외부 링크 버튼 + 햄버거 */}
-            <div className="flex items-center justify-between gap-1 mb-2">
-              <div className="flex flex-wrap gap-1">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={handleSeoulClick}
-                  className="!border !border-accent !bg-background !w-[100px] !h-[32px] flex items-center justify-center !p-0"
-                  title="서울특별시"
-                >
-                  <img 
-                    src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
-                    alt="서울특별시" 
-                    className="max-w-[80px] max-h-[20px] object-contain"
-                  />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={handleTaxOfficeClick}
-                  className="!border !border-success !bg-background !w-[100px] !h-[32px] flex items-center justify-center !p-0"
-                  title="국세청"
-                >
-                  <img 
-                    src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
-                    alt="국세청" 
-                    className="max-w-[90px] max-h-[24px] object-contain"
-                  />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={handleWhistleblowerClick}
-                  className="!border !border-destructive !text-destructive !bg-background !w-[80px] !h-[32px] flex items-center justify-center !text-[10px] font-semibold !p-0"
-                >
-                  공익위반 신고
-                </Button>
-              </div>
+            {/* 모바일 상단: 햄버거 */}
+            <div className="flex items-center justify-end gap-1 mb-2">
               <Button
                 variant="outline"
                 size="sm"

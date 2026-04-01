@@ -21,7 +21,7 @@ const DonationSection = () => {
             {t("여러분의 작은 참여가 누군가에게는 인생의 터닝포인트가 됩니다.", "Your small participation becomes a turning point in someone's life.")}
           </p>
           
-          <div className="rounded-2xl p-8 md:p-10 mb-8" style={{ backgroundColor: '#fefbf7' }}>
+          <div className="rounded-2xl p-8 md:p-10 mb-8" style={{ backgroundColor: '#fdf6ee' }}>
             <h3 className="text-lg font-bold text-foreground mb-3">
               💳 {t("계좌 안내", "Account Information")}
             </h3>

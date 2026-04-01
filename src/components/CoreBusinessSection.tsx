@@ -56,7 +56,7 @@ const CoreBusinessSection = () => {
           <div className="text-center">
             <BusinessModal>
               <Button 
-                variant="accent"
+                variant="donate"
                 size="lg"
                 className="px-6 py-3 text-base font-semibold rounded-full hover-lift"
               >

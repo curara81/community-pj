@@ -23,7 +23,7 @@ const VolunteerSection = () => {
           </h2>
           <div className="h-6 md:h-8" />
           
-          <div className="bg-green-50 rounded-2xl p-8 md:p-10">
+          <div className="rounded-2xl p-8 md:p-10" style={{ backgroundColor: '#e8f6f5' }}>
             <h3 className="text-lg font-bold text-foreground mb-2">
               🤝 {t('당신의 마음과 시간이 필요합니다', 'We need your heart and time')}
             </h3>

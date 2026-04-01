@@ -43,9 +43,9 @@ const VolunteerSection = () => {
           
           <VolunteerModal>
             <Button 
-              variant="success"
+              variant="outline"
               size="lg"
-              className="px-6 py-3 text-base font-semibold rounded-full hover-lift"
+              className="px-6 py-3 text-base font-semibold rounded-full hover-lift border-accent text-accent hover:bg-accent hover:text-accent-foreground"
             >
               🙋 {t('자원봉사 신청하기', 'Apply for Volunteering')}
             </Button>

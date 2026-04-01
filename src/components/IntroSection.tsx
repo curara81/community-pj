@@ -8,7 +8,7 @@ const IntroSection = memo(() => {
   const { t } = useLanguage();
   
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section className="py-8 md:py-10 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
@@ -39,8 +39,8 @@ const IntroSection = memo(() => {
             <div className="mt-8 text-center">
               <AboutModal>
                 <Button 
-                  variant="link"
-                  className="text-primary hover:text-primary-light text-base font-medium"
+                  variant="outline"
+                  className="border-2 border-donate text-donate hover:bg-donate/10 rounded-full px-6 font-semibold"
                 >
                   {t('더 알아보기 →', 'Learn More →')}
                 </Button>

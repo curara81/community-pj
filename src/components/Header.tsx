@@ -279,18 +279,16 @@ const Header = memo(() => {
               />
             </div>
             
-            <h1 className="text-2xl sm:text-3xl md:text-8xl lg:text-9xl font-bold mb-6 md:mb-8 leading-tight px-4">
-              <span className="block text-slate-800">{t('돌봄으로', 'Through Care,')}</span>
-              <span className="block text-slate-800">{t('하나되는 사회,', 'United Society,')}</span>
+            <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight px-4">
+              <span className="text-slate-800">{t('돌봄으로 하나되는 사회,', 'Through Care, United Society,')}</span>
+              <br />
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
-            <div className="space-y-4 md:space-y-6 mb-8 md:mb-12 animate-slide-up px-4">
-              <p className="text-base sm:text-lg md:text-3xl lg:text-4xl text-slate-700 font-semibold text-center">
-                <span className="block">{t('다문화 가정과 취약계층에게', 'To multicultural families and')}</span>
-                <span className="block">{t('희망과 돌봄을 전합니다.', 'vulnerable communities, we deliver hope and care.')}</span>
-              </p>
-              <p className="text-sm sm:text-base md:text-2xl lg:text-3xl text-slate-600 font-medium text-center">
+            <div className="mb-8 md:mb-10 animate-slide-up px-4">
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 font-light text-center leading-relaxed">
+                {t('다문화 가정과 취약계층에게 희망과 돌봄을 전합니다.', 'We deliver hope and care to multicultural families and vulnerable communities.')}
+                <br />
                 {t('함께 사는 사회, 함께 살아내는 연대.', 'A society where we live together, solidarity where we survive together.')}
               </p>
             </div>

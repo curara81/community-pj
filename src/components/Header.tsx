@@ -32,7 +32,7 @@ const Header = memo(() => {
   return (
     <header className="relative min-h-screen flex flex-col">
       {/* 상단 네비게이션 */}
-      <nav className="absolute top-0 left-0 right-0 z-20 p-3 md:p-6">
+      <nav className="absolute top-0 left-0 right-0 z-20 p-3 md:p-6 bg-gradient-to-b from-background/95 via-background/80 to-transparent backdrop-blur-sm">
         <div className="container mx-auto">
           {/* 모바일 레이아웃 */}
           <div className="block md:hidden">

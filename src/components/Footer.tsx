@@ -61,6 +61,45 @@ const Footer = memo(() => {
             </a>
           </div>
           
+          {/* 관련기관 */}
+          <div className="border-t border-slate-500 pt-6 mb-6">
+            <h4 className="text-sm font-semibold text-slate-300 mb-4">{t("관련기관", "Related Organizations")}</h4>
+            <div className="flex flex-wrap justify-center gap-3">
+              <a
+                href="https://www.seoul.go.kr/main/index.jsp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-md px-4 py-2 flex items-center justify-center hover:opacity-80 transition-opacity"
+              >
+                <img 
+                  src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
+                  alt="서울특별시" 
+                  className="max-w-[100px] max-h-[24px] object-contain"
+                />
+              </a>
+              <a
+                href="https://hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index_pp.xml&menuCd=index3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-md px-4 py-2 flex items-center justify-center hover:opacity-80 transition-opacity"
+              >
+                <img 
+                  src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
+                  alt="국세청" 
+                  className="max-w-[110px] max-h-[28px] object-contain"
+                />
+              </a>
+              <a
+                href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=13386&cntntsId=109155"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-md px-4 py-2 text-red-600 text-xs font-semibold hover:opacity-80 transition-opacity"
+              >
+                {t("공익위반 신고", "Report Violation")}
+              </a>
+            </div>
+          </div>
+
           <p className="text-slate-400 text-sm">
             © 2025-2026 Comm.Unity. All rights reserved.
           </p>

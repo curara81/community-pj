@@ -16,12 +16,12 @@ const IntroSection = memo(() => {
           </h2>
           
           <div className="bg-muted rounded-2xl p-6 md:p-10">
-            <div className="text-left text-sm sm:text-base md:text-lg leading-[1.9] text-muted-foreground space-y-4 font-light">
+            <div className="text-left text-sm sm:text-base md:text-lg leading-[1.9] text-foreground/70 space-y-4 font-light">
               <p>
                 {t('컴유니티(Comm.Unity)는 다문화 가정 사역과 돌봄의 사각지대에 놓인 이웃들과 함께하기 위해 설립된 비영리 사단법인입니다.', 'Comm.Unity is a non-profit corporation established to stand with neighbors in multicultural family ministry and care blind spots.')}
               </p>
               <p>
-                {t('2025년 우리는 ', 'In 2025, we begin with ')}<strong className="text-donate font-extrabold">{t('"돌봄을 통해 사회를 하나로 연결하는 것"', '"connecting society as one through care"')}</strong>{t('을 사명으로 시작합니다. ', ' as our mission. ')}
+                {t('2025년 우리는 ', 'In 2025, we begin with ')}<strong className="font-extrabold text-foreground">{t('"돌봄을 통해 사회를 하나로 연결하는 것"', '"connecting society as one through care"')}</strong>{t('을 사명으로 시작합니다. ', ' as our mission. ')}
                 {t('다문화 가정, 장애인, 노약자, 무주택 취약계층 등 우리 사회의 가장 연약한 이웃들에게 따뜻한 손길과 실제적인 도움을 전하며 다음 세대가 사랑과 배려, 나눔의 가치를 자연스럽게 배울 수 있도록 다양한 프로그램을 준비하고 있습니다.', 'We deliver warm hands and practical help to the most vulnerable neighbors in our society—multicultural families, people with disabilities, the elderly, and homeless vulnerable groups—and prepare various programs so the next generation can naturally learn the values of love, care, and sharing.')}
               </p>
               <p>
@@ -30,7 +30,7 @@ const IntroSection = memo(() => {
               <p>
                 {t('컴유니티가 바라보는 세상은 누구도 홀로 남겨지지 않고 누구도 외면당하지 않는 곳입니다.  연약한 이웃에게 다가가 손을 내밀고 함께 걸으며 서로가 서로에게 위로와 희망이 되어주는 사회.  우리가 실천하는 작은 사랑과 나눔이 모여 더 따뜻하고 아름다운 세상을 만들어가기를 소망합니다.', 'The world Comm.Unity envisions is a place where no one is left alone and no one is ignored. A society where we reach out to vulnerable neighbors, walk together, and become comfort and hope for each other. We hope that the small love and sharing we practice will come together to create a warmer and more beautiful world.')}
               </p>
-              <p className="font-extrabold text-donate">
+              <p className="font-bold text-foreground mt-2">
                 {t('컴유니티는 사랑이 머무는 곳, 그리고 그 사랑이 세상을 변화시키는 힘이 된다고 믿습니다.', 'Comm.Unity believes it is a place where love stays, and that love becomes the power to change the world.')}
               </p>
             </div>

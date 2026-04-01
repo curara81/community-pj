@@ -57,7 +57,7 @@ const NewsletterSection = memo(() => {
           <Button
             variant="outline"
             size="sm"
-            className="border-accent text-accent hover:bg-accent hover:text-accent-foreground text-xs rounded-lg"
+            className="border-donate text-donate hover:bg-donate hover:text-donate-foreground text-xs rounded-lg"
           >
             {t("상세 신청하기", "Detailed Application")}
           </Button>

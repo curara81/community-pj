@@ -22,7 +22,7 @@ const DonationSection = () => {
             {t("아직 시작 단계지만, 우리가 함께 만들 수 있는 변화는 무궁무진합니다. 여러분의 작은 참여가 누군가에게는 인생의 터닝포인트가 됩니다.", "Though we're still in the beginning stages, the changes we can create together are limitless. Your small participation becomes a turning point in someone's life.")}
           </p>
           
-          <div className="bg-accent-lighter/60 rounded-2xl p-6 md:p-8 mb-8">
+          <div className="bg-muted rounded-2xl p-6 md:p-8 mb-8">
             <h3 className="text-lg font-bold text-foreground mb-2">
               💳 {t("계좌 안내", "Account Information")}
             </h3>

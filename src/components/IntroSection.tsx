@@ -40,7 +40,7 @@ const IntroSection = memo(() => {
               <AboutModal>
                 <Button 
                   variant="link"
-                  className="text-accent hover:text-accent-light text-base font-medium"
+                  className="text-primary hover:text-primary-light text-base font-medium"
                 >
                   {t('더 알아보기 →', 'Learn More →')}
                 </Button>

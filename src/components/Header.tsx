@@ -110,45 +110,7 @@ const Header = memo(() => {
           </div>
 
           {/* 데스크탑 레이아웃 */}
-          <div className="hidden md:flex justify-between items-center gap-2 md:gap-3 mb-4">
-            {/* 좌측: 로고 버튼들 */}
-            <div className="flex flex-wrap gap-2 md:gap-3">
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={handleSeoulClick}
-                className="!border-2 !border-accent !bg-background hover:!bg-accent-lighter !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
-                title="서울특별시"
-              >
-                <img 
-                  src="/lovable-uploads/fe395779-15a3-4abb-a0f3-eef3cfafaa75.png" 
-                  alt="서울특별시" 
-                  className="max-w-[140px] lg:max-w-[160px] max-h-[30px] lg:max-h-[35px] object-contain"
-                />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={handleTaxOfficeClick}
-                className="!border-2 !border-success !bg-background hover:!bg-success-lighter !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
-                title="국세청"
-              >
-                <img 
-                  src="/lovable-uploads/c9701e84-86de-4b52-9d0b-8566f5649005.png" 
-                  alt="국세청" 
-                  className="max-w-[160px] lg:max-w-[180px] max-h-[40px] lg:max-h-[45px] object-contain"
-                />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={handleWhistleblowerClick}
-                className="!border-2 !border-destructive !text-destructive !bg-background hover:!bg-destructive hover:!text-destructive-foreground !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center text-base sm:text-lg font-semibold"
-              >
-                {t('공익위반 신고', 'Report Violation')}
-              </Button>
-            </div>
-            
+          <div className="hidden md:flex justify-end items-center gap-2 md:gap-3 mb-4">
             {/* 우측: 언어 전환 버튼과 로그인 버튼 */}
             <div className="flex items-center gap-2">
               <Button

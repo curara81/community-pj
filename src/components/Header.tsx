@@ -300,7 +300,7 @@ const Header = memo(() => {
                 <Button 
                   variant="outline"
                   size="lg"
-                  className="px-6 py-3 text-base font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[180px] border-2 border-success text-success bg-background hover:bg-success-lighter"
+                  className="px-6 py-3 text-base font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[180px] border-2 border-donate text-donate bg-background hover:bg-donate/10"
                 >
                   <Flower2 className="w-4 h-4 mr-2" />
                   {t('참여 신청하기', 'Apply to Volunteer')}

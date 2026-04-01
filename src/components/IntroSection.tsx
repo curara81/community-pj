@@ -39,8 +39,8 @@ const IntroSection = memo(() => {
             <div className="mt-8 text-center">
               <AboutModal>
                 <Button 
-                  variant="link"
-                  className="text-primary hover:text-primary-light text-base font-medium"
+                  variant="outline"
+                  className="border-2 border-donate text-donate hover:bg-donate/10 rounded-full px-6 font-semibold"
                 >
                   {t('더 알아보기 →', 'Learn More →')}
                 </Button>

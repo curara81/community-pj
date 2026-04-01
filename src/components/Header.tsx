@@ -254,64 +254,55 @@ const Header = memo(() => {
         </div>
       </nav>
 
-      {/* 기존 헤더 콘텐츠 */}
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-blue-50 overflow-hidden pt-32 md:pt-40 lg:pt-8">
-        {/* Background decoration */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-amber-200 rounded-full blur-xl"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200 rounded-full blur-xl"></div>
-          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-orange-200 rounded-full blur-lg"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-36 h-36 bg-yellow-200 rounded-full blur-xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <div className="animate-fade-in">
-            <div className="flex items-center justify-center mb-6 md:mb-6 mt-8 md:mt-12 lg:mt-16">
+      {/* Hero Section */}
+      <div className="flex-1 flex items-center justify-center bg-gradient-to-b from-muted to-background overflow-hidden pt-32 md:pt-40 lg:pt-8">
+        <div className="container mx-auto px-6 text-center relative z-10 py-12 md:py-16">
+          <div className="animate-fade-in max-w-3xl mx-auto">
+            {/* 악수 아이콘 */}
+            <div className="flex items-center justify-center mb-8">
               <img 
                 src="/lovable-uploads/a8a64d27-d20f-4ce7-96ca-1c7063ad7838.png" 
                 alt="돌봄으로 하나 되는 사회" 
-                className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-contain"
-                width={320}
-                height={320}
+                className="w-32 h-32 md:w-40 md:h-40 object-contain"
+                width={160}
+                height={160}
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
               />
             </div>
             
-            <h1 className="text-2xl sm:text-3xl md:text-8xl lg:text-9xl font-bold mb-6 md:mb-8 leading-tight px-4">
-              <span className="block text-slate-800">{t('돌봄으로', 'Through Care,')}</span>
-              <span className="block text-slate-800">{t('하나되는 사회,', 'United Society,')}</span>
+            {/* 메인 카피 */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+              <span className="text-foreground">{t('돌봄으로 하나되는 사회,', 'Through Care, United Society,')}</span>{' '}
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
-            <div className="space-y-4 md:space-y-6 mb-8 md:mb-12 animate-slide-up px-4">
-              <p className="text-base sm:text-lg md:text-3xl lg:text-4xl text-slate-700 font-semibold text-center">
-                <span className="block">{t('다문화 가정과 취약계층에게', 'To multicultural families and')}</span>
-                <span className="block">{t('희망과 돌봄을 전합니다.', 'vulnerable communities, we deliver hope and care.')}</span>
-              </p>
-              <p className="text-sm sm:text-base md:text-2xl lg:text-3xl text-slate-600 font-medium text-center">
-                {t('함께 사는 사회, 함께 살아내는 연대.', 'A society where we live together, solidarity where we survive together.')}
-              </p>
-            </div>
+            {/* 서브 카피 */}
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-normal leading-relaxed mb-10 max-w-2xl mx-auto">
+              {t('다문화 가정과 취약계층에게 희망과 돌봄을 전합니다.', 'To multicultural families and vulnerable communities, we deliver hope and care.')}
+              <br />
+              {t('함께 사는 사회, 함께 살아내는 연대.', 'A society where we live together, solidarity where we survive together.')}
+            </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+            {/* 버튼 */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Button 
                 variant="accent"
                 size="lg" 
                 onClick={handleDonationClick}
-                className="px-8 py-4 text-lg font-semibold rounded-full hover-lift helping-hand-shadow w-full sm:w-auto min-w-[200px]"
+                className="px-6 py-3 text-base font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[180px]"
               >
-                <Heart className="w-5 h-5 mr-2" />
+                <Heart className="w-4 h-4 mr-2" />
                 {t('후원하기', 'Donate')}
               </Button>
               <VolunteerModal>
                 <Button 
                   variant="outline"
                   size="lg"
-                  className="px-8 py-4 text-lg font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[200px] border-2 border-success text-success bg-background hover:bg-success-lighter"
+                  className="px-6 py-3 text-base font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[180px] border-2 border-success text-success bg-background hover:bg-success-lighter"
                 >
-                  <Flower2 className="w-5 h-5 mr-2" />
+                  <Flower2 className="w-4 h-4 mr-2" />
                   {t('참여 신청하기', 'Apply to Volunteer')}
                 </Button>
               </VolunteerModal>

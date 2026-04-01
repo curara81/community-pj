@@ -286,7 +286,7 @@ const Header = memo(() => {
             </h1>
             
             <div className="mb-8 md:mb-10 animate-slide-up px-4">
-              <p className="text-sm sm:text-base md:text-lg text-slate-600 font-light text-center leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 font-light text-center leading-relaxed">
                 {t('다문화 가정과 취약계층에게 희망과 돌봄을 전합니다.', 'We deliver hope and care to multicultural families and vulnerable communities.')}
                 <br />
                 {t('함께 사는 사회, 함께 살아내는 연대.', 'A society where we live together, solidarity where we survive together.')}

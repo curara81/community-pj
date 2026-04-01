@@ -64,6 +64,9 @@ export default {
 					foreground: 'hsl(var(--donate-foreground))',
 					hover: 'hsl(var(--donate-hover))'
 				},
+				warm: {
+					bg: 'hsl(var(--warm-bg))'
+				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'

@@ -73,7 +73,7 @@ const Index = () => {
         <DonationSection />
         <VolunteerSection />
         <FAQSection />
-        <NewsletterSection />
+        
         <ScrollToTop />
       </Suspense>
       <Footer />

@@ -12,7 +12,7 @@ const IntroSection = memo(() => {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
-            {t('사단법인', 'Incorporated Foundation')} <span className="text-accent">{t('컴유니티', 'Comm.Unity')}</span>{t('는…', ' is...')}
+            {t('사단법인', 'Incorporated Foundation')} <span className="text-primary">{t('컴유니티', 'Comm.Unity')}</span>{t('는…', ' is...')}
           </h2>
           
           <div className="bg-warm-bg rounded-2xl p-6 md:p-10">

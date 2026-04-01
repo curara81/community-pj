@@ -30,12 +30,12 @@
     --secondary-light: 263 90% 70%;
     --secondary-lighter: 262 100% 95%;
 
-    /* Accent: orange (actions/links) #f08300 */
-    --accent: 33 100% 47%;
+    /* Accent: dark navy (text, links, emphasis) */
+    --accent: 215 28% 25%;
     --accent-foreground: 0 0% 100%;
-    --accent-light: 33 100% 57%;
-    --accent-lighter: 33 100% 93%;
-    --warm-bg: 30 50% 96%;
+    --accent-light: 215 22% 40%;
+    --accent-lighter: 210 20% 96%;
+    --warm-bg: 210 20% 96%;
 
     /* Success: green */
     --success: 142 71% 45%;

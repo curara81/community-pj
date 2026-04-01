@@ -42,7 +42,8 @@ const VolunteerSection = () => {
             
             <VolunteerModal>
               <Button 
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 text-sm font-semibold rounded-lg"
+                className="text-white px-6 py-2.5 text-sm font-semibold rounded-lg"
+                style={{ backgroundColor: '#83c5be' }}
               >
                 🙋 {t('자원봉사 신청하기', 'Apply for Volunteering')}
               </Button>

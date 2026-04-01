@@ -270,7 +270,7 @@ const Header = memo(() => {
               <img 
                 src="/lovable-uploads/a8a64d27-d20f-4ce7-96ca-1c7063ad7838.png" 
                 alt="돌봄으로 하나 되는 사회" 
-                className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
+                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain"
                 width={192}
                 height={192}
                 loading="eager"

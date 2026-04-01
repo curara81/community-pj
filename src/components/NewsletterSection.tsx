@@ -46,7 +46,8 @@ const NewsletterSection = memo(() => {
           />
           <Button
             type="submit"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground px-5 text-sm font-medium rounded-lg whitespace-nowrap"
+            variant="donate"
+            className="px-5 text-sm font-medium rounded-lg whitespace-nowrap"
           >
             {t("빠른 신청", "Quick Apply")}
           </Button>

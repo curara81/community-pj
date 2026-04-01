@@ -288,7 +288,7 @@ const Header = memo(() => {
             {/* 버튼 */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Button 
-                variant="accent"
+                variant="donate"
                 size="lg" 
                 onClick={handleDonationClick}
                 className="px-6 py-3 text-base font-semibold rounded-full hover-lift w-full sm:w-auto min-w-[180px]"

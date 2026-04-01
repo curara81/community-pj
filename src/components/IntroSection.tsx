@@ -8,7 +8,7 @@ const IntroSection = memo(() => {
   const { t } = useLanguage();
   
   return (
-    <section className="py-8 md:py-10 bg-background">
+    <section className="py-4 md:py-6 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">

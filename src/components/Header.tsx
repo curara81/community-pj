@@ -270,7 +270,7 @@ const Header = memo(() => {
               <img 
                 src="/lovable-uploads/a8a64d27-d20f-4ce7-96ca-1c7063ad7838.png" 
                 alt="돌봄으로 하나 되는 사회" 
-                className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
+                className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain"
                 width={192}
                 height={192}
                 loading="eager"
@@ -279,14 +279,14 @@ const Header = memo(() => {
               />
             </div>
             
-            <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight px-4">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight px-4">
               <span className="text-slate-800">{t('돌봄으로 하나되는 사회,', 'Through Care, United Society,')}</span>
               <br />
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span>
             </h1>
             
             <div className="mb-8 md:mb-10 animate-slide-up px-4">
-              <p className="text-sm sm:text-base md:text-lg text-slate-600 font-light text-center leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 font-light text-center leading-relaxed">
                 {t('다문화 가정과 취약계층에게 희망과 돌봄을 전합니다.', 'We deliver hope and care to multicultural families and vulnerable communities.')}
                 <br />
                 {t('함께 사는 사회, 함께 살아내는 연대.', 'A society where we live together, solidarity where we survive together.')}

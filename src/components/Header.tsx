@@ -127,7 +127,7 @@ const Header = memo(() => {
                     variant="outline"
                     size="sm"
                     onClick={() => window.open("https://mrmweb.hsit.co.kr/v2/?server=skiZ1MMB3nSXnYx5MK2cQw==&action=info", "_blank")}
-                    className="!border !border-accent !text-accent !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
+                    className="!border !border-primary !text-primary !bg-background !px-2 !h-[28px] text-[10px] font-semibold"
                   >
                     <Heart size={12} />
                     <span className="ml-1">{t('나의 후원', 'My Donations')}</span>

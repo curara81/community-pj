@@ -34,7 +34,7 @@ const VolunteerSection = () => {
             <ul className="space-y-3 mb-8">
               {items.map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm text-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: '#83c5be' }} />
                   <span className="font-light">{item}</span>
                 </li>
               ))}

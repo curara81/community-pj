@@ -27,7 +27,7 @@ const NewsletterSection = memo(() => {
   return (
     <section className="py-16 md:py-20 bg-accent-lighter/40">
       <div className="container mx-auto px-6 max-w-xl text-center">
-        <p className="text-2xl mb-1">📮</p>
+        <Mail className="w-7 h-7 text-accent mx-auto mb-1" />
         <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
           {t("소식을 가장 먼저 받아보세요", "Be the First to Receive Our News")}
         </h2>

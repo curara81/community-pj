@@ -153,7 +153,7 @@ const Header = memo(() => {
                 variant="outline" 
                 size="sm"
                 onClick={handleSeoulClick}
-                className="!border-2 !border-accent !bg-background hover:!bg-accent-lighter !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
+                className="!border-2 !border-primary !bg-background hover:!bg-muted !w-[160px] lg:!w-[180px] !h-[45px] lg:!h-[50px] flex items-center justify-center"
                 title="서울특별시"
               >
                 <img 

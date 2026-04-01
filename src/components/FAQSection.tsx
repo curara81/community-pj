@@ -17,8 +17,8 @@ const faqItems = [
   {
     question: "후원금은 어떻게 사용되나요?",
     questionEn: "How are donations used?",
-    answer: "후원금은 난민 정착 지원, 취약계층 생활 돌봄, 자립준비청년 교육 프로그램 등에 투명하게 사용됩니다. 재정보고 페이지에서 확인하실 수 있습니다.",
-    answerEn: "Donations are transparently used for refugee settlement support, vulnerable community care, and youth education programs. Details are available on our Financial Report page.",
+    answer: "후원금은 다문화 가정 정착 지원, 취약계층 생활 돌봄, 자립준비청년 교육 프로그램 등에 투명하게 사용됩니다. 재정보고 페이지에서 확인하실 수 있습니다.",
+    answerEn: "Donations are transparently used for multicultural family settlement support, vulnerable community care, and youth education programs. Details are available on our Financial Report page.",
   },
   {
     question: "자원봉사는 어떻게 참여하나요?",
@@ -35,8 +35,8 @@ const faqItems = [
   {
     question: "컴유니티의 주요 사업은 무엇인가요?",
     questionEn: "What are Comm.Unity's main programs?",
-    answer: "다문화 가정 정착 지원, 취약계층 긴급 돌봄, 자립준비청년 교육 및 멘토링, 지역사회 연대 프로그램 등을 운영하고 있습니다.",
-    answerEn: "We operate multicultural family settlement support, emergency care for vulnerable groups, youth education and mentoring, and community solidarity programs.",
+    answer: "다문화 가정 정착 지원, 취약계층 긴급 돌봄, 다음세대 교육 및 멘토링, 지역사회 연대 프로그램 등을 운영하고 있습니다.",
+    answerEn: "We operate multicultural family settlement support, emergency care for vulnerable groups, next-generation education and mentoring, and community solidarity programs.",
   },
 ];
 
@@ -44,9 +44,9 @@ const FAQSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">
+    <section className="py-16 md:py-20 bg-background">
+      <div className="container mx-auto px-6 max-w-2xl">
+        <h2 className="text-xl md:text-2xl font-bold text-center text-foreground mb-8">
           {t("자주 묻는 질문", "Frequently Asked Questions")}
         </h2>
         <Accordion type="single" collapsible className="space-y-3">
@@ -54,12 +54,12 @@ const FAQSection = () => {
             <AccordionItem
               key={index}
               value={`faq-${index}`}
-              className="bg-background rounded-lg border px-5"
+              className="bg-white rounded-xl border border-muted-medium px-5 shadow-sm"
             >
-              <AccordionTrigger className="text-left text-sm md:text-base font-medium text-foreground hover:no-underline">
+              <AccordionTrigger className="text-left text-sm md:text-[15px] font-medium text-foreground hover:no-underline py-4">
                 {t(item.question, item.questionEn)}
               </AccordionTrigger>
-              <AccordionContent className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-4">
                 {t(item.answer, item.answerEn)}
               </AccordionContent>
             </AccordionItem>

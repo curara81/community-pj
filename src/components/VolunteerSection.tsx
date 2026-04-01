@@ -23,7 +23,7 @@ const VolunteerSection = () => {
             🙋 {t('함께할 동역자를 찾습니다', 'We are looking for partners to join us')}
           </h2>
           
-          <div className="bg-success-lighter/60 rounded-2xl p-6 md:p-8 mb-8">
+          <div className="bg-muted rounded-2xl p-6 md:p-8 mb-8">
             <h3 className="text-lg font-bold text-foreground mb-2">
               🤝 {t('당신의 마음과 시간이 필요합니다', 'We need your heart and time')}
             </h3>

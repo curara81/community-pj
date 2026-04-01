@@ -30,23 +30,17 @@
     --secondary-light: 263 90% 70%;
     --secondary-lighter: 262 100% 95%;
 
-    /* Accent: dark navy (text, links, emphasis) */
-    --accent: 215 28% 25%;
+    /* Accent: blue (actions/links) */
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
-    --accent-light: 215 22% 40%;
-    --accent-lighter: 210 20% 96%;
-    --warm-bg: 210 20% 96%;
+    --accent-light: 213 94% 68%;
+    --accent-lighter: 214 95% 93%;
 
     /* Success: green */
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
     --success-light: 142 69% 58%;
     --success-lighter: 143 85% 96%;
-
-    /* Donate: orange #f08300 */
-    --donate: 33 100% 47%;
-    --donate-foreground: 0 0% 100%;
-    --donate-hover: 33 100% 42%;
 
     /* Muted */
     --muted: 210 40% 98%;

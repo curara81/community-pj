@@ -59,14 +59,6 @@ export default {
 					light: 'hsl(var(--success-light))',
 					lighter: 'hsl(var(--success-lighter))'
 				},
-				donate: {
-					DEFAULT: 'hsl(var(--donate))',
-					foreground: 'hsl(var(--donate-foreground))',
-					hover: 'hsl(var(--donate-hover))'
-				},
-				warm: {
-					bg: 'hsl(var(--warm-bg))'
-				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'

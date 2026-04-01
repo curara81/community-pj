@@ -34,7 +34,7 @@ const VolunteerSection = () => {
             <ul className="text-left max-w-sm mx-auto space-y-3">
               {activities.map((activity, index) => (
                 <li key={index} className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-success flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                   {activity}
                 </li>
               ))}

@@ -15,7 +15,7 @@ const IntroSection = memo(() => {
             {t('사단법인', 'Incorporated Foundation')} <span className="text-accent">{t('컴유니티', 'Comm.Unity')}</span>{t('는…', ' is...')}
           </h2>
           
-          <div className="rounded-2xl p-6 md:p-10" style={{ backgroundColor: 'hsl(30 50% 96%)' }}>
+          <div className="bg-warm-bg rounded-2xl p-6 md:p-10">
             <div className="text-left text-sm sm:text-base md:text-lg leading-[1.9] text-muted-foreground space-y-4">
               <p>
                 {t('컴유니티(Comm.Unity)는', 'Comm.Unity is a')}{' '}

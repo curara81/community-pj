@@ -1,5 +1,13 @@
 export type ApiProvider = "claude" | "gemini";
 
+export interface CatalogRecommendation {
+  productName: string;
+  matchType: "similar" | "complementary";
+  reason: string;
+  finish?: string;
+  application?: string;
+}
+
 export interface StoneAnalysis {
   name: string;
   nameKo?: string;
@@ -20,7 +28,31 @@ export interface StoneAnalysis {
     name: string;
     confidence: string;
   }>;
+  recommendations?: {
+    similar: CatalogRecommendation[];
+    complementary: CatalogRecommendation[];
+  };
   confidence: "high" | "medium" | "low";
+}
+
+export interface CatalogItem {
+  name: string;
+  lookCategory: string;
+  tone: string;
+  colorTags: string[];
+  thicknesses: string[];
+  finishes: string[];
+  section: string;
+}
+
+export interface Catalog {
+  schemaVersion: number;
+  vendor: string;
+  year: number;
+  material: string;
+  sizes: string[];
+  totalItems: number;
+  items: CatalogItem[];
 }
 
 export interface StoneRecord {

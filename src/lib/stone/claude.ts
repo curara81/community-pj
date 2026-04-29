@@ -1,4 +1,5 @@
 import { STONE_ANALYSIS_PROMPT, buildUserPrompt } from "./prompts";
+import { loadCatalog } from "./catalog";
 import type { StoneAnalysis } from "./types";
 
 const CLAUDE_API_URL = "https://api.anthropic.com/v1/messages";
@@ -17,6 +18,7 @@ export async function analyzeWithClaude(
 ): Promise<StoneAnalysis> {
   if (!apiKey) throw new Error("Claude API 키가 설정되지 않았습니다.");
   const { mediaType, data } = dataUrlToBase64(imageDataUrl);
+  const catalog = await loadCatalog();
 
   const response = await fetch(CLAUDE_API_URL, {
     method: "POST",
@@ -28,7 +30,7 @@ export async function analyzeWithClaude(
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 2048,
+      max_tokens: 4096,
       system: STONE_ANALYSIS_PROMPT,
       messages: [
         {
@@ -38,7 +40,7 @@ export async function analyzeWithClaude(
               type: "image",
               source: { type: "base64", media_type: mediaType, data },
             },
-            { type: "text", text: buildUserPrompt(userNote) },
+            { type: "text", text: buildUserPrompt(userNote, catalog) },
           ],
         },
       ],

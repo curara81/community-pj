@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle2, AlertCircle, MapPin, DollarSign, Building2, Sparkles } from "lucide-react";
-import type { StoneAnalysis } from "@/lib/stone/types";
+import { CheckCircle2, AlertCircle, MapPin, DollarSign, Building2, Sparkles, Layers, Shuffle } from "lucide-react";
+import type { CatalogRecommendation, StoneAnalysis } from "@/lib/stone/types";
 
 interface ResultCardProps {
   analysis: StoneAnalysis;
@@ -27,6 +27,53 @@ const categoryLabel: Record<string, string> = {
   ceramic: "세라믹",
   other: "기타",
 };
+
+const RecommendationGroup = ({
+  icon,
+  title,
+  items,
+  accentClass,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  items: CatalogRecommendation[];
+  accentClass: string;
+}) => (
+  <div className="space-y-2">
+    <div className="flex items-center gap-2">
+      {icon}
+      <p className="text-sm font-medium">{title}</p>
+      <span className="text-xs text-muted-foreground">({items.length})</span>
+    </div>
+    <ul className="space-y-2">
+      {items.map((r, i) => (
+        <li
+          key={i}
+          className={`pl-3 border-l-2 ${accentClass} space-y-0.5`}
+        >
+          <p className="text-sm font-semibold">{r.productName}</p>
+          {r.reason && (
+            <p className="text-xs text-muted-foreground leading-relaxed">{r.reason}</p>
+          )}
+          {(r.finish || r.application) && (
+            <div className="flex flex-wrap gap-1 pt-0.5">
+              {r.finish && (
+                <Badge variant="outline" className="text-[10px] py-0 px-1.5">
+                  {r.finish}
+                </Badge>
+              )}
+              {r.application && (
+                <Badge variant="secondary" className="text-[10px] py-0 px-1.5">
+                  {r.application}
+                </Badge>
+              )}
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const ResultCard = ({ analysis }: ResultCardProps) => {
   const conf = confidenceLabel[analysis.confidence] || confidenceLabel.medium;
@@ -126,6 +173,38 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
               </ul>
             </div>
           </>
+        )}
+
+        {analysis.recommendations && (
+          (analysis.recommendations.similar?.length > 0 ||
+            analysis.recommendations.complementary?.length > 0) && (
+            <>
+              <Separator />
+              <div className="space-y-4">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                  NUOVOCORSO 빅슬랩 추천
+                </p>
+
+                {analysis.recommendations.similar?.length > 0 && (
+                  <RecommendationGroup
+                    icon={<Layers className="w-4 h-4 text-emerald-600" />}
+                    title="비슷한 룩"
+                    items={analysis.recommendations.similar}
+                    accentClass="border-l-emerald-400"
+                  />
+                )}
+
+                {analysis.recommendations.complementary?.length > 0 && (
+                  <RecommendationGroup
+                    icon={<Shuffle className="w-4 h-4 text-indigo-600" />}
+                    title="어울리는 조합 (보색/대비)"
+                    items={analysis.recommendations.complementary}
+                    accentClass="border-l-indigo-400"
+                  />
+                )}
+              </div>
+            </>
+          )
         )}
 
         <p className="text-xs text-muted-foreground/70 pt-2 border-t">

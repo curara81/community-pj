@@ -1,5 +1,6 @@
 import { STONE_ANALYSIS_PROMPT, buildUserPrompt } from "./prompts";
 import { parseAnalysisJson } from "./claude";
+import { loadCatalog } from "./catalog";
 import type { StoneAnalysis } from "./types";
 
 const MODEL = "gemini-2.0-flash";
@@ -18,6 +19,7 @@ export async function analyzeWithGemini(
 ): Promise<StoneAnalysis> {
   if (!apiKey) throw new Error("Gemini API 키가 설정되지 않았습니다.");
   const { mimeType, data } = dataUrlParts(imageDataUrl);
+  const catalog = await loadCatalog();
 
   const response = await fetch(`${GEMINI_API_URL}?key=${encodeURIComponent(apiKey)}`, {
     method: "POST",
@@ -29,14 +31,14 @@ export async function analyzeWithGemini(
           role: "user",
           parts: [
             { inlineData: { mimeType, data } },
-            { text: buildUserPrompt(userNote) },
+            { text: buildUserPrompt(userNote, catalog) },
           ],
         },
       ],
       generationConfig: {
         responseMimeType: "application/json",
         temperature: 0.3,
-        maxOutputTokens: 2048,
+        maxOutputTokens: 4096,
       },
     }),
   });

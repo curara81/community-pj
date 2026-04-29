@@ -27,6 +27,8 @@ import {
   uploadAnalysisToDrive,
   loadSettingsFromDrive,
   uploadSettingsToDrive,
+  loadHistoryFromDrive,
+  uploadHistoryToDrive,
 } from "@/lib/stone/drive";
 import {
   loadApiKeys,
@@ -39,6 +41,30 @@ import {
 } from "@/lib/stone/storage";
 import type { ApiKeys, ApiProvider, StoneAnalysis, StoneRecord, DriveAuth } from "@/lib/stone/types";
 
+function mergeHistoryOnSync(local: StoneRecord[], remote: StoneRecord[]): StoneRecord[] {
+  const remoteIds = new Set(remote.map((r) => r.id));
+  const localById = new Map(local.map((r) => [r.id, r]));
+  const result: StoneRecord[] = [];
+
+  // Remote records — preserve local imageDataUrl when ID matches
+  for (const r of remote) {
+    const localVer = localById.get(r.id);
+    result.push(localVer?.imageDataUrl ? { ...r, imageDataUrl: localVer.imageDataUrl } : r);
+  }
+
+  // Local-only records that haven't been uploaded yet (no driveFileId)
+  // are kept. Records with driveFileId missing from remote = deleted elsewhere.
+  for (const r of local) {
+    if (remoteIds.has(r.id)) continue;
+    if (r.driveFileId) continue;
+    result.push(r);
+  }
+
+  return result.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+}
+
 const Stone = () => {
   const [imageDataUrl, setImageDataUrl] = useState<string | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
@@ -50,9 +76,37 @@ const Stone = () => {
   const [driveAuth, setDriveAuth] = useState<DriveAuth | null>(null);
   const [activeTab, setActiveTab] = useState<"capture" | "history">("capture");
 
+  const syncHistoryWithDrive = async (auth: DriveAuth) => {
+    try {
+      const remote = await loadHistoryFromDrive(auth);
+      const local = loadHistory();
+      const merged = mergeHistoryOnSync(local, remote ?? []);
+      saveHistory(merged);
+      setHistory(merged);
+
+      // Push back so any local-only (unsynced) records appear on Drive
+      const localOnlyExists = merged.some((r) =>
+        local.find((l) => l.id === r.id) && !(remote ?? []).find((rr) => rr.id === r.id)
+      );
+      if (localOnlyExists || (remote === null && merged.length > 0)) {
+        try {
+          await uploadHistoryToDrive(auth, merged);
+        } catch (e) {
+          console.warn("Drive 기록 업로드 실패", e);
+        }
+      }
+    } catch (e) {
+      console.warn("Drive 기록 동기화 실패", e);
+    }
+  };
+
   useEffect(() => {
     setHistory(loadHistory());
-    setDriveAuth(getValidAuth());
+    const auth = getValidAuth();
+    setDriveAuth(auth);
+    if (auth) {
+      void syncHistoryWithDrive(auth);
+    }
 
     const previousTitle = document.title;
     document.title = "석재 식별기";
@@ -143,8 +197,18 @@ const Stone = () => {
       }
 
       addHistoryRecord(record);
-      setHistory(loadHistory());
+      const updated = loadHistory();
+      setHistory(updated);
       toast.success(`분석 완료 (${provider === "claude" ? "Claude" : "Gemini"})`);
+
+      const currentAuth = getValidAuth();
+      if (currentAuth) {
+        try {
+          await uploadHistoryToDrive(currentAuth, updated);
+        } catch (e) {
+          console.warn("Drive 기록 동기화 실패", e);
+        }
+      }
     } catch (e) {
       console.error(e);
       toast.error("분석 실패", {
@@ -181,6 +245,8 @@ const Stone = () => {
       } catch (e) {
         console.warn("설정 동기화 실패", e);
       }
+
+      await syncHistoryWithDrive(auth);
     } catch (e) {
       toast.error("Drive 연결 실패", {
         description: e instanceof Error ? e.message : "",
@@ -206,6 +272,13 @@ const Stone = () => {
     saveHistory(next);
     setHistory(next);
     toast.success("삭제됨");
+
+    const currentAuth = getValidAuth();
+    if (currentAuth) {
+      void uploadHistoryToDrive(currentAuth, next).catch((e) =>
+        console.warn("Drive 기록 동기화 실패", e)
+      );
+    }
   };
 
   const preferred = loadPreferredProvider();

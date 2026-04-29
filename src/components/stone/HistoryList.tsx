@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Trash2, ExternalLink, Clock } from "lucide-react";
+import { Trash2, ExternalLink, Clock, Cloud } from "lucide-react";
 import type { StoneRecord } from "@/lib/stone/types";
 import ResultCard from "./ResultCard";
 import {
@@ -38,16 +38,21 @@ const HistoryList = ({ records, onDelete }: HistoryListProps) => {
             className="overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all"
             onClick={() => setSelected(rec)}
           >
-            {rec.imageDataUrl && (
-              <div className="aspect-square bg-muted overflow-hidden">
+            <div className="aspect-square bg-muted overflow-hidden">
+              {rec.imageDataUrl ? (
                 <img
                   src={rec.imageDataUrl}
                   alt={rec.analysis.name}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-              </div>
-            )}
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-500">
+                  <Cloud className="w-8 h-8 mb-1 opacity-60" />
+                  <span className="text-[10px]">Drive에 저장됨</span>
+                </div>
+              )}
+            </div>
             <div className="p-2.5 space-y-1">
               <p className="text-xs font-medium truncate" title={rec.analysis.name}>
                 {rec.analysis.name}
@@ -82,7 +87,7 @@ const HistoryList = ({ records, onDelete }: HistoryListProps) => {
           </DialogHeader>
           {selected && (
             <div className="space-y-4">
-              {selected.imageDataUrl && (
+              {selected.imageDataUrl ? (
                 <div className="rounded-lg overflow-hidden border">
                   <img
                     src={selected.imageDataUrl}
@@ -90,6 +95,16 @@ const HistoryList = ({ records, onDelete }: HistoryListProps) => {
                     className="w-full max-h-72 object-contain bg-muted"
                   />
                 </div>
+              ) : (
+                selected.driveFileLink && (
+                  <div className="rounded-lg border p-6 bg-gradient-to-br from-slate-100 to-slate-200 text-center text-slate-600">
+                    <Cloud className="w-10 h-10 mx-auto mb-2 opacity-60" />
+                    <p className="text-sm">사진은 Google Drive에 보관되어 있습니다.</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      아래 "Drive에서 보기"로 원본 사진을 확인하세요.
+                    </p>
+                  </div>
+                )
               )}
               <ResultCard analysis={selected.analysis} />
               <div className="flex flex-col gap-2 pt-2">

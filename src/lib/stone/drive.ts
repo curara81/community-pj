@@ -1,9 +1,10 @@
 import { loadDriveAuth, saveDriveAuth, clearDriveAuth } from "./storage";
-import type { ApiKeys, DriveAuth, StoneAnalysis } from "./types";
+import type { ApiKeys, DriveAuth, StoneAnalysis, StoneRecord } from "./types";
 
 const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.file";
 const FOLDER_NAME = "StoneIdentifier";
 const SETTINGS_FILE_NAME = "stone-app-settings.json";
+const HISTORY_FILE_NAME = "stone-app-history.json";
 
 interface TokenResponse {
   access_token: string;
@@ -218,6 +219,72 @@ export async function loadSettingsFromDrive(auth: DriveAuth): Promise<ApiKeys | 
   if (!res.ok) return null;
   try {
     return (await res.json()) as ApiKeys;
+  } catch {
+    return null;
+  }
+}
+
+function slimRecord(r: StoneRecord): StoneRecord {
+  // Strip imageDataUrl to keep history.json small. Image is already
+  // stored as a standalone file via uploadAnalysisToDrive (driveFileId).
+  const { imageDataUrl, ...rest } = r;
+  void imageDataUrl;
+  return rest as StoneRecord;
+}
+
+export async function uploadHistoryToDrive(
+  auth: DriveAuth,
+  records: StoneRecord[]
+): Promise<void> {
+  const folderId = await ensureFolderId(auth);
+  const existingId = await findFileInFolder(auth.accessToken, folderId, HISTORY_FILE_NAME);
+  const payload = {
+    schemaVersion: 1,
+    updatedAt: new Date().toISOString(),
+    records: records.map(slimRecord),
+  };
+  const body = JSON.stringify(payload, null, 2);
+
+  if (existingId) {
+    const res = await fetch(
+      `https://www.googleapis.com/upload/drive/v3/files/${existingId}?uploadType=media`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${auth.accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body,
+      }
+    );
+    if (!res.ok) throw new Error(`Drive 기록 업데이트 실패 (${res.status})`);
+    return;
+  }
+
+  const blob = new Blob([body], { type: "application/json" });
+  await multipartUpload(
+    auth.accessToken,
+    { name: HISTORY_FILE_NAME, parents: [folderId] },
+    blob,
+    "application/json"
+  );
+}
+
+export async function loadHistoryFromDrive(auth: DriveAuth): Promise<StoneRecord[] | null> {
+  const folderId = await ensureFolderId(auth);
+  const existingId = await findFileInFolder(auth.accessToken, folderId, HISTORY_FILE_NAME);
+  if (!existingId) return null;
+
+  const res = await fetch(
+    `https://www.googleapis.com/drive/v3/files/${existingId}?alt=media`,
+    { headers: { Authorization: `Bearer ${auth.accessToken}` } }
+  );
+  if (!res.ok) return null;
+  try {
+    const json = await res.json();
+    if (Array.isArray(json?.records)) return json.records as StoneRecord[];
+    if (Array.isArray(json)) return json as StoneRecord[];
+    return null;
   } catch {
     return null;
   }

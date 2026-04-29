@@ -28,6 +28,7 @@ import ShareButton from "@/components/stone/ShareButton";
 import CatalogImageManager from "@/components/stone/CatalogImageManager";
 import { analyzeWithClaude } from "@/lib/stone/claude";
 import type { ClaudeModel } from "@/lib/stone/claude";
+import { pickConfirmedLibrary } from "@/lib/stone/prompts";
 import {
   requestDriveAccess,
   getValidAuth,
@@ -212,9 +213,11 @@ const Stone = () => {
       provider === "claude-haiku" ? "claude-haiku-4-5-20251001" : "claude-sonnet-4-6";
 
     try {
+      const library = pickConfirmedLibrary(history);
       const result = await analyzeWithClaude(imageDataUrl, key, {
         model,
         userNote,
+        library,
       });
 
       setAnalysis(result);
@@ -334,6 +337,19 @@ const Stone = () => {
     setAnalysis(null);
     setUsedProvider(null);
     setUserNote("");
+  };
+
+  const handleUpdateHistory = (updated: StoneRecord) => {
+    const next = history.map((r) => (r.id === updated.id ? updated : r));
+    saveHistory(next);
+    setHistory(next);
+
+    const currentAuth = getValidAuth();
+    if (currentAuth) {
+      void uploadHistoryToDrive(currentAuth, next).catch((e) =>
+        console.warn("Drive 기록 동기화 실패", e)
+      );
+    }
   };
 
   const handleDeleteHistory = (id: string) => {
@@ -521,7 +537,11 @@ const Stone = () => {
           </TabsContent>
 
           <TabsContent value="history" className="mt-4">
-            <HistoryList records={history} onDelete={handleDeleteHistory} />
+            <HistoryList
+              records={history}
+              onDelete={handleDeleteHistory}
+              onUpdate={handleUpdateHistory}
+            />
           </TabsContent>
         </Tabs>
       </main>

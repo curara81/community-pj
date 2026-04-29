@@ -1,4 +1,5 @@
 import { STONE_ANALYSIS_PROMPT, buildUserPrompt } from "./prompts";
+import type { ConfirmedLibraryItem } from "./prompts";
 import { loadCatalog } from "./catalog";
 import type { StoneAnalysis } from "./types";
 
@@ -15,7 +16,11 @@ function dataUrlToBase64(dataUrl: string): { mediaType: string; data: string } {
 export async function analyzeWithClaude(
   imageDataUrl: string,
   apiKey: string,
-  options: { model?: ClaudeModel; userNote?: string } = {}
+  options: {
+    model?: ClaudeModel;
+    userNote?: string;
+    library?: ConfirmedLibraryItem[];
+  } = {}
 ): Promise<StoneAnalysis> {
   if (!apiKey) throw new Error("Claude API 키가 설정되지 않았습니다.");
   const { mediaType, data } = dataUrlToBase64(imageDataUrl);
@@ -42,7 +47,10 @@ export async function analyzeWithClaude(
               type: "image",
               source: { type: "base64", media_type: mediaType, data },
             },
-            { type: "text", text: buildUserPrompt(options.userNote, catalog) },
+            {
+              type: "text",
+              text: buildUserPrompt(options.userNote, catalog, options.library),
+            },
           ],
         },
       ],

@@ -69,6 +69,10 @@ export interface StoneRecord {
   driveMetadataId?: string;
   analysis: StoneAnalysis;
   userNote?: string;
+  /** User has confirmed the primary identification is correct. */
+  confirmed?: boolean;
+  /** Manual edits applied by the user (subset of analysis fields). */
+  edited?: boolean;
 }
 
 export interface ApiKeys {

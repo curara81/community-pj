@@ -13,11 +13,17 @@ import {
   CloudOff,
   History,
   Camera,
+  Sun,
+  Moon,
+  MonitorSmartphone,
+  Calculator,
 } from "lucide-react";
+import { StoneThemeProvider, useStoneTheme } from "@/lib/stone/theme";
 import CameraCapture from "@/components/stone/CameraCapture";
 import ResultCard from "@/components/stone/ResultCard";
 import HistoryList from "@/components/stone/HistoryList";
 import SettingsDialog from "@/components/stone/SettingsDialog";
+import SlabCalculator from "@/components/stone/SlabCalculator";
 import { analyzeWithClaude } from "@/lib/stone/claude";
 import type { ClaudeModel } from "@/lib/stone/claude";
 import {
@@ -70,6 +76,36 @@ function mergeHistoryOnSync(local: StoneRecord[], remote: StoneRecord[]): StoneR
   );
 }
 
+function ThemeToggleButton() {
+  const { theme, setTheme } = useStoneTheme();
+  const next = theme === "light" ? "dark" : theme === "dark" ? "system" : "light";
+  const icon =
+    theme === "light" ? (
+      <Sun className="w-4 h-4" />
+    ) : theme === "dark" ? (
+      <Moon className="w-4 h-4" />
+    ) : (
+      <MonitorSmartphone className="w-4 h-4" />
+    );
+  const label =
+    theme === "light"
+      ? "라이트 모드 (다크로 전환)"
+      : theme === "dark"
+        ? "다크 모드 (자동으로 전환)"
+        : "자동 모드 (라이트로 전환)";
+  return (
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={() => setTheme(next)}
+      aria-label={label}
+      title={label}
+    >
+      {icon}
+    </Button>
+  );
+}
+
 const Stone = () => {
   const [imageDataUrl, setImageDataUrl] = useState<string | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
@@ -77,6 +113,7 @@ const Stone = () => {
   const [usedProvider, setUsedProvider] = useState<ApiProvider | null>(null);
   const [userNote, setUserNote] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [calcOpen, setCalcOpen] = useState(false);
   const [history, setHistory] = useState<StoneRecord[]>([]);
   const [driveAuth, setDriveAuth] = useState<DriveAuth | null>(null);
   const [activeTab, setActiveTab] = useState<"capture" | "history">("capture");
@@ -312,12 +349,12 @@ const Stone = () => {
   const preferred = loadPreferredProvider();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-stone-50 to-slate-100 dark:from-slate-900 dark:to-slate-950">
       <header
-        className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b"
+        className="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b"
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
           <img
             src="/stone-icon.svg"
             alt=""
@@ -327,14 +364,26 @@ const Stone = () => {
           <h1 className="text-base font-bold flex items-center gap-2">
             석재 식별기
           </h1>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSettingsOpen(true)}
-            aria-label="설정"
-          >
-            <Settings className="w-4 h-4" />
-          </Button>
+          <div className="flex items-center gap-0.5">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setCalcOpen(true)}
+              aria-label="슬랩 계산기"
+              title="슬랩 계산기"
+            >
+              <Calculator className="w-4 h-4" />
+            </Button>
+            <ThemeToggleButton />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSettingsOpen(true)}
+              aria-label="설정"
+            >
+              <Settings className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -462,8 +511,15 @@ const Stone = () => {
       </main>
 
       <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
+      <SlabCalculator open={calcOpen} onOpenChange={setCalcOpen} />
     </div>
   );
 };
 
-export default Stone;
+const StonePage = () => (
+  <StoneThemeProvider>
+    <Stone />
+  </StoneThemeProvider>
+);
+
+export default StonePage;

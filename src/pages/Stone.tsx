@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,6 +24,8 @@ import ResultCard from "@/components/stone/ResultCard";
 import HistoryList from "@/components/stone/HistoryList";
 import SettingsDialog from "@/components/stone/SettingsDialog";
 import SlabCalculator from "@/components/stone/SlabCalculator";
+import ShareButton from "@/components/stone/ShareButton";
+import CatalogImageManager from "@/components/stone/CatalogImageManager";
 import { analyzeWithClaude } from "@/lib/stone/claude";
 import type { ClaudeModel } from "@/lib/stone/claude";
 import {
@@ -114,6 +116,8 @@ const Stone = () => {
   const [userNote, setUserNote] = useState("");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [calcOpen, setCalcOpen] = useState(false);
+  const [catalogImagesOpen, setCatalogImagesOpen] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
   const [history, setHistory] = useState<StoneRecord[]>([]);
   const [driveAuth, setDriveAuth] = useState<DriveAuth | null>(null);
   const [activeTab, setActiveTab] = useState<"capture" | "history">("capture");
@@ -501,7 +505,19 @@ const Stone = () => {
               </Card>
             )}
 
-            {analysis && !analyzing && <ResultCard analysis={analysis} />}
+            {analysis && !analyzing && (
+              <div className="space-y-2">
+                <div className="flex justify-end">
+                  <ShareButton
+                    targetRef={resultRef}
+                    filename={`석재분석_${analysis.name?.replace(/\s+/g, "_") || "결과"}_${new Date().toISOString().slice(0, 10)}`}
+                  />
+                </div>
+                <div ref={resultRef}>
+                  <ResultCard analysis={analysis} />
+                </div>
+              </div>
+            )}
           </TabsContent>
 
           <TabsContent value="history" className="mt-4">
@@ -510,8 +526,13 @@ const Stone = () => {
         </Tabs>
       </main>
 
-      <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
+      <SettingsDialog
+        open={settingsOpen}
+        onOpenChange={setSettingsOpen}
+        onOpenCatalogImages={() => setCatalogImagesOpen(true)}
+      />
       <SlabCalculator open={calcOpen} onOpenChange={setCalcOpen} />
+      <CatalogImageManager open={catalogImagesOpen} onOpenChange={setCatalogImagesOpen} />
     </div>
   );
 };

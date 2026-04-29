@@ -20,9 +20,10 @@ import type { ApiKeys } from "@/lib/stone/types";
 interface SettingsDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onOpenCatalogImages?: () => void;
 }
 
-const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
+const SettingsDialog = ({ open, onOpenChange, onOpenCatalogImages }: SettingsDialogProps) => {
   const [keys, setKeys] = useState<ApiKeys>({});
   const [saving, setSaving] = useState(false);
 
@@ -128,6 +129,19 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
             </div>
           </TabsContent>
         </Tabs>
+
+        {onOpenCatalogImages && (
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => {
+              onOpenChange(false);
+              onOpenCatalogImages();
+            }}
+          >
+            카탈로그 이미지 관리
+          </Button>
+        )}
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)} disabled={saving}>

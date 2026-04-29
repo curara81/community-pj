@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import {
   CheckCircle2,
   AlertCircle,
+  XCircle,
   MapPin,
   DollarSign,
   Building2,
@@ -13,9 +14,20 @@ import {
   Layers,
   Shuffle,
   Image as ImageIcon,
+  Home,
+  Mountain,
+  ChefHat,
+  Droplets,
+  Sun,
 } from "lucide-react";
 import { loadCatalog } from "@/lib/stone/catalog";
-import type { Catalog, CatalogRecommendation, StoneAnalysis } from "@/lib/stone/types";
+import type {
+  Catalog,
+  CatalogRecommendation,
+  StoneAnalysis,
+  UsageGuidance,
+  UsageLevel,
+} from "@/lib/stone/types";
 import StoneImageDialog from "./StoneImageDialog";
 import CatalogImageThumb from "./CatalogImageThumb";
 
@@ -69,6 +81,79 @@ const categoryColor: Record<string, string> = {
   "wood-look": "bg-amber-200 text-amber-900 border-amber-400",
   "onyx-look": "bg-emerald-100 text-emerald-800 border-emerald-300",
 };
+
+const USAGE_FIELDS: Array<{
+  key: keyof UsageGuidance;
+  label: string;
+  icon: React.ReactNode;
+}> = [
+  { key: "floorIndoor", label: "실내 바닥", icon: <Home className="w-3.5 h-3.5" /> },
+  { key: "floorOutdoor", label: "외부 바닥", icon: <Mountain className="w-3.5 h-3.5" /> },
+  { key: "wallIndoor", label: "실내 벽", icon: <Home className="w-3.5 h-3.5" /> },
+  { key: "exterior", label: "외장", icon: <Sun className="w-3.5 h-3.5" /> },
+  { key: "countertop", label: "카운터탑", icon: <ChefHat className="w-3.5 h-3.5" /> },
+  { key: "wetArea", label: "욕실/습지", icon: <Droplets className="w-3.5 h-3.5" /> },
+];
+
+const usageStyle: Record<UsageLevel, { label: string; cls: string; icon: React.ReactNode }> = {
+  good: {
+    label: "적합",
+    cls: "bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-900/40 dark:text-emerald-200 dark:border-emerald-700",
+    icon: <CheckCircle2 className="w-3.5 h-3.5" />,
+  },
+  ok: {
+    label: "가능",
+    cls: "bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/40 dark:text-amber-200 dark:border-amber-700",
+    icon: <AlertCircle className="w-3.5 h-3.5" />,
+  },
+  avoid: {
+    label: "부적합",
+    cls: "bg-rose-100 text-rose-800 border-rose-300 dark:bg-rose-900/40 dark:text-rose-200 dark:border-rose-700",
+    icon: <XCircle className="w-3.5 h-3.5" />,
+  },
+};
+
+function UsageSection({ usage }: { usage: UsageGuidance }) {
+  const items = USAGE_FIELDS.map((f) => ({
+    ...f,
+    level: usage[f.key] as UsageLevel | undefined,
+  })).filter((it) => typeof it.level === "string" && usageStyle[it.level!]);
+
+  if (items.length === 0 && !usage.notes) return null;
+
+  return (
+    <div className="space-y-2">
+      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+        용도 추천
+      </p>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+        {items.map((it) => {
+          const s = usageStyle[it.level!];
+          return (
+            <div
+              key={it.key}
+              className={`flex items-center gap-1.5 px-2 py-1.5 rounded-md border ${s.cls}`}
+            >
+              <span className="opacity-70">{it.icon}</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-[11px] font-medium truncate">{it.label}</p>
+                <p className="text-[10px] flex items-center gap-0.5">
+                  {s.icon}
+                  <span>{s.label}</span>
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {usage.notes && (
+        <p className="text-[11px] text-muted-foreground leading-relaxed pt-1">
+          ⚠️ {usage.notes}
+        </p>
+      )}
+    </div>
+  );
+}
 
 function CategoryChip({
   category,
@@ -313,6 +398,13 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
                 ))}
               </ul>
             </div>
+          </>
+        )}
+
+        {analysis.usage && (
+          <>
+            <Separator />
+            <UsageSection usage={analysis.usage} />
           </>
         )}
 

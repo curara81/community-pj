@@ -1,5 +1,5 @@
 import { STONE_ANALYSIS_PROMPT, buildUserPrompt } from "./prompts";
-import type { ConfirmedLibraryItem } from "./prompts";
+import type { AnalysisHints, ConfirmedLibraryItem } from "./prompts";
 import { loadCatalog } from "./catalog";
 import type { StoneAnalysis } from "./types";
 
@@ -20,6 +20,7 @@ export async function analyzeWithClaude(
     model?: ClaudeModel;
     userNote?: string;
     library?: ConfirmedLibraryItem[];
+    hints?: AnalysisHints;
   } = {}
 ): Promise<StoneAnalysis> {
   if (!apiKey) throw new Error("Claude API 키가 설정되지 않았습니다.");
@@ -53,7 +54,13 @@ export async function analyzeWithClaude(
             ...imageBlocks,
             {
               type: "text",
-              text: buildUserPrompt(options.userNote, catalog, options.library, urls.length),
+              text: buildUserPrompt(
+                options.userNote,
+                catalog,
+                options.library,
+                urls.length,
+                options.hints
+              ),
             },
           ],
         },

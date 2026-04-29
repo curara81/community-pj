@@ -8,6 +8,25 @@ export interface CatalogRecommendation {
   application?: string;
 }
 
+export type UsageLevel = "good" | "ok" | "avoid";
+
+export interface UsageGuidance {
+  /** 실내 바닥 */
+  floorIndoor?: UsageLevel;
+  /** 실외 바닥 (테라스, 보도) */
+  floorOutdoor?: UsageLevel;
+  /** 실내 벽 */
+  wallIndoor?: UsageLevel;
+  /** 외장 (외벽 / 외부 마감) */
+  exterior?: UsageLevel;
+  /** 카운터탑 / 주방 상판 */
+  countertop?: UsageLevel;
+  /** 욕실 / 습한 공간 */
+  wetArea?: UsageLevel;
+  /** 추가 주의사항 (얼룩, 산성 약함, 미끄럼 주의 등) */
+  notes?: string;
+}
+
 export interface StoneAnalysis {
   name: string;
   nameKo?: string;
@@ -36,6 +55,7 @@ export interface StoneAnalysis {
     similar: CatalogRecommendation[];
     complementary: CatalogRecommendation[];
   };
+  usage?: UsageGuidance;
   confidence: "high" | "medium" | "low";
 }
 

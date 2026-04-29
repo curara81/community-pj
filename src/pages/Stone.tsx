@@ -115,6 +115,9 @@ const Stone = () => {
   const [analysis, setAnalysis] = useState<StoneAnalysis | null>(null);
   const [usedProvider, setUsedProvider] = useState<ApiProvider | null>(null);
   const [userNote, setUserNote] = useState("");
+  const [originHint, setOriginHint] = useState("");
+  const [nameHint, setNameHint] = useState("");
+  const [hintsOpen, setHintsOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [calcOpen, setCalcOpen] = useState(false);
   const [catalogImagesOpen, setCatalogImagesOpen] = useState(false);
@@ -218,6 +221,10 @@ const Stone = () => {
         model,
         userNote,
         library,
+        hints: {
+          originHint: originHint || undefined,
+          nameHint: nameHint || undefined,
+        },
       });
 
       setAnalysis(result);
@@ -338,6 +345,8 @@ const Stone = () => {
     setAnalysis(null);
     setUsedProvider(null);
     setUserNote("");
+    setOriginHint("");
+    setNameHint("");
   };
 
   const handleUpdateHistory = (updated: StoneRecord) => {
@@ -472,6 +481,47 @@ const Stone = () => {
                   rows={2}
                   className="resize-none"
                 />
+
+                <div className="space-y-2">
+                  <button
+                    type="button"
+                    onClick={() => setHintsOpen((v) => !v)}
+                    className="text-xs text-primary hover:underline inline-flex items-center gap-1"
+                  >
+                    {hintsOpen ? "▼" : "▶"} 단서 입력 (선택) - 산지 / 이름 일부를 알면
+                  </button>
+                  {hintsOpen && (
+                    <Card className="p-3 space-y-2 bg-muted/30">
+                      <div className="space-y-1">
+                        <label className="text-[11px] text-muted-foreground">
+                          예상 산지
+                        </label>
+                        <input
+                          type="text"
+                          value={originHint}
+                          onChange={(e) => setOriginHint(e.target.value)}
+                          placeholder="예: 이탈리아 카라라, 튀르키예, 인도, 브라질"
+                          className="w-full px-2.5 py-1.5 text-sm rounded-md border bg-background"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[11px] text-muted-foreground">
+                          이름 단서 (제품명 일부 또는 시리즈)
+                        </label>
+                        <input
+                          type="text"
+                          value={nameHint}
+                          onChange={(e) => setNameHint(e.target.value)}
+                          placeholder="예: Calacatta, Statuario, Bianco, Crema"
+                          className="w-full px-2.5 py-1.5 text-sm rounded-md border bg-background"
+                        />
+                      </div>
+                      <p className="text-[10px] text-muted-foreground">
+                        이 단서가 사진과 부합하면 1순위로 강하게 반영됩니다. 모순되면 무시됩니다.
+                      </p>
+                    </Card>
+                  )}
+                </div>
 
                 <div className="grid grid-cols-2 gap-2">
                   <Button

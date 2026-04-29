@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,7 +11,6 @@ import {
   Loader2,
   Cloud,
   CloudOff,
-  ArrowLeft,
   History,
   Camera,
 } from "lucide-react";
@@ -216,15 +214,13 @@ const Stone = () => {
     <div className="min-h-screen bg-gradient-to-br from-stone-50 to-slate-100">
       <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b">
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link
-            to="/"
-            className="text-muted-foreground hover:text-foreground inline-flex items-center text-sm"
-          >
-            <ArrowLeft className="w-4 h-4 mr-1" />
-            홈
-          </Link>
+          <img
+            src="/stone-icon.svg"
+            alt=""
+            className="w-7 h-7 rounded-md"
+            aria-hidden
+          />
           <h1 className="text-base font-bold flex items-center gap-2">
-            <Camera className="w-4 h-4" />
             석재 식별기
           </h1>
           <Button

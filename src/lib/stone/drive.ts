@@ -1,8 +1,9 @@
 import { loadDriveAuth, saveDriveAuth, clearDriveAuth } from "./storage";
-import type { DriveAuth, StoneAnalysis } from "./types";
+import type { ApiKeys, DriveAuth, StoneAnalysis } from "./types";
 
 const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.file";
 const FOLDER_NAME = "StoneIdentifier";
+const SETTINGS_FILE_NAME = "stone-app-settings.json";
 
 interface TokenResponse {
   access_token: string;
@@ -149,6 +150,77 @@ interface UploadResult {
   imageFileId: string;
   imageWebViewLink?: string;
   metadataFileId: string;
+}
+
+async function findFileInFolder(
+  accessToken: string,
+  folderId: string,
+  fileName: string
+): Promise<string | null> {
+  const query = encodeURIComponent(
+    `name='${fileName}' and '${folderId}' in parents and trashed=false`
+  );
+  const res = await fetch(
+    `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name)`,
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  );
+  if (!res.ok) return null;
+  const json = await res.json();
+  return json.files?.[0]?.id ?? null;
+}
+
+async function ensureFolderId(auth: DriveAuth): Promise<string> {
+  if (auth.folderId) return auth.folderId;
+  auth.folderId = await ensureStoneFolder(auth.accessToken);
+  saveDriveAuth(auth);
+  return auth.folderId;
+}
+
+export async function uploadSettingsToDrive(auth: DriveAuth, keys: ApiKeys): Promise<void> {
+  const folderId = await ensureFolderId(auth);
+  const existingId = await findFileInFolder(auth.accessToken, folderId, SETTINGS_FILE_NAME);
+  const body = JSON.stringify(keys, null, 2);
+
+  if (existingId) {
+    const res = await fetch(
+      `https://www.googleapis.com/upload/drive/v3/files/${existingId}?uploadType=media`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${auth.accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body,
+      }
+    );
+    if (!res.ok) throw new Error(`Drive 설정 업데이트 실패 (${res.status})`);
+    return;
+  }
+
+  const blob = new Blob([body], { type: "application/json" });
+  await multipartUpload(
+    auth.accessToken,
+    { name: SETTINGS_FILE_NAME, parents: [folderId] },
+    blob,
+    "application/json"
+  );
+}
+
+export async function loadSettingsFromDrive(auth: DriveAuth): Promise<ApiKeys | null> {
+  const folderId = await ensureFolderId(auth);
+  const existingId = await findFileInFolder(auth.accessToken, folderId, SETTINGS_FILE_NAME);
+  if (!existingId) return null;
+
+  const res = await fetch(
+    `https://www.googleapis.com/drive/v3/files/${existingId}?alt=media`,
+    { headers: { Authorization: `Bearer ${auth.accessToken}` } }
+  );
+  if (!res.ok) return null;
+  try {
+    return (await res.json()) as ApiKeys;
+  } catch {
+    return null;
+  }
 }
 
 export async function uploadAnalysisToDrive(

@@ -22,16 +22,24 @@ import HistoryList from "@/components/stone/HistoryList";
 import SettingsDialog from "@/components/stone/SettingsDialog";
 import { analyzeWithClaude } from "@/lib/stone/claude";
 import { analyzeWithGemini } from "@/lib/stone/gemini";
-import { requestDriveAccess, getValidAuth, signOutDrive, uploadAnalysisToDrive } from "@/lib/stone/drive";
+import {
+  requestDriveAccess,
+  getValidAuth,
+  signOutDrive,
+  uploadAnalysisToDrive,
+  loadSettingsFromDrive,
+  uploadSettingsToDrive,
+} from "@/lib/stone/drive";
 import {
   loadApiKeys,
+  saveApiKeys,
   loadHistory,
   saveHistory,
   addHistoryRecord,
   loadPreferredProvider,
   savePreferredProvider,
 } from "@/lib/stone/storage";
-import type { ApiProvider, StoneAnalysis, StoneRecord, DriveAuth } from "@/lib/stone/types";
+import type { ApiKeys, ApiProvider, StoneAnalysis, StoneRecord, DriveAuth } from "@/lib/stone/types";
 
 const Stone = () => {
   const [imageDataUrl, setImageDataUrl] = useState<string | null>(null);
@@ -143,6 +151,20 @@ const Stone = () => {
       const auth = await requestDriveAccess(keys.googleClientId);
       setDriveAuth(auth);
       toast.success("Google Drive 연결됨");
+
+      try {
+        const remote = await loadSettingsFromDrive(auth);
+        if (remote && Object.keys(remote).length > 0) {
+          const merged: ApiKeys = { ...keys, ...remote };
+          saveApiKeys(merged);
+          toast.success("Drive에서 설정 동기화됨");
+        } else if (keys.claude || keys.gemini || keys.googleClientId) {
+          await uploadSettingsToDrive(auth, keys);
+          toast.success("이 기기 설정을 Drive에 업로드했습니다");
+        }
+      } catch (e) {
+        console.warn("설정 동기화 실패", e);
+      }
     } catch (e) {
       toast.error("Drive 연결 실패", {
         description: e instanceof Error ? e.message : "",

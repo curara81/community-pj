@@ -11,8 +11,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { loadApiKeys, saveApiKeys } from "@/lib/stone/storage";
+import { getValidAuth, uploadSettingsToDrive } from "@/lib/stone/drive";
 import type { ApiKeys } from "@/lib/stone/types";
 
 interface SettingsDialogProps {
@@ -22,13 +24,30 @@ interface SettingsDialogProps {
 
 const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
   const [keys, setKeys] = useState<ApiKeys>({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (open) setKeys(loadApiKeys());
   }, [open]);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     saveApiKeys(keys);
+    const auth = getValidAuth();
+    if (auth) {
+      setSaving(true);
+      try {
+        await uploadSettingsToDrive(auth, keys);
+        toast.success("저장됨 (Drive 동기화 완료)");
+      } catch (e) {
+        toast.warning("로컬 저장 완료 (Drive 동기화 실패)", {
+          description: e instanceof Error ? e.message : "",
+        });
+      } finally {
+        setSaving(false);
+      }
+    } else {
+      toast.success("저장됨 (이 기기에만)");
+    }
     onOpenChange(false);
   };
 
@@ -131,10 +150,13 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
         </Tabs>
 
         <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={saving}>
             취소
           </Button>
-          <Button onClick={handleSave}>저장</Button>
+          <Button onClick={handleSave} disabled={saving}>
+            {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+            저장
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

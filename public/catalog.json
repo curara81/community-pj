@@ -1,0 +1,1787 @@
+{
+  "schemaVersion": 1,
+  "vendor": "NUOVOCORSO",
+  "year": 2025,
+  "material": "Gres Porcellanato (Porcelain Big Slab)",
+  "sizes": [
+    "162x324 cm (12mm/2cm)",
+    "160x320 cm (6.5mm rectified)"
+  ],
+  "totalItems": 104,
+  "items": [
+    {
+      "name": "ABSOLUTE BLACK STRUCTURED",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ABSOLUTE WHITE STRUCTURED",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ABSOLUTE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ALABASTRO BLACK",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ALABASTRO WHITE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ARABESCATO VIOLA",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "violet"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ARABESCATO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BALLET",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BASALTINA GRIGIA",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BASALTINA NERA",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [],
+      "section": "main"
+    },
+    {
+      "name": "BIANCO NAMIBIA",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BLACK GOLD",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "black",
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BORGHETTO",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "brown"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BOULEVARD BLACK",
+      "lookCategory": "cement-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BOULEVARD GREY",
+      "lookCategory": "cement-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BOULEVARD WHITE",
+      "lookCategory": "cement-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [],
+      "section": "main"
+    },
+    {
+      "name": "BRECCIA REALE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BRECCIA SICILIANA",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Art 5D Technology"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BRECCIA STONE BEIGE",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "BRECCIA STONE WHITE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CALACATTA DORATO",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "white",
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CALACATTA ORO",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "white",
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CALACATTA VIOLA",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "white",
+        "violet"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CALACATTA WHITE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CARAVAGGIO GOLD",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CARRARA",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CEMENT ANTHRACITE",
+      "lookCategory": "cement-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CEMENT ASH",
+      "lookCategory": "cement-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CEMENT WHITE",
+      "lookCategory": "cement-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CEPPO DI GRÈ",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "12mm"
+      ],
+      "finishes": [],
+      "section": "main"
+    },
+    {
+      "name": "COLORADO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "CONCRETE ASH",
+      "lookCategory": "cement-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [],
+      "section": "main"
+    },
+    {
+      "name": "CREMO DELICATO",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "EMOTION EUPHORIA",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "EMOTION HOPE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "EMOTION WONDER",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "FIOR DI BOSCO",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "green"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "GLAM GREEN",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "green"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "GLAM IVORY",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "GREEN MAJESTIC",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "green"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "HAMMARVALE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "HEAVEN TRAVERTINO BEIGE",
+      "lookCategory": "travertine-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "HEAVEN TRAVERTINO TAUPE",
+      "lookCategory": "travertine-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "HEAVEN TRAVERTINO TIGER",
+      "lookCategory": "travertine-look",
+      "tone": "warm",
+      "colorTags": [
+        "brown"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "HEAVEN TRAVERTINO WHITE",
+      "lookCategory": "travertine-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "HERMON",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "IVORY ONYX",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "JADE",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "green"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "KENYA",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "LASA WHITE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "LIGHT RED CALACATTA",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "white",
+        "red"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "LINCOLN DORATO",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "MACAUBAS BEIGE",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "MACAUBAS IVORY",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "white",
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "MACAUBAS WHITE",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "white",
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "MARMO ANTICO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "MERAKI",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "MONET",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "MONTE BIANCO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "NAVONA CLASSICO",
+      "lookCategory": "marble-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "NERO MARQUINA",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ONICE COBALTO",
+      "lookCategory": "onyx-look",
+      "tone": "cool",
+      "colorTags": [
+        "blue"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ONICE SMERALDO",
+      "lookCategory": "onyx-look",
+      "tone": "cool",
+      "colorTags": [
+        "green"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ONYX WHITE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ORANGE SAPPHIRE",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "blue",
+        "orange"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "OROBICO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "OYSTER WILD FOREST",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "green"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "PAONAZZETTO REALE",
+      "lookCategory": "marble-look",
+      "tone": "cool",
+      "colorTags": [
+        "violet"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "PIETRA BROWN",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "brown"
+      ],
+      "thicknesses": [
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "PIETRA GRIGIA",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "PIETRA GRIGIA LIGHT",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "PORTORO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "PRECIOUS STONE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "SAHARA GREY",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "SAHARA NOIR",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "STATUARIO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "STATUARIO IMPERIALE LIGHT",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "STATUARIO LEONARDO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "STATUARIO RAFFAELLO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "SUPERWHITE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "TAJ MAHAL",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "TINTA UNITA BIANCO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Naturale Matt",
+        "Levigato Polished"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "TINTA UNITA NERO",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [
+        "black"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "TRAVERTINO WHITE",
+      "lookCategory": "travertine-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "WAVE",
+      "lookCategory": "marble-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Art 5D Technology",
+        "Naturale Matt",
+        "Levigato Polished",
+        "Honed"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "WOOD ESSENCE ALMOND",
+      "lookCategory": "wood-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Stripes Matt",
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "WOOD ESSENCE NUT",
+      "lookCategory": "wood-look",
+      "tone": "warm",
+      "colorTags": [
+        "brown"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Stripes Matt",
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "WOOD ESSENCE OAK",
+      "lookCategory": "wood-look",
+      "tone": "warm",
+      "colorTags": [
+        "brown"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Stripes Matt",
+        "Naturale Matt"
+      ],
+      "section": "main"
+    },
+    {
+      "name": "ARDESIA AUTUMN",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "brown"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "ARDESIA CREAM",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "6.5mm",
+        "12mm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "ARENARIA STONE BEIGE",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "ARENARIA STONE IVORY",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "JURA BEIGE",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "JURA WHITE",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "LECCESE STONE BEIGE",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "LECCESE STONE IVORY",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "LIMESTONE BEIGE",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "LIMESTONE IVORY",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "NORWEGIAN STONE BEIGE",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "NORWEGIAN STONE GREY",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "PIERRE PARISIENNE GREIGE",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "grey"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "STRUCTURED MARBLE",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Structured"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "TRAVERTINO STONE BEIGE",
+      "lookCategory": "stone-look",
+      "tone": "warm",
+      "colorTags": [
+        "beige"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    },
+    {
+      "name": "TRAVERTINO STONE WHITE",
+      "lookCategory": "stone-look",
+      "tone": "neutral",
+      "colorTags": [
+        "white"
+      ],
+      "thicknesses": [
+        "12mm",
+        "2cm"
+      ],
+      "finishes": [
+        "Soft Structured",
+        "Structured",
+        "Leather"
+      ],
+      "section": "stone"
+    }
+  ]
+}

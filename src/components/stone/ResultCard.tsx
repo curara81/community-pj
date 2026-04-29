@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,8 @@ import {
   Shuffle,
   Image as ImageIcon,
 } from "lucide-react";
-import type { CatalogRecommendation, StoneAnalysis } from "@/lib/stone/types";
+import { loadCatalog } from "@/lib/stone/catalog";
+import type { Catalog, CatalogRecommendation, StoneAnalysis } from "@/lib/stone/types";
 import StoneImageDialog from "./StoneImageDialog";
 
 interface ResultCardProps {
@@ -39,18 +40,65 @@ const categoryLabel: Record<string, string> = {
   engineered_quartz: "인조 쿼츠",
   ceramic: "세라믹",
   other: "기타",
+  // catalog look categories
+  "marble-look": "마블 룩",
+  "stone-look": "스톤 룩",
+  "travertine-look": "트래버틴 룩",
+  "cement-look": "시멘트 룩",
+  "wood-look": "우드 룩",
+  "onyx-look": "오닉스 룩",
 };
+
+const categoryColor: Record<string, string> = {
+  marble: "bg-blue-100 text-blue-800 border-blue-300",
+  granite: "bg-stone-200 text-stone-800 border-stone-400",
+  quartzite: "bg-violet-100 text-violet-800 border-violet-300",
+  limestone: "bg-amber-100 text-amber-800 border-amber-300",
+  travertine: "bg-orange-100 text-orange-800 border-orange-300",
+  onyx: "bg-emerald-100 text-emerald-800 border-emerald-300",
+  slate: "bg-slate-200 text-slate-800 border-slate-400",
+  sandstone: "bg-yellow-100 text-yellow-800 border-yellow-300",
+  engineered_quartz: "bg-teal-100 text-teal-800 border-teal-300",
+  ceramic: "bg-sky-100 text-sky-800 border-sky-300",
+  other: "bg-gray-100 text-gray-800 border-gray-300",
+  "marble-look": "bg-blue-100 text-blue-800 border-blue-300",
+  "stone-look": "bg-stone-200 text-stone-800 border-stone-400",
+  "travertine-look": "bg-orange-100 text-orange-800 border-orange-300",
+  "cement-look": "bg-slate-200 text-slate-800 border-slate-400",
+  "wood-look": "bg-amber-200 text-amber-900 border-amber-400",
+  "onyx-look": "bg-emerald-100 text-emerald-800 border-emerald-300",
+};
+
+function CategoryChip({
+  category,
+  size = "md",
+}: {
+  category?: string;
+  size?: "sm" | "md";
+}) {
+  if (!category) return null;
+  const label = categoryLabel[category] || category;
+  const color = categoryColor[category] || "bg-gray-100 text-gray-800 border-gray-300";
+  const sizing = size === "sm" ? "text-[10px] py-0 px-1.5" : "text-xs px-2 py-0.5";
+  return (
+    <Badge variant="outline" className={`${color} ${sizing} font-medium`}>
+      {label}
+    </Badge>
+  );
+}
 
 const RecommendationGroup = ({
   icon,
   title,
   items,
   accentClass,
+  lookupLookCategory,
 }: {
   icon: React.ReactNode;
   title: string;
   items: CatalogRecommendation[];
   accentClass: string;
+  lookupLookCategory: (productName: string) => string | undefined;
 }) => (
   <div className="space-y-2">
     <div className="flex items-center gap-2">
@@ -59,49 +107,68 @@ const RecommendationGroup = ({
       <span className="text-xs text-muted-foreground">({items.length})</span>
     </div>
     <ul className="space-y-2">
-      {items.map((r, i) => (
-        <li
-          key={i}
-          className={`pl-3 border-l-2 ${accentClass} space-y-0.5`}
-        >
-          <p className="text-sm font-semibold">{r.productName}</p>
-          {r.reason && (
-            <p className="text-xs text-muted-foreground leading-relaxed">{r.reason}</p>
-          )}
-          {(r.finish || r.application) && (
-            <div className="flex flex-wrap gap-1 pt-0.5">
-              {r.finish && (
-                <Badge variant="outline" className="text-[10px] py-0 px-1.5">
-                  {r.finish}
-                </Badge>
-              )}
-              {r.application && (
-                <Badge variant="secondary" className="text-[10px] py-0 px-1.5">
-                  {r.application}
-                </Badge>
-              )}
+      {items.map((r, i) => {
+        const lookCat = lookupLookCategory(r.productName);
+        return (
+          <li
+            key={i}
+            className={`pl-3 border-l-2 ${accentClass} space-y-0.5`}
+          >
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <p className="text-sm font-semibold">{r.productName}</p>
+              <CategoryChip category={lookCat} size="sm" />
             </div>
-          )}
-        </li>
-      ))}
+            {r.reason && (
+              <p className="text-xs text-muted-foreground leading-relaxed">{r.reason}</p>
+            )}
+            {(r.finish || r.application) && (
+              <div className="flex flex-wrap gap-1 pt-0.5">
+                {r.finish && (
+                  <Badge variant="outline" className="text-[10px] py-0 px-1.5">
+                    {r.finish}
+                  </Badge>
+                )}
+                {r.application && (
+                  <Badge variant="secondary" className="text-[10px] py-0 px-1.5">
+                    {r.application}
+                  </Badge>
+                )}
+              </div>
+            )}
+          </li>
+        );
+      })}
     </ul>
   </div>
 );
 
 const ResultCard = ({ analysis }: ResultCardProps) => {
   const conf = confidenceLabel[analysis.confidence] || confidenceLabel.medium;
-  const cat = categoryLabel[analysis.category] || analysis.category;
   const [imageQuery, setImageQuery] = useState<string | null>(null);
+  const [catalog, setCatalog] = useState<Catalog | null>(null);
+
+  useEffect(() => {
+    void loadCatalog().then(setCatalog);
+  }, []);
+
+  const lookupLookCategory = (productName: string): string | undefined => {
+    if (!catalog) return undefined;
+    const item = catalog.items.find(
+      (it) => it.name.toUpperCase() === productName.toUpperCase()
+    );
+    return item?.lookCategory;
+  };
 
   return (
     <Card className="overflow-hidden">
       <CardHeader className="space-y-2 pb-3">
         <div className="flex items-start justify-between gap-3">
-          <div className="space-y-1 flex-1 min-w-0">
-            <div className="flex items-center gap-2">
+          <div className="space-y-1.5 flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
               <Badge variant="default" className="text-[10px] py-0 px-1.5 bg-primary">
                 1순위
               </Badge>
+              <CategoryChip category={analysis.category} />
               <Badge
                 variant="outline"
                 className={`${conf.color} flex items-center gap-1`}
@@ -125,14 +192,15 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
             이미지
           </Button>
         </div>
-        <div className="flex flex-wrap gap-1.5">
-          <Badge variant="secondary">{cat}</Badge>
-          {analysis.characteristics?.slice(0, 4).map((c, i) => (
-            <Badge key={i} variant="outline" className="text-xs">
-              {c}
-            </Badge>
-          ))}
-        </div>
+        {analysis.characteristics?.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {analysis.characteristics.slice(0, 4).map((c, i) => (
+              <Badge key={i} variant="outline" className="text-xs">
+                {c}
+              </Badge>
+            ))}
+          </div>
+        )}
       </CardHeader>
 
       <CardContent className="space-y-4">
@@ -200,15 +268,11 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <Badge variant="secondary" className="text-[10px] py-0 px-1.5">
                             {i + 2}순위
                           </Badge>
-                          {c.category && (
-                            <Badge variant="outline" className="text-[10px] py-0 px-1.5">
-                              {categoryLabel[c.category] || c.category}
-                            </Badge>
-                          )}
+                          <CategoryChip category={c.category} size="sm" />
                         </div>
                         <p className="text-sm font-semibold break-words">{c.name}</p>
                         {c.nameKo && c.nameKo !== c.name && (
@@ -264,6 +328,7 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
                     title="비슷한 룩"
                     items={analysis.recommendations.similar}
                     accentClass="border-l-emerald-400"
+                    lookupLookCategory={lookupLookCategory}
                   />
                 )}
 
@@ -273,6 +338,7 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
                     title="어울리는 조합 (보색/대비)"
                     items={analysis.recommendations.complementary}
                     accentClass="border-l-indigo-400"
+                    lookupLookCategory={lookupLookCategory}
                   />
                 )}
               </div>

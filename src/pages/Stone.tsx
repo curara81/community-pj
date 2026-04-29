@@ -31,6 +31,11 @@ import {
   uploadHistoryToDrive,
 } from "@/lib/stone/drive";
 import {
+  fetchCatalogImageMapFromDrive,
+  loadLocalImageMap,
+  saveLocalImageMap,
+} from "@/lib/stone/catalogImages";
+import {
   loadApiKeys,
   saveApiKeys,
   loadHistory,
@@ -106,6 +111,17 @@ const Stone = () => {
     setDriveAuth(auth);
     if (auth) {
       void syncHistoryWithDrive(auth);
+      void (async () => {
+        try {
+          const remoteMap = await fetchCatalogImageMapFromDrive(auth);
+          if (remoteMap && Object.keys(remoteMap).length > 0) {
+            const localMap = loadLocalImageMap();
+            saveLocalImageMap({ ...localMap, ...remoteMap });
+          }
+        } catch (e) {
+          console.warn("카탈로그 이미지 매핑 동기화 실패", e);
+        }
+      })();
     }
 
     const previousTitle = document.title;
@@ -246,6 +262,16 @@ const Stone = () => {
         }
       } catch (e) {
         console.warn("설정 동기화 실패", e);
+      }
+
+      try {
+        const remoteMap = await fetchCatalogImageMapFromDrive(auth);
+        if (remoteMap && Object.keys(remoteMap).length > 0) {
+          const localMap = loadLocalImageMap();
+          saveLocalImageMap({ ...localMap, ...remoteMap });
+        }
+      } catch (e) {
+        console.warn("카탈로그 이미지 매핑 동기화 실패", e);
       }
 
       await syncHistoryWithDrive(auth);

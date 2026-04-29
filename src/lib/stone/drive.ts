@@ -3,8 +3,10 @@ import type { ApiKeys, DriveAuth, StoneAnalysis, StoneRecord } from "./types";
 
 const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.file";
 const FOLDER_NAME = "StoneIdentifier";
+const CATALOG_IMAGES_FOLDER = "catalog-images";
 const SETTINGS_FILE_NAME = "stone-app-settings.json";
 const HISTORY_FILE_NAME = "stone-app-history.json";
+const CATALOG_IMAGE_MAP_FILE = "catalog-image-map.json";
 
 interface TokenResponse {
   access_token: string;
@@ -151,6 +153,47 @@ interface UploadResult {
   imageFileId: string;
   imageWebViewLink?: string;
   metadataFileId: string;
+}
+
+async function findSubFolder(
+  accessToken: string,
+  parentFolderId: string,
+  folderName: string
+): Promise<string | null> {
+  const query = encodeURIComponent(
+    `name='${folderName}' and mimeType='application/vnd.google-apps.folder' and '${parentFolderId}' in parents and trashed=false`
+  );
+  const res = await fetch(
+    `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name)`,
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  );
+  if (!res.ok) return null;
+  const json = await res.json();
+  return json.files?.[0]?.id ?? null;
+}
+
+async function ensureSubFolder(
+  accessToken: string,
+  parentFolderId: string,
+  folderName: string
+): Promise<string> {
+  const existing = await findSubFolder(accessToken, parentFolderId, folderName);
+  if (existing) return existing;
+  const res = await fetch("https://www.googleapis.com/drive/v3/files", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: folderName,
+      mimeType: "application/vnd.google-apps.folder",
+      parents: [parentFolderId],
+    }),
+  });
+  if (!res.ok) throw new Error("하위 폴더 생성 실패");
+  const json = await res.json();
+  return json.id as string;
 }
 
 async function findFileInFolder(

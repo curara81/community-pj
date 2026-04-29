@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Camera, ImageIcon, RotateCcw } from "lucide-react";
+import { Camera, ImageIcon, RotateCcw, Crop } from "lucide-react";
+import CropDialog from "./CropDialog";
 
 interface CameraCaptureProps {
   imageDataUrl: string | null;
@@ -45,14 +46,21 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
   const cameraInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const [processing, setProcessing] = useState(false);
+  const [cropSource, setCropSource] = useState<string | null>(null);
 
   const handleFile = useCallback(
-    async (file: File | undefined) => {
+    async (file: File | undefined, source: "camera" | "gallery") => {
       if (!file) return;
       setProcessing(true);
       try {
         const downscaled = await readFileAsDownscaledDataUrl(file);
-        onCapture(downscaled);
+        if (source === "gallery") {
+          // Auto-open crop dialog for gallery photos so the user can
+          // exclude background / non-stone areas.
+          setCropSource(downscaled);
+        } else {
+          onCapture(downscaled);
+        }
       } catch (e) {
         console.error(e);
         alert("이미지를 처리할 수 없습니다.");
@@ -73,10 +81,23 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
             className="w-full h-auto max-h-[420px] object-contain"
           />
         </div>
-        <Button variant="outline" onClick={onClear} className="w-full">
-          <RotateCcw className="w-4 h-4 mr-2" />
-          다시 찍기
-        </Button>
+        <div className="grid grid-cols-2 gap-2">
+          <Button variant="outline" onClick={() => setCropSource(imageDataUrl)}>
+            <Crop className="w-4 h-4 mr-2" />
+            자르기
+          </Button>
+          <Button variant="outline" onClick={onClear}>
+            <RotateCcw className="w-4 h-4 mr-2" />
+            다시 찍기
+          </Button>
+        </div>
+
+        <CropDialog
+          imageDataUrl={cropSource}
+          open={cropSource !== null}
+          onOpenChange={(open) => !open && setCropSource(null)}
+          onConfirm={(out) => onCapture(out)}
+        />
       </div>
     );
   }
@@ -95,14 +116,14 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
         accept="image/*"
         capture="environment"
         className="hidden"
-        onChange={(e) => handleFile(e.target.files?.[0])}
+        onChange={(e) => handleFile(e.target.files?.[0], "camera")}
       />
       <input
         ref={galleryInputRef}
         type="file"
         accept="image/*"
         className="hidden"
-        onChange={(e) => handleFile(e.target.files?.[0])}
+        onChange={(e) => handleFile(e.target.files?.[0], "gallery")}
       />
 
       <div className="grid grid-cols-2 gap-2">
@@ -124,6 +145,16 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
           갤러리
         </Button>
       </div>
+
+      <CropDialog
+        imageDataUrl={cropSource}
+        open={cropSource !== null}
+        onOpenChange={(open) => !open && setCropSource(null)}
+        onConfirm={(out) => {
+          onCapture(out);
+          setCropSource(null);
+        }}
+      />
     </div>
   );
 };

@@ -17,6 +17,7 @@ import {
 import { loadCatalog } from "@/lib/stone/catalog";
 import type { Catalog, CatalogRecommendation, StoneAnalysis } from "@/lib/stone/types";
 import StoneImageDialog from "./StoneImageDialog";
+import CatalogImageThumb from "./CatalogImageThumb";
 
 interface ResultCardProps {
   analysis: StoneAnalysis;
@@ -112,29 +113,32 @@ const RecommendationGroup = ({
         return (
           <li
             key={i}
-            className={`pl-3 border-l-2 ${accentClass} space-y-0.5`}
+            className={`pl-3 border-l-2 ${accentClass} flex gap-3`}
           >
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <p className="text-sm font-semibold">{r.productName}</p>
-              <CategoryChip category={lookCat} size="sm" />
-            </div>
-            {r.reason && (
-              <p className="text-xs text-muted-foreground leading-relaxed">{r.reason}</p>
-            )}
-            {(r.finish || r.application) && (
-              <div className="flex flex-wrap gap-1 pt-0.5">
-                {r.finish && (
-                  <Badge variant="outline" className="text-[10px] py-0 px-1.5">
-                    {r.finish}
-                  </Badge>
-                )}
-                {r.application && (
-                  <Badge variant="secondary" className="text-[10px] py-0 px-1.5">
-                    {r.application}
-                  </Badge>
-                )}
+            <CatalogImageThumb productName={r.productName} size="sm" />
+            <div className="flex-1 min-w-0 space-y-0.5">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <p className="text-sm font-semibold break-words">{r.productName}</p>
+                <CategoryChip category={lookCat} size="sm" />
               </div>
-            )}
+              {r.reason && (
+                <p className="text-xs text-muted-foreground leading-relaxed">{r.reason}</p>
+              )}
+              {(r.finish || r.application) && (
+                <div className="flex flex-wrap gap-1 pt-0.5">
+                  {r.finish && (
+                    <Badge variant="outline" className="text-[10px] py-0 px-1.5">
+                      {r.finish}
+                    </Badge>
+                  )}
+                  {r.application && (
+                    <Badge variant="secondary" className="text-[10px] py-0 px-1.5">
+                      {r.application}
+                    </Badge>
+                  )}
+                </div>
+              )}
+            </div>
           </li>
         );
       })}

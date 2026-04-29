@@ -21,6 +21,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Location = lazy(() => import("./pages/Location"));
 const CopyrightPage = lazy(() => import("./pages/Copyright"));
 const EmailRefusal = lazy(() => import("./pages/EmailRefusal"));
+const Stone = lazy(() => import("./pages/Stone"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -61,6 +62,7 @@ const App = () => (
                 <Route path="/location" element={<Location />} />
                 <Route path="/copyright" element={<CopyrightPage />} />
                 <Route path="/email-refusal" element={<EmailRefusal />} />
+                <Route path="/stone" element={<Stone />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

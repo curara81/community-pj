@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Loader2, ImagePlus, Image as ImageIcon } from "lucide-react";
+import { Loader2, ImagePlus, Image as ImageIcon, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,9 +10,11 @@ import {
 import { toast } from "sonner";
 import {
   fetchCatalogImageBlobUrl,
+  loadBundledImageIndex,
   loadLocalImageMap,
-  saveLocalImageMap,
+  safeProductKey,
   saveCatalogImageMapToDrive,
+  saveLocalImageMap,
   uploadCatalogImage,
 } from "@/lib/stone/catalogImages";
 import { getValidAuth } from "@/lib/stone/drive";
@@ -25,39 +27,54 @@ interface Props {
 
 const CatalogImageThumb = ({ productName, size = "sm", onUpdated }: Props) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [usingCustom, setUsingCustom] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
 
   const upper = productName.toUpperCase();
+  const key = safeProductKey(productName);
 
   useEffect(() => {
     let cancelled = false;
-    const map = loadLocalImageMap();
-    const fileId = map[upper];
-    if (!fileId) {
-      setBlobUrl(null);
-      return;
-    }
-    const auth = getValidAuth();
-    if (!auth) return; // can't fetch without auth
-    setLoading(true);
-    fetchCatalogImageBlobUrl(auth, fileId)
-      .then((url) => {
-        if (!cancelled) setBlobUrl(url);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
+    setImageUrl(null);
+    setUsingCustom(false);
+
+    (async () => {
+      // 1. User-uploaded Drive override has priority
+      const map = loadLocalImageMap();
+      const fileId = map[upper];
+      const auth = getValidAuth();
+      if (fileId && auth) {
+        setLoading(true);
+        const url = await fetchCatalogImageBlobUrl(auth, fileId);
+        if (cancelled) return;
+        setLoading(false);
+        if (url) {
+          setImageUrl(url);
+          setUsingCustom(true);
+          return;
+        }
+      }
+
+      // 2. Fall back to bundled catalog thumbnail
+      const index = await loadBundledImageIndex();
+      if (cancelled) return;
+      const bundledPath = index[key];
+      if (bundledPath) {
+        setImageUrl(bundledPath);
+      }
+    })();
+
     return () => {
       cancelled = true;
     };
-  }, [upper]);
+  }, [upper, key]);
 
   const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    e.target.value = ""; // reset
+    e.target.value = "";
     if (!file) return;
 
     const auth = getValidAuth();
@@ -77,10 +94,10 @@ const CatalogImageThumb = ({ productName, size = "sm", onUpdated }: Props) => {
       } catch (err) {
         console.warn("Drive 매핑 동기화 실패", err);
       }
-      // load and display
       const url = await fetchCatalogImageBlobUrl(auth, fileId);
-      setBlobUrl(url);
-      toast.success(`${upper} 이미지 저장됨`);
+      setImageUrl(url);
+      setUsingCustom(true);
+      toast.success(`${upper} 이미지 업데이트됨`);
       onUpdated?.();
     } catch (e) {
       console.error(e);
@@ -104,7 +121,7 @@ const CatalogImageThumb = ({ productName, size = "sm", onUpdated }: Props) => {
         onChange={handleFileSelected}
       />
 
-      {blobUrl ? (
+      {imageUrl ? (
         <button
           type="button"
           onClick={() => setPreviewOpen(true)}
@@ -112,7 +129,7 @@ const CatalogImageThumb = ({ productName, size = "sm", onUpdated }: Props) => {
           aria-label={`${upper} 이미지 보기`}
         >
           <img
-            src={blobUrl}
+            src={imageUrl}
             alt={upper}
             className="w-full h-full object-cover"
             loading="lazy"
@@ -137,12 +154,19 @@ const CatalogImageThumb = ({ productName, size = "sm", onUpdated }: Props) => {
       <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="break-words">{upper}</DialogTitle>
+            <DialogTitle className="break-words">
+              {upper}
+              {usingCustom && (
+                <span className="ml-2 text-xs text-muted-foreground font-normal">
+                  (내가 업로드한 이미지)
+                </span>
+              )}
+            </DialogTitle>
           </DialogHeader>
-          {blobUrl && (
+          {imageUrl && (
             <div className="rounded-lg overflow-hidden bg-muted border">
               <img
-                src={blobUrl}
+                src={imageUrl}
                 alt={upper}
                 className="w-full max-h-[70vh] object-contain"
               />
@@ -156,8 +180,8 @@ const CatalogImageThumb = ({ productName, size = "sm", onUpdated }: Props) => {
               disabled={uploading}
               className="flex-1"
             >
-              <ImageIcon className="w-4 h-4 mr-2" />
-              {uploading ? "업로드 중..." : "이미지 변경"}
+              <Upload className="w-4 h-4 mr-2" />
+              {uploading ? "업로드 중..." : usingCustom ? "이미지 변경" : "내 이미지 업로드 (덮어쓰기)"}
             </Button>
           </div>
         </DialogContent>

@@ -12,7 +12,9 @@ import { toast } from "sonner";
 import { loadCatalog } from "@/lib/stone/catalog";
 import {
   fetchCatalogImageBlobUrl,
+  loadBundledImageIndex,
   loadLocalImageMap,
+  safeProductKey,
   saveCatalogImageMapToDrive,
   saveLocalImageMap,
   uploadCatalogImage,
@@ -31,11 +33,13 @@ const CatalogImageManager = ({ open, onOpenChange }: Props) => {
   const [search, setSearch] = useState("");
   const [bulkProcessing, setBulkProcessing] = useState<{ done: number; total: number } | null>(null);
   const [thumbCache, setThumbCache] = useState<Record<string, string>>({});
+  const [bundledIndex, setBundledIndex] = useState<Record<string, string>>({});
   const bulkInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!open) return;
     void loadCatalog().then((c) => c && setCatalog(c));
+    void loadBundledImageIndex().then(setBundledIndex);
     setImageMap(loadLocalImageMap());
   }, [open]);
 
@@ -248,12 +252,15 @@ const CatalogImageManager = ({ open, onOpenChange }: Props) => {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {filtered.map((item) => {
               const upper = item.name.toUpperCase();
-              const thumb = thumbCache[upper];
+              const customThumb = thumbCache[upper];
+              const bundledThumb = bundledIndex[safeProductKey(item.name)];
+              const thumb = customThumb || bundledThumb;
               return (
                 <CatalogImageRow
                   key={item.name}
                   item={item}
                   thumbUrl={thumb}
+                  isCustom={!!customThumb}
                   onSelectFile={(file) => handleSingleUpload(item.name, file)}
                 />
               );
@@ -268,10 +275,12 @@ const CatalogImageManager = ({ open, onOpenChange }: Props) => {
 const CatalogImageRow = ({
   item,
   thumbUrl,
+  isCustom,
   onSelectFile,
 }: {
   item: CatalogItem;
   thumbUrl?: string;
+  isCustom?: boolean;
   onSelectFile: (file: File) => void;
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -290,15 +299,23 @@ const CatalogImageRow = ({
       />
       <button
         type="button"
-        className="w-full aspect-square rounded bg-muted overflow-hidden flex items-center justify-center text-muted-foreground border border-dashed hover:bg-muted/70"
+        className="w-full aspect-square rounded bg-muted overflow-hidden flex items-center justify-center text-muted-foreground border border-dashed hover:bg-muted/70 relative"
         onClick={() => inputRef.current?.click()}
       >
         {thumbUrl ? (
-          <img
-            src={thumbUrl}
-            alt={item.name}
-            className="w-full h-full object-cover"
-          />
+          <>
+            <img
+              src={thumbUrl}
+              alt={item.name}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            {isCustom && (
+              <span className="absolute top-1 right-1 px-1 py-0.5 rounded bg-primary text-primary-foreground text-[8px] font-medium">
+                커스텀
+              </span>
+            )}
+          </>
         ) : (
           <ImagePlus className="w-6 h-6" />
         )}

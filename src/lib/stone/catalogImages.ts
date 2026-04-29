@@ -13,6 +13,38 @@ export interface CatalogImageMap {
 const blobUrlCache = new Map<string, string>(); // fileId -> blob URL
 const inflightFetches = new Map<string, Promise<string | null>>();
 
+let bundledIndex: Record<string, string> | null = null;
+let bundledIndexPromise: Promise<Record<string, string>> | null = null;
+
+export async function loadBundledImageIndex(): Promise<Record<string, string>> {
+  if (bundledIndex) return bundledIndex;
+  if (bundledIndexPromise) return bundledIndexPromise;
+  bundledIndexPromise = (async () => {
+    try {
+      const res = await fetch("/catalog-thumb-index.json", { cache: "force-cache" });
+      if (!res.ok) return {};
+      const data = (await res.json()) as Record<string, string>;
+      bundledIndex = data;
+      return data;
+    } catch {
+      return {};
+    } finally {
+      bundledIndexPromise = null;
+    }
+  })();
+  return bundledIndexPromise;
+}
+
+export function safeProductKey(productName: string): string {
+  return productName
+    .toUpperCase()
+    .replace(/\s+/g, "_")
+    .replace(/È/g, "E")
+    .replace(/É/g, "E")
+    .replace(/À/g, "A")
+    .replace(/'/g, "");
+}
+
 export function loadLocalImageMap(): CatalogImageMap {
   try {
     const raw = localStorage.getItem(LOCAL_KEY);

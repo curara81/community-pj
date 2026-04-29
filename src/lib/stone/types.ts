@@ -26,6 +26,10 @@ export interface StoneAnalysis {
   }>;
   alternativeCandidates?: Array<{
     name: string;
+    nameKo?: string;
+    category?: string;
+    origin?: string;
+    reason?: string;
     confidence: string;
   }>;
   recommendations?: {

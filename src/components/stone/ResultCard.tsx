@@ -1,8 +1,21 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle2, AlertCircle, MapPin, DollarSign, Building2, Sparkles, Layers, Shuffle } from "lucide-react";
+import {
+  CheckCircle2,
+  AlertCircle,
+  MapPin,
+  DollarSign,
+  Building2,
+  Sparkles,
+  Layers,
+  Shuffle,
+  Image as ImageIcon,
+} from "lucide-react";
 import type { CatalogRecommendation, StoneAnalysis } from "@/lib/stone/types";
+import StoneImageDialog from "./StoneImageDialog";
 
 interface ResultCardProps {
   analysis: StoneAnalysis;
@@ -78,21 +91,39 @@ const RecommendationGroup = ({
 const ResultCard = ({ analysis }: ResultCardProps) => {
   const conf = confidenceLabel[analysis.confidence] || confidenceLabel.medium;
   const cat = categoryLabel[analysis.category] || analysis.category;
+  const [imageQuery, setImageQuery] = useState<string | null>(null);
 
   return (
     <Card className="overflow-hidden">
       <CardHeader className="space-y-2 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-1 flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <Badge variant="default" className="text-[10px] py-0 px-1.5 bg-primary">
+                1순위
+              </Badge>
+              <Badge
+                variant="outline"
+                className={`${conf.color} flex items-center gap-1`}
+              >
+                {conf.icon}
+                <span className="text-xs">신뢰도 {conf.text}</span>
+              </Badge>
+            </div>
             <h3 className="text-xl font-bold leading-tight break-words">{analysis.name}</h3>
             {analysis.nameKo && analysis.nameKo !== analysis.name && (
               <p className="text-sm text-muted-foreground">{analysis.nameKo}</p>
             )}
           </div>
-          <Badge variant="outline" className={`${conf.color} flex items-center gap-1 shrink-0`}>
-            {conf.icon}
-            <span className="text-xs">신뢰도 {conf.text}</span>
-          </Badge>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setImageQuery(analysis.name)}
+            className="shrink-0"
+          >
+            <ImageIcon className="w-3.5 h-3.5 mr-1" />
+            이미지
+          </Button>
         </div>
         <div className="flex flex-wrap gap-1.5">
           <Badge variant="secondary">{cat}</Badge>
@@ -156,17 +187,59 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
         {analysis.alternativeCandidates && analysis.alternativeCandidates.length > 0 && (
           <>
             <Separator />
-            <div>
-              <div className="flex items-center gap-2 mb-2">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-muted-foreground" />
-                <p className="text-xs text-muted-foreground">유사 후보</p>
+                <p className="text-sm font-medium">다른 가능성 (2~3순위)</p>
               </div>
-              <ul className="space-y-1">
-                {analysis.alternativeCandidates.map((c, i) => (
-                  <li key={i} className="text-sm">
-                    <span className="font-medium">{c.name}</span>
+              <ul className="space-y-3">
+                {analysis.alternativeCandidates.slice(0, 2).map((c, i) => (
+                  <li
+                    key={i}
+                    className="rounded-lg border bg-muted/30 p-3 space-y-1.5"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Badge variant="secondary" className="text-[10px] py-0 px-1.5">
+                            {i + 2}순위
+                          </Badge>
+                          {c.category && (
+                            <Badge variant="outline" className="text-[10px] py-0 px-1.5">
+                              {categoryLabel[c.category] || c.category}
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-sm font-semibold break-words">{c.name}</p>
+                        {c.nameKo && c.nameKo !== c.name && (
+                          <p className="text-xs text-muted-foreground">{c.nameKo}</p>
+                        )}
+                      </div>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => setImageQuery(c.name)}
+                        className="shrink-0 h-7 px-2"
+                      >
+                        <ImageIcon className="w-3.5 h-3.5 mr-1" />
+                        이미지
+                      </Button>
+                    </div>
+                    {c.origin && (
+                      <p className="text-xs text-muted-foreground">
+                        <MapPin className="w-3 h-3 inline mr-1" />
+                        {c.origin}
+                      </p>
+                    )}
+                    {c.reason && (
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {c.reason}
+                      </p>
+                    )}
                     {c.confidence && (
-                      <span className="text-muted-foreground"> · {c.confidence}</span>
+                      <p className="text-[11px] text-muted-foreground/70 italic">
+                        {c.confidence}
+                      </p>
                     )}
                   </li>
                 ))}
@@ -211,6 +284,12 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
           * 시세와 유통사 정보는 AI 추정이며 실제 거래가/취급 여부와 다를 수 있습니다.
         </p>
       </CardContent>
+
+      <StoneImageDialog
+        stoneName={imageQuery}
+        open={imageQuery !== null}
+        onOpenChange={(open) => !open && setImageQuery(null)}
+      />
     </Card>
   );
 };

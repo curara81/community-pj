@@ -55,10 +55,28 @@ const Stone = () => {
   useEffect(() => {
     setHistory(loadHistory());
     setDriveAuth(getValidAuth());
+
     const previousTitle = document.title;
     document.title = "석재 식별기";
+
+    const setMeta = (name: string, content: string) => {
+      let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      const prev = el.getAttribute("content");
+      el.setAttribute("content", content);
+      return prev;
+    };
+    const prevAppleTitle = setMeta("apple-mobile-web-app-title", "석재 식별기");
+    const prevThemeColor = setMeta("theme-color", "#475569");
+
     return () => {
       document.title = previousTitle;
+      if (prevAppleTitle !== null) setMeta("apple-mobile-web-app-title", prevAppleTitle);
+      if (prevThemeColor !== null) setMeta("theme-color", prevThemeColor);
     };
   }, []);
 

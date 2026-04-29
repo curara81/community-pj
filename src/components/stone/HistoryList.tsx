@@ -17,6 +17,21 @@ interface HistoryListProps {
   onDelete: (id: string) => void;
 }
 
+function providerLabel(p: StoneRecord["provider"]): string {
+  switch (p) {
+    case "claude-sonnet":
+      return "Sonnet";
+    case "claude-haiku":
+      return "Haiku";
+    case "claude":
+      return "Claude";
+    case "gemini":
+      return "Gemini";
+    default:
+      return p;
+  }
+}
+
 const HistoryList = ({ records, onDelete }: HistoryListProps) => {
   const [selected, setSelected] = useState<StoneRecord | null>(null);
 
@@ -59,7 +74,7 @@ const HistoryList = ({ records, onDelete }: HistoryListProps) => {
               </p>
               <div className="flex items-center gap-1 flex-wrap">
                 <Badge variant="outline" className="text-[10px] px-1.5 py-0">
-                  {rec.provider === "claude" ? "Claude" : "Gemini"}
+                  {providerLabel(rec.provider)}
                 </Badge>
                 {rec.driveFileLink && (
                   <Badge variant="outline" className="text-[10px] px-1.5 py-0">

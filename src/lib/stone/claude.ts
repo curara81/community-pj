@@ -3,7 +3,8 @@ import { loadCatalog } from "./catalog";
 import type { StoneAnalysis } from "./types";
 
 const CLAUDE_API_URL = "https://api.anthropic.com/v1/messages";
-const MODEL = "claude-opus-4-7";
+
+export type ClaudeModel = "claude-sonnet-4-6" | "claude-haiku-4-5-20251001";
 
 function dataUrlToBase64(dataUrl: string): { mediaType: string; data: string } {
   const match = dataUrl.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.+)$/);
@@ -14,11 +15,12 @@ function dataUrlToBase64(dataUrl: string): { mediaType: string; data: string } {
 export async function analyzeWithClaude(
   imageDataUrl: string,
   apiKey: string,
-  userNote?: string
+  options: { model?: ClaudeModel; userNote?: string } = {}
 ): Promise<StoneAnalysis> {
   if (!apiKey) throw new Error("Claude API 키가 설정되지 않았습니다.");
   const { mediaType, data } = dataUrlToBase64(imageDataUrl);
   const catalog = await loadCatalog();
+  const model = options.model ?? "claude-sonnet-4-6";
 
   const response = await fetch(CLAUDE_API_URL, {
     method: "POST",
@@ -29,7 +31,7 @@ export async function analyzeWithClaude(
       "anthropic-dangerous-direct-browser-access": "true",
     },
     body: JSON.stringify({
-      model: MODEL,
+      model,
       max_tokens: 4096,
       system: STONE_ANALYSIS_PROMPT,
       messages: [
@@ -40,7 +42,7 @@ export async function analyzeWithClaude(
               type: "image",
               source: { type: "base64", media_type: mediaType, data },
             },
-            { type: "text", text: buildUserPrompt(userNote, catalog) },
+            { type: "text", text: buildUserPrompt(options.userNote, catalog) },
           ],
         },
       ],

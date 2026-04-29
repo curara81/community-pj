@@ -1,4 +1,4 @@
-import type { ApiKeys, DriveAuth, StoneRecord } from "./types";
+import type { ApiKeys, ApiProvider, DriveAuth, StoneRecord } from "./types";
 
 const KEY_PREFIX = "stone-app:";
 const KEYS_STORAGE = `${KEY_PREFIX}api-keys`;
@@ -58,11 +58,18 @@ export function addHistoryRecord(record: StoneRecord): void {
   saveHistory([record, ...all]);
 }
 
-export function loadPreferredProvider(): "claude" | "gemini" | null {
+const KNOWN_PROVIDERS: ApiProvider[] = [
+  "claude-sonnet",
+  "claude-haiku",
+  "claude",
+  "gemini",
+];
+
+export function loadPreferredProvider(): ApiProvider | null {
   const v = localStorage.getItem(PREFERRED_PROVIDER);
-  return v === "claude" || v === "gemini" ? v : null;
+  return KNOWN_PROVIDERS.includes(v as ApiProvider) ? (v as ApiProvider) : null;
 }
 
-export function savePreferredProvider(provider: "claude" | "gemini"): void {
+export function savePreferredProvider(provider: ApiProvider): void {
   localStorage.setItem(PREFERRED_PROVIDER, provider);
 }

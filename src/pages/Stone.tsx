@@ -19,7 +19,7 @@ import ResultCard from "@/components/stone/ResultCard";
 import HistoryList from "@/components/stone/HistoryList";
 import SettingsDialog from "@/components/stone/SettingsDialog";
 import { analyzeWithClaude } from "@/lib/stone/claude";
-import { analyzeWithGemini } from "@/lib/stone/gemini";
+import type { ClaudeModel } from "@/lib/stone/claude";
 import {
   requestDriveAccess,
   getValidAuth,
@@ -138,14 +138,11 @@ const Stone = () => {
       return;
     }
     const keys = loadApiKeys();
-    const key = provider === "claude" ? keys.claude : keys.gemini;
+    const key = keys.claude;
     if (!key) {
-      toast.error(
-        `${provider === "claude" ? "Claude" : "Gemini"} API 키가 설정되지 않았습니다.`,
-        {
-          action: { label: "설정", onClick: () => setSettingsOpen(true) },
-        }
-      );
+      toast.error("Claude API 키가 설정되지 않았습니다.", {
+        action: { label: "설정", onClick: () => setSettingsOpen(true) },
+      });
       return;
     }
 
@@ -154,11 +151,14 @@ const Stone = () => {
     setUsedProvider(null);
     savePreferredProvider(provider);
 
+    const model: ClaudeModel =
+      provider === "claude-haiku" ? "claude-haiku-4-5-20251001" : "claude-sonnet-4-6";
+
     try {
-      const result =
-        provider === "claude"
-          ? await analyzeWithClaude(imageDataUrl, key, userNote)
-          : await analyzeWithGemini(imageDataUrl, key, userNote);
+      const result = await analyzeWithClaude(imageDataUrl, key, {
+        model,
+        userNote,
+      });
 
       setAnalysis(result);
       setUsedProvider(provider);
@@ -199,7 +199,9 @@ const Stone = () => {
       addHistoryRecord(record);
       const updated = loadHistory();
       setHistory(updated);
-      toast.success(`분석 완료 (${provider === "claude" ? "Claude" : "Gemini"})`);
+      toast.success(
+        `분석 완료 (${provider === "claude-haiku" ? "Haiku 4.5" : "Sonnet 4.6"})`
+      );
 
       const currentAuth = getValidAuth();
       if (currentAuth) {
@@ -378,10 +380,10 @@ const Stone = () => {
 
                 <div className="grid grid-cols-2 gap-2">
                   <Button
-                    onClick={() => handleAnalyze("claude")}
+                    onClick={() => handleAnalyze("claude-sonnet")}
                     disabled={analyzing}
                     className="h-14 flex-col gap-0.5"
-                    variant={preferred === "claude" ? "default" : "outline"}
+                    variant={preferred === "claude-sonnet" ? "default" : "outline"}
                   >
                     {analyzing && usedProvider === null ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -391,15 +393,15 @@ const Stone = () => {
                           <Sparkles className="w-3.5 h-3.5 mr-1" />
                           정밀분석
                         </span>
-                        <span className="text-[10px] opacity-80">Claude · 유료</span>
+                        <span className="text-[10px] opacity-80">Sonnet 4.6</span>
                       </>
                     )}
                   </Button>
                   <Button
-                    onClick={() => handleAnalyze("gemini")}
+                    onClick={() => handleAnalyze("claude-haiku")}
                     disabled={analyzing}
                     className="h-14 flex-col gap-0.5"
-                    variant={preferred === "gemini" ? "default" : "outline"}
+                    variant={preferred === "claude-haiku" ? "default" : "outline"}
                   >
                     {analyzing && usedProvider === null ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -409,7 +411,7 @@ const Stone = () => {
                           <Zap className="w-3.5 h-3.5 mr-1" />
                           빠른분석
                         </span>
-                        <span className="text-[10px] opacity-80">Gemini · 무료</span>
+                        <span className="text-[10px] opacity-80">Haiku 4.5</span>
                       </>
                     )}
                   </Button>

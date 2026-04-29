@@ -1,4 +1,4 @@
-export type ApiProvider = "claude" | "gemini";
+export type ApiProvider = "claude-sonnet" | "claude-haiku" | "claude" | "gemini";
 
 export interface CatalogRecommendation {
   productName: string;

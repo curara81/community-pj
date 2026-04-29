@@ -212,7 +212,10 @@ const Stone = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 to-slate-100">
-      <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b">
+      <header
+        className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b"
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
+      >
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
           <img
             src="/stone-icon.svg"
@@ -234,7 +237,10 @@ const Stone = () => {
         </div>
       </header>
 
-      <main className="max-w-2xl mx-auto px-4 py-4 space-y-4">
+      <main
+        className="max-w-2xl mx-auto px-4 py-4 space-y-4"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1rem)" }}
+      >
         <Card className="p-3 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
             {driveAuth ? (

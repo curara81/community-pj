@@ -47,6 +47,11 @@ const Stone = () => {
   useEffect(() => {
     setHistory(loadHistory());
     setDriveAuth(getValidAuth());
+    const previousTitle = document.title;
+    document.title = "석재 식별기";
+    return () => {
+      document.title = previousTitle;
+    };
   }, []);
 
   const handleAnalyze = async (provider: ApiProvider) => {

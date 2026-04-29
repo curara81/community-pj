@@ -110,7 +110,7 @@ function ThemeToggleButton() {
 }
 
 const Stone = () => {
-  const [imageDataUrl, setImageDataUrl] = useState<string | null>(null);
+  const [imageDataUrls, setImageDataUrls] = useState<string[]>([]);
   const [analyzing, setAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<StoneAnalysis | null>(null);
   const [usedProvider, setUsedProvider] = useState<ApiProvider | null>(null);
@@ -191,7 +191,7 @@ const Stone = () => {
   }, []);
 
   const handleAnalyze = async (provider: ApiProvider) => {
-    if (!imageDataUrl) {
+    if (imageDataUrls.length === 0) {
       toast.error("먼저 사진을 촬영하거나 선택해주세요.");
       return;
     }
@@ -214,7 +214,7 @@ const Stone = () => {
 
     try {
       const library = pickConfirmedLibrary(history);
-      const result = await analyzeWithClaude(imageDataUrl, key, {
+      const result = await analyzeWithClaude(imageDataUrls, key, {
         model,
         userNote,
         library,
@@ -223,11 +223,12 @@ const Stone = () => {
       setAnalysis(result);
       setUsedProvider(provider);
 
+      const primaryImage = imageDataUrls[0];
       const record: StoneRecord = {
         id: crypto.randomUUID(),
         createdAt: new Date().toISOString(),
         provider,
-        imageDataUrl,
+        imageDataUrl: primaryImage,
         analysis: result,
         userNote: userNote || undefined,
       };
@@ -236,7 +237,7 @@ const Stone = () => {
       if (auth) {
         try {
           const upload = await uploadAnalysisToDrive(auth, {
-            imageDataUrl,
+            imageDataUrl: primaryImage,
             analysis: result,
             provider,
             userNote,
@@ -333,7 +334,7 @@ const Stone = () => {
   };
 
   const handleClearImage = () => {
-    setImageDataUrl(null);
+    setImageDataUrls([]);
     setAnalysis(null);
     setUsedProvider(null);
     setUserNote("");
@@ -454,16 +455,15 @@ const Stone = () => {
 
           <TabsContent value="capture" className="space-y-4 mt-4">
             <CameraCapture
-              imageDataUrl={imageDataUrl}
-              onCapture={(url) => {
-                setImageDataUrl(url);
+              imageDataUrls={imageDataUrls}
+              onChange={(next) => {
+                setImageDataUrls(next);
                 setAnalysis(null);
                 setUsedProvider(null);
               }}
-              onClear={handleClearImage}
             />
 
-            {imageDataUrl && (
+            {imageDataUrls.length > 0 && (
               <>
                 <Textarea
                   placeholder="추가 메모 (선택) - 예: 욕실 벽, 인테리어용으로 검토 중"

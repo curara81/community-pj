@@ -14,7 +14,7 @@ function dataUrlToBase64(dataUrl: string): { mediaType: string; data: string } {
 }
 
 export async function analyzeWithClaude(
-  imageDataUrl: string,
+  imageDataUrls: string | string[],
   apiKey: string,
   options: {
     model?: ClaudeModel;
@@ -23,9 +23,16 @@ export async function analyzeWithClaude(
   } = {}
 ): Promise<StoneAnalysis> {
   if (!apiKey) throw new Error("Claude API 키가 설정되지 않았습니다.");
-  const { mediaType, data } = dataUrlToBase64(imageDataUrl);
+  const urls = Array.isArray(imageDataUrls) ? imageDataUrls : [imageDataUrls];
+  if (urls.length === 0) throw new Error("이미지가 없습니다.");
+  const images = urls.map(dataUrlToBase64);
   const catalog = await loadCatalog();
   const model = options.model ?? "claude-sonnet-4-6";
+
+  const imageBlocks = images.map((img) => ({
+    type: "image" as const,
+    source: { type: "base64", media_type: img.mediaType, data: img.data },
+  }));
 
   const response = await fetch(CLAUDE_API_URL, {
     method: "POST",
@@ -43,13 +50,10 @@ export async function analyzeWithClaude(
         {
           role: "user",
           content: [
-            {
-              type: "image",
-              source: { type: "base64", media_type: mediaType, data },
-            },
+            ...imageBlocks,
             {
               type: "text",
-              text: buildUserPrompt(options.userNote, catalog, options.library),
+              text: buildUserPrompt(options.userNote, catalog, options.library, urls.length),
             },
           ],
         },

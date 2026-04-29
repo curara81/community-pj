@@ -1,14 +1,14 @@
 import { useCallback, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Camera, ImageIcon, RotateCcw, Crop } from "lucide-react";
+import { Camera, ImageIcon, RotateCcw, Crop, Plus, X } from "lucide-react";
 import CropDialog from "./CropDialog";
 
 interface CameraCaptureProps {
-  imageDataUrl: string | null;
-  onCapture: (dataUrl: string) => void;
-  onClear: () => void;
+  imageDataUrls: string[];
+  onChange: (next: string[]) => void;
 }
 
+const MAX_PHOTOS = 3;
 const MAX_DIMENSION = 1600;
 
 async function readFileAsDownscaledDataUrl(file: File): Promise<string> {
@@ -42,24 +42,38 @@ async function readFileAsDownscaledDataUrl(file: File): Promise<string> {
   });
 }
 
-const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps) => {
+const CameraCapture = ({ imageDataUrls, onChange }: CameraCaptureProps) => {
   const cameraInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const [processing, setProcessing] = useState(false);
-  const [cropSource, setCropSource] = useState<string | null>(null);
+  const [cropSource, setCropSource] = useState<{ url: string; index: number } | null>(null);
+
+  const addImage = (url: string) => {
+    if (imageDataUrls.length >= MAX_PHOTOS) return;
+    onChange([...imageDataUrls, url]);
+  };
+
+  const replaceImage = (index: number, url: string) => {
+    const next = [...imageDataUrls];
+    next[index] = url;
+    onChange(next);
+  };
+
+  const removeImage = (index: number) => {
+    onChange(imageDataUrls.filter((_, i) => i !== index));
+  };
 
   const handleFile = useCallback(
     async (file: File | undefined, source: "camera" | "gallery") => {
       if (!file) return;
+      if (imageDataUrls.length >= MAX_PHOTOS) return;
       setProcessing(true);
       try {
         const downscaled = await readFileAsDownscaledDataUrl(file);
         if (source === "gallery") {
-          // Auto-open crop dialog for gallery photos so the user can
-          // exclude background / non-stone areas.
-          setCropSource(downscaled);
+          setCropSource({ url: downscaled, index: -1 }); // -1 means "add new"
         } else {
-          onCapture(downscaled);
+          addImage(downscaled);
         }
       } catch (e) {
         console.error(e);
@@ -68,35 +82,114 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
         setProcessing(false);
       }
     },
-    [onCapture]
+    [imageDataUrls]
   );
 
-  if (imageDataUrl) {
+  const canAddMore = imageDataUrls.length < MAX_PHOTOS;
+
+  if (imageDataUrls.length > 0) {
     return (
       <div className="space-y-3">
-        <div className="relative rounded-xl overflow-hidden border bg-muted">
-          <img
-            src={imageDataUrl}
-            alt="촬영된 석재"
-            className="w-full h-auto max-h-[420px] object-contain"
-          />
+        <div className="grid grid-cols-3 gap-2">
+          {imageDataUrls.map((url, idx) => (
+            <div
+              key={idx}
+              className="relative aspect-square rounded-lg overflow-hidden border bg-muted group"
+            >
+              <img
+                src={url}
+                alt={`사진 ${idx + 1}`}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute top-1 right-1 flex flex-col gap-1">
+                <button
+                  type="button"
+                  onClick={() => removeImage(idx)}
+                  className="p-1 rounded-full bg-black/60 text-white hover:bg-black/80"
+                  aria-label="삭제"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCropSource({ url, index: idx })}
+                  className="p-1 rounded-full bg-black/60 text-white hover:bg-black/80"
+                  aria-label="자르기"
+                >
+                  <Crop className="w-3 h-3" />
+                </button>
+              </div>
+              <div className="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-black/60 text-white text-[10px]">
+                {idx + 1}
+              </div>
+            </div>
+          ))}
+          {canAddMore && (
+            <button
+              type="button"
+              onClick={() => galleryInputRef.current?.click()}
+              disabled={processing}
+              className="aspect-square rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/30 flex flex-col items-center justify-center text-muted-foreground hover:bg-muted/50 transition"
+            >
+              <Plus className="w-6 h-6 mb-1" />
+              <span className="text-[11px]">추가</span>
+            </button>
+          )}
         </div>
+
         <div className="grid grid-cols-2 gap-2">
-          <Button variant="outline" onClick={() => setCropSource(imageDataUrl)}>
-            <Crop className="w-4 h-4 mr-2" />
-            자르기
+          <Button
+            variant="outline"
+            onClick={() => cameraInputRef.current?.click()}
+            disabled={!canAddMore || processing}
+            className="h-10"
+          >
+            <Camera className="w-4 h-4 mr-1.5" />
+            카메라 추가
           </Button>
-          <Button variant="outline" onClick={onClear}>
-            <RotateCcw className="w-4 h-4 mr-2" />
-            다시 찍기
+          <Button variant="outline" onClick={() => onChange([])} className="h-10">
+            <RotateCcw className="w-4 h-4 mr-1.5" />
+            전체 다시
           </Button>
         </div>
 
+        <p className="text-[11px] text-muted-foreground text-center">
+          여러 사진을 올리면 같은 돌의 다른 각도/조명을 종합 분석합니다 (최대 {MAX_PHOTOS}장)
+        </p>
+
+        <input
+          ref={cameraInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          className="hidden"
+          onChange={(e) => {
+            handleFile(e.target.files?.[0], "camera");
+            e.target.value = "";
+          }}
+        />
+        <input
+          ref={galleryInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => {
+            handleFile(e.target.files?.[0], "gallery");
+            e.target.value = "";
+          }}
+        />
+
         <CropDialog
-          imageDataUrl={cropSource}
+          imageDataUrl={cropSource?.url ?? null}
           open={cropSource !== null}
           onOpenChange={(open) => !open && setCropSource(null)}
-          onConfirm={(out) => onCapture(out)}
+          onConfirm={(out) => {
+            if (cropSource) {
+              if (cropSource.index === -1) addImage(out);
+              else replaceImage(cropSource.index, out);
+            }
+            setCropSource(null);
+          }}
         />
       </div>
     );
@@ -107,7 +200,9 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
       <div className="rounded-xl border-2 border-dashed border-muted-foreground/30 bg-muted/30 p-10 flex flex-col items-center justify-center text-center min-h-[260px]">
         <Camera className="w-12 h-12 text-muted-foreground mb-3" />
         <p className="text-sm text-muted-foreground mb-1">석재를 촬영하거나 갤러리에서 선택하세요</p>
-        <p className="text-xs text-muted-foreground/70">대리석, 화강석, 인조석, 타일 등 모든 석재 지원</p>
+        <p className="text-xs text-muted-foreground/70">
+          여러 각도 사진을 추가하면 정확도가 올라갑니다 (최대 {MAX_PHOTOS}장)
+        </p>
       </div>
 
       <input
@@ -116,14 +211,20 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
         accept="image/*"
         capture="environment"
         className="hidden"
-        onChange={(e) => handleFile(e.target.files?.[0], "camera")}
+        onChange={(e) => {
+          handleFile(e.target.files?.[0], "camera");
+          e.target.value = "";
+        }}
       />
       <input
         ref={galleryInputRef}
         type="file"
         accept="image/*"
         className="hidden"
-        onChange={(e) => handleFile(e.target.files?.[0], "gallery")}
+        onChange={(e) => {
+          handleFile(e.target.files?.[0], "gallery");
+          e.target.value = "";
+        }}
       />
 
       <div className="grid grid-cols-2 gap-2">
@@ -147,11 +248,14 @@ const CameraCapture = ({ imageDataUrl, onCapture, onClear }: CameraCaptureProps)
       </div>
 
       <CropDialog
-        imageDataUrl={cropSource}
+        imageDataUrl={cropSource?.url ?? null}
         open={cropSource !== null}
         onOpenChange={(open) => !open && setCropSource(null)}
         onConfirm={(out) => {
-          onCapture(out);
+          if (cropSource) {
+            if (cropSource.index === -1) addImage(out);
+            else replaceImage(cropSource.index, out);
+          }
           setCropSource(null);
         }}
       />

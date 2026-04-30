@@ -1,5 +1,6 @@
 import type { StoneAnalysis } from "./types";
-import { loadCatalog } from "./catalog";
+import type { AnalysisHints, ConfirmedLibraryItem } from "./prompts";
+import { analyzeWithGemini } from "./gemini";
 
 const TRANSLATE_URL = "https://translation.googleapis.com/language/translate/v2";
 const VISION_URL = "https://vision.googleapis.com/v1/images:annotate";
@@ -128,29 +129,58 @@ function inferCategory(text: string): StoneAnalysis["category"] {
 
 export async function analyzeWithCloudVision(
   imageDataUrls: string | string[],
-  apiKey: string
+  cloudKey: string,
+  options: {
+    geminiKey?: string;
+    userNote?: string;
+    library?: ConfirmedLibraryItem[];
+    hints?: AnalysisHints;
+  } = {}
 ): Promise<StoneAnalysis> {
-  if (!apiKey) throw new Error("Cloud API 키가 설정되지 않았습니다.");
+  if (!cloudKey) throw new Error("Cloud API 키가 설정되지 않았습니다.");
   const urls = Array.isArray(imageDataUrls) ? imageDataUrls : [imageDataUrls];
   if (urls.length === 0) throw new Error("이미지가 없습니다.");
 
-  // Vision can only process one image at a time per request → use the first
-  const r = await visionWebDetect(urls[0], apiKey);
-
+  // Step 1: Cloud Vision Web Detection — uses Cloud credit
+  const r = await visionWebDetect(urls[0], cloudKey);
   const guess = (r.bestGuessLabel ?? "").trim();
   const topEntities = r.webEntities
     .filter((e) => e.description && (e.score ?? 0) > 0.3)
     .slice(0, 8);
+  const visionName = guess || topEntities[0]?.description || "";
+
+  // Step 2: If we have a Gemini key + a meaningful guess, enrich the result
+  // by feeding the vision hint into the Gemini analyzer (which knows the
+  // catalog, origin, distributors, recommendations). Gemini call is on the
+  // free tier; Vision call is what consumes the Cloud credit.
+  if (options.geminiKey && visionName) {
+    try {
+      const enriched = await analyzeWithGemini(urls, options.geminiKey, {
+        userNote: options.userNote,
+        library: options.library,
+        hints: {
+          ...options.hints,
+          // Surface vision's best guess as a name hint so Gemini biases
+          // toward that identification when reasonable.
+          nameHint:
+            options.hints?.nameHint
+              ? `${options.hints.nameHint} (Cloud Vision 후보: ${visionName})`
+              : `Cloud Vision 후보: ${visionName}`,
+        },
+      });
+      return enriched;
+    } catch (e) {
+      console.warn("Gemini 보강 실패, Cloud Vision 단독 결과로 폴백", e);
+      // Fall through to bare result below
+    }
+  }
+
+  // Fallback: Cloud Vision only (no Gemini enrichment available or failed)
   const labelText = `${guess} ${topEntities.map((e) => e.description).join(" ")} ${r.fullText ?? ""}`;
   const category = inferCategory(labelText);
 
-  // Build a primary "name" guess from best-guess or first entity
-  const primaryName =
-    guess ||
-    topEntities[0]?.description ||
-    "Unknown stone";
+  const primaryName = visionName || "Unknown stone";
 
-  // Alternative candidates from next entities
   const alternatives = topEntities
     .slice(1, 3)
     .map((e) => ({
@@ -159,17 +189,13 @@ export async function analyzeWithCloudVision(
       confidence: `상대 점수 ${(e.score ?? 0).toFixed(2)}`,
     }));
 
-  // Confidence bucket from top entity score
   const topScore = topEntities[0]?.score ?? 0;
   const confidence: StoneAnalysis["confidence"] =
     topScore > 1.5 ? "high" : topScore > 0.8 ? "medium" : "low";
 
-  // Origin / description / characteristics — Cloud Vision doesn't provide these,
-  // so we leave conservative placeholders the UI handles gracefully.
   const description =
     `Google Cloud Vision의 웹 검색 매칭 결과입니다. ` +
-    `유사한 웹 이미지에서 추출된 라벨을 기반으로 한 후보이며, ` +
-    `정확한 산지/시세 정보가 필요하면 정밀/빠른 분석 또는 검색 탭을 이용하세요.`;
+    `Gemini API 키를 ⚙️ 설정에 추가하면 산지/시세/카탈로그 추천까지 자동 보강됩니다.`;
 
   return {
     name: primaryName,
@@ -180,9 +206,6 @@ export async function analyzeWithCloudVision(
     koreanDistributors: [],
     alternativeCandidates: alternatives,
     confidence,
-    // Stash similar images and source pages into custom fields via "any" since
-    // schema doesn't have them. Use description's notes? Use characteristics.
-    // We'll surface them via UI extension separately.
   };
 }
 

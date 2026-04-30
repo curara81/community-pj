@@ -228,7 +228,12 @@ const Stone = () => {
     try {
       const library = pickConfirmedLibrary(history);
       const result = isCloudVision
-        ? await analyzeWithCloudVision(imageDataUrls, key)
+        ? await analyzeWithCloudVision(imageDataUrls, key, {
+            geminiKey: keys.gemini,
+            userNote,
+            library,
+            hints,
+          })
         : await analyzeWithClaude(imageDataUrls, key, {
             model:
               provider === "claude-haiku"

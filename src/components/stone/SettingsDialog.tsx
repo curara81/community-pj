@@ -92,7 +92,31 @@ const SettingsDialog = ({ open, onOpenChange, onOpenCatalogImages }: SettingsDia
                 onChange={update("claude")}
               />
               <p className="text-xs text-muted-foreground">
-                정밀분석(Sonnet 4.6)과 빠른분석(Haiku 4.5) 모두 이 키 하나로 사용합니다.
+                정밀분석(Sonnet 4.6)과 빠른분석(Haiku 4.5)에 사용
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="gemini">Gemini API Key</Label>
+                <a
+                  href="https://aistudio.google.com/apikey"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-primary inline-flex items-center gap-1 hover:underline"
+                >
+                  발급 <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+              <Input
+                id="gemini"
+                type="password"
+                placeholder="AIza..."
+                value={keys.gemini || ""}
+                onChange={update("gemini")}
+              />
+              <p className="text-xs text-muted-foreground">
+                무료분석 + 검색 탭 (Google Search 그라운딩) — 무료 티어 분당 15회
               </p>
             </div>
           </TabsContent>

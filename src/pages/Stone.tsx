@@ -17,6 +17,8 @@ import {
   Moon,
   MonitorSmartphone,
   Calculator,
+  Gift,
+  Search as SearchIcon,
 } from "lucide-react";
 import { StoneThemeProvider, useStoneTheme } from "@/lib/stone/theme";
 import CameraCapture from "@/components/stone/CameraCapture";
@@ -26,8 +28,10 @@ import SettingsDialog from "@/components/stone/SettingsDialog";
 import SlabCalculator from "@/components/stone/SlabCalculator";
 import ShareButton from "@/components/stone/ShareButton";
 import CatalogImageManager from "@/components/stone/CatalogImageManager";
+import SearchPanel from "@/components/stone/SearchPanel";
 import { analyzeWithClaude } from "@/lib/stone/claude";
 import type { ClaudeModel } from "@/lib/stone/claude";
+import { analyzeWithGemini } from "@/lib/stone/gemini";
 import { pickConfirmedLibrary } from "@/lib/stone/prompts";
 import {
   requestDriveAccess,
@@ -124,7 +128,7 @@ const Stone = () => {
   const resultRef = useRef<HTMLDivElement>(null);
   const [history, setHistory] = useState<StoneRecord[]>([]);
   const [driveAuth, setDriveAuth] = useState<DriveAuth | null>(null);
-  const [activeTab, setActiveTab] = useState<"capture" | "history">("capture");
+  const [activeTab, setActiveTab] = useState<"capture" | "search" | "history">("capture");
 
   const syncHistoryWithDrive = async (auth: DriveAuth) => {
     try {
@@ -199,9 +203,10 @@ const Stone = () => {
       return;
     }
     const keys = loadApiKeys();
-    const key = keys.claude;
+    const isGemini = provider === "gemini";
+    const key = isGemini ? keys.gemini : keys.claude;
     if (!key) {
-      toast.error("Claude API 키가 설정되지 않았습니다.", {
+      toast.error(`${isGemini ? "Gemini" : "Claude"} API 키가 설정되지 않았습니다.`, {
         action: { label: "설정", onClick: () => setSettingsOpen(true) },
       });
       return;
@@ -212,20 +217,24 @@ const Stone = () => {
     setUsedProvider(null);
     savePreferredProvider(provider);
 
-    const model: ClaudeModel =
-      provider === "claude-haiku" ? "claude-haiku-4-5-20251001" : "claude-sonnet-4-6";
+    const hints = {
+      originHint: originHint || undefined,
+      nameHint: nameHint || undefined,
+    };
 
     try {
       const library = pickConfirmedLibrary(history);
-      const result = await analyzeWithClaude(imageDataUrls, key, {
-        model,
-        userNote,
-        library,
-        hints: {
-          originHint: originHint || undefined,
-          nameHint: nameHint || undefined,
-        },
-      });
+      const result = isGemini
+        ? await analyzeWithGemini(imageDataUrls, key, { userNote, library, hints })
+        : await analyzeWithClaude(imageDataUrls, key, {
+            model:
+              provider === "claude-haiku"
+                ? "claude-haiku-4-5-20251001"
+                : "claude-sonnet-4-6",
+            userNote,
+            library,
+            hints,
+          });
 
       setAnalysis(result);
       setUsedProvider(provider);
@@ -268,7 +277,13 @@ const Stone = () => {
       const updated = loadHistory();
       setHistory(updated);
       toast.success(
-        `분석 완료 (${provider === "claude-haiku" ? "Haiku 4.5" : "Sonnet 4.6"})`
+        `분석 완료 (${
+          provider === "gemini"
+            ? "Gemini"
+            : provider === "claude-haiku"
+              ? "Haiku 4.5"
+              : "Sonnet 4.6"
+        })`
       );
 
       const currentAuth = getValidAuth();
@@ -462,15 +477,19 @@ const Stone = () => {
           </Button>
         </Card>
 
-        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "capture" | "history")}>
-          <TabsList className="grid w-full grid-cols-2 h-11 bg-muted/60 p-1">
-            <TabsTrigger value="capture" className="data-[state=active]:bg-card data-[state=active]:shadow-sm">
-              <Camera className="w-4 h-4 mr-1.5" />
-              촬영 / 분석
+        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "capture" | "search" | "history")}>
+          <TabsList className="grid w-full grid-cols-3 h-11 bg-muted/60 p-1">
+            <TabsTrigger value="capture" className="data-[state=active]:bg-card data-[state=active]:shadow-sm text-xs sm:text-sm">
+              <Camera className="w-4 h-4 mr-1" />
+              촬영
             </TabsTrigger>
-            <TabsTrigger value="history" className="data-[state=active]:bg-card data-[state=active]:shadow-sm">
-              <History className="w-4 h-4 mr-1.5" />
-              기록 {history.length > 0 && <span className="ml-1 text-xs text-muted-foreground">({history.length})</span>}
+            <TabsTrigger value="search" className="data-[state=active]:bg-card data-[state=active]:shadow-sm text-xs sm:text-sm">
+              <SearchIcon className="w-4 h-4 mr-1" />
+              검색
+            </TabsTrigger>
+            <TabsTrigger value="history" className="data-[state=active]:bg-card data-[state=active]:shadow-sm text-xs sm:text-sm">
+              <History className="w-4 h-4 mr-1" />
+              기록 {history.length > 0 && <span className="ml-0.5 text-[10px] text-muted-foreground">({history.length})</span>}
             </TabsTrigger>
           </TabsList>
 
@@ -535,11 +554,11 @@ const Stone = () => {
                   )}
                 </div>
 
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   <Button
                     onClick={() => handleAnalyze("claude-sonnet")}
                     disabled={analyzing}
-                    className={`h-16 flex-col gap-0.5 border-0 ${
+                    className={`h-[68px] flex-col gap-0.5 border-0 px-2 ${
                       preferred === "claude-sonnet" ? "stone-cta" : "bg-card text-foreground border border-border hover:bg-muted shadow-sm"
                     }`}
                   >
@@ -547,18 +566,18 @@ const Stone = () => {
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <span className="flex items-center text-sm font-semibold tracking-tight">
-                          <Sparkles className="w-4 h-4 mr-1.5 text-amber-300" />
-                          정밀 분석
+                        <span className="flex items-center text-[13px] font-semibold tracking-tight">
+                          <Sparkles className="w-3.5 h-3.5 mr-1 text-amber-300" />
+                          정밀
                         </span>
-                        <span className="text-[10px] opacity-70 tracking-wide">SONNET 4.6 · 정확도 우선</span>
+                        <span className="text-[9px] opacity-70 tracking-wide">SONNET · 정확도</span>
                       </>
                     )}
                   </Button>
                   <Button
                     onClick={() => handleAnalyze("claude-haiku")}
                     disabled={analyzing}
-                    className={`h-16 flex-col gap-0.5 border-0 ${
+                    className={`h-[68px] flex-col gap-0.5 border-0 px-2 ${
                       preferred === "claude-haiku" ? "stone-cta" : "bg-card text-foreground border border-border hover:bg-muted shadow-sm"
                     }`}
                   >
@@ -566,11 +585,30 @@ const Stone = () => {
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <span className="flex items-center text-sm font-semibold tracking-tight">
-                          <Zap className="w-4 h-4 mr-1.5 text-amber-400" />
-                          빠른 분석
+                        <span className="flex items-center text-[13px] font-semibold tracking-tight">
+                          <Zap className="w-3.5 h-3.5 mr-1 text-amber-400" />
+                          빠른
                         </span>
-                        <span className="text-[10px] opacity-70 tracking-wide">HAIKU 4.5 · 속도 우선</span>
+                        <span className="text-[9px] opacity-70 tracking-wide">HAIKU · 속도</span>
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    onClick={() => handleAnalyze("gemini")}
+                    disabled={analyzing}
+                    className={`h-[68px] flex-col gap-0.5 border-0 px-2 ${
+                      preferred === "gemini" ? "stone-cta" : "bg-card text-foreground border border-border hover:bg-muted shadow-sm"
+                    }`}
+                  >
+                    {analyzing && usedProvider === null ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <>
+                        <span className="flex items-center text-[13px] font-semibold tracking-tight">
+                          <Gift className="w-3.5 h-3.5 mr-1 text-emerald-500" />
+                          무료
+                        </span>
+                        <span className="text-[9px] opacity-70 tracking-wide">GEMINI · 무과금</span>
                       </>
                     )}
                   </Button>
@@ -598,6 +636,10 @@ const Stone = () => {
                 </div>
               </div>
             )}
+          </TabsContent>
+
+          <TabsContent value="search" className="mt-4">
+            <SearchPanel />
           </TabsContent>
 
           <TabsContent value="history" className="mt-4">

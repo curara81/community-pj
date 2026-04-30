@@ -443,7 +443,6 @@ const Stone = () => {
 
       <main
         className="max-w-2xl mx-auto px-4 py-4 space-y-4"
-        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1rem)" }}
       >
         <Card className="stone-card p-3.5 flex items-center justify-between gap-3 border-0">
           <div className="flex items-center gap-3 min-w-0">
@@ -651,6 +650,16 @@ const Stone = () => {
           </TabsContent>
         </Tabs>
       </main>
+
+      <footer
+        className="max-w-2xl mx-auto px-4 pb-6 pt-2 text-center"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1.5rem)" }}
+      >
+        <p className="text-[11px] text-muted-foreground tracking-wide">
+          © {new Date().getFullYear()}{" "}
+          <span className="font-semibold text-foreground/80">Lapis Global</span>. All rights reserved.
+        </p>
+      </footer>
 
       <SettingsDialog
         open={settingsOpen}

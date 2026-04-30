@@ -8,116 +8,116 @@
 
 @layer base {
   :root {
-    /* All tokens are HSL triples so Tailwind can safely use: hsl(var(--token)) */
-    --background: 0 0% 100%;
-    --foreground: 24 12% 18%;
+    /* Stone-themed palette: warm Carrara off-white background, anthracite primary, brushed gold accent */
+    --background: 36 25% 97%;
+    --foreground: 24 14% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 24 12% 18%;
+    --card-foreground: 24 14% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 24 12% 18%;
+    --popover-foreground: 24 14% 14%;
 
-    /* Primary: slate (trust) */
-    --primary: 215 19% 35%;
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 215 16% 47%;
-    --primary-lighter: 215 20% 65%;
+    /* Primary: anthracite charcoal — like polished marble veining */
+    --primary: 220 12% 22%;
+    --primary-foreground: 36 25% 97%;
+    --primary-light: 220 10% 35%;
+    --primary-lighter: 220 8% 55%;
 
-    /* Secondary: violet (language chip, subtle emphasis) */
-    --secondary: 262 83% 58%;
-    --secondary-foreground: 0 0% 100%;
-    --secondary-light: 263 90% 70%;
-    --secondary-lighter: 262 100% 95%;
+    /* Secondary: warm taupe (subtle accent) */
+    --secondary: 30 12% 88%;
+    --secondary-foreground: 24 14% 18%;
+    --secondary-light: 30 12% 92%;
+    --secondary-lighter: 30 18% 96%;
 
-    /* Accent: blue (actions/links) */
-    --accent: 217 91% 60%;
+    /* Accent: brushed gold — Calacatta veining */
+    --accent: 36 45% 50%;
     --accent-foreground: 0 0% 100%;
-    --accent-light: 213 94% 68%;
-    --accent-lighter: 214 95% 93%;
+    --accent-light: 36 50% 60%;
+    --accent-lighter: 38 60% 92%;
 
-    /* Success: green */
-    --success: 142 71% 45%;
+    /* Success */
+    --success: 152 45% 38%;
     --success-foreground: 0 0% 100%;
-    --success-light: 142 69% 58%;
-    --success-lighter: 143 85% 96%;
+    --success-light: 152 40% 50%;
+    --success-lighter: 150 40% 94%;
 
     /* Muted */
-    --muted: 210 40% 98%;
-    --muted-foreground: 215 19% 35%;
-    --muted-medium: 214 32% 91%;
-    --muted-dark: 215 20% 65%;
+    --muted: 32 18% 94%;
+    --muted-foreground: 24 10% 38%;
+    --muted-medium: 30 15% 88%;
+    --muted-dark: 26 8% 60%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 8 70% 52%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 215 19% 35%;
+    --border: 32 14% 86%;
+    --input: 32 14% 86%;
+    --ring: 36 45% 50%;
 
     --radius: 0.75rem;
 
-    /* Sidebar colors aligned with design system */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 24 12% 18%;
-    --sidebar-primary: 215 19% 35%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 215 19% 35%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 215 19% 35%;
+    --sidebar-background: 36 25% 97%;
+    --sidebar-foreground: 24 14% 14%;
+    --sidebar-primary: 220 12% 22%;
+    --sidebar-primary-foreground: 36 25% 97%;
+    --sidebar-accent: 32 18% 94%;
+    --sidebar-accent-foreground: 24 14% 18%;
+    --sidebar-border: 32 14% 86%;
+    --sidebar-ring: 36 45% 50%;
   }
 
   .dark {
-    --background: 222 16% 10%;
-    --foreground: 210 20% 92%;
+    /* Dark: deep anthracite with warm gold accent */
+    --background: 220 14% 9%;
+    --foreground: 36 18% 90%;
 
-    --card: 222 16% 13%;
-    --card-foreground: 210 20% 92%;
+    --card: 220 14% 12%;
+    --card-foreground: 36 18% 90%;
 
-    --popover: 222 16% 13%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 220 14% 12%;
+    --popover-foreground: 36 18% 90%;
 
-    --primary: 210 30% 80%;
-    --primary-foreground: 222 16% 12%;
-    --primary-light: 210 25% 70%;
-    --primary-lighter: 215 20% 50%;
+    --primary: 36 30% 78%;
+    --primary-foreground: 220 14% 12%;
+    --primary-light: 36 25% 68%;
+    --primary-lighter: 36 18% 52%;
 
-    --secondary: 262 60% 65%;
-    --secondary-foreground: 222 16% 10%;
-    --secondary-light: 263 60% 72%;
-    --secondary-lighter: 262 30% 25%;
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 36 18% 90%;
+    --secondary-light: 220 10% 26%;
+    --secondary-lighter: 220 10% 16%;
 
-    --accent: 217 70% 60%;
-    --accent-foreground: 0 0% 100%;
-    --accent-light: 213 65% 65%;
-    --accent-lighter: 214 30% 22%;
+    --accent: 38 55% 60%;
+    --accent-foreground: 220 14% 10%;
+    --accent-light: 38 55% 68%;
+    --accent-lighter: 38 30% 22%;
 
-    --success: 142 50% 50%;
+    --success: 152 35% 50%;
     --success-foreground: 0 0% 100%;
-    --success-light: 142 50% 60%;
-    --success-lighter: 143 30% 18%;
+    --success-light: 152 35% 60%;
+    --success-lighter: 152 25% 18%;
 
-    --muted: 222 14% 18%;
-    --muted-foreground: 215 15% 70%;
-    --muted-medium: 214 14% 25%;
-    --muted-dark: 215 12% 50%;
+    --muted: 220 12% 16%;
+    --muted-foreground: 36 12% 68%;
+    --muted-medium: 220 10% 22%;
+    --muted-dark: 220 8% 45%;
 
-    --destructive: 0 65% 55%;
+    --destructive: 8 60% 56%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 14% 22%;
-    --input: 214 14% 22%;
-    --ring: 215 25% 65%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 38 55% 60%;
 
-    --sidebar-background: 222 16% 13%;
-    --sidebar-foreground: 210 20% 92%;
-    --sidebar-primary: 210 30% 80%;
-    --sidebar-primary-foreground: 222 16% 12%;
-    --sidebar-accent: 222 14% 18%;
-    --sidebar-accent-foreground: 210 20% 92%;
-    --sidebar-border: 214 14% 22%;
-    --sidebar-ring: 215 25% 65%;
+    --sidebar-background: 220 14% 12%;
+    --sidebar-foreground: 36 18% 90%;
+    --sidebar-primary: 36 30% 78%;
+    --sidebar-primary-foreground: 220 14% 12%;
+    --sidebar-accent: 220 12% 16%;
+    --sidebar-accent-foreground: 36 18% 90%;
+    --sidebar-border: 220 10% 20%;
+    --sidebar-ring: 38 55% 60%;
   }
 }
 
@@ -136,6 +136,146 @@
 }
 
 @layer components {
+  /* Stone-themed app surface — subtle marble veining over warm cream.
+     Uses layered gradients so it's tiny (no image), stays sharp at any DPR. */
+  .stone-app-bg {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(at 12% 8%, hsl(36 35% 92%) 0%, transparent 45%),
+      radial-gradient(at 92% 18%, hsl(36 50% 90% / 0.6) 0%, transparent 40%),
+      radial-gradient(at 75% 95%, hsl(30 25% 93%) 0%, transparent 50%),
+      linear-gradient(180deg, hsl(36 30% 98%) 0%, hsl(34 20% 95%) 100%);
+  }
+  .dark .stone-app-bg {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(at 12% 8%, hsl(220 18% 14%) 0%, transparent 45%),
+      radial-gradient(at 92% 18%, hsl(38 30% 20% / 0.4) 0%, transparent 40%),
+      radial-gradient(at 75% 95%, hsl(220 16% 12%) 0%, transparent 50%),
+      linear-gradient(180deg, hsl(220 16% 8%) 0%, hsl(220 14% 11%) 100%);
+  }
+
+  /* Glass header with warm tint */
+  .stone-header {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background) / 0.9) 0%,
+      hsl(var(--background) / 0.7) 100%
+    );
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid hsl(var(--border) / 0.8);
+  }
+
+  /* Premium card surface — softer shadow, subtle ring */
+  .stone-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow:
+      0 1px 0 hsl(var(--border) / 0.5),
+      0 4px 20px -8px hsl(220 10% 20% / 0.08),
+      0 12px 40px -16px hsl(220 10% 20% / 0.06);
+  }
+  .dark .stone-card {
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.04),
+      0 4px 20px -8px hsl(0 0% 0% / 0.4),
+      0 12px 40px -16px hsl(0 0% 0% / 0.5);
+  }
+
+  /* Accent gold underline used for section headers */
+  .stone-section-title {
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  .stone-section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 32px;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--accent)),
+      hsl(var(--accent-light))
+    );
+    border-radius: 2px;
+  }
+
+  /* Subtle divider with gold dot */
+  .stone-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .stone-divider::before,
+  .stone-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--border)),
+      transparent
+    );
+  }
+
+  /* Primary action button — premium feel */
+  .stone-cta {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary-light)) 100%
+    );
+    color: hsl(var(--primary-foreground));
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.1) inset,
+      0 8px 24px -8px hsl(220 10% 10% / 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .stone-cta:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.1) inset,
+      0 12px 28px -8px hsl(220 10% 10% / 0.45);
+  }
+  .stone-cta:active {
+    transform: translateY(0);
+  }
+
+  /* Gold accent CTA */
+  .stone-cta-gold {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent)) 0%,
+      hsl(var(--accent-light)) 100%
+    );
+    color: hsl(var(--accent-foreground));
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.2) inset,
+      0 8px 24px -8px hsl(36 45% 30% / 0.45);
+  }
+
+  /* Empty state dashed surface with marble feel */
+  .stone-empty {
+    background:
+      repeating-linear-gradient(
+        135deg,
+        hsl(var(--muted) / 0.4) 0,
+        hsl(var(--muted) / 0.4) 12px,
+        transparent 12px,
+        transparent 24px
+      ),
+      hsl(var(--card));
+    border: 2px dashed hsl(var(--border));
+  }
   /* Primary gradients using semantic tokens */
   .gradient-primary {
     background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 50%, hsl(var(--primary-lighter)) 100%);

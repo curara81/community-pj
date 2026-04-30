@@ -197,10 +197,12 @@ const CameraCapture = ({ imageDataUrls, onChange }: CameraCaptureProps) => {
 
   return (
     <div className="space-y-3">
-      <div className="rounded-xl border-2 border-dashed border-muted-foreground/30 bg-muted/30 p-10 flex flex-col items-center justify-center text-center min-h-[260px]">
-        <Camera className="w-12 h-12 text-muted-foreground mb-3" />
-        <p className="text-sm text-muted-foreground mb-1">석재를 촬영하거나 갤러리에서 선택하세요</p>
-        <p className="text-xs text-muted-foreground/70">
+      <div className="stone-empty rounded-xl p-10 flex flex-col items-center justify-center text-center min-h-[260px]">
+        <div className="w-14 h-14 rounded-2xl bg-card border flex items-center justify-center mb-3 shadow-sm">
+          <Camera className="w-7 h-7 text-primary/70" />
+        </div>
+        <p className="text-sm font-medium text-foreground/80 mb-1">석재를 촬영하거나 갤러리에서 선택하세요</p>
+        <p className="text-xs text-muted-foreground">
           여러 각도 사진을 추가하면 정확도가 올라갑니다 (최대 {MAX_PHOTOS}장)
         </p>
       </div>
@@ -231,7 +233,7 @@ const CameraCapture = ({ imageDataUrls, onChange }: CameraCaptureProps) => {
         <Button
           onClick={() => cameraInputRef.current?.click()}
           disabled={processing}
-          className="h-12"
+          className="h-12 stone-cta border-0"
         >
           <Camera className="w-4 h-4 mr-2" />
           {processing ? "처리 중..." : "카메라"}
@@ -240,7 +242,7 @@ const CameraCapture = ({ imageDataUrls, onChange }: CameraCaptureProps) => {
           variant="outline"
           onClick={() => galleryInputRef.current?.click()}
           disabled={processing}
-          className="h-12"
+          className="h-12 bg-card hover:bg-muted shadow-sm"
         >
           <ImageIcon className="w-4 h-4 mr-2" />
           갤러리

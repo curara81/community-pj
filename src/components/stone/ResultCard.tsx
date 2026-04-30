@@ -249,7 +249,7 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
   };
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="stone-card overflow-hidden border-0">
       <CardHeader className="space-y-2 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div className="space-y-1.5 flex-1 min-w-0">
@@ -346,8 +346,8 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
             <Separator />
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-muted-foreground" />
-                <p className="text-sm font-medium">다른 가능성 (2~3순위)</p>
+                <Sparkles className="w-4 h-4 text-accent" />
+                <p className="text-[11px] font-bold uppercase tracking-[0.12em] stone-section-title">다른 가능성 (2~3순위)</p>
               </div>
               <ul className="space-y-3">
                 {analysis.alternativeCandidates.slice(0, 2).map((c, i) => (
@@ -414,9 +414,11 @@ const ResultCard = ({ analysis }: ResultCardProps) => {
             <>
               <Separator />
               <div className="space-y-4">
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                  NUOVOCORSO 빅슬랩 추천
-                </p>
+                <div>
+                  <p className="text-[11px] font-bold text-foreground uppercase tracking-[0.12em] stone-section-title">
+                    NUOVOCORSO 빅슬랩 추천
+                  </p>
+                </div>
 
                 {analysis.recommendations.similar?.length > 0 && (
                   <RecommendationGroup

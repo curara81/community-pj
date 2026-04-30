@@ -379,22 +379,31 @@ const Stone = () => {
   const preferred = loadPreferredProvider();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-50 to-slate-100 dark:from-slate-900 dark:to-slate-950">
+    <div className="min-h-screen stone-app-bg">
       <header
-        className="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b"
+        className="sticky top-0 z-20 stone-header"
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <img
-            src="/stone-icon.svg"
-            alt=""
-            className="w-7 h-7 rounded-md"
-            aria-hidden
-          />
-          <h1 className="text-base font-bold flex items-center gap-2">
-            석재 식별기
-          </h1>
-          <div className="flex items-center gap-0.5">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="relative shrink-0">
+              <img
+                src="/stone-icon.svg"
+                alt=""
+                className="w-9 h-9 rounded-lg ring-1 ring-border shadow-sm"
+                aria-hidden
+              />
+            </div>
+            <div className="min-w-0">
+              <h1 className="text-[15px] font-bold leading-tight tracking-tight">
+                석재 식별기
+              </h1>
+              <p className="text-[10px] text-muted-foreground leading-tight tracking-wider uppercase">
+                Stone Identifier · NUOVOCORSO
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-0.5 shrink-0">
             <Button
               variant="ghost"
               size="sm"
@@ -421,44 +430,47 @@ const Stone = () => {
         className="max-w-2xl mx-auto px-4 py-4 space-y-4"
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1rem)" }}
       >
-        <Card className="p-3 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 min-w-0">
-            {driveAuth ? (
-              <>
-                <Cloud className="w-4 h-4 text-emerald-600 shrink-0" />
-                <div className="min-w-0">
-                  <p className="text-xs font-medium">Google Drive 연결됨</p>
-                  <p className="text-[11px] text-muted-foreground">StoneIdentifier 폴더에 자동 저장</p>
-                </div>
-              </>
-            ) : (
-              <>
-                <CloudOff className="w-4 h-4 text-muted-foreground shrink-0" />
-                <div className="min-w-0">
-                  <p className="text-xs font-medium">Drive 미연결</p>
-                  <p className="text-[11px] text-muted-foreground">로컬에만 저장됩니다</p>
-                </div>
-              </>
-            )}
+        <Card className="stone-card p-3.5 flex items-center justify-between gap-3 border-0">
+          <div className="flex items-center gap-3 min-w-0">
+            <div
+              className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
+                driveAuth
+                  ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400"
+                  : "bg-muted text-muted-foreground"
+              }`}
+            >
+              {driveAuth ? <Cloud className="w-4 h-4" /> : <CloudOff className="w-4 h-4" />}
+            </div>
+            <div className="min-w-0">
+              <p className="text-[13px] font-semibold leading-tight">
+                {driveAuth ? "Google Drive 연결됨" : "Drive 미연결"}
+              </p>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                {driveAuth
+                  ? "StoneIdentifier 폴더에 자동 저장 · 다기기 동기화"
+                  : "이 기기에만 저장됩니다"}
+              </p>
+            </div>
           </div>
           <Button
             size="sm"
             variant={driveAuth ? "outline" : "default"}
             onClick={driveAuth ? handleDisconnectDrive : handleConnectDrive}
+            className={driveAuth ? "" : "stone-cta-gold border-0 hover:opacity-90"}
           >
             {driveAuth ? "해제" : "연결"}
           </Button>
         </Card>
 
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "capture" | "history")}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="capture">
+          <TabsList className="grid w-full grid-cols-2 h-11 bg-muted/60 p-1">
+            <TabsTrigger value="capture" className="data-[state=active]:bg-card data-[state=active]:shadow-sm">
               <Camera className="w-4 h-4 mr-1.5" />
-              촬영/분석
+              촬영 / 분석
             </TabsTrigger>
-            <TabsTrigger value="history">
+            <TabsTrigger value="history" className="data-[state=active]:bg-card data-[state=active]:shadow-sm">
               <History className="w-4 h-4 mr-1.5" />
-              기록 ({history.length})
+              기록 {history.length > 0 && <span className="ml-1 text-xs text-muted-foreground">({history.length})</span>}
             </TabsTrigger>
           </TabsList>
 
@@ -527,36 +539,38 @@ const Stone = () => {
                   <Button
                     onClick={() => handleAnalyze("claude-sonnet")}
                     disabled={analyzing}
-                    className="h-14 flex-col gap-0.5"
-                    variant={preferred === "claude-sonnet" ? "default" : "outline"}
+                    className={`h-16 flex-col gap-0.5 border-0 ${
+                      preferred === "claude-sonnet" ? "stone-cta" : "bg-card text-foreground border border-border hover:bg-muted shadow-sm"
+                    }`}
                   >
                     {analyzing && usedProvider === null ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <span className="flex items-center text-sm font-semibold">
-                          <Sparkles className="w-3.5 h-3.5 mr-1" />
-                          정밀분석
+                        <span className="flex items-center text-sm font-semibold tracking-tight">
+                          <Sparkles className="w-4 h-4 mr-1.5 text-amber-300" />
+                          정밀 분석
                         </span>
-                        <span className="text-[10px] opacity-80">Sonnet 4.6</span>
+                        <span className="text-[10px] opacity-70 tracking-wide">SONNET 4.6 · 정확도 우선</span>
                       </>
                     )}
                   </Button>
                   <Button
                     onClick={() => handleAnalyze("claude-haiku")}
                     disabled={analyzing}
-                    className="h-14 flex-col gap-0.5"
-                    variant={preferred === "claude-haiku" ? "default" : "outline"}
+                    className={`h-16 flex-col gap-0.5 border-0 ${
+                      preferred === "claude-haiku" ? "stone-cta" : "bg-card text-foreground border border-border hover:bg-muted shadow-sm"
+                    }`}
                   >
                     {analyzing && usedProvider === null ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <span className="flex items-center text-sm font-semibold">
-                          <Zap className="w-3.5 h-3.5 mr-1" />
-                          빠른분석
+                        <span className="flex items-center text-sm font-semibold tracking-tight">
+                          <Zap className="w-4 h-4 mr-1.5 text-amber-400" />
+                          빠른 분석
                         </span>
-                        <span className="text-[10px] opacity-80">Haiku 4.5</span>
+                        <span className="text-[10px] opacity-70 tracking-wide">HAIKU 4.5 · 속도 우선</span>
                       </>
                     )}
                   </Button>

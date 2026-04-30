@@ -243,7 +243,7 @@ const HistoryList = ({ records, onDelete, onUpdate }: HistoryListProps) => {
           {filtered.map((rec) => (
             <Card
               key={rec.id}
-              className="overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all"
+              className="stone-card overflow-hidden cursor-pointer hover:ring-2 hover:ring-accent/40 hover:-translate-y-0.5 transition-all border-0"
               onClick={() => setSelected(rec)}
             >
               <div className="aspect-square bg-muted overflow-hidden">

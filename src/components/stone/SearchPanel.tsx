@@ -15,6 +15,7 @@ import {
 import { toast } from "sonner";
 import { searchStoneWithGemini } from "@/lib/stone/gemini";
 import type { StoneSearchResult } from "@/lib/stone/gemini";
+import { translateToEnglish } from "@/lib/stone/cloud";
 import { loadApiKeys } from "@/lib/stone/storage";
 import { loadCatalog } from "@/lib/stone/catalog";
 import { loadBundledImageIndex, safeProductKey } from "@/lib/stone/catalogImages";
@@ -110,7 +111,20 @@ const SearchPanel = () => {
     setResult(null);
     setWikiImage(null);
     try {
-      const r = await searchStoneWithGemini(q, keys.gemini);
+      // If Cloud key available and query is Korean, pre-translate to English
+      // for higher-quality Gemini grounded search.
+      let queryToSend = q;
+      if (keys.googleCloudKey && /[가-힣]/.test(q)) {
+        try {
+          const translated = await translateToEnglish(q, keys.googleCloudKey);
+          if (translated && translated !== q) {
+            queryToSend = `${translated} (한글 원문: ${q})`;
+          }
+        } catch (e) {
+          console.warn("Translate 실패, 원문으로 검색", e);
+        }
+      }
+      const r = await searchStoneWithGemini(queryToSend, keys.gemini);
       setResult(r);
       // also try wikipedia for inline image
       const englishName = r.englishName || q;

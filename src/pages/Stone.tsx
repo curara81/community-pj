@@ -31,7 +31,7 @@ import CatalogImageManager from "@/components/stone/CatalogImageManager";
 import SearchPanel from "@/components/stone/SearchPanel";
 import { analyzeWithClaude } from "@/lib/stone/claude";
 import type { ClaudeModel } from "@/lib/stone/claude";
-import { analyzeWithGemini } from "@/lib/stone/gemini";
+import { analyzeWithCloudVision } from "@/lib/stone/cloud";
 import { pickConfirmedLibrary } from "@/lib/stone/prompts";
 import {
   requestDriveAccess,
@@ -203,12 +203,15 @@ const Stone = () => {
       return;
     }
     const keys = loadApiKeys();
-    const isGemini = provider === "gemini";
-    const key = isGemini ? keys.gemini : keys.claude;
+    const isCloudVision = provider === "gemini"; // legacy provider id, now used for Cloud Vision
+    const key = isCloudVision ? keys.googleCloudKey : keys.claude;
     if (!key) {
-      toast.error(`${isGemini ? "Gemini" : "Claude"} API 키가 설정되지 않았습니다.`, {
-        action: { label: "설정", onClick: () => setSettingsOpen(true) },
-      });
+      toast.error(
+        `${isCloudVision ? "Google Cloud API" : "Claude API"} 키가 설정되지 않았습니다.`,
+        {
+          action: { label: "설정", onClick: () => setSettingsOpen(true) },
+        }
+      );
       return;
     }
 
@@ -224,8 +227,8 @@ const Stone = () => {
 
     try {
       const library = pickConfirmedLibrary(history);
-      const result = isGemini
-        ? await analyzeWithGemini(imageDataUrls, key, { userNote, library, hints })
+      const result = isCloudVision
+        ? await analyzeWithCloudVision(imageDataUrls, key)
         : await analyzeWithClaude(imageDataUrls, key, {
             model:
               provider === "claude-haiku"
@@ -279,7 +282,7 @@ const Stone = () => {
       toast.success(
         `분석 완료 (${
           provider === "gemini"
-            ? "Gemini"
+            ? "Cloud Vision"
             : provider === "claude-haiku"
               ? "Haiku 4.5"
               : "Sonnet 4.6"
@@ -607,7 +610,7 @@ const Stone = () => {
                           <Gift className="w-3.5 h-3.5 mr-1 text-emerald-500" />
                           무료
                         </span>
-                        <span className="text-[9px] opacity-70 tracking-wide">GEMINI · 무과금</span>
+                        <span className="text-[9px] opacity-70 tracking-wide">CLOUD VISION · 크레딧</span>
                       </>
                     )}
                   </Button>

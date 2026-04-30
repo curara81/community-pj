@@ -116,8 +116,83 @@ const SettingsDialog = ({ open, onOpenChange, onOpenCatalogImages }: SettingsDia
                 onChange={update("gemini")}
               />
               <p className="text-xs text-muted-foreground">
-                무료분석 + 검색 탭 (Google Search 그라운딩) — 무료 티어 분당 15회
+                검색 탭 (Google Search 그라운딩) — 무료 티어 분당 15회
               </p>
+            </div>
+
+            <div className="pt-3 border-t space-y-3">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-foreground">
+                  Google Cloud (선택)
+                </p>
+                <p className="text-[11px] text-muted-foreground">
+                  Vision API (무료 분석), Translate (한글→영문), Custom Search (이미지 검색).
+                  $300 크레딧 적용됨.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="googleCloudKey">Cloud API Key</Label>
+                  <a
+                    href="https://console.cloud.google.com/apis/credentials"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-primary inline-flex items-center gap-1 hover:underline"
+                  >
+                    발급 <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <Input
+                  id="googleCloudKey"
+                  type="password"
+                  placeholder="AIza... (Cloud Console에서 새로 발급)"
+                  value={keys.googleCloudKey || ""}
+                  onChange={update("googleCloudKey")}
+                />
+                <div className="text-[11px] text-muted-foreground space-y-0.5">
+                  <p>· APIs Library에서 다음 3개 활성화 필요:</p>
+                  <p className="pl-3">
+                    <a className="text-primary hover:underline" target="_blank" rel="noreferrer"
+                       href="https://console.cloud.google.com/apis/library/translate.googleapis.com">
+                      Cloud Translation API
+                    </a>
+                    {" / "}
+                    <a className="text-primary hover:underline" target="_blank" rel="noreferrer"
+                       href="https://console.cloud.google.com/apis/library/vision.googleapis.com">
+                      Cloud Vision API
+                    </a>
+                    {" / "}
+                    <a className="text-primary hover:underline" target="_blank" rel="noreferrer"
+                       href="https://console.cloud.google.com/apis/library/customsearch.googleapis.com">
+                      Custom Search API
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="googleCseId">Custom Search Engine ID</Label>
+                  <a
+                    href="https://programmablesearchengine.google.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-primary inline-flex items-center gap-1 hover:underline"
+                  >
+                    만들기 <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+                <Input
+                  id="googleCseId"
+                  placeholder="cx 값 (예: 123abc456:def789)"
+                  value={keys.googleCseId || ""}
+                  onChange={update("googleCseId")}
+                />
+                <p className="text-[11px] text-muted-foreground">
+                  Programmable Search Engine 만들기 → "전체 웹 검색" + "이미지 검색" 옵션 켜기 → cx ID 복사
+                </p>
+              </div>
             </div>
           </TabsContent>
 

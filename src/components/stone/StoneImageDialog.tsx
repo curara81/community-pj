@@ -7,6 +7,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Loader2, ImageOff } from "lucide-react";
+import { customSearchImages } from "@/lib/stone/cloud";
+import type { CustomSearchImageResult } from "@/lib/stone/cloud";
+import { loadApiKeys } from "@/lib/stone/storage";
 
 interface WikiResult {
   imageUrl?: string;
@@ -32,7 +35,6 @@ async function fetchWikipediaImage(stoneName: string): Promise<WikiResult | null
       );
       if (!res.ok) continue;
       const data = await res.json();
-      // type "disambiguation" or missing thumbnail → try next variant
       if (data.type === "disambiguation") continue;
       if (data.thumbnail?.source) {
         return {
@@ -61,20 +63,46 @@ interface Props {
 
 const StoneImageDialog = ({ stoneName, open, onOpenChange }: Props) => {
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<WikiResult | null>(null);
+  const [wiki, setWiki] = useState<WikiResult | null>(null);
+  const [cseResults, setCseResults] = useState<CustomSearchImageResult[] | null>(null);
+  const [cseLoading, setCseLoading] = useState(false);
 
   useEffect(() => {
     if (!open || !stoneName) return;
     let cancelled = false;
+
+    const keys = loadApiKeys();
+    const useCustomSearch = !!(keys.googleCloudKey && keys.googleCseId);
+
     setLoading(true);
-    setResult(null);
+    setWiki(null);
+    setCseResults(null);
+
+    // Wikipedia for inline thumbnail/extract
     fetchWikipediaImage(stoneName)
       .then((r) => {
-        if (!cancelled) setResult(r);
+        if (!cancelled) setWiki(r);
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
+
+    // Custom Search if keys available
+    if (useCustomSearch) {
+      setCseLoading(true);
+      customSearchImages(stoneName, keys.googleCloudKey!, keys.googleCseId!, 8)
+        .then((items) => {
+          if (!cancelled) setCseResults(items);
+        })
+        .catch((e) => {
+          console.warn("Custom Search 실패", e);
+          if (!cancelled) setCseResults([]);
+        })
+        .finally(() => {
+          if (!cancelled) setCseLoading(false);
+        });
+    }
+
     return () => {
       cancelled = true;
     };
@@ -92,30 +120,30 @@ const StoneImageDialog = ({ stoneName, open, onOpenChange }: Props) => {
 
         <div className="space-y-3">
           {loading && (
-            <div className="flex items-center justify-center py-12 text-muted-foreground">
+            <div className="flex items-center justify-center py-8 text-muted-foreground">
               <Loader2 className="w-6 h-6 animate-spin mr-2" />
-              <span className="text-sm">위키피디아에서 검색 중...</span>
+              <span className="text-sm">검색 중...</span>
             </div>
           )}
 
-          {!loading && result?.imageUrl && (
+          {!loading && wiki?.imageUrl && (
             <>
               <div className="rounded-lg overflow-hidden border bg-muted">
                 <img
-                  src={result.imageUrl}
+                  src={wiki.imageUrl}
                   alt={stoneName}
-                  className="w-full max-h-[420px] object-contain"
+                  className="w-full max-h-[360px] object-contain"
                 />
               </div>
-              {result.extract && (
+              {wiki.extract && (
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  {result.extract.slice(0, 280)}
-                  {result.extract.length > 280 && "..."}
+                  {wiki.extract.slice(0, 240)}
+                  {wiki.extract.length > 240 && "..."}
                 </p>
               )}
-              {result.pageUrl && (
+              {wiki.pageUrl && (
                 <Button variant="outline" size="sm" asChild className="w-full">
-                  <a href={result.pageUrl} target="_blank" rel="noreferrer">
+                  <a href={wiki.pageUrl} target="_blank" rel="noreferrer">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     위키피디아에서 자세히 보기
                   </a>
@@ -124,14 +152,50 @@ const StoneImageDialog = ({ stoneName, open, onOpenChange }: Props) => {
             </>
           )}
 
-          {!loading && !result?.imageUrl && (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
+          {cseResults !== null && (
+            <div className="space-y-2 pt-1">
+              <div className="flex items-center justify-between">
+                <p className="text-[11px] font-bold uppercase tracking-[0.12em] stone-section-title">
+                  구글 이미지
+                </p>
+                {cseLoading && <Loader2 className="w-3 h-3 animate-spin text-muted-foreground" />}
+              </div>
+              {cseResults.length === 0 ? (
+                <p className="text-xs text-muted-foreground py-3 text-center">
+                  결과 없음
+                </p>
+              ) : (
+                <div className="grid grid-cols-3 gap-1.5">
+                  {cseResults.map((r, i) => (
+                    <a
+                      key={i}
+                      href={r.contextLink ?? r.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="aspect-square rounded-md overflow-hidden bg-muted border hover:opacity-80"
+                      title={r.title}
+                    >
+                      <img
+                        src={r.thumbnailLink ?? r.link}
+                        alt={r.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {!loading && !wiki?.imageUrl && cseResults === null && (
+            <div className="flex flex-col items-center justify-center py-6 text-center">
               <ImageOff className="w-10 h-10 text-muted-foreground/60 mb-2" />
               <p className="text-sm text-muted-foreground">
                 위키피디아에서 이미지를 찾지 못했습니다.
               </p>
-              <p className="text-xs text-muted-foreground/70 mt-1">
-                구글 이미지에서 더 많은 사진을 확인하세요.
+              <p className="text-[11px] text-muted-foreground/70 mt-1">
+                Cloud API Key + Custom Search Engine ID 등록 시 구글 이미지 검색이 켜집니다.
               </p>
             </div>
           )}
@@ -139,7 +203,7 @@ const StoneImageDialog = ({ stoneName, open, onOpenChange }: Props) => {
           <Button asChild className="w-full">
             <a href={gUrl} target="_blank" rel="noreferrer">
               <ExternalLink className="w-4 h-4 mr-2" />
-              구글 이미지에서 더 보기
+              구글 이미지 새 탭에서 더 보기
             </a>
           </Button>
         </div>

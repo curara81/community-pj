@@ -98,6 +98,11 @@ export interface StoneRecord {
 export interface ApiKeys {
   claude?: string;
   gemini?: string;
+  /** Google Cloud API key (Translate, Vision, Custom Search). Separate from
+   *  AI Studio Gemini key — typically created in Cloud Console → Credentials. */
+  googleCloudKey?: string;
+  /** Programmable Search Engine ID (cx parameter) */
+  googleCseId?: string;
   naverClientId?: string;
   naverClientSecret?: string;
   googleClientId?: string;

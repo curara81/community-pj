@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
@@ -21,6 +21,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Location = lazy(() => import("./pages/Location"));
 const CopyrightPage = lazy(() => import("./pages/Copyright"));
 const EmailRefusal = lazy(() => import("./pages/EmailRefusal"));
+const Stone = lazy(() => import("./pages/Stone"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -48,7 +49,8 @@ const App = () => (
           <BrowserRouter>
             <Suspense fallback={<PageLoader />}>
               <Routes>
-                <Route path="/" element={<Index />} />
+                <Route path="/" element={<Navigate to="/stone" replace />} />
+                <Route path="/home" element={<Index />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/business" element={<Business />} />
                 <Route path="/gallery" element={<Gallery />} />
@@ -61,6 +63,7 @@ const App = () => (
                 <Route path="/location" element={<Location />} />
                 <Route path="/copyright" element={<CopyrightPage />} />
                 <Route path="/email-refusal" element={<EmailRefusal />} />
+                <Route path="/stone" element={<Stone />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

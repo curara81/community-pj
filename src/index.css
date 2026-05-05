@@ -141,3 +141,8 @@
     @apply bg-gradient-to-br from-success-lighter to-success-light/20 border border-success-light;
   }
 }
+
+/* App 환경에서 하단 탭바 공간 확보 */
+body.is-app {
+  padding-bottom: calc(64px + env(safe-area-inset-bottom));
+}

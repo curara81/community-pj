@@ -131,7 +131,7 @@ const Header = memo(() => {
           </div>
           
           {/* 두 번째 줄: Comm.Unity 로고 + 네비게이션 메뉴 */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-between gap-3 lg:gap-6">
+          <div className={`${isMobileMenuOpen ? 'hidden md:flex' : 'flex'} flex-wrap items-center justify-center lg:justify-between gap-3 lg:gap-6`}>
             {/* Comm.Unity 로고 */}
             <Link to="/" className="text-xl lg:text-2xl font-bold text-slate-800 whitespace-nowrap">
               Comm.Unity

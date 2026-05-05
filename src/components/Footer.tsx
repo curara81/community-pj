@@ -11,7 +11,10 @@ const Footer = memo(() => {
     <footer className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 text-slate-50 py-12">
       <div className="container mx-auto px-6">
         <div className="text-center">
-          <h3 className="text-2xl font-bold mb-4 text-white">{t("사단법인 컴유니티", "Comm.Unity")}</h3>
+          <h3 className="text-2xl font-bold mb-4 text-white">
+            {t("사단법인 ", "")}
+            <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500 bg-clip-text text-transparent">Comm.Unity</span>
+          </h3>
           <p className="text-slate-200 mb-6">
             <span className="hidden md:block">{t("다문화 가정과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for multicultural families and vulnerable groups")}</span>
             <span className="md:hidden">{t("다문화 가정과 취약계층을 위한 돌봄으로 하나 되는 사회를 만들어갑니다", "Building a united society through care for multicultural families and vulnerable groups")}</span>

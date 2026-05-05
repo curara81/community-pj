@@ -72,7 +72,7 @@ const BusinessModal = ({ children }: BusinessModalProps) => {
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-muted border-muted-medium">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center text-primary">
-            📌 {t("컴유니티 주요 사업 소개", "Comm.Unity Main Programs")}
+            📌 <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-orange-700 bg-clip-text text-transparent">Comm.Unity</span> {t("주요 사업 소개", "Main Programs")}
           </DialogTitle>
         </DialogHeader>
         

@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { useIsApp } from "@/hooks/useIsApp";
+import BottomTabBar from "@/components/BottomTabBar";
 
 import Index from "./pages/Index";
 
@@ -38,6 +40,38 @@ const PageLoader = () => (
   </div>
 );
 
+const AppShell = () => {
+  const isApp = useIsApp();
+
+  useEffect(() => {
+    document.body.classList.toggle('is-app', isApp);
+  }, [isApp]);
+
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/business" element={<Business />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/donation" element={<Donation />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/financial-report" element={<FinancialReport />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/location" element={<Location />} />
+          <Route path="/copyright" element={<CopyrightPage />} />
+          <Route path="/email-refusal" element={<EmailRefusal />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      <BottomTabBar />
+    </BrowserRouter>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
@@ -45,26 +79,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/business" element={<Business />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/donation" element={<Donation />} />
-                <Route path="/volunteer" element={<Volunteer />} />
-                <Route path="/newsletter" element={<Newsletter />} />
-                <Route path="/financial-report" element={<FinancialReport />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/location" element={<Location />} />
-                <Route path="/copyright" element={<CopyrightPage />} />
-                <Route path="/email-refusal" element={<EmailRefusal />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
+          <AppShell />
         </TooltipProvider>
       </LanguageProvider>
     </AuthProvider>

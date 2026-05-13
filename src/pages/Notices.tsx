@@ -28,7 +28,7 @@ export const notices: Notice[] = [
 함께 해주신 모든 후원자 분들께 감사의 말씀을 전합니다.`,
     attachment: {
       name: "기부금품의 모집 및 지출 명세서_사단법인 컴유니티.pdf",
-      url: "/notices/기부금품의모집및지출명세서_사단법인_컴유니티.pdf",
+      url: "/notices/comm-unity-donation-report-2025.pdf",
     },
   },
 ];

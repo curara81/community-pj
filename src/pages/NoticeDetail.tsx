@@ -50,7 +50,7 @@ const NoticeDetail = () => {
                 <p className="text-sm font-semibold text-foreground mb-3">첨부파일</p>
                 <a
                   href={notice.attachment.url}
-                  download
+                  download={notice.attachment.name}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-muted/40 border border-border rounded-md hover:bg-accent transition-colors text-sm"
                 >
                   <FileText size={16} className="text-primary" />

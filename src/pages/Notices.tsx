@@ -91,10 +91,9 @@ const Notices = () => {
           <div className="hidden md:block border-t-2 border-foreground">
             <div className="grid grid-cols-12 px-4 py-3 text-sm font-semibold text-muted-foreground border-b border-border">
               <div className="col-span-1">No</div>
-              <div className="col-span-6">제목</div>
+              <div className="col-span-7">제목</div>
               <div className="col-span-2">글쓴이</div>
               <div className="col-span-2">작성시간</div>
-              <div className="col-span-1 text-center">좋아요</div>
             </div>
             {filtered.length === 0 ? (
               <div className="py-12 text-center text-muted-foreground">
@@ -108,10 +107,9 @@ const Notices = () => {
                   className="grid grid-cols-12 px-4 py-4 text-sm border-b border-border hover:bg-muted/40 transition-colors"
                 >
                   <div className="col-span-1 text-muted-foreground">{n.id}</div>
-                  <div className="col-span-6 text-foreground font-medium">{n.title}</div>
+                  <div className="col-span-7 text-foreground font-medium">{n.title}</div>
                   <div className="col-span-2 text-muted-foreground">{n.author}</div>
                   <div className="col-span-2 text-muted-foreground">{n.date}</div>
-                  <div className="col-span-1 text-center text-primary">{n.likes}</div>
                 </Link>
               ))
             )}

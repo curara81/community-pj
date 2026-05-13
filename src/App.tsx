@@ -62,6 +62,7 @@ const App = () => (
                 <Route path="/location" element={<Location />} />
                 <Route path="/copyright" element={<CopyrightPage />} />
                 <Route path="/email-refusal" element={<EmailRefusal />} />
+                <Route path="/notices" element={<Notices />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

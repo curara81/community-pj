@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import SimpleHeader from "@/components/SimpleHeader";
 import Footer from "@/components/Footer";
@@ -22,6 +23,39 @@ const NoticeDetail = () => {
     url.searchParams.set("__lovable_token", previewToken);
     return `${url.pathname}${url.search}${url.hash}`;
   })();
+
+  const handleAttachmentDownload = async (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!notice.attachment || !attachmentUrl) return;
+
+    event.preventDefault();
+
+    const response = await fetch(attachmentUrl, {
+      credentials: "include",
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Attachment download failed: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const signature = await blob.slice(0, 5).text();
+
+    if (signature !== "%PDF-") {
+      throw new Error("Attachment response is not a PDF");
+    }
+
+    const pdfBlob = blob.type === "application/pdf" ? blob : new Blob([blob], { type: "application/pdf" });
+    const objectUrl = URL.createObjectURL(pdfBlob);
+    const link = document.createElement("a");
+
+    link.href = objectUrl;
+    link.download = notice.attachment.name;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+  };
 
   return (
     <div className="min-h-screen">
@@ -62,6 +96,7 @@ const NoticeDetail = () => {
                 <a
                   href={attachmentUrl}
                   download={notice.attachment.name}
+                  onClick={handleAttachmentDownload}
                   type="application/pdf"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-muted/40 border border-border rounded-md hover:bg-accent transition-colors text-sm"
                 >

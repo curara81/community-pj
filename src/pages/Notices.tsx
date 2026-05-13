@@ -93,7 +93,7 @@ const Notices = () => {
               <div className="col-span-1">No</div>
               <div className="col-span-7">제목</div>
               <div className="col-span-2">글쓴이</div>
-              <div className="col-span-2">작성시간</div>
+              <div className="col-span-2">작성날짜</div>
             </div>
             {filtered.length === 0 ? (
               <div className="py-12 text-center text-muted-foreground">

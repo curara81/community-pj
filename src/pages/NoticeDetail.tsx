@@ -37,7 +37,7 @@ const NoticeDetail = () => {
               </h1>
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <span>글쓴이: {notice.author}</span>
-                <span>작성시간: {notice.date}</span>
+                <span>작성날짜: {notice.date}</span>
               </div>
             </header>
 

@@ -19,6 +19,10 @@ const Footer = memo(() => {
           
           {/* 정책 링크들 - 순서: 찾아오시는 길 | 이용약관 | 개인정보처리방침 | 저작권정책 | 이메일무단수신거부 */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <Link to="/notices" className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
+              {t("공지사항", "Notices")}
+            </Link>
+            <span className="text-slate-400">|</span>
             <Link to="/location" className="text-slate-300 hover:text-white text-sm underline hover:underline-offset-4 transition-all">
               {t("찾아오시는 길", "Directions")}
             </Link>

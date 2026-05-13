@@ -22,7 +22,7 @@ export const notices: Notice[] = [
     id: 1,
     title: "2025년 기부금 모금액 및 활용실적",
     author: "관리자",
-    date: "2026-04-16",
+    date: "2026-05-13",
     likes: 0,
     content: `25년 기부금 모금액 및 활용실적 명세서입니다.
 

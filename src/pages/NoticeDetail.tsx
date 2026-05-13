@@ -12,6 +12,17 @@ const NoticeDetail = () => {
 
   if (!notice) return <Navigate to="/notices" replace />;
 
+  const attachmentUrl = (() => {
+    if (!notice.attachment || typeof window === "undefined") return "";
+
+    const previewToken = new URLSearchParams(window.location.search).get("__lovable_token");
+    if (!previewToken) return notice.attachment.url;
+
+    const url = new URL(notice.attachment.url, window.location.origin);
+    url.searchParams.set("__lovable_token", previewToken);
+    return `${url.pathname}${url.search}${url.hash}`;
+  })();
+
   return (
     <div className="min-h-screen">
       <SimpleHeader showBanner={false} />
@@ -49,8 +60,9 @@ const NoticeDetail = () => {
               <div className="border-t border-border pt-6 pb-8">
                 <p className="text-sm font-semibold text-foreground mb-3">첨부파일</p>
                 <a
-                  href={notice.attachment.url}
+                  href={attachmentUrl}
                   download={notice.attachment.name}
+                  type="application/pdf"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-muted/40 border border-border rounded-md hover:bg-accent transition-colors text-sm"
                 >
                   <FileText size={16} className="text-primary" />

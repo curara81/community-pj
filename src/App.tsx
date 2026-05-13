@@ -21,6 +21,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Location = lazy(() => import("./pages/Location"));
 const CopyrightPage = lazy(() => import("./pages/Copyright"));
 const EmailRefusal = lazy(() => import("./pages/EmailRefusal"));
+const Notices = lazy(() => import("./pages/Notices"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({

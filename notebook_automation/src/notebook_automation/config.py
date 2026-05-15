@@ -21,19 +21,23 @@ class Settings:
     outputs_dir: Path
 
 
+def _resolve_path(env_var: str, default: str) -> Path:
+    raw = os.environ.get(env_var, default)
+    return Path(raw) if os.path.isabs(raw) else ROOT / raw
+
+
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
     load_dotenv(ROOT / ".env")
 
-    cred = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", "secrets/service-account.json")
-    cred_path = (ROOT / cred) if not os.path.isabs(cred) else Path(cred)
-
-    storage = os.environ.get("NOTEBOOKLM_STORAGE_STATE", "secrets/storage_state.json")
-    storage_path = (ROOT / storage) if not os.path.isabs(storage) else Path(storage)
+    cred_path = _resolve_path("GOOGLE_APPLICATION_CREDENTIALS", "secrets/service-account.json")
+    storage_path = _resolve_path("NOTEBOOKLM_STORAGE_STATE", "secrets/storage_state.json")
 
     outputs = ROOT / "outputs"
     outputs.mkdir(exist_ok=True)
 
+    # Google SDKs read this from env, not from a function arg, so the absolute
+    # path has to be exported before any google.cloud client is constructed.
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(cred_path)
 
     return Settings(

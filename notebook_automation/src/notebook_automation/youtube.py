@@ -4,7 +4,11 @@ from dataclasses import dataclass
 
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
-from youtube_transcript_api._errors import TranscriptsDisabled, NoTranscriptFound
+from youtube_transcript_api._errors import (
+    NoTranscriptFound,
+    TranscriptsDisabled,
+    VideoUnavailable,
+)
 
 from .config import get_settings
 
@@ -58,7 +62,5 @@ def fetch_transcript(video_id: str, languages: list[str] | None = None) -> str |
         api = YouTubeTranscriptApi()
         fetched = api.fetch(video_id, languages=langs)
         return "\n".join(snippet.text for snippet in fetched.snippets)
-    except (TranscriptsDisabled, NoTranscriptFound):
-        return None
-    except Exception:
+    except (TranscriptsDisabled, NoTranscriptFound, VideoUnavailable):
         return None

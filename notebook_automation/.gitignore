@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.env
+.env.local
+
+secrets/
+*.service-account.json
+service-account*.json
+storage_state*.json
+notebooklm_cookies*.json
+
+outputs/
+*.log

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import json
 from dataclasses import asdict
 
@@ -53,7 +54,7 @@ def run(
     title: str | None = typer.Option(None, "--title", help="notebook title"),
 ) -> None:
     """Search YouTube → create notebook → add sources."""
-    result = pipe.youtube_to_notebooklm(query, max_results=n, notebook_title=title)
+    result = asyncio.run(pipe.youtube_to_notebooklm(query, max_results=n, notebook_title=title))
     print(json.dumps(asdict(result), ensure_ascii=False, indent=2))
 
 

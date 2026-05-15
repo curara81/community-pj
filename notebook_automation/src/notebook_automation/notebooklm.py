@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-from contextlib import contextmanager
+import asyncio
+from contextlib import asynccontextmanager
 from dataclasses import dataclass
-from typing import Iterator
+from typing import AsyncIterator
 
 from notebooklm import NotebookLMClient
 
 from .config import get_settings
 
 SOURCE_TIMEOUT_S = 180.0
-BRIEFING_TIMEOUT_S = 600.0
 
 
 @dataclass
@@ -18,54 +18,50 @@ class NotebookHandle:
     title: str
 
 
-def _connect() -> NotebookLMClient:
+async def _connect() -> NotebookLMClient:
     settings = get_settings()
     if not settings.notebooklm_storage_state.exists():
         raise FileNotFoundError(
             f"NotebookLM storage_state not found at {settings.notebooklm_storage_state}. "
-            f"Run `python -m notebook_automation.cli auth-notebooklm --help` for setup."
+            f"Generate it with Playwright (see notebook_automation/README.md §3)."
         )
-    return NotebookLMClient.from_storage(path=str(settings.notebooklm_storage_state))
+    return await NotebookLMClient.from_storage(path=str(settings.notebooklm_storage_state))
 
 
 class Session:
     def __init__(self, client: NotebookLMClient) -> None:
         self._client = client
 
-    def create_notebook(self, title: str) -> NotebookHandle:
-        nb = self._client.notebooks.create(title=title)
+    async def create_notebook(self, title: str) -> NotebookHandle:
+        nb = await self._client.notebooks.create(title=title)
         return NotebookHandle(notebook_id=nb.id, title=nb.title)
 
-    def add_url_source(self, notebook_id: str, url: str, *, wait: bool = True) -> str:
-        src = self._client.sources.add_url(
+    async def add_url_source(self, notebook_id: str, url: str, *, wait: bool = True) -> str:
+        src = await self._client.sources.add_url(
             notebook_id=notebook_id, url=url, wait=wait, wait_timeout=SOURCE_TIMEOUT_S,
         )
         return src.id
 
-    def add_text_source(self, notebook_id: str, title: str, content: str, *, wait: bool = True) -> str:
-        src = self._client.sources.add_text(
+    async def add_text_source(self, notebook_id: str, title: str, content: str, *, wait: bool = True) -> str:
+        src = await self._client.sources.add_text(
             notebook_id=notebook_id, title=title, content=content, wait=wait, wait_timeout=SOURCE_TIMEOUT_S,
         )
         return src.id
 
-    def ask(self, notebook_id: str, question: str) -> str:
-        result = self._client.chat.ask(notebook_id=notebook_id, question=question)
-        return result.answer if hasattr(result, "answer") else str(result)
-
-    def generate_briefing(self, notebook_id: str, language: str = "ko") -> str:
-        status = self._client.artifacts.generate_report(notebook_id=notebook_id, language=language)
-        final = self._client.artifacts.wait_for_completion(
-            notebook_id=notebook_id, task_id=status.task_id, timeout=BRIEFING_TIMEOUT_S,
-        )
-        return getattr(final, "artifact_id", "") or ""
+    async def ask(self, notebook_id: str, question: str) -> str:
+        result = await self._client.chat.ask(notebook_id=notebook_id, question=question)
+        return result.answer
 
 
-@contextmanager
-def session() -> Iterator[Session]:
-    with _connect() as client:
+@asynccontextmanager
+async def session() -> AsyncIterator[Session]:
+    client = await _connect()
+    async with client:
         yield Session(client)
 
 
 def ask(notebook_id: str, question: str) -> str:
-    with session() as s:
-        return s.ask(notebook_id, question)
+    async def _run() -> str:
+        async with session() as s:
+            return await s.ask(notebook_id, question)
+    return asyncio.run(_run())

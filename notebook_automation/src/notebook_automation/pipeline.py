@@ -20,7 +20,7 @@ class PipelineResult:
     source_ids: list[str]
 
 
-def youtube_to_notebooklm(
+async def youtube_to_notebooklm(
     query: str,
     *,
     max_results: int = 5,
@@ -36,14 +36,14 @@ def youtube_to_notebooklm(
     console.log(f"[cyan]Creating NotebookLM notebook[/]: {title}")
 
     source_ids: list[str] = []
-    with notebooklm.session() as nb_session:
-        nb = nb_session.create_notebook(title)
+    async with notebooklm.session() as nb_session:
+        nb = await nb_session.create_notebook(title)
         console.log(f"  notebook_id = {nb.notebook_id}")
 
         for v in videos:
             console.log(f"[cyan]Adding URL source[/]: {v.title}")
             try:
-                sid = nb_session.add_url_source(nb.notebook_id, v.watch_url, wait=True)
+                sid = await nb_session.add_url_source(nb.notebook_id, v.watch_url, wait=True)
                 source_ids.append(sid)
             except Exception as e:
                 console.log(f"  [yellow]URL source failed, falling back to transcript[/]: {e}")
@@ -53,7 +53,7 @@ def youtube_to_notebooklm(
                 if not transcript:
                     console.log("  [red]No transcript available, skipping[/]")
                     continue
-                sid = nb_session.add_text_source(nb.notebook_id, title=v.title, content=transcript, wait=True)
+                sid = await nb_session.add_text_source(nb.notebook_id, title=v.title, content=transcript, wait=True)
                 source_ids.append(sid)
 
     result = PipelineResult(

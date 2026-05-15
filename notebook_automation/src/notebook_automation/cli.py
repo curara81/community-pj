@@ -37,7 +37,10 @@ def doctor() -> None:
 
 
 @app.command("yt-search")
-def yt_search(query: str, n: int = 5) -> None:
+def yt_search(
+    query: str,
+    n: int = typer.Option(5, "-n", "--num", help="number of videos"),
+) -> None:
     """Search YouTube only (no NotebookLM)."""
     for v in yt.search_videos(query, max_results=n):
         print(f"- [bold]{v.title}[/] · {v.channel} · {v.url}")

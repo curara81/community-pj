@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 
+import httplib2
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api._errors import (
@@ -11,6 +13,13 @@ from youtube_transcript_api._errors import (
 )
 
 from .config import get_settings
+
+
+def _http() -> httplib2.Http:
+    # httplib2 ships its own cacerts.txt and ignores SSL_CERT_FILE / REQUESTS_CA_BUNDLE,
+    # so we forward those to it explicitly — required behind a TLS-intercepting egress.
+    ca = os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("SSL_CERT_FILE")
+    return httplib2.Http(ca_certs=ca) if ca else httplib2.Http()
 
 
 @dataclass
@@ -32,7 +41,7 @@ def search_videos(query: str, max_results: int = 5, *, order: str = "relevance")
     if not settings.youtube_api_key:
         raise RuntimeError("YOUTUBE_API_KEY is not set in .env")
 
-    client = build("youtube", "v3", developerKey=settings.youtube_api_key, cache_discovery=False)
+    client = build("youtube", "v3", developerKey=settings.youtube_api_key, http=_http(), cache_discovery=False)
     resp = client.search().list(
         q=query,
         part="snippet",
